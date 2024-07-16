@@ -1,105 +1,32 @@
 <script>
     import { page } from '$app/stores';
-    import logo from "../../assets/logo/image.png"
-   
+    import logo from "../../assets/logo/image.webp"
+
     $: routeId = $page.route.id
-    
 </script>
 
-<nav class="nav_container">
+<nav class="w-full h-[72px] flex justify-between items-center bg-white p-4 px-16 ">
     <div class="logo">
-        <img src={logo} alt="logo">
+        <img src={logo} alt="logo" class="h-12">
     </div>
-    <ul>
-        <li><a href="/" class:active={routeId === '/'}>Home</a></li>
-        <li><a href="/about" class:active={routeId === '/about'}>About Us</a></li>
-        <li><a href="/news" class:active={routeId === '/news'}>News and Blogs</a></li>
-        <li><a href="/getInvolved" class:active={routeId === '/getInvolved'}>Get Involved</a></li>
-        <li><a href="#contactUs" class:active={routeId === '/contact'}>Contact Us</a></li>
+    <ul class="flex list-none m-0 p-0" >
+        <li class="mx-2"><a href="/" class:active={routeId === '/'} class="text-blue-900 no-underline" class:font-bold={routeId === '/'}>Home</a></li>
+        <li class="mx-2"><a href="/about" class:active={routeId === '/about'} class="text-blue-900 no-underline" class:font-bold={routeId === '/about'}>About Us</a></li>
+        <li class="mx-2"><a href="/news" class:active={routeId === '/news'} class="text-blue-900 no-underline" class:font-bold={routeId === '/news'}>News and Blogs</a></li>
+        <li class="mx-2"><a href="/getInvolved" class:active={routeId === '/getInvolved'} class="text-blue-900 no-underline" class:font-bold={routeId === '/getInvolved'}>Get Involved</a></li>
+        <li class="mx-2"><a href="#contactUs" class:active={routeId === '/contact'} class="text-blue-900 no-underline" class:font-bold={routeId === '/contact'}>Contact Us</a></li>
     </ul>
-    <div class="select-group">
-        <div class="select_container language">
-            <select class="lang" name="" id="lang">
+    <div class="flex gap-3 mr-7">
+        <div class="relative flex items-center justify-between px-3 text-blue-800  rounded-full border-2 border-blue-800">
+            <select class="w-full p-2 cursor-pointer bg-transparent outline-none" name="" id="lang">
                 <option value="en">English</option>
                 <option value="hi">हिन्दी</option>
             </select>
         </div>
-        <div class="select_container donation">
-            <select class="donate" name="" id="">
+        <div class="relative flex items-center justify-between px-3 bg-blue-800 text-white back rounded-full border-2 border-blue-800">
+            <select class="w-full p-2 cursor-pointer bg-transparent outline-none" name="" id="">
                 <option value="donate">Donate</option>
             </select>
         </div>
     </div>
 </nav>
-
-<style>
-    .nav_container {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #ffffff;
-        padding: 10px 4rem;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    li {
-        margin: 0 10px;
-    }
-
-    a {
-        text-decoration: none;
-        color: #0D2561;
-    }
-
-    .active {
-        font-weight: bold;
-    }
-
-    .select-group {
-        display: flex;
-        gap: 10px;
-    }
-
-    .select-group .select_container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 15px;
-        border-radius: 25px;
-        border: 2px solid;
-        cursor: pointer;
-        border: 2px solid #0155BD;
-    }
-
-    .select-group select {
-        width: 100%;
-        padding: 8px 10px;
-        cursor:pointer;
-        background: none;
-        border: none;
-        outline: none;
-    }
-
-    .language {
-        background: none;
-        color: #0155BD;
-    }
-
-    .donation {
-        background-color: #0155BD;
-        color: white;
-    }
-
-</style>

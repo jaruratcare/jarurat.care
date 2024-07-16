@@ -9,11 +9,11 @@
     <div class="logo">
         <img src={logo} alt="logo" class="h-12">
     </div>
-    <ul class="flex list-none m-0 p-0" >
-        <li class="mx-2"><a href="/" class:active={routeId === '/'} class="text-blue-900 no-underline" class:font-bold={routeId === '/'}>Home</a></li>
-        <li class="mx-2"><a href="/about" class:active={routeId === '/about'} class="text-blue-900 no-underline" class:font-bold={routeId === '/about'}>About Us</a></li>
-        <li class="mx-2"><a href="/news" class:active={routeId === '/news'} class="text-blue-900 no-underline" class:font-bold={routeId === '/news'}>News and Blogs</a></li>
-        <li class="mx-2"><a href="/getInvolved" class:active={routeId === '/getInvolved'} class="text-blue-900 no-underline" class:font-bold={routeId === '/getInvolved'}>Get Involved</a></li>
+    <ul class="flex list-none m-0 p-0  gap-8" >
+        <li class=""><a href="/" class:active={routeId === '/'} class="text-blue-900 no-underline" class:font-bold={routeId === '/'}>Home</a></li>
+        <li class=""><a href="/about" class:active={routeId === '/about'} class="text-blue-900 no-underline" class:font-bold={routeId === '/about'}>About Us</a></li>
+        <li class=""><a href="/news" class:active={routeId === '/news'} class="text-blue-900 no-underline" class:font-bold={routeId === '/news'}>News and Blogs</a></li>
+        <li class=""><a href="/getInvolved" class:active={routeId === '/getInvolved'} class="text-blue-900 no-underline" class:font-bold={routeId === '/getInvolved'}>Get Involved</a></li>
         <li class="mx-2"><a href="#contactUs" class:active={routeId === '/contact'} class="text-blue-900 no-underline" class:font-bold={routeId === '/contact'}>Contact Us</a></li>
     </ul>
     <div class="flex gap-3 mr-7">

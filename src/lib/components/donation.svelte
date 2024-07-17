@@ -5,12 +5,12 @@
   import DonationBg from '../../assets/svg/donationBg.svelte';
 </script>
 
-<div class=" relative w-full flex justify-between border border-[#0072C4]" >
+<div class=" relative w-full flex justify-between border border-[#0072C4]">
   <div class="absolute w-full h-full z-0 overflow-hidden">
     <DonationBg />
   </div>
 
-  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center  z-10">
+  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center z-10">
     <span class="bg-white p-3 rounded-full"><SeekSupport /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
@@ -35,7 +35,9 @@
     </button>
   </div>
 
-  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center border-x border-[#0072C4] z-10">
+  <div
+    class="w-1/3 py-12 px-32 flex flex-col justify-center items-center border-x border-[#0072C4] z-10"
+  >
     <span class="bg-white p-3 rounded-full"><Donate /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
@@ -59,7 +61,7 @@
     </button>
   </div>
 
-  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center  z-10">
+  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center z-10">
     <span class="bg-white p-3 rounded-full"><Member /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"

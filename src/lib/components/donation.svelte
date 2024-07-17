@@ -23,9 +23,15 @@
 			>
 		</p>
 		<button
-			class="relative z-1 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full before:rounded-full before:text-white before:colors before:absolute before:h-full before:w-full before:origin-bottom before:scale-y-0 before:left-0 before:bottom-0 before:bg-[#DBEAFE] before:transition-transform before:duration-800 before:content-[''] before:hover:scale-y-100 before:hover:text-white"
-			style="font-family: 'Roboto', sans-serif;">Seek Support</button
+			class="relative z-1 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
+			style="font-family: 'Roboto', sans-serif;"
 		>
+			<span
+				class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+				style="transform: translateX(-50%), translateX(50%);"
+			></span>
+			<span class="relative">Seek Support</span>
+		</button>
 	</div>
 
 	<div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center border border-[#0072C4]">
@@ -41,9 +47,15 @@
 			and healing to cancer patients."
 		</p>
 		<button
-			class="relative z-10 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full before:rounded-full before:text-white before:colors before:absolute before:h-full before:w-full before:origin-bottom before:scale-y-0 before:z-9 before:left-0 before:bottom-0 before:bg-[#DBEAFE] before:transition-transform before:duration-800 before:content-[''] before:hover:scale-y-100 before:hover:text-white"
-			style="font-family: 'Roboto', sans-serif;">Donate Now</button
+			class="relative z-1 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
+			style="font-family: 'Roboto', sans-serif;"
 		>
+			<span
+				class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+				style="transform: translateX(-50%), translateX(50%);"
+			></span>
+			<span class="relative">Donate Now</span>
+		</button>
 	</div>
 
 	<div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center border border-[#0072C4]">
@@ -59,8 +71,14 @@
 			affected by cancer.
 		</p>
 		<button
-			class="relative z-10 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white v rounded-full before:rounded-full before:text-white before:colors before:absolute before:h-full before:w-full before:origin-bottom before:scale-y-0 before:z-9 before:left-0 before:bottom-0 before:bg-[#DBEAFE] before:transition-transform before:duration-800 before:content-[''] before:hover:scale-y-100 before:hover:text-white"
-			style="font-family: 'Roboto', sans-serif;">Get Started</button
+			class="relative z-1 mt-8 px-9 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
+			style="font-family: 'Roboto', sans-serif;"
 		>
+			<span
+				class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+				style="transform: translateX(-50%), translateX(50%);"
+			></span>
+			<span class="relative">Get Started</span>
+		</button>
 	</div>
 </div>

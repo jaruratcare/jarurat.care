@@ -12,7 +12,7 @@
     <DonationBg />
   </div>
 
-  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center z-10">
+  <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">
     <span class="bg-white p-3 rounded-full"><SeekSupport /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
@@ -20,7 +20,7 @@
     >
       Seek Support
     </h2>
-    <p class="mt-2 text-center text-sm">
+    <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
       Our NGO is here to help you through your cancer journey. <span class="font-bold"
         >Reach out to us today.</span
       >
@@ -47,7 +47,7 @@
     >
       Donate
     </h2>
-    <p class="mt-2 text-center text-sm">
+    <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
       One Life at a Time "<span class="font-bold">Donate</span> today and be the light that brings hope
       and healing to cancer patients."
     </p>
@@ -63,7 +63,7 @@
     </button>
   </div>
 
-  <div class="w-1/3 py-12 px-32 flex flex-col justify-center items-center z-10">
+  <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">
     <span class="bg-white p-3 rounded-full"><Member /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
@@ -71,7 +71,7 @@
     >
       Become a Member
     </h2>
-    <p class="mt-2 text-center text-sm">
+    <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
       Be a hero. <span class="font-bold">Volunteer</span> with us and provide support and hope to those
       affected by cancer.
     </p>

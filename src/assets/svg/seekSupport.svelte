@@ -1,4 +1,4 @@
-<svg width="44" height="45" viewBox="0 0 54 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="40" height="41" viewBox="0 0 54 55" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4.5 32H31.5C32.6935 32 33.8381 32.4741 34.682 33.318C35.5259 34.1619 36 35.3065 36 36.5C36 37.6935 35.5259 38.8381 34.682 39.682C33.8381 40.5259 32.6935 41 31.5 41H27" stroke="#0072C4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M34.65 39.65L41.85 33.35C42.7153 32.5146 43.877 32.0571 45.0795 32.0782C46.2821 32.0993 47.4271 32.5972 48.2625 33.4625C49.0979 34.3278 49.5554 35.4895 49.5343 36.6921C49.5132 37.8946 49.0153 39.0396 48.15 39.875L40.05 47.3C38.475 49.1 36.225 50 33.75 50H24.75C22.275 50 20.025 49.1 18.45 47.3L11.25 41M11.25 32V47.75H4.5" stroke="#0072C4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <g clip-path="url(#clip0_193_1740)">

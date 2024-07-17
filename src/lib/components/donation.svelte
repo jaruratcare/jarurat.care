@@ -1,4 +1,6 @@
 <script>
+  import '@fontsource/roboto/300.css';
+  import '@fontsource/playfair-display/600.css';
   import Donate from '../../assets/svg/donate.svelte';
   import Member from '../../assets/svg/member.svelte';
   import SeekSupport from '../../assets/svg/seekSupport.svelte';
@@ -14,7 +16,7 @@
     <span class="bg-white p-3 rounded-full"><SeekSupport /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
-      style="font-family: 'Playfair Display', sans-serif;"
+      style="font-family: 'Playfair Display', serif;"
     >
       Seek Support
     </h2>
@@ -41,7 +43,7 @@
     <span class="bg-white p-3 rounded-full"><Donate /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
-      style="font-family: 'Playfair Display', sans-serif;"
+      style="font-family: 'Playfair Display', serif;"
     >
       Donate
     </h2>
@@ -65,7 +67,7 @@
     <span class="bg-white p-3 rounded-full"><Member /></span>
     <h2
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
-      style="font-family: 'Playfair Display', sans-serif;"
+      style="font-family: 'Playfair Display', serif;"
     >
       Become a Member
     </h2>

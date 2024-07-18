@@ -1,15 +1,15 @@
 <script>
   import '@fontsource/roboto/300.css';
   import '@fontsource/playfair-display/600.css';
-  import Donate from '../../assets/svg/donate.svelte';
-  import Member from '../../assets/svg/member.svelte';
-  import SeekSupport from '../../assets/svg/seekSupport.svelte';
-  import DonationBg from '../../assets/svg/donationBg.svelte';
+  import Donate from '$lib/svg/donate.svelte';
+  import Member from '$lib/svg/member.svelte';
+  import DonationBg from '$lib/svg/donation-bg.svelte';
+  import SeekSupport from '$lib/svg/seek-support.svelte';
 </script>
 
 <div class=" relative w-full flex justify-between border border-[#0072C4]">
-  <div class="absolute w-full h-full z-0 overflow-hidden">
-    <DonationBg />
+  <div class="absolute w-full h-full z-0 inset-x-0 overflow-hidden">
+    <DonationBg class="w-full" />
   </div>
 
   <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">

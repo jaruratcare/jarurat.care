@@ -1,10 +1,9 @@
-<svg
-  width="100%"
-  height="100%"
-  viewBox="0 0 1920 597"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
+<script>
+  let className = '';
+  export { className as class };
+</script>
+
+<svg viewBox="0 0 1920 597" fill="none" xmlns="http://www.w3.org/2000/svg" class={className}>
   <mask
     id="mask0_193_1731"
     style="mask-type:alpha"

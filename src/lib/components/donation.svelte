@@ -9,7 +9,7 @@
 
 <div class=" relative w-full flex justify-between border border-[#0072C4]">
   <div class="absolute w-full h-full z-0 overflow-hidden">
-    <DonationBg />
+    <DonationBg size="w-full" />
   </div>
 
   <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">

@@ -1,6 +1,10 @@
+<script>
+  export let size;
+</script>
+
+
 <svg
-  width="100%"
-  height="100%"
+  width={size}
   viewBox="0 0 1920 597"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"

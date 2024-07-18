@@ -53,9 +53,9 @@
         class="min-w-full min-h-full bg-cover bg-no-repeat bg-center"
         style="background-image: url({storyInfo?.bgImage});"
       >
-        <div class="w-[100%] h-[100%] bg-[#00000071]  flex justify-center items-center">
+        <div class="w-[100%] h-[100%] bg-[#00000071] flex justify-center items-center">
           <p
-            class=" w-[50%]  break-break text-[13px] text-[#d7d7d7] [word-spacing: 50px]"
+            class=" w-[50%] break-break text-[13px] text-[#d7d7d7] [word-spacing: 50px]"
             style="font-family: 'Roboto, sans-serif';"
           >
             {storyInfo?.content}
@@ -66,11 +66,11 @@
   </div>
   <div class="absolute bottom-24 w-full flex justify-center transform -translate-y-1/2">
     <button
-      class=" text-[grey]  py-[10px] px-[16px] mx-2 border-2 border-[#474747] rounded-full"
+      class=" text-[grey] py-[10px] px-[16px] mx-2 border-2 border-[#474747] rounded-full"
       on:click={prevSlide}><PrevButtonIcon /></button
     >
     <button
-      class=" text-[grey]  py-[10px] px-[16px] mx-2 border-2 border-[#474747] rounded-full"
+      class=" text-[grey] py-[10px] px-[16px] mx-2 border-2 border-[#474747] rounded-full"
       on:click={nextSlide}><NextButtonIcon /></button
     >
   </div>

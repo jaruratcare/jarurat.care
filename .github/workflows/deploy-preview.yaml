@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: Vercel Preview Deployment
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -10,7 +10,7 @@ on:
       - develop
 
 jobs:
-  Deploy-Production:
+  preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

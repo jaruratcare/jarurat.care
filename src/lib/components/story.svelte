@@ -2,9 +2,6 @@
   import bgImage from '../../assets/images/Rectangle 52.png';
   import PrevButtonIcon from '$lib/svg/prev-button-icon.svelte';
   import NextButtonIcon from '$lib/svg/next-button-icon.svelte';
-  import '@fontsource/roboto/500.css';
-  import '@fontsource/roboto/100.css';
-  import '@fontsource/public-sans/500.css';
   const storyInfo = {
     bgImage: bgImage,
     title: 'Where it all started',

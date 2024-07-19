@@ -1,5 +1,8 @@
 <script>
-  import '../app.css';
+  import Footer from "$lib/components/Footer/footer.svelte";
 </script>
 
-<slot />
+<main>
+  <slot />
+  <Footer />
+</main>

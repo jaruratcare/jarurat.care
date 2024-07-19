@@ -2,7 +2,7 @@
 
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
   import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-  import CrouselCard from './CrouselCard.svelte';
+  import CrouselCard from './carousel-card.svelte';
   const cancerPatients = [
   {
     img: "https://www.india.com/wp-content/uploads/2017/11/Cancer-patient.jpg",
@@ -32,7 +32,7 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
   <h1 class="text-xl font-bold">Voices Of Hope</h1>
   <p class="text-lg font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 </div>
-<Splide options={{rewind: true}} aria-label="My Favorite Images">
+<Splide options={{rewind: true}} >
     {#each cancerPatients as patient }
       <SplideSlide>
           <CrouselCard data={patient} />

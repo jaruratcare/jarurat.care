@@ -1,3 +1,5 @@
+footer-section
+<nav></nav>
 <script>
   import { page } from '$app/stores';
   import logo from '../../assets/logo/image.webp';
@@ -69,3 +71,4 @@
     </div>
   </div>
 </nav>
+develop

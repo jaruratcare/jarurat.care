@@ -36,6 +36,9 @@
   },
   "type": "module",
   "dependencies": {
-    "@splidejs/svelte-splide": "^0.2.9"
+    "@splidejs/svelte-splide": "^0.2.9",
+    "@fontsource-variable/playfair-display": "^5.0.25",
+    "@fontsource/playfair-display": "^5.0.24",
+    "@fontsource/roboto": "^5.0.13"
   }
 }

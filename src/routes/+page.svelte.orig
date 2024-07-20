@@ -1,5 +1,12 @@
 <script>
+<<<<<<< HEAD
   import HearFromTeam from "$lib/components/hear-from-team.svelte";
+import VoiceOfHope from "$lib/components/voice-of-hope.svelte";
+
+</script>
+<VoiceOfHope />
+<HearFromTeam />
+=======
   import VoiceOfHope from "$lib/components/VoiceOfHope.svelte";
   import Nav from '$lib/components/nav.svelte';
   import Hero from '$lib/components/hero.svelte';
@@ -10,4 +17,4 @@
 <Hero />
 <Donation />
 <VoiceOfHope />
-<HearFromTeam />
+>>>>>>> 9e3ea171a47a51c47fa90054f63ef2036b16d86c

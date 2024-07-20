@@ -10,6 +10,9 @@
 <Nav />
 <Hero />
 <Donation />
+<<<<<<< HEAD
 <Story />
+=======
 <VoiceOfHope />
 <HearFromTeam />
+>>>>>>> develop

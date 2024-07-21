@@ -1,5 +1,11 @@
 <script>
+  import Footer from '../lib/components/Footer/footer.svelte';
   import '../app.css';
 </script>
 
-<slot />
+
+<main>
+  <slot />
+  <Footer/>
+</main>
+

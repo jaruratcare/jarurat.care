@@ -1,5 +1,6 @@
 <script>
   import Footer from '$lib/components/Footer/footer.svelte';
+  import Impact from '$lib/components/impact.svelte';
   import '../app.css';
   import '@fontsource/roboto/500.css';
   import '@fontsource/roboto/100.css';
@@ -9,5 +10,6 @@
 <main>
   <slot />
   <Footer/>
+  <Impact/>
 </main>
 

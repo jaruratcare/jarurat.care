@@ -44,9 +44,9 @@
     { id: 'JK', state: 'Jammu and Kashmir' }
   ];
 
-  let stateName = "Gujarat"
+  let stateName = "Delhi"
 
-  const state = 'state';
+  
   onMount(() => {
     const states = document.querySelectorAll('.state');
     states.forEach((state) => {
@@ -161,7 +161,7 @@
       </div>
 
       <div class="w-1/2 mr-12 mb-2 flex justify-center">
-        <Map {state} />
+        <Map  />
       </div>
     </div>
   </div>

@@ -2,7 +2,6 @@
   import bgImage from '../../assets/images/Rectangle 52.png';
   import PrevButtonIcon from '$lib/svg/prev-button-icon.svelte';
   import NextButtonIcon from '$lib/svg/next-button-icon.svelte';
- import { Splide, SplideSlide } from '@splidejs/svelte-splide';
   const storyInfo = {
     bgImage: bgImage,
     title: 'Where it all started',

@@ -6,6 +6,8 @@
   import Donation from '$lib/components/donation.svelte';
   import MissionSection from '$lib/components/mission-section.svelte';
   import Story from '$lib/components/story.svelte';
+  import Footer from "$lib/components/footer.svelte";
+  import Impact from "$lib/components/impact.svelte";
 </script>
 
 <Nav />
@@ -13,5 +15,7 @@
 <MissionSection/>
 <Donation />
 <Story />
+<Impact/>
 <VoiceOfHope />
 <HearFromTeam />
+<Footer/>

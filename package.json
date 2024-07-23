@@ -36,12 +36,12 @@
   },
   "type": "module",
   "dependencies": {
+    "@splidejs/svelte-splide": "^0.2.9",
     "@fontsource-variable/playfair-display": "^5.0.25",
     "@fontsource-variable/public-sans": "^5.0.19",
     "@fontsource/playfair-display": "^5.0.24",
     "@fontsource/public-sans": "^5.0.18",
-    "@fontsource/roboto": "^5.0.13",
-    "@splidejs/svelte-splide": "^0.2.9"
+    "@fontsource/roboto": "^5.0.13"
   },
   "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }

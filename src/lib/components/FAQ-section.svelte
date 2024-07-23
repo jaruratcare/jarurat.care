@@ -66,7 +66,7 @@
 
 <section
   id="FAQs"
-  class="w-full flex-col flex justify-center items-center py-20 border-2 border-blue-600 bg-cover bg-no-repeat bg-center"
+  class="w-full flex-col flex justify-center items-center py-20 bg-cover bg-no-repeat bg-center"
   style="background-image: url({bg});"
 >
   <div class="text-center w-full">

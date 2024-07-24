@@ -13,7 +13,7 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
+<div id="home"
   class="relative h-screen w-screen overflow-hidden flex items-center justify-center"
   tabindex="0"
   style="background: url({gradient}) no-repeat center center; background-size: cover;"

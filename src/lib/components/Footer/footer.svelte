@@ -1,8 +1,5 @@
 <script>
     import  Icon from '@iconify/svelte';
-    import instagramIcon from '@iconify-icons/mdi/instagram';
-    import twitterIcon from '@iconify-icons/mdi/twitter';
-    import facebookIcon from '@iconify-icons/mdi/facebook';
   </script>
   
     
@@ -42,9 +39,9 @@
         <div class="flex flex-col space-y-2">
           <p>Connect with us</p>
           <div class="flex space-x-5">
-            <Icon icon={instagramIcon} class="icon h-7 cursor-pointer" />
-            <Icon icon={twitterIcon} class="icon h-7 cursor-pointer" />
-            <Icon icon={facebookIcon} class="icon h-7 cursor-pointer" />
+            <Icon icon="mdi:instagram" class="icon h-7 cursor-pointer" />
+            <Icon icon="mdi:twitter" class="icon h-7 cursor-pointer" />
+            <Icon icon="mdi:facebook" class="icon h-7 cursor-pointer" />
           </div>
         </div>
       </div>
@@ -60,7 +57,7 @@
           <p>&copy;2024 HANDSCART LCC. All right reserved</p>
         </div>
         <div class="text-[#D8E74E] cursor-pointer">
-          <p>Back to Top &uarr;</p>
+          <a href="#navbar">Back to Top &uarr;</a>
         </div>
       </div>
     </footer>

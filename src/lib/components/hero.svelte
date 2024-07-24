@@ -23,8 +23,7 @@
       class="flex flex-col items-center gap-4 text-white"
       in:fade={{ duration: 500 }}
       out:fly={{ x: -1000, duration: 1000 }}
-    >
-    </div>
+    ></div>
   {/if}
 
   {#if showFinalScreen}
@@ -52,10 +51,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     gap: 4rem;
     padding: 0;
-    margin: 0; 
+    margin: 0;
     cursor: pointer;
     outline: none;
   }

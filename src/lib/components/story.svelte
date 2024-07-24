@@ -1,5 +1,5 @@
 <script>
-  import bgImage from '../../assets/images/Rectangle 52.png';
+  import bgImage from '../../assets/images/Story-bg.png';
   import PrevButtonIcon from '$lib/svg/prev-button-icon.svelte';
   import NextButtonIcon from '$lib/svg/next-button-icon.svelte';
   const storyInfo = {

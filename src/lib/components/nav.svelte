@@ -5,7 +5,7 @@
   $: routeId = $page.route.id;
 </script>
 
-<nav class="w-full h-[72px] flex justify-between items-center bg-white p-4 px-16">
+<nav id="navbar" class="w-full h-[72px] flex justify-between items-center bg-white p-4 px-16">
   <div class="logo">
     <img src={logo} alt="logo" class="h-12" />
   </div>

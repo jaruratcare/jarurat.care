@@ -13,7 +13,7 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
+<div id="home"
   class="relative h-screen w-screen overflow-hidden flex items-center justify-center"
   tabindex="0"
   style="background: url({gradient}) no-repeat center center; background-size: cover;"
@@ -23,8 +23,7 @@
       class="flex flex-col items-center gap-4 text-white"
       in:fade={{ duration: 500 }}
       out:fly={{ x: -1000, duration: 1000 }}
-    >
-    </div>
+    ></div>
   {/if}
 
   {#if showFinalScreen}
@@ -55,10 +54,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     gap: 4rem;
     padding: 0;
-    margin: 0; 
+    margin: 0;
     cursor: pointer;
     outline: none;
   }

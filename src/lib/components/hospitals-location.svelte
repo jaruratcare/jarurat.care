@@ -56,7 +56,6 @@
 
         statesAndUnionTerritories.forEach((state) => {
           if (state.id === id) {
-            console.log('id:', id, ', state:', state.state);
             stateName = state.state;
           }
         });
@@ -67,11 +66,6 @@
       states.forEach((state) => {
         state.removeEventListener('click', (ev) => {
           const id = ev.target.id;
-          statesAndUnionTerritories.forEach((state) => {
-            if (state?.id === id) {
-              console.log(state.state);
-            }
-          });
         });
       });
     };

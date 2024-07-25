@@ -13,7 +13,8 @@
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div id="home"
+<div
+  id="home"
   class="relative h-screen w-screen overflow-hidden flex items-center justify-center"
   tabindex="0"
   style="background: url({gradient}) no-repeat center center; background-size: cover;"
@@ -38,12 +39,11 @@
       <button
         class="relative z-1 mt-8 px-6 py-3 bg-blue-700 text-2xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
       >
-      <span
-      class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
-      style="transform: translateX(-50%), translateX(50%);"
-    ></span>
-          <span class="relative">Seek Cancer Support</span
-        >
+        <span
+          class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+          style="transform: translateX(-50%), translateX(50%);"
+        ></span>
+        <span class="relative">Seek Cancer Support</span>
       </button>
     </div>
   {/if}

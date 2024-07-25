@@ -1,6 +1,4 @@
 <script>
-  // @ts-nocheck
-
   import { onMount } from 'svelte';
   import LocateIcon from '$lib/svg/locate-icon.svelte';
   import LocationArrow from '$lib/svg/location-arrow.svelte';
@@ -52,7 +50,6 @@
     const states = document.querySelectorAll('.state');
     states.forEach((state) => {
       state.addEventListener('click', (ev) => {
-
         states.forEach((s) => (s.style.fill = '')); // remove prev state fill color
         ev.target.style.fill = '#0D2561'; // add fill color to clicked state
         const id = ev.target.id; // getting id of targated state

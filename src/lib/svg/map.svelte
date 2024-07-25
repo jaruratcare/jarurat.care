@@ -1030,7 +1030,7 @@
 
 <style>
   svg path:hover {
-    fill: #0D2561;
+    fill: #0d2561;
     cursor: pointer;
   }
 </style>

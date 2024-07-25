@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<section class="py-12 bg-gradient-to-r from-blue-50 to-blue-100">
+<section class="py-12 px-20 bg-gradient-to-b from-[#F7FDFF] via-blue-100 to-[#F9F4FF]">
   <div class="container mx-auto text-center">
     <h2 class="text-3xl font-bold mb-4 text-blue-950">Our Impact</h2>
     <p class="text-lg mb-12 text-blue-950">Explore the real-world difference we're making in cancer care.</p>
@@ -39,7 +39,7 @@
         <p class="text-gray-600 text-left">Early Treatments Initiated</p>
       </div>
     </div>
-    <button class="mt-12 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700">Seek Support</button>
+    <button class="mt-12 px-6 py-2 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700">Seek Support</button>
   </div>
 </section>
 

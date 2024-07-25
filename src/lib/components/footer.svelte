@@ -7,19 +7,21 @@
   
     
     <footer class="bg-[#132442] font-sans py-5">
-      <div class="flex items-center justify-between mx-24">
-        <div class="logo">
-          <img src="./images/logo.svg" alt="logo" height="85px" />
-        </div>
-        <div>
-          <h1 class="text-white text-3xl font-bold">
-            Jaruratcare <span class="text-[#D8E74E]">Foundation</span>
-          </h1>
-          <p class="text-white text-base">Jaisi Jarurat, Vaisi Care</p>
+      <div class="flex items-center mx-24 justify-between">
+        <div class="flex items-center">
+          <div class="logo mx-7">
+            <img src="./images/logo.svg" alt="logo" height="85px" />
+          </div>
+          <div>
+            <h1 class="text-[#D6E7EE] text-3xl">
+              Jaruratcare Foundation
+            </h1>
+            <p class="text-[#BFE9E8] text-base">Jaisi Jarurat, Vaisi Care</p>
+          </div>
         </div>
         <div class="flex space-x-8">
-          <button class="bg-[#D8E74E] text-black font-bold py-2 px-5 rounded-full border-none cursor-pointer">Seek Support</button>
-          <button class="bg-[#2C72B9] text-white font-bold py-2 px-5 rounded-full border-none cursor-pointer">Donate</button>
+          <button class="bg-[#132442] text-white  py-2 px-6 rounded-full border border-white cursor-pointer">Donate Now</button>
+          <button class="bg-[#0155BD] text-white  py-2 px-5 rounded-full border-none cursor-pointer">Seek Support</button>
         </div>
       </div>
     

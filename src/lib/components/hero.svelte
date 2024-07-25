@@ -23,8 +23,7 @@
       class="flex flex-col items-center gap-4 text-white"
       in:fade={{ duration: 500 }}
       out:fly={{ x: -1000, duration: 1000 }}
-    >
-    </div>
+    ></div>
   {/if}
 
   {#if showFinalScreen}
@@ -37,10 +36,13 @@
         > and their families. Here to ensure you never face your journey alone.
       </p>
       <button
-        class="bg-blue-700 text-white px-6 py-3 rounded-full mt-4 flex items-center relative overflow-hidden transition-all duration-300 ease-in-out hover:bg-blue-300 hover:border-b-4 border-blue-800"
+        class="relative z-1 mt-8 px-6 py-3 bg-blue-700 text-2xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
       >
-        <span class="text-2xl transition-all duration-300 ease-in-out hover:text-blue-900"
-          >Seek Cancer Support</span
+      <span
+      class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+      style="transform: translateX(-50%), translateX(50%);"
+    ></span>
+          <span class="relative">Seek Cancer Support</span
         >
       </button>
     </div>
@@ -52,10 +54,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     gap: 4rem;
     padding: 0;
-    margin: 0; 
+    margin: 0;
     cursor: pointer;
     outline: none;
   }

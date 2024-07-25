@@ -1,7 +1,6 @@
 <script>
     import  Icon from '@iconify/svelte';
   </script>
-  
     
     <footer class="bg-[#132442] font-sans py-5">
       <div class="flex items-center justify-between mx-24">

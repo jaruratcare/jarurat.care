@@ -36,6 +36,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@esbuild/linux-x64": "^0.23.0",
     "@fontsource-variable/manrope": "^5.0.20",
     "@fontsource-variable/playfair-display": "^5.0.25",
     "@fontsource-variable/public-sans": "^5.0.19",

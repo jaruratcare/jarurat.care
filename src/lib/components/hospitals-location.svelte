@@ -44,19 +44,19 @@
     { id: 'JK', state: 'Jammu and Kashmir' }
   ];
 
-  let stateName = "Delhi"
+  let stateName = 'Delhi';
 
-  
   onMount(() => {
     const states = document.querySelectorAll('.state');
     states.forEach((state) => {
       state.addEventListener('click', (ev) => {
-        const id = ev.target.id;
-        // console.log('click', id);
+        states.forEach((s) => (s.style.fill = '')); // remove prev state fill color
+        ev.target.style.fill = '#0D2561'; // add fill color to clicked state
+        const id = ev.target.id; // getting id of targated state
+
         statesAndUnionTerritories.forEach((state) => {
           if (state.id === id) {
-            console.log('id:', id, ', state:', state.state);
-            stateName = state.state
+            stateName = state.state;
           }
         });
       });
@@ -66,11 +66,6 @@
       states.forEach((state) => {
         state.removeEventListener('click', (ev) => {
           const id = ev.target.id;
-          statesAndUnionTerritories.forEach((state) => {
-            if (state?.id === id) {
-              console.log(state.state);
-            }
-          });
         });
       });
     };
@@ -161,7 +156,7 @@
       </div>
 
       <div class="w-1/2 mr-12 mb-2 flex justify-center">
-        <Map  />
+        <Map />
       </div>
     </div>
   </div>

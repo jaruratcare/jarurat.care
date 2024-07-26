@@ -9,6 +9,9 @@
 </script>
 
 <main>
+  <div class="fixed bottom-0 right-0 p-4 z-50">
+    <img src="../../src/assets/images/talk-to-hope.png" alt="Talk to Hope" class="cursor-pointer w-40 h-auto shadow-sm" />
+  </div>
   <slot />
   <Footer />
 </main>

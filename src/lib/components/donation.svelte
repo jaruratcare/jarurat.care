@@ -51,7 +51,8 @@
       One Life at a Time "<span class="font-bold">Donate</span> today and be the light that brings hope
       and healing to cancer patients."
     </p>
-    <button
+    <a href="/donate">
+      <button
       class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
       style="font-family: 'Roboto', sans-serif;"
     >
@@ -61,6 +62,7 @@
       ></span>
       <span class="relative">Donate Now</span>
     </button>
+    </a>
   </div>
 
   <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">

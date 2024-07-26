@@ -30,7 +30,7 @@
     required={data.required}
     placeholder={data.placeholder}
     type={data.type}
-    class={`mb-4 w-full h-11 bg-gray-50 rounded-lg px-4 ${showIcon ? 'pr-12' : ''} border-2 border-transparent text-base transition-all duration-300 ease-in-out hover:border-gray-700 focus:outline-none focus:border-gray-700`}
+    class={`mb-4 w-full h-12 bg-gray-100 rounded-lg px-4 ${showIcon ? 'pr-12' : ''} border-2 border-transparent text-base transition-all duration-300 ease-in-out hover:border-gray-700 focus:outline-none focus:border-gray-700`}
   />
   {#if showIcon}
    <LocateInsideInput />

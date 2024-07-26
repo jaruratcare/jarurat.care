@@ -1,6 +1,5 @@
 <script>
   import medicalRibbon from '../../assets/images/medical-ribbon.png';
-  import talkToHope from '../../assets/images/talk-to-hope.png';
 </script>
 
 <div class="relative bg-custom-blue text-white py-16 px-8">
@@ -20,5 +19,4 @@
     alt="Medical Ribbon"
     class="absolute right-40 top-1/2 transform -translate-y-1/2 w-32"
   />
-  <img src={talkToHope} alt="Talk to Hope" class="absolute top-4 right-0 cursor-pointer w-40" />
 </div>

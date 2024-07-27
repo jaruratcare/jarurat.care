@@ -44,10 +44,10 @@
     </li>
     <li class="mx-2">
       <a
-        href="#contactUs"
-        class:active={routeId === '/contact'}
+        href="seek-support"
+        class:active={routeId === '/seek-support'}
         class="text-blue-900 no-underline"
-        class:font-bold={routeId === '/contact'}>Contact Us</a
+        class:font-bold={routeId === '/seek-support'}>Contact Us</a
       >
     </li>
   </ul>

@@ -1,6 +1,7 @@
 <script>
   import HearFromTeam from '$lib/components/hear-from-team.svelte';
-  import VoiceOfHope from '$lib/components/VoiceOfHope.svelte';
+  import VoiceOfHope from '$lib/components/voice-of-hope.svelte';
+  import NewVoiceOfHope from '$lib/components/new-voice-of-hope.svelte';
   import Nav from '$lib/components/nav.svelte';
   import Hero from '$lib/components/hero.svelte';
   import Donation from '$lib/components/donation.svelte';
@@ -24,7 +25,8 @@
 <FindMentor />
 <HospitalsLocation />
 <CancerResearch/>
-<VoiceOfHope />
+
+<NewVoiceOfHope />
 <HearFromTeam />
 <FaqSection />
 

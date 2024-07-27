@@ -1,7 +1,8 @@
 <script>
   import '@splidejs/splide/dist/css/themes/splide-default.min.css';
   import { Splide, SplideSlide } from '@splidejs/svelte-splide';
-  import CrouselCard from './carousel-card.svelte';
+  import CarouselCard from './carousel-card.svelte';
+
   const cancerPatients = [
     {
       img: 'https://www.india.com/wp-content/uploads/2017/11/Cancer-patient.jpg',
@@ -37,7 +38,7 @@
 <Splide options={{ rewind: true }}>
   {#each cancerPatients as patient}
     <SplideSlide>
-      <CrouselCard data={patient} />
+      <CarouselCard data={patient}  />
     </SplideSlide>
   {/each}
 </Splide>

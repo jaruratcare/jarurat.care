@@ -3,7 +3,7 @@
   import EllipseImage from '../../assets/images/Ellipse 64.png';
 </script>
 
-<div class="relative min-h-screen flex flex-col items-center mt-20">
+<div class="relative min-h-screen flex flex-col items-center ">
   <img src={EllipseImage} alt="" class="absolute top-0 left-0 w-full h-auto z-[-1]" />
   <div class="flex flex-col items-center relative z-10 w-full mt-4">
     <div class="text-center mb-12">

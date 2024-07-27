@@ -5,9 +5,9 @@
   import '@fontsource/roboto/500.css';
   import '@fontsource/roboto/100.css';
   import '@fontsource/public-sans/500.css';
-  // import '@fontsource-variable/manrope';
-  import '@fontsource/manrope/300.css';
+  import '@fontsource-variable/manrope';
   import '@fontsource-variable/rubik';
+  import '@fontsource-variable/playfair-display';
 </script>
 
 <main>

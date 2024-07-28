@@ -49,16 +49,16 @@
   ];
 </script>
 
-<div class="relative w-full border border-blue-100 overflow-hidden ">
-  <div class="absolute w-full h-full z-0 ">
+<div class="relative w-full  overflow-hidden ">
+  <div class="absolute w-full h-full -z-10 ">
     <ThansksLetterGr />
   </div>
-  <div class="absolute w-full h-full z-0 ">
+  <div class="absolute w-full h-full -z-10 ">
     <ThansksLetterGr2/>
   </div>
 
-  <div class="w-full text-center my-24 z-20">
-    <h1 class="text-[2.1rem] text-[#0D2561] font-bold">
+  <div class="w-full text-center my-24 z-10">
+    <h1 class="text-[2.1rem] text-[#0D2561] font-bold z-10" >
       Thank you <span class="text-[#0155BD]">letters</span>
     </h1>
     <p class="text-[1.2rem] text-[#0D2561]">
@@ -89,7 +89,7 @@
         {#each stories as story}
           <SplideSlide>
             <div
-              class="py-16 px-12 border-2 border-blue-200 bg-white shadow-md mx-3 rounded-xl"
+              class="py-16 px-12 border-4 border-blue-200 bg-white shadow-md mx-3 rounded-xl"
               style="font-family: 'Manrope', sans-serif;"
             >
               <h3 class="text-[#0D2561] text-[1.1rem] font-semibold">

@@ -159,11 +159,13 @@
       </p>
 
       <div class="flex items-center mt-7">
-        <button
+        <a href="#donatenow">
+          <button
           class=" py-2.5 px-8 mr-2 text-xl text-[#0155BD] font-semibold rounded-full flex justify-between items-center border-2 border-[#0155BD]"
           style="font-family: 'Manrope', sans-sarif;"
           >Make a donation
         </button>
+        </a>
         <button
           class=" py-2.5 px-8 text-xl text-white font-semibold bg-[#0155BD] rounded-full flex justify-between items-center border border-[#0155BD]"
           style="font-family: 'Manrope', sans-sarif;"

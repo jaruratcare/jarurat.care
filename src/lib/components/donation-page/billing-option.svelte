@@ -5,9 +5,12 @@
   import PaymentOption from './payment/payment-option.svelte';
 </script>
 
-<div id="donatenow" class="relative w-full py-16 flex flex-col justify-center items-center overflow-hidden">
+<div
+  id="donatenow"
+  class="relative w-full py-16 flex flex-col justify-center items-center overflow-hidden"
+>
   <div class="absolute top-0 z-10">
-    <Ellipse/>
+    <Ellipse />
   </div>
   <div class="w-full flex flex-col justify-center items-center overflow-hidden z-20">
     <h1

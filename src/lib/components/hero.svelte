@@ -58,7 +58,6 @@
     gap: 4rem;
     padding: 0;
     margin: 0;
-    cursor: pointer;
     outline: none;
   }
 </style>

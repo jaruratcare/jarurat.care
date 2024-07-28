@@ -4,8 +4,8 @@
   import img1 from '../../../assets/images/Frame 1171275557.png';
   import img2 from '../../../assets/images/Frame 1171275557(1).png';
   import img3 from '../../../assets/images/Frame 1171275557(2).png';
-  import PrevIcon from "$lib/svg/prev-button-icon.svelte"
-  import NextIcon from "$lib/svg/next-button-icon.svelte"
+  import PrevIcon from '$lib/svg/prev-button-icon.svelte';
+  import NextIcon from '$lib/svg/next-button-icon.svelte';
 
   const slides = [
     { id: 1, img: img1, text: 'Medical Supplies and Equipment' },
@@ -17,7 +17,7 @@
   ];
 </script>
 
-<div class="flex flex-col justify-center  bg-[#132442]">
+<div class="flex flex-col justify-center bg-[#132442]">
   <div class="text-center my-20">
     <p class="text-[2.2rem] text-white font-semibold" style="font-family: 'Rubik', sans-sarif;">
       Where Your Money Goes
@@ -56,7 +56,6 @@
           </SplideSlide>
         {/each}
       </SplideTrack>
-      
     </Splide>
   </div>
 </div>

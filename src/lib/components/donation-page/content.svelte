@@ -149,10 +149,7 @@
       >
         A Cancer Patient’s Care
       </h2>
-      <p
-        class="text-[#132442] text-[1.05rem] mt-5"
-        style="font-family: 'Manrope', sans-sarif;"
-      >
+      <p class="text-[#132442] text-[1.05rem] mt-5" style="font-family: 'Manrope', sans-sarif;">
         Help save lives by contributing to a fundraising event. Whether it's a charity run, a bake
         sale, a community auction, or a themed party, your event can raise vital funds for people in
         need of life-saving treatments. Every contribution counts.
@@ -161,10 +158,10 @@
       <div class="flex items-center mt-7">
         <a href="#donatenow">
           <button
-          class=" py-2.5 px-8 mr-2 text-xl text-[#0155BD] font-semibold rounded-full flex justify-between items-center border-2 border-[#0155BD]"
-          style="font-family: 'Manrope', sans-sarif;"
-          >Make a donation
-        </button>
+            class=" py-2.5 px-8 mr-2 text-xl text-[#0155BD] font-semibold rounded-full flex justify-between items-center border-2 border-[#0155BD]"
+            style="font-family: 'Manrope', sans-sarif;"
+            >Make a donation
+          </button>
         </a>
         <button
           class=" py-2.5 px-8 text-xl text-white font-semibold bg-[#0155BD] rounded-full flex justify-between items-center border border-[#0155BD]"

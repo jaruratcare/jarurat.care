@@ -49,16 +49,16 @@
   ];
 </script>
 
-<div class="relative w-full  overflow-hidden ">
-  <div class="absolute w-full h-full -z-10 ">
+<div class="relative w-full overflow-hidden">
+  <div class="absolute w-full h-full -z-10">
     <ThansksLetterGr />
   </div>
-  <div class="absolute w-full h-full -z-10 ">
-    <ThansksLetterGr2/>
+  <div class="absolute w-full h-full -z-10">
+    <ThansksLetterGr2 />
   </div>
 
   <div class="w-full text-center my-24 z-10">
-    <h1 class="text-[2.1rem] text-[#0D2561] font-bold z-10" >
+    <h1 class="text-[2.1rem] text-[#0D2561] font-bold z-10">
       Thank you <span class="text-[#0155BD]">letters</span>
     </h1>
     <p class="text-[1.2rem] text-[#0D2561]">

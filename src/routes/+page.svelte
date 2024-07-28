@@ -10,6 +10,7 @@
   import FaqSection from '$lib/components/FAQ-section.svelte';
   import HospitalsLocation from '$lib/components/hospitals-location.svelte';
   import MissionSection from '$lib/components/mission-section.svelte';
+  import CancerResearch from '$lib/components/cancer-research.svelte';
 </script>
 
 <Hero />
@@ -20,6 +21,7 @@
 <SupportSection />
 <FindMentor />
 <HospitalsLocation />
+<CancerResearch />
 <VoiceOfHope />
 <HearFromTeam />
 <FaqSection />

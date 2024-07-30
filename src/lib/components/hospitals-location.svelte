@@ -1,9 +1,13 @@
 <script>
+  // @ts-nocheck
+
   import { onMount } from 'svelte';
+  import axios from 'axios';
   import LocateIcon from '$lib/svg/locate-icon.svelte';
   import LocationArrow from '$lib/svg/location-arrow.svelte';
   import Map from '$lib/svg/map.svelte';
   import SearchIcon from '$lib/svg/search-icon.svelte';
+  import dotenv from 'dotenv';
 
   const statesAndUnionTerritories = [
     { id: 'AP', state: 'Andhra Pradesh' },
@@ -45,14 +49,24 @@
   ];
 
   let stateName = 'Delhi';
+  let token = '';
+  let hospitals = [];
+  let location_query = '';
+  let searchResults = [];
+  const API_KEY = '1a9e84b87cc24455a17b852fa1090e78';
+  const API_URL = 'https://api.opencagedata.com/geocode/v1/json';
 
-  onMount(() => {
+  onMount(async () => {
+    // fetching all hospitals
+    const response = await axios.get(`https://chat-backend-e7nr.onrender.com/hospitals`);
+    hospitals = response.data;
+
     const states = document.querySelectorAll('.state');
     states.forEach((state) => {
       state.addEventListener('click', (ev) => {
         states.forEach((s) => (s.style.fill = '')); // remove prev state fill color
         ev.target.style.fill = '#0D2561'; // add fill color to clicked state
-        const id = ev.target.id; // getting id of targated state
+        const id = ev.target.id; // getting id of targeted state
 
         statesAndUnionTerritories.forEach((state) => {
           if (state.id === id) {
@@ -70,6 +84,30 @@
       });
     };
   });
+
+  const handleSearch = async () => {
+    try {
+      const request_url = `${API_URL}?key=${API_KEY}&q=${encodeURIComponent(location_query)}&pretty=1&no_annotations=1`;
+      const response = await axios.get(request_url);
+
+      // Extract relevant data
+      if (response.data.results.length > 0) {
+        searchResults = response.data.results.map((result) => ({
+          formatted: result.formatted,
+          lat: result.geometry.lat,
+          lng: result.geometry.lng,
+          components: result.components,
+          confidence: result.confidence
+        }));
+        console.log(searchResults);
+      } else {
+        searchResults = [];
+        console.log('No results found');
+      }
+    } catch (error) {
+      console.log('error in searching location: ', error);
+    }
+  };
 </script>
 
 <div class="w-full py-48">
@@ -89,12 +127,15 @@
     <div class="mt-12 flex justify-between items-center">
       <div class=" w-[25rem] mx-2 px-5 flex items-center bg-[#DBE1E6] rounded-full p-2">
         <span><SearchIcon /></span>
-        <input
-          type="text"
-          placeholder="Enter your location"
-          class=" py-[.3rem] px-4 flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-[#576171] placeholder:text-medium"
-        />
-        <span><LocateIcon /></span>
+        <form on:submit|preventDefault={handleSearch} class="w-full flex items-center">
+          <input
+            type="text"
+            bind:value={location_query}
+            placeholder="Enter your location"
+            class=" py-[.3rem] px-4 flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-[#576171] placeholder:text-medium"
+          />
+          <button type="submit"><LocateIcon /></button>
+        </form>
       </div>
       <div class="w-[25rem] mx-2 flex items-center bg-[#0155BD] rounded-full p-2">
         <select

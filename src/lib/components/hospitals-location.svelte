@@ -172,13 +172,6 @@
         </select>
       </div>
     </div>
-
-    <div class="mt-12">
-      <button on:click={downloadJSON} class="bg-blue-500 text-white py-2 px-4 rounded">
-        Download JSON
-      </button>
-    </div>
-
     <div class=" w-full h-full mt-32 flex">
       <div class="w-1/2 flex justify-center ml-20 mb-2">
         <div class="w-3/5">

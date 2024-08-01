@@ -63,9 +63,9 @@
     <div
       class="relative flex items-center justify-between px-3 bg-blue-800 text-white back rounded-full border-2 border-blue-800"
     >
-      <select class="w-full p-2 cursor-pointer bg-transparent outline-none" name="" id="">
-        <option value="donate">Donate</option>
-      </select>
+      <a href="/donate" class="w-full p-2 cursor-pointer bg-transparent outline-none">
+        <button value="donate">Donate Now</button>
+      </a>
     </div>
   </div>
 </nav>

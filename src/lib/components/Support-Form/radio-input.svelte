@@ -6,13 +6,15 @@
     // Handle the change event if needed
   };
 </script>
-   <label for="gender" class="block mb-1 text-sm font-bold text-[#0D2561] transition-colors duration-300 ease-in-out">
+
+<label
+  for="gender"
+  class="block mb-1 text-sm font-bold text-[#0D2561] transition-colors duration-300 ease-in-out"
+>
   Gender
   <span class="text-red-500 ml-1">*</span>
-  </label>
+</label>
 <div class="flex items-center space-x-4 p-4">
-
-
   <label class="flex items-center space-x-2">
     <input
       type="radio"

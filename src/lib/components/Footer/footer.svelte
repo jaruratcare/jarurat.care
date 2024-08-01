@@ -18,9 +18,11 @@
         class="bg-[#D8E74E] text-black font-bold py-2 px-5 rounded-full border-none cursor-pointer"
         >Seek Support</button
       >
-      <button
-        class="bg-[#2C72B9] text-white font-bold py-2 px-5 rounded-full border-none cursor-pointer"
-        >Donate</button
+      <a href="/donate"
+        ><button
+          class="bg-[#2C72B9] text-white font-bold py-2 px-5 rounded-full border-none cursor-pointer"
+          >Donate</button
+        ></a
       >
     </div>
   </div>

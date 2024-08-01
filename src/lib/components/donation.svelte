@@ -51,16 +51,18 @@
       One Life at a Time "<span class="font-bold">Donate</span> today and be the light that brings hope
       and healing to cancer patients."
     </p>
-    <button
-      class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
-      style="font-family: 'Roboto', sans-serif;"
-    >
-      <span
-        class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
-        style="transform: translateX(-50%), translateX(50%);"
-      ></span>
-      <span class="relative">Donate Now</span>
-    </button>
+    <a href="/donate">
+      <button
+        class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
+        style="font-family: 'Roboto', sans-serif;"
+      >
+        <span
+          class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
+          style="transform: translateX(-50%), translateX(50%);"
+        ></span>
+        <span class="relative">Donate Now</span>
+      </button>
+    </a>
   </div>
 
   <div class="w-1/3 py-11 px-32 flex flex-col justify-center items-center z-10">

@@ -3,5 +3,5 @@
 </script>
 
 <div class="w-full">
-  <img src={displayImage} alt="display picture" />
+  <img src={displayImage} alt="display" />
 </div>

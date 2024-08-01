@@ -51,8 +51,7 @@
   let hospitals = [];
   let location_query = '';
   let searchResults = [];
-  // const API_KEY = '1a9e84b87cc24455a17b852fa1090e78';
-  const API_KEY = 'bee9446dfe93488db0b1a20ae77d363d';
+  const API_KEY = '1a9e84b87cc24455a17b852fa1090e78';
   const API_URL = 'https://api.opencagedata.com/geocode/v1/json';
 
   onMount(async () => {
@@ -124,10 +123,11 @@
 
   // Function to download the searchResults as a JSON file
   const downloadJSON = () => {
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(searchResults));
+    const dataStr =
+      'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(searchResults));
     const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "searchResults.json");
+    downloadAnchorNode.setAttribute('href', dataStr);
+    downloadAnchorNode.setAttribute('download', 'searchResults.json');
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();

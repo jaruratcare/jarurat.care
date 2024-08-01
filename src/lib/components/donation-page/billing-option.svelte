@@ -1,7 +1,6 @@
 <script>
   import Ellipse from '$lib/svg/donate-page-svgs/ellipse.svelte';
   import WaveGradient from '$lib/svg/donate-page-svgs/wave-gradient.svelte';
-  import DonorDetails from './payment/donor-details.svelte';
   import PaymentOption from './payment/payment-option.svelte';
 </script>
 

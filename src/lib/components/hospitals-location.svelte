@@ -1,13 +1,11 @@
 <script>
   // @ts-nocheck
-
   import { onMount } from 'svelte';
   import axios from 'axios';
   import LocateIcon from '$lib/svg/locate-icon.svelte';
   import LocationArrow from '$lib/svg/location-arrow.svelte';
   import Map from '$lib/svg/map.svelte';
   import SearchIcon from '$lib/svg/search-icon.svelte';
-  import dotenv from 'dotenv';
 
   const statesAndUnionTerritories = [
     { id: 'AP', state: 'Andhra Pradesh' },
@@ -53,13 +51,50 @@
   let hospitals = [];
   let location_query = '';
   let searchResults = [];
-  const API_KEY = '1a9e84b87cc24455a17b852fa1090e78';
+  // const API_KEY = '1a9e84b87cc24455a17b852fa1090e78';
+  const API_KEY = 'bee9446dfe93488db0b1a20ae77d363d';
   const API_URL = 'https://api.opencagedata.com/geocode/v1/json';
 
   onMount(async () => {
-    // fetching all hospitals
-    const response = await axios.get(`https://chat-backend-e7nr.onrender.com/hospitals`);
-    hospitals = response.data;
+    try {
+      // Fetching registered hospitals
+      const response = await axios.get(`https://chat-backend-e7nr.onrender.com/hospitals`);
+      hospitals = response.data;
+
+      // Fetching coordinates of all hospitals
+      for (let i = 0; i < hospitals.length; i++) {
+        location_query = `${hospitals[i].latitude},${hospitals[i].longitude}`;
+
+        try {
+          const request_url = `${API_URL}?key=${API_KEY}&q=${encodeURIComponent(location_query)}&pretty=1&no_annotations=1`;
+          const cordinatesResponse = await axios.get(request_url);
+
+          if (cordinatesResponse?.data?.results?.length > 0) {
+            const data = {};
+            cordinatesResponse?.data?.results?.map((result) => {
+              (data.lat = result.geometry.lat),
+                (data.lng = result.geometry.lng),
+                (data.components = result.components),
+                (data.confidence = result.confidence);
+            });
+            searchResults.push(data);
+            console.log(searchResults);
+          } else {
+            searchResults = [];
+            console.log('No results found');
+          }
+        } catch (error) {
+          if (error.response && error.response.data.status.code === 402) {
+            console.error('Rate limit reached: ', error.response.data);
+          } else {
+            console.error('Error in searching location: ', error);
+          }
+          break;
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching hospitals: ', error);
+    }
 
     const states = document.querySelectorAll('.state');
     states.forEach((state) => {
@@ -85,28 +120,17 @@
     };
   });
 
-  const handleSearch = async () => {
-    try {
-      const request_url = `${API_URL}?key=${API_KEY}&q=${encodeURIComponent(location_query)}&pretty=1&no_annotations=1`;
-      const response = await axios.get(request_url);
+  const handleSearch = async () => {};
 
-      // Extract relevant data
-      if (response.data.results.length > 0) {
-        searchResults = response.data.results.map((result) => ({
-          formatted: result.formatted,
-          lat: result.geometry.lat,
-          lng: result.geometry.lng,
-          components: result.components,
-          confidence: result.confidence
-        }));
-        console.log(searchResults);
-      } else {
-        searchResults = [];
-        console.log('No results found');
-      }
-    } catch (error) {
-      console.log('error in searching location: ', error);
-    }
+  // Function to download the searchResults as a JSON file
+  const downloadJSON = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(searchResults));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "searchResults.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
   };
 </script>
 
@@ -147,6 +171,12 @@
           {/each}
         </select>
       </div>
+    </div>
+
+    <div class="mt-12">
+      <button on:click={downloadJSON} class="bg-blue-500 text-white py-2 px-4 rounded">
+        Download JSON
+      </button>
     </div>
 
     <div class=" w-full h-full mt-32 flex">

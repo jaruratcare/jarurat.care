@@ -1,0 +1,506 @@
+[
+  {
+    "type": "introduction",
+    "title": "What Is Bladder Cancer?",
+    "definition": " Bladder cancer occurs when cells in the bladder start to grow without control. The bladder is a hollow, balloon-shaped organ in the lower part of the abdomen that stores urine. ",
+    "types": "\n        Types of bladder cancer\n        Urothelial carcinoma     (also called transitional cell carcinoma) is cancer that begins in the urothelial cells, which line the urethra, bladder, ureters, renal pelvis, and some other organs. Almost all bladder cancers are urothelial carcinomas.Urothelial cells are also called transitional cells because they change shape. These cells are able to stretch when the bladder is full of urine and shrink when it is emptied. Other types of bladder cancer are rare:Squamous cell carcinoma is cancer that begins in squamous cells (thin, flat cells lining the inside of the bladder). This type of cancer may form after long-term irritation or infection with a tropical parasite called schistosomiasis, which is common in Africa and the Middle East but rare in the United States.  When chronic irritation occurs, transitional cells that line the bladder can gradually change to squamous cells. Adenocarcinoma is cancer that begins in glandular cells that are found in the lining of the bladder. Glandular cells in the bladder make mucus and other substances. Small cell carcinoma of the bladder is cancer that begins in neuroendocrine cells (nerve-like cells that release hormones into the blood in response to a signal from the nervous system).There are other ways to describe bladder cancer:Non-muscle-invasive bladder cancer is cancer that has not reached the muscle wall of the bladder. Most bladder cancers are non-muscle-invasive.Muscle-invasive bladder cancer is cancer that has spread through the lining of the bladder and into the muscle wall of the bladder or beyond it.\n    "
+  },
+  {
+    "type": "causes&risk",
+    "causes": {
+      "title": "Bladder Cancer Causes and Risk Factors",
+      "causeDesc_1": "Bladder cancer is caused by certain changes in how bladder cells function, especially how they grow and divide into new cells. There are many risk factors for bladder cancer, but many do not directly cause cancer. Instead, they increase the chance of DNA  damage in cells that may lead to bladder cancer. To learn more about how cancer develops, see What Is Cancer?",
+      "causeDesc_2": "A risk factor is anything that increases the chance of getting a disease. Some risk factors for bladder cancer, like using tobacco, can be changed. Risk factors also include things people cannot change, like their age and family history. It’s important to learn about risk factors for bladder cancer because it can help you make choices that might lower your risk of getting it."
+    },
+    "risks": {
+      "title": "Risk factors  for bladder cancer",
+      "causeDesc_1": "In the United States, bladder cancer occurs more often in men than in women, and more often in White individuals than in Black individuals. Bladder cancer can be diagnosed at any age, but the risk increases as a person gets older.",
+      "causeDesc_2": "Using tobacco, especially smoking cigarettes, is a major  risk factor for bladder cancer. Tobacco contains harmful chemicals called carcinogens. When you use tobacco, these chemicals get absorbed into the bloodstream, are filtered by the kidneys, and then collect in the urine. This exposes your bladder to high levels of these chemicals, which can damage  the DNA in the cells lining your bladder. Learn about different tools to help you quit smoking and how to use them."
+    }
+  },
+  {
+    "type": "symptoms",
+    "title": "Bladder Cancer Symptoms ",
+    "desc": "The symptoms of bladder cancer can vary from person to person. The most common symptom is blood in the urine, called hematuria. It’s often slightly rusty to bright red in color. You may see blood in your urine at one point, then not see it again for a while. Sometimes there are very small amounts of blood in the urine that can only be found by having a test done.",
+    "commonSymp": [
+      "frequent urination",
+      "pain or burning during urination",
+      "feeling as if you need to urinate even if your bladder isn’t full",
+      "urinating often during the night"
+    ],
+    "dangerSymp": [
+      "being unable to urinate",
+      "lower back pain on one side of the body",
+      "pain in the abdomen",
+      "bone pain or tenderness",
+      "unintended weight loss and loss of appetite",
+      "swelling in the feet",
+      "feeling tired"
+    ]
+  },
+  {
+    "type": "screening",
+    "title": "Bladder Cancer Screening",
+    "definition": "Screening is looking for cancer before a person has any symptoms. This can help find cancer at an early stage. When abnormal tissue or cancer is found early, it may be easier to treat. ",
+    "testsTitle": "Tests to screen for bladder cancer",
+    "description": "There is no standard screening test for bladder cancer in people at average risk. When enough evidence has been collected to show that a screening test is safe, accurate, and useful for people at average risk of bladder cancer, it will become a standard test. However, certain tests may be used to screen for bladder cancer in people who have had bladder cancer in the past or who are at an increased risk of developing it. ",
+    "tests": [
+      "Hematuria test",
+      "Hematuria is red blood cells in the urine. It may be caused by cancer or by other conditions. A hematuria test is used to check for blood in a sample of urine by viewing it under a microscope or using a special test strip. The test may be repeated over time.",
+      "Urine cytology",
+      "Urine cytology is a lab test in which a sample of urine is checked under a microscope for abnormal cells.",
+      "Urine tumor marker tests",
+      "Urinary tumor markers are substances found in the urine that are either made by bladder cancer cells or that the body makes in response to bladder cancer. For this test, a sample of urine is checked in the lab to detect the presence of these substances. Urine tumor marker tests may also be used to help diagnose some types of bladder cancer.",
+      "Cystoscopy",
+      "Cystoscopy is a procedure to look inside the bladder and urethra to check for abnormal areas. A cystoscope (a thin, lighted tube) is inserted through the urethra into the bladder. Tissue samples may be taken for biopsy.",
+      ""
+    ]
+  },
+  {
+    "type": "stages",
+    "title": "Bladder Cancer Stages",
+    "desc_1": "Cancer stage describes the extent of cancer in the body, such as the size of the tumor, whether it has spread, and how far it has spread from where it first formed. It’s important to know the stage of bladder cancer to plan treatment.  ",
+    "desc_2": "There are several different staging systems for cancer. Bladder cancer is usually staged using the TNM staging system. Your cancer may be described by this staging system in your pathology report. Based on the TNM results, a stage is assigned to your cancer, such as stage I, stage II, stage III, or stage IV (may also be written as stage 1, stage 2, stage 3, or stage 4). When talking with you about your cancer, your doctor may describe it as one of these stages.  ",
+    "stage_0": {
+      "title": "Stage 0 (noninvasive papillary carcinoma and carcinoma in situ)",
+      "desc": "Stage 0 refers to noninvasive bladder cancer. This means that cancer cells are found in tissue lining the inside of the bladder but have not invaded the bladder wall. Stage 0 is divided into stages 0a and 0is, depending on the type of tumor: ",
+      "types": [
+        "Stage 0a is also called noninvasive papillary carcinoma, which may look like long, thin growths extending into the bladder lumen (the space where urine collects). Stage 0a can be low grade or high grade, depending on how abnormal the cells look under the microscope (see the section on Bladder cancer grade).",
+        "Stage 0is is also called carcinoma in situ, which is a flat tumor on the tissue lining the inside of the bladder. Stage 0is is always high grade (see the section on Bladder cancer grade)."
+      ]
+    },
+    "stage_1": {
+      "title": "Stage I bladder cancer",
+      "desc": "Stage I is a form of non-muscle-invasive bladder cancer that has spread into the connective tissue but has not reached the muscle layers of the bladder.  "
+    },
+    "stage_2": {
+      "title": "Stage II bladder cancer",
+      "desc": "Stage II may also be described as muscle-invasive bladder cancer. In stage II, cancer has spread through the connective tissue into the muscle layers of the bladder.  "
+    },
+    "stage_3": {
+      "title": "Stage III bladder cancer",
+      "desc": "Stage III may also be described as locally advanced bladder cancer. Stage III is divided into stages IIIA and IIIB. ",
+      "type_1": {
+        "type": "stage IIIA ",
+        "desc": "cancer has grown all the way through the bladder muscles and bladder wall into the layer of fat surrounding the bladder and may have spread to the reproductive organs (prostate, seminal vesicles, uterus, or vagina) but has not spread to lymph nodes; or "
+      },
+      "type_2": {
+        "type": "stage IIIB ",
+        "desc": "Stage IIIB bladder cancer. Cancer has spread to (a) more than one lymph node in the pelvis that is not near the common iliac arteries; or (b) at least one lymph node that is near the common iliac arteries."
+      }
+    },
+    "stage_4": {
+      "title": "Stage IV bladder cancer",
+      "types": {
+        "type_1": [
+          "cancer has spread to the abdominal wall or pelvic wall; or cancer has spread to lymph nodes that are above the major arteries in the pelvis, called the common iliac arteries.  "
+        ],
+        "type_2": "Stage IV bladder cancer is also called metastatic bladder cancer. Metastatic cancer happens when cancer cells travel through the lymphatic system or blood and form tumors in other parts of the body. The metastatic tumor is the same type of cancer as the primary tumor. For example, if bladder cancer spreads to the lung, the cancer cells in the lung are actually bladder cancer cells. The disease is called metastatic bladder cancer, not lung cancer. Learn more in Metastatic Cancer: When Cancer Spreads. "
+      }
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/breast",
+    "mainHead": "Breast Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Breast cancer is the second most common cancer in women after skin cancer. Mammograms can detect breast cancer early, possibly before it has spread. Explore the links on this page to learn more about breast cancer prevention, screening, treatment, statistics, research, clinical trials, and more."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Breast Cancer Treatment",
+          "link": "/types/breast/patient/breast-treatment-pdq"
+        },
+        {
+          "text": "Male Breast Cancer Treatment",
+          "link": "/types/breast/patient/male-breast-treatment-pdq"
+        },
+        {
+          "text": "Childhood Breast Cancer Treatment",
+          "link": "/types/breast/patient/child-breast-treatment-pdq"
+        },
+        {
+          "text": "Breast Cancer During Pregnancy",
+          "link": "/types/breast/patient/pregnancy-breast-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Breast Cancer Prevention",
+          "link": "/types/breast/patient/breast-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Breast Cancer Screening",
+          "link": "/types/breast/patient/breast-screening-pdq"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/colorectal",
+    "mainHead": "Colorectal Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Colorectal cancer often begins as a growth called a polyp inside the colon or rectum. Finding and removing polyps can prevent colorectal cancer. Explore the links on this page to learn more about colorectal cancer prevention, screening, treatment, statistics, research, clinical trials, and more."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Colon Cancer Treatment",
+          "link": "/types/colorectal/patient/colon-treatment-pdq"
+        },
+        {
+          "text": "Rectal Cancer Treatment",
+          "link": "/types/colorectal/patient/rectal-treatment-pdq"
+        },
+        {
+          "text": "Childhood Colorectal Cancer Treatment",
+          "link": "/types/colorectal/patient/child-colorectal-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Colorectal Cancer Prevention",
+          "link": "/types/colorectal/patient/colorectal-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Colorectal Cancer Screening",
+          "link": "/types/colorectal/patient/colorectal-screening-pdq"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/kidney",
+    "mainHead": "Kidney (Renal Cell) Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Kidney cancer can develop in adults and children. The main types of kidney cancer are renal cell cancer, transitional cell cancer, and Wilms tumor. Certain inherited conditions increase the risk of kidney cancer. Explore the links on this page to learn more about kidney cancer treatment, statistics, research, and clinical trials."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Renal Cell Cancer Treatment",
+          "link": "/types/kidney/patient/kidney-treatment-pdq"
+        },
+        {
+          "text": "Transitional Cell Cancer (Kidney/Ureter) Treatment",
+          "link": "/types/kidney/patient/transitional-cell-treatment-pdq"
+        },
+        {
+          "text": "Wilms Tumor and Other Childhood Kidney Tumors Treatment",
+          "link": "/types/kidney/patient/wilms-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "",
+      "list": []
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "",
+      "list": []
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/lung",
+    "mainHead": "Lung Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Lung cancer includes two main types: non-small cell lung cancer and small cell lung cancer. Smoking causes most lung cancers, but nonsmokers can also develop lung cancer. Explore the links on this page to learn more about lung cancer treatment, prevention, screening, statistics, research, clinical trials, and more."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Non-Small Cell Lung Cancer Treatment",
+          "link": "/types/lung/patient/non-small-cell-lung-treatment-pdq"
+        },
+        {
+          "text": "Small Cell Lung Cancer Treatment",
+          "link": "/types/lung/patient/small-cell-lung-treatment-pdq"
+        },
+        {
+          "text": "Pleuropulmonary Blastoma",
+          "link": "/types/lung/patient/child-pleuropulmonary-blastoma-treatment-pdq"
+        },
+        {
+          "text": "Childhood Tracheobronchial Tumors",
+          "link": "/types/lung/patient/child-tracheobronchial-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Lung Cancer Prevention",
+          "link": "/types/lung/patient/lung-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Lung Cancer Screening",
+          "link": "/types/lung/patient/lung-screening-pdq"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/lymphoma",
+    "mainHead": "Lymphoma—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Lymphoma is a broad term for cancer that begins in cells of the lymph system. The two main types are Hodgkin lymphoma and non-Hodgkin lymphoma (NHL). Hodgkin lymphoma can often be cured. The prognosis of NHL depends on the specific type. Explore the links on this page to learn more about lymphoma treatment, research, and clinical trials."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Hodgkin Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/adult-hodgkin-treatment-pdq"
+        },
+        {
+          "text": "Non-Hodgkin Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/adult-nhl-treatment-pdq"
+        },
+        {
+          "text": "AIDS-Related Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/aids-related-treatment-pdq"
+        },
+        {
+          "text": "Mycosis Fungoides (Including Sézary Syndrome) Treatment",
+          "link": "/types/lymphoma/patient/mycosis-fungoides-treatment-pdq"
+        },
+        {
+          "text": "Primary CNS Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/primary-cns-lymphoma-treatment-pdq"
+        },
+        {
+          "text": "Childhood Hodgkin Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/child-hodgkin-treatment-pdq"
+        },
+        {
+          "text": "Childhood Non-Hodgkin Lymphoma Treatment",
+          "link": "/types/lymphoma/patient/child-nhl-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "",
+      "list": []
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "",
+      "list": []
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/pancreatic",
+    "mainHead": "Pancreatic Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Pancreatic cancer can develop from two kinds of cells in the pancreas: exocrine cells and neuroendocrine cells, such as islet cells. The exocrine type is more common and is usually found at an advanced stage. Pancreatic neuroendocrine tumors (islet cell tumors) are less common but have a better prognosis. Explore the links on this page to learn more about  pancreatic cancer treatment, statistics, research, and clinical trials."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Pancreatic Cancer Treatment",
+          "link": "/types/pancreatic/patient/pancreatic-treatment-pdq"
+        },
+        {
+          "text": "Pancreatic Neuroendocrine Tumors (Islet Cell Tumors) Treatment",
+          "link": "/types/pancreatic/patient/pnet-treatment-pdq"
+        },
+        {
+          "text": "Childhood Pancreatic Cancer Treatment",
+          "link": "/types/pancreatic/patient/child-pancreatic-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "",
+      "list": []
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "",
+      "list": []
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/prostate",
+    "mainHead": "Prostate Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Prostate cancer is the most common cancer and the second leading cause of cancer death among men in the United States. Prostate cancer usually grows very slowly, and finding and treating it before symptoms occur may not improve men's health or help them live longer. Explore the links on this page to learn about prostate cancer treatment, prevention, screening, statistics, research, and more."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Prostate Cancer Treatment",
+          "link": "/types/prostate/patient/prostate-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Prostate Cancer Prevention",
+          "link": "/types/prostate/patient/prostate-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Prostate Cancer Screening",
+          "link": "/types/prostate/patient/prostate-screening-pdq"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/skin",
+    "mainHead": "Skin Cancer (Including Melanoma)—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Skin cancer is the most common type of cancer.  The main types of skin cancer are squamous cell carcinoma, basal cell carcinoma, and melanoma. Melanoma is much less common than the other types but much more likely to invade nearby tissue and spread to other parts of the body. Most deaths from skin cancer are caused by melanoma. Explore the links on this page to learn more about skin cancer prevention, screening, treatment, statistics, research, clinical trials, and more."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Skin Cancer Treatment",
+          "link": "/types/skin/patient/skin-treatment-pdq"
+        },
+        {
+          "text": "Childhood Basal & Squamous Cell Carcinoma of the Skin Treatment",
+          "link": "/types/skin/patient/child-skin-treatment-pdq"
+        },
+        {
+          "text": "Melanoma Treatment",
+          "link": "/types/skin/patient/melanoma-treatment-pdq"
+        },
+        {
+          "text": "Childhood Melanoma Treatment",
+          "link": "/types/skin/patient/child-melanoma-treatment-pdq"
+        },
+        {
+          "text": "Merkel Cell Carcinoma Treatment",
+          "link": "/types/skin/patient/merkel-cell-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Skin Cancer Prevention",
+          "link": "/types/skin/patient/skin-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Skin Cancer Screening",
+          "link": "/types/skin/patient/skin-screening-pdq"
+        }
+      ]
+    }
+  },
+  {
+    "url": "https://www.cancer.gov/types/uterine",
+    "mainHead": "Uterine Cancer—Patient Version",
+    "overview": {
+      "title": "Overview",
+      "description": "Uterine cancers can be of two types: endometrial cancer (common) and uterine sarcoma (rare). Endometrial cancer can often be cured. Uterine sarcoma is often more aggressive and harder to treat. Explore the links on this page to learn more about uterine cancer prevention, screening, treatment, statistics, research, and clinical trials."
+    },
+    "treatment": {
+      "title": "Treatment",
+      "subTitle": "PDQ Treatment Information for Patients",
+      "list": [
+        {
+          "text": "Endometrial Cancer Treatment",
+          "link": "/types/uterine/patient/endometrial-treatment-pdq"
+        },
+        {
+          "text": "Uterine Sarcoma Treatment",
+          "link": "/types/uterine/patient/uterine-sarcoma-treatment-pdq"
+        }
+      ]
+    },
+    "causesNpreventions": {
+      "title": "Causes & Prevention",
+      "subTitle": "PDQ Prevention Information for Patients",
+      "list": [
+        {
+          "text": "Endometrial Cancer Prevention",
+          "link": "/types/uterine/patient/endometrial-prevention-pdq"
+        }
+      ]
+    },
+    "screening": {
+      "title": "Screening",
+      "subTitle": "PDQ Screening Information for Patients",
+      "list": [
+        {
+          "text": "Endometrial Cancer Screening",
+          "link": "/types/uterine/patient/endometrial-screening-pdq"
+        }
+      ]
+    }
+  }
+]

@@ -77,7 +77,7 @@
                 (data.confidence = result.confidence);
             });
             searchResults.push(data);
-            console.log(searchResults);
+            // console.log(searchResults);
           } else {
             searchResults = [];
             console.log('No results found');
@@ -154,7 +154,6 @@
         <form on:submit|preventDefault={handleSearch} class="w-full flex items-center">
           <input
             type="text"
-            bind:value={location_query}
             placeholder="Enter your location"
             class=" py-[.3rem] px-4 flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-[#576171] placeholder:text-medium"
           />

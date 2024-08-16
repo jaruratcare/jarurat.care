@@ -6,6 +6,7 @@
   <div class="flex items-center justify-between mx-24">
     <div class="logo">
       <img src="./images/logo.svg" alt="logo" height="85px" />
+
     </div>
     <div>
       <h1 class="text-white text-3xl font-bold">

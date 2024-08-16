@@ -1,5 +1,11 @@
 <script>
   import Icon from '@iconify/svelte';
+
+
+import { t, setLocale } from '$lib/translations/translations.js'
+   // Reactive variable to store the current route
+
+
 </script>
 
 <footer class="bg-[#132442] font-sans py-5">
@@ -9,19 +15,17 @@
     </div>
     <div>
       <h1 class="text-white text-3xl font-bold">
-        Jaruratcare <span class="text-[#D8E74E]">Foundation</span>
+        {$t('home.footer.foundation1')} <span class="text-[#D8E74E]"> {$t('home.footer.foundation2')}</span>
       </h1>
-      <p class="text-white text-base">Jaisi Jarurat, Vaisi Care</p>
+      <p class="text-white text-base">{$t('home.footer.tagline')}</p>
     </div>
     <div class="flex space-x-8">
       <button
         class="bg-[#D8E74E] text-black font-bold py-2 px-5 rounded-full border-none cursor-pointer"
-        >Seek Support</button
-      >
+      >{$t('home.footer.seekSupport')}</button>
       <button
         class="bg-[#2C72B9] text-white font-bold py-2 px-5 rounded-full border-none cursor-pointer"
-        >Donate</button
-      >
+      >{$t('home.footer.donate')}</button>
     </div>
   </div>
 
@@ -29,24 +33,24 @@
 
   <div class="flex text-white text-sm justify-end py-5 mx-24 gap-5">
     <div class="flex flex-col space-y-2">
-      <p>Home</p>
-      <p>Mission</p>
-      <p>Volunteer</p>
-      <p>Locate Hospitals</p>
-      <p>Terms & Conditions</p>
+      <p>{$t('home.footer.sections.home')}</p>
+      <p>{$t('home.footer.sections.mission')}</p>
+      <p>{$t('home.footer.sections.volunteer')}</p>
+      <p>{$t('home.footer.sections.locateHospitals')}</p>
+      <p>{$t('home.footer.sections.termsConditions')}</p>
     </div>
     <div class="flex flex-col space-y-2">
-      <p>About Us</p>
-      <p>Blogs</p>
-      <p>News</p>
-      <p>Contact Us</p>
+      <p>{$t('home.footer.sections.aboutUs')}</p>
+      <p>{$t('home.footer.sections.blogs')}</p>
+      <p>{$t('home.footer.sections.news')}</p>
+      <p>{$t('home.footer.sections.contactUs')}</p>
     </div>
     <div class="flex flex-col space-y-2">
-      <p>Connect with us</p>
+      <p>{$t('home.footer.sections.connect')}</p>
       <div class="flex space-x-5">
-        <Icon icon="il:instagram" class="icon h-7 cursor-pointer" />
-        <Icon icon="hugeicons:twitter" class="icon h-7 cursor-pointer" />
-        <Icon icon="ic:outline-facebook" class="icon h-7 cursor-pointer" />
+        <Icon icon="mdi:instagram" class="icon h-7 cursor-pointer" />
+        <Icon icon="mdi:twitter" class="icon h-7 cursor-pointer" />
+        <Icon icon="mdi:facebook" class="icon h-7 cursor-pointer" />
       </div>
     </div>
   </div>
@@ -55,14 +59,15 @@
 
   <div class="flex text-[#204D80] justify-between mx-24 py-5">
     <div class="flex space-x-2 cursor-pointer">
-      <p>Privacy policy</p>
-      <p>Terms of service</p>
+      <p>{$t('home.footer.privacyPolicy')}</p>
+      <p>{$t('home.footer.termsOfService')}</p>
     </div>
     <div>
-      <p>&copy;2024 HANDSCART LCC. All right reserved</p>
+      <p>&copy;2024 HANDSCART LLC. {$t('home.footer.allRightsReserved')}</p>
     </div>
     <div class="text-[#D8E74E] cursor-pointer">
-      <p>Back to Top &uarr;</p>
+      <a href="#navbar">{$t('home.footer.backToTop')} &uarr;</a>
     </div>
   </div>
 </footer>
+

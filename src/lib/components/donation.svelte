@@ -5,9 +5,10 @@
   import Member from '$lib/svg/member.svelte';
   import DonationBg from '$lib/svg/donation-bg.svelte';
   import SeekSupport from '$lib/svg/seek-support.svelte';
+  import { t } from '$lib/translations/translations.js'; // Adjust the import path as needed
 </script>
 
-<div class=" relative w-full flex justify-between border border-[#0072C4]">
+<div class="relative w-full flex justify-between border border-[#0072C4]">
   <div class="absolute w-full h-full z-0 inset-x-0 overflow-hidden">
     <DonationBg class="w-full" />
   </div>
@@ -18,12 +19,10 @@
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
       style="font-family: 'Playfair Display', serif;"
     >
-      Seek Support
+      {$t('home.support.seekSupport')}
     </h2>
     <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
-      Our NGO is here to help you through your cancer journey. <span class="font-bold"
-        >Reach out to us today.</span
-      >
+      {$t('home.support.seekSupportDescription')}
     </p>
     <button
       class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
@@ -33,7 +32,7 @@
         class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
         style="transform: translateX(-50%), translateX(50%);"
       ></span>
-      <span class="relative">Seek Support</span>
+      <span class="relative">{$t('home.support.seekSupportButton')}</span>
     </button>
   </div>
 
@@ -45,11 +44,10 @@
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
       style="font-family: 'Playfair Display', serif;"
     >
-      Donate
+      {$t('home.support.donate')}
     </h2>
     <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
-      One Life at a Time "<span class="font-bold">Donate</span> today and be the light that brings hope
-      and healing to cancer patients."
+      {$t('home.support.donateDescription')}
     </p>
     <button
       class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
@@ -59,7 +57,7 @@
         class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
         style="transform: translateX(-50%), translateX(50%);"
       ></span>
-      <span class="relative">Donate Now</span>
+      <span class="relative">{$t('home.support.donateButton')}</span>
     </button>
   </div>
 
@@ -69,11 +67,10 @@
       class="mt-6 mb-12 text-4xl font-bold font-serif text-center"
       style="font-family: 'Playfair Display', serif;"
     >
-      Become a Member
+      {$t('home.support.becomeMember')}
     </h2>
     <p class="mt-2 py-1.5 px-5 text-center text-[15px]">
-      Be a hero. <span class="font-bold">Volunteer</span> with us and provide support and hope to those
-      affected by cancer.
+      {$t('home.support.memberDescription')}
     </p>
     <button
       class="relative z-1 mt-8 px-8 py-3 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
@@ -83,7 +80,7 @@
         class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
         style="transform: translateX(-50%), translateX(50%);"
       ></span>
-      <span class="relative">Get Started</span>
+      <span class="relative">{$t('home.support.memberButton')}</span>
     </button>
   </div>
 </div>

@@ -1,0 +1,169 @@
+{
+  "Hero-title": "JARURAT CARE",
+  "Hero-sub-title": "Jaisi Jarurat Vaisi Care",
+  "Hero-description1": "Providing support, guidance, hope and personalized care for",
+  "Hero-description2": " and their families. Here to ensure you never face your journey alone.",
+  "Hero-main-button-text": "Seek Cancer Support",
+  "Hero-description-download": "cancer patients",
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "news": "News and Blogs",
+    "getInvolved": "Get Involved",
+    "contactUs": "Contact Us",
+    "donate": "Donate"
+  },
+  "section": {
+    "whoWeAre": "Who we are",
+    "mission": "Our mission is to support and empower cancer patients and their families.",
+    "description": "Through comprehensive programs, Jarurat Care provides vital support to those affected by cancer. We offer emotional, financial, and practical assistance to help patients and their families navigate their cancer journey."
+  },
+  "support": {
+    "seekSupport": "Seek Support",
+    "seekSupportDescription": "Our NGO is here to help you through your cancer journey. Reach out to us today.",
+    "donate": "Donate",
+    "donateDescription": "One Life at a Time \"Donate\" today and be the light that brings hope and healing to cancer patients.",
+    "becomeMember": "Become a Member",
+    "memberDescription": "Be a hero. Volunteer with us and provide support and hope to those affected by cancer.",
+    "seekSupportButton": "Seek Support",
+    "donateButton": "Donate Now",
+    "memberButton": "Get Started"
+  },
+  "story": {
+    "title": "Where it all started",
+    "description": "Rekha's last trip before she started her battle with Cholangiocarcinoma and succumbed on 25th December 2023",
+    "content": "Our story commenced in December 2023, marking a pivotal moment in our lives. It was then that we faced the profound loss of our cherished mother, who bravely battled Cholangiocarcinoma, a form of bile duct cancer, for seven months. Motivated by our experiences and driven by the same determination any devoted son or daughter would possess, we established the Jarurat Care Foundation with the intent to rectify these systemic shortcomings and improve the healthcare landscape for others."
+  },
+  "impact": {
+    "title": "Our Impact",
+    "description": "Explore the real-world difference we're making in cancer care.",
+    "value1": "0",
+    "label1": "Mentor",
+    "value2": "0",
+    "label2": "Doctors",
+    "value3": "0",
+    "label3": "People",
+    "value4": "0%",
+    "label4": "Early Treatments Initiated",
+    "value5": "0",
+    "label5": "Patients Assisted",
+    "value6": "0",
+    "label6": "People Reached",
+    "value7": "0",
+    "label7": "Emotional Support Services",
+    "value8": "0%",
+    "label8": "Early Treatments Initiated",
+
+    "buttonText": "Seek Support"
+  },
+  "supportType": {
+    "title-main": "How We Support You",
+    "description-main": "Comprehensive care and support throughout your cancer journey",
+
+    "title1": "Patient Advocacy",
+    "description1": "We stand by your side,\nhelping navigate treatment\noptions and healthcare systems",
+    "buttonText1": "Know More",
+    "title2": "Emotional Support",
+    "description2": "Access to counseling\nand support groups\n to help you cope with your diagnosis",
+    "buttonText2": "Know More",
+
+    "title3": "Education Resources",
+    "description3": "Up-to-date information\non treatments, clinical trials,\nand cancer management",
+    "buttonText3": "Know More",
+
+    "title4": "Cancer Connect",
+    "description4": "A community of dedicated\ncaregivers who will help you\nnavigate in your uncertain times",
+    "buttonText4": "Know More",
+    "mainButton": "Know More"
+  },
+  "FindMentor": {
+    "title": "Find a Mentor for Your Cancer Journey",
+    "subtitle": "You Don't Have to Face Cancer Alone",
+    "description": "Connect with a compassionate mentor who understands your challenges and can offer personal support and guidance.",
+    "button": "Get a mentor"
+  },
+  "hospital-locator": {
+    "heading": "Locate Cancer Hospitals Near You",
+    "subheading": "Finding Hope, One Location at a Time",
+    "placeholder": "Enter your location",
+    "select_state": "Select your state",
+    "note": "Note: we might be missing some hospitals or maybe they are unregistered"
+  },
+  "cancer-research": {
+    "heading": "Read the Latest in Cancer Research",
+    "subheading": "Explore the latest studies and breakthroughs in cancer research.",
+    "search_placeholder": "Search topic",
+    "results_for": "Results for",
+    "read_now": "Read Now"
+  },
+  "footer": {
+    "foundation1": "Jaruratcare",
+    "foundation2": "Foundation",
+    "tagline": "Jaisi Jarurat, Vaisi Care",
+    "seekSupport": "Seek Support",
+    "donate": "Donate",
+    "sections": {
+      "home": "Home",
+      "mission": "Mission",
+      "volunteer": "Volunteer",
+      "locateHospitals": "Locate Hospitals",
+      "termsConditions": "Terms & Conditions",
+      "aboutUs": "About Us",
+      "blogs": "Blogs",
+      "news": "News",
+      "contactUs": "Contact Us",
+      "connect": "Connect with us"
+    },
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "allRightsReserved": "All rights reserved",
+    "backToTop": "Back to Top"
+  },
+  "Team": {
+    "Heading": "Hear From Our Team",
+    "Name": "Priyanka",
+    "Designation": "Co Founder",
+    "Message": "At Jaruart Care, our mission is to bring hope and healing to every person battling cancer. We believe in the power of community support, compassion and innovation to make a real diffrence in the lives of those we serve"
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "description": "Look through some of our frequently answered questions",
+    "stillHaveQuestions": "Still Have Questions?",
+    "contactUs": "Feel free to contact us",
+    "buttonText": "Contact Us",
+    "question1": "What is Mentor?",
+    "answer1": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question2": "How do I apply for assistance?",
+    "answer2": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question3": "What areas or regions does Jarurat Care operate in?",
+    "answer3": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question4": "How can I apply for assistance from Jarurat Care?",
+    "answer4": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question5": "Who is eligible for support?",
+    "answer5": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question6": "Are the services free?",
+    "answer6": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question7": "How can I volunteer or donate?",
+    "answer7": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!",
+    "question8": "'How can I volunteer or donate?'",
+    "answer8": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium aliquid quibusdam quae amet ducimus vitae atque hic voluptatem possimus expedita aut deleniti molestias eum, laudantium esse corporis reiciendis porro! Fugit quis, in earum sint neque tempore soluta reiciendis numquam laboriosam doloremque laudantium alias, delectus magni assumenda officiis animi odio quibusdam!"
+  },
+  "voicesOfHope": {
+    "title": "Voices Of Hope",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    "patients":{ 
+        "name1": "Rajesh Kumar",
+        "cancerType1": "Lung Cancer",
+        "location1": "Mumbai, India",
+        "description1": "Rajesh, 50, courageously battles stage 4 lung cancer with the unwavering support of his family and friends, spreading hope and awareness.",
+        "name2": "Priya Sharma",
+        "cancerType2": "Breast Cancer",
+        "location2": "Delhi, India",
+        "description2": "Priya, 38, shares her inspiring journey overcoming breast cancer, advocating for early screening and supporting fellow survivors.",
+        "name3": "Amit Patel",
+        "cancerType3": "Prostate Cancer",
+        "location3": "Bangalore, India",
+        "description3": "Amit, 55, bravely confronts prostate cancer treatment, emphasizing the importance of regular health check-ups for men."
+  }
+  }
+}

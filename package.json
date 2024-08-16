@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.13",
     "@types/eslint": "^8.56.7",
     "autoprefixer": "^10.4.19",
+    "esbuild": "^0.23.0",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.36.0",
@@ -34,9 +35,7 @@
     "typescript-eslint": "^8.0.0-alpha.20",
     "vite": "^5.0.3"
   },
-  "type": "module",
   "dependencies": {
-    "@esbuild/linux-x64": "^0.23.0",
     "@fontsource-variable/manrope": "^5.0.20",
     "@fontsource-variable/playfair-display": "^5.0.25",
     "@fontsource-variable/public-sans": "^5.0.19",
@@ -45,7 +44,9 @@
     "@fontsource/playfair-display": "^5.0.24",
     "@fontsource/public-sans": "^5.0.18",
     "@fontsource/roboto": "^5.0.13",
-    "@splidejs/svelte-splide": "^0.2.9"
+    "@splidejs/svelte-splide": "^0.2.9",
+    "sveltekit-i18n": "^2.4.2"
   },
+  "type": "module",
   "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }

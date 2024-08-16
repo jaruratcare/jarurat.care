@@ -4,7 +4,7 @@
   import LocationArrow from '$lib/svg/location-arrow.svelte';
   import Map from '$lib/svg/map.svelte';
   import SearchIcon from '$lib/svg/search-icon.svelte';
-
+  import {t} from "$lib/translations/translations.js"
   const statesAndUnionTerritories = [
     { id: 'AP', state: 'Andhra Pradesh' },
     { id: 'AR', state: 'Arunachal Pradesh' },
@@ -79,10 +79,10 @@
         class="text-[#0D2561] text-[2.5rem] font-semibold"
         style="font-family: 'Roboto', sans-serif;"
       >
-        Locate Cancer Hospitals Near You
+        {$t('home.hospital-locator.heading')}
       </h2>
       <p class="text-[#0D2561] text-xl font-[400] mt-1" style="font-family: 'Roboto', sans-serif;">
-        Finding Hope, One Location at a Time
+        {$t('home.hospital-locator.subheading')}
       </p>
     </div>
 
@@ -91,7 +91,7 @@
         <span><SearchIcon /></span>
         <input
           type="text"
-          placeholder="Enter your location"
+          placeholder={$t('home.hospital-locator.placeholder')}
           class=" py-[.3rem] px-4 flex-1 bg-transparent border-none outline-none text-gray-700 placeholder-[#576171] placeholder:text-medium"
         />
         <span><LocateIcon /></span>
@@ -100,7 +100,7 @@
         <select
           class="py-[.3rem] px-7 bg-[#0155BD] border-none outline-none text-white appearance-none w-full"
         >
-          <option value="" selected disabled>Select your state</option>
+          <option value="" selected disabled>{$t('home.hospital-locator.select_state')}</option>
           {#each statesAndUnionTerritories as state}
             <option value={state?.state} id={state?.id} class="state">{state?.state}</option>
           {/each}
@@ -115,7 +115,7 @@
             <p
               class="text-sm text-[#0155BD] bg-[#e3efff] py-1 px-3 border-l-2 border-[#0155BD] rounded-r-md"
             >
-              Note: we might be missing some hospitals or maybe they are unregistered
+             {$t('home.hospital-locator.note')}
             </p>
           </div>
           <div class=" mt-5 rounded-t-md overflow-hidden w-full">

@@ -1,4 +1,5 @@
 <script>
+     import { t } from '$lib/translations/translations.js';
   import { fade, fly } from 'svelte/transition';
   import { onMount } from 'svelte';
   import gradient from '../../assets/gradient.png';
@@ -29,12 +30,12 @@
 
   {#if showFinalScreen}
     <div class="flex flex-col items-center text-center gap-4" in:fly={{ y: 1000, duration: 1000 }}>
-      <h1 class="text-8xl font-extrabold" style="color: #0464C4;">JARURAT CARE</h1>
-      <h2 class="text-4xl font-semibold" style="color:#132F78">Jaisi Jarurat Vaisi Care</h2>
+      <h1 class="text-8xl font-extrabold" style="color: #0464C4;">{$t('home.Hero-title')}</h1>
+      <h2 class="text-4xl font-semibold" style="color:#132F78">{$t('home.Hero-sub-title')}</h2>
       <p class="text-blue-900 text-xl max-w-md">
-        Providing support, guidance, hope and personalized care for <span
-          class="underline font-bold">cancer patients</span
-        > and their families. Here to ensure you never face your journey alone.
+        {$t("home.Hero-description1")} <span
+          class="underline font-bold">{$t("home.Hero-description-download")}</span
+        >  {$t("home.Hero-description2")}
       </p>
       <button
         class="relative z-1 mt-8 px-6 py-3 bg-blue-700 text-2xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
@@ -43,7 +44,7 @@
           class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
           style="transform: translateX(-50%), translateX(50%);"
         ></span>
-        <span class="relative">Seek Cancer Support</span>
+        <span class="relative">{$t("home.Hero-main-button-text")}</span>
       </button>
     </div>
   {/if}

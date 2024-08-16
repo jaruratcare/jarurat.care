@@ -1,38 +1,36 @@
 <script>
+  import {t} from "$lib/translations/translations.js"
   import '@splidejs/splide/dist/css/themes/splide-default.min.css';
   import { Splide, SplideSlide } from '@splidejs/svelte-splide';
   import CrouselCard from './CrouselCard.svelte';
-  const cancerPatients = [
+  $: cancerPatients = [
     {
       img: 'https://www.india.com/wp-content/uploads/2017/11/Cancer-patient.jpg',
-      name: 'Rajesh Kumar',
-      cancerType: 'Lung Cancer',
-      location: 'Mumbai, India',
-      description:
-        'Rajesh, 50, courageously battles stage 4 lung cancer with the unwavering support of his family and friends, spreading hope and awareness.'
+      name: $t('home.voicesOfHope.patients.name1'),
+      cancerType: $t('home.voicesOfHope.patients.cancerType1'),
+      location: $t('home.voicesOfHope.patients.location1'),
+      description:$t('home.voicesOfHope.patients.description1')
     },
     {
       img: 'https://www.shutterstock.com/image-photo/happy-smiling-indian-recovered-breast-260nw-2346325923.jpg',
-      name: 'Priya Sharma',
-      cancerType: 'Breast Cancer',
-      location: 'Delhi, India',
-      description:
-        'Priya, 38, shares her inspiring journey overcoming breast cancer, advocating for early screening and supporting fellow survivors.'
+      name: $t('home.voicesOfHope.patients.name2'),
+      cancerType: $t('home.voicesOfHope.patients.cancerType2'),
+      location: $t('home.voicesOfHope.patients.location2'),
+      description:$t('home.voicesOfHope.patients.description2')
     },
     {
       img: 'https://www.shutterstock.com/image-photo/indian-portrait-happy-cancer-patient-260nw-2341118991.jpg',
-      name: 'Amit Patel',
-      cancerType: 'Prostate Cancer',
-      location: 'Bangalore, India',
-      description:
-        'Amit, 55, bravely confronts prostate cancer treatment, emphasizing the importance of regular health check-ups for men.'
+      name: $t('home.voicesOfHope.patients.name3'),
+      cancerType: $t('home.voicesOfHope.patients.cancerType3'),
+      location: $t('home.voicesOfHope.patients.location3'),
+      description:$t('home.voicesOfHope.patients.description3'),
     }
   ];
 </script>
 
 <div class="text-center my-16" style="color: #0464C4;">
-  <h1 class="text-xl font-bold">Voices Of Hope</h1>
-  <p class="text-lg font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+  <h1 class="text-xl font-bold">{$t('home.voicesOfHope.title')}</h1>
+  <p class="text-lg font-normal">{$t('home.voicesOfHope.description')}</p>
 </div>
 <Splide options={{ rewind: true }} aria-label="My Favorite Images">
   {#each cancerPatients as patient}

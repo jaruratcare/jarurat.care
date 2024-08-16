@@ -2,55 +2,48 @@
   import { slide } from 'svelte/transition';
   import PlusIcon from '$lib/svg/plus-icon.svelte';
   import bg from '../../assets/images/Frame 1171275545.png';
+  import { t} from "$lib/translations/translations.js"
 
-  const faqs = [
+  $: faqs = [
     {
       id: 1,
-      question: 'What is Mentor?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question1"),
+      answer:$t("home.faqs.answer1")
     },
     {
       id: 2,
-      question: 'How do I apply for assistance?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question2"),
+      answer:$t("home.faqs.answer2"),
     },
     {
       id: 3,
-      question: 'What areas or regions does Jarurat Care operate in?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question:$t("home.faqs.question3"),
+      answer:$t("home.faqs.answer3")
     },
     {
       id: 4,
-      question: 'How can I apply for assistance from Jarurat Care?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question4"),
+      answer:$t("home.faqs.answer4")
     },
     {
       id: 5,
-      question: 'Who is eligible for support?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question5"),
+      answer:$t("home.faqs.answer5")
     },
     {
       id: 6,
-      question: 'Are the services free?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question6"),
+      answer:$t("home.faqs.answer6")
     },
     {
       id: 7,
-      question: 'How can I volunteer or donate?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question7"),
+      answer:$t("home.faqs.answer7")
     },
     {
       id: 8,
-      question: 'How can I volunteer or donate?',
-      answer:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla magnam nostrum quidem, recusandae modi labore magni provident incidunt doloremque accusantium, voluptas eligendi reiciendis fugit eaque rerum nam ratione fuga amet sed blanditiis eos? Fugit blanditiis facere perspiciatis esse officia aut.'
+      question: $t("home.faqs.question8") ,
+      answer:$t("home.faqs.answer8")
     }
   ];
 
@@ -74,10 +67,10 @@
       class="text-[2rem] font-medium text-[#0D2561]"
       style="font-family: 'Rubik Variable', sans-serif;"
     >
-      Frequently Asked Questions
+     {$t("home.faqs.title")}
     </h2>
     <p class="text-[#596274] text-xl font-medium" style="font-family: 'Manrope', sans-serif">
-      Look through some of our frequently answered questions
+      {$t("home.faqs.description")}
     </p>
   </div>
   <div class="my-24 w-full flex justify-center items-center z-10">
@@ -103,10 +96,10 @@
       class="text-[2rem] font-medium text-[#0D2561]"
       style="font-family: 'Rubik Variable', sans-serif;"
     >
-      Still Have Questions?
+     {$t("home.faqs.stillHaveQuestions")}
     </h2>
     <p class="text-[#596274] text-xl font-medium" style="font-family: 'Manrope', sans-serif">
-      Feel free to contact us
+      {$t("home.faqs.contactUs")}
     </p>
     <button
       class="relative z-1 mt-12 px-9 py-2.5 bg-[#0155BD] text-xl text-white border-2 border-[#0155BD] rounded-full hover:text-[#0155BD] group flex items-center justify-center overflow-hidden duration-200 ease"
@@ -116,7 +109,7 @@
         class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
         style="transform: translateX(-50%), translateX(50%);"
       ></span>
-      <span class="relative">Contact Us</span>
+      <span class="relative">{$t("home.faqs.buttonText")}</span>
     </button>
   </div>
 </section>

@@ -1,17 +1,17 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
-  import { t , setLocale, locale } from '$lib/translations/translations.js';
+  import { t, setLocale, locale } from '$lib/translations/translations.js';
   import logo from '../../assets/logo/image.webp';
 
   // Set a default locale (e.g., 'en')
   let defaultLocale = 'en';
 
+  // Initialize currentLocale with the default value
+  let currentLocale = defaultLocale;
+
   // Reactive variable for the current route
   $: routeId = $page.route.id;
-
-  // Reactive variable for the current locale, with a default value
-  $: currentLocale = locale || defaultLocale;
 
   // Function to handle language change
   function handleLanguageChange(event) {
@@ -22,6 +22,9 @@
     if (typeof window !== 'undefined') {
       localStorage.setItem('selectedLanguage', selectedLanguage);
     }
+
+    // Update the currentLocale to reflect the change
+    currentLocale = selectedLanguage;
   }
 
   // Load the language from local storage if available
@@ -87,7 +90,7 @@
         name="lang"
         id="lang"
         on:change={handleLanguageChange}
-        bind:value={currentLocale}  
+        bind:value={currentLocale}
       >
         <option value="en">English</option>
         <option value="hi">हिन्दी</option>

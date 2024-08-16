@@ -1,10 +1,12 @@
 {
+  "hero":{
   "Hero-title": "JARURAT CARE",
   "Hero-sub-title": "Jaisi Jarurat Vaisi Care",
   "Hero-description1": "Providing support, guidance, hope and personalized care for",
   "Hero-description2": " and their families. Here to ensure you never face your journey alone.",
   "Hero-main-button-text": "Seek Cancer Support",
-  "Hero-description-download": "cancer patients",
+  "Hero-description-download": "cancer patients"
+  },
   "nav": {
     "home": "Home",
     "about": "About Us",

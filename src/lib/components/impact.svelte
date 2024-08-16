@@ -1,57 +1,44 @@
 <script>
+  import Button from './ui/button.svelte';
+  import Header from './ui/header.svelte';
+  import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
+
+  const cards = [
+    { title: 'Mentor', count: 54, suffix: '' },
+    { title: 'Doctor', count: 28, suffix: '' },
+    { title: 'People', count: 1245, suffix: '' },
+    { title: 'Early Treatments Initiated', count: 95, suffix: '%' },
+    { title: 'Patients Assisted', count: 1000, suffix: '+' },
+    { title: 'People Reached', count: 5, suffix: 'M' },
+    { title: 'Emotional Support Services', count: 50, suffix: '+' },
+    { title: 'Early Treatments Initiated', count: 95, suffix: '+' }
+  ];
 </script>
 
-<section class="py-12 bg-gradient-to-r from-blue-50 to-blue-100">
-  <div class="container mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-4 text-blue-950">Our Impact</h2>
-    <p class="text-lg mb-12 text-blue-950">
-      Explore the real-world difference we're making in cancer care.
-    </p>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">Mentor</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">Doctors</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">People</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0%</p>
-        <p class="text-gray-600 text-left">Early Treatments Initiated</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">Patients Assisted</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">People Reached</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0</p>
-        <p class="text-gray-600 text-left">Emotional Support Services</p>
-      </div>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <p class="text-5xl font-bold text-blue-950 mb-2 text-left">0%</p>
-        <p class="text-gray-600 text-left">Early Treatments Initiated</p>
+<div class="py-8 sm:py-16 pb-16 sm:pb-36 flex flex-col bg-[#D3F2FC]">
+  <div
+    class="bg-[#f2fafe] max-w-[80rem] w-[90%] mx-auto flex flex-col py-8 sm:py-16 px-4 sm:px-8 rounded-2xl relative"
+  >
+    <div class="absolute inset-0 overflow-hidden opacity-80">
+      <AnimatedGradientMesh />
+    </div>
+    <div class="max-w-[60rem] mx-auto flex flex-col gap-4 sm:gap-16">
+      <Header
+        title="Our Impact"
+        subtitle="Explore the real-world difference we are making in Cancer Care"
+      />
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-10 p-1 sm:p-4">
+        {#each cards as card}
+          <div class="border flex flex-col p-4 rounded-md shadow-md bg-white z-10">
+            <span class="text-[2em] sm:text-[3em] font-semibold">{card.count}{card.suffix}</span>
+            <div class="grow"></div>
+            <small class="leading-[1.3]">{card.title}</small>
+          </div>
+        {/each}
       </div>
     </div>
-    <button
-      class="mt-12 px-6 py-2 bg-blue-600 text-white font-bold rounded-lg shadow-md hover:bg-blue-700"
-      >Seek Support</button
-    >
-  </div>
-</section>
 
-<style>
-  .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-</style>
+    <a href="/" class="inline-block mx-auto mt-16"><Button>Seek Support</Button></a>
+  </div>
+</div>

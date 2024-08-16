@@ -1,0 +1,937 @@
+[
+  {
+    "Doctors": [
+      {
+        "Sr_No": 1,
+        "Name": "Dr. Milind Javle",
+        "Hospital_Site": "Texas MD Anderson Cancer Center",
+        "Designation": "Gastrointestinal Medical Oncology"
+      },
+      {
+        "Sr_No": 2,
+        "Name": "Dr. Vinay Kapoor",
+        "Hospital_Site": "MGUMST",
+        "Designation": "Vice Chancellor"
+      },
+      {
+        "Sr_No": 3,
+        "Name": "Prof. Usha Dutta",
+        "Hospital_Site": "PGIMER Chandigarh",
+        "Designation": "Researcher"
+      },
+      {
+        "Sr_No": 4,
+        "Name": "Dr. Vineet G Gupta",
+        "Hospital_Site": "Fortis Hospital, Delhi",
+        "Designation": "Medical Oncologist"
+      },
+      {
+        "Sr_No": 5,
+        "Name": "Dr. Shalabh Arora",
+        "Hospital_Site": "Ujala Cygnus Hospital, Haldwani",
+        "Designation": "Consultant Oncologist"
+      },
+      {
+        "Sr_No": 6,
+        "Name": "Dr. Shankar Zanwar",
+        "Hospital_Site": "Nanavati Max Super Speciality Hospital, Mumbai",
+        "Designation": "Surgical Oncologist"
+      },
+      {
+        "Sr_No": 7,
+        "Name": "Dr. Muskaan Khosla",
+        "Hospital_Site": "The Royal Wolverhampton NHS Trust, England",
+        "Designation": "Surgical Oncologist"
+      },
+      {
+        "Sr_No": 8,
+        "Name": "Ghanshyam Tiwari",
+        "Hospital_Site": "Education/Health Evangelist, Delhi",
+        "Designation": "Public Welfare"
+      },
+      {
+        "Sr_No": 9,
+        "Name": "Dr. Utpal Anand",
+        "Hospital_Site": "AIIMS, Patna",
+        "Designation": "Additional Professor"
+      },
+      {
+        "Sr_No": 10,
+        "Name": "Dr. Vaibhav Kumar Varshney",
+        "Hospital_Site": "All India Institute of Medical Sciences",
+        "Designation": "Additional Professor and Head"
+      },
+      {
+        "Sr_No": 11,
+        "Name": "Deeksha Kapoor",
+        "Hospital_Site": "BLK Max",
+        "Designation": "Senior Consultant"
+      },
+      {
+        "Sr_No": 12,
+        "Name": "Dr. Moushumi Suryavanshi",
+        "Hospital_Site": "Amrita Institute of Medical Sciences and Research Centre",
+        "Designation": "Head of Department (Molecular Biology)"
+      },
+      {
+        "Sr_No": 13,
+        "Name": "Dr. Arati Hota",
+        "Hospital_Site": "Mahatma Gandhi Medical College & Hospital",
+        "Designation": "Senior Psycho-Oncologist"
+      },
+      {
+        "Sr_No": 14,
+        "Name": "Dr. Jitendra Rohilla",
+        "Hospital_Site": "Fortis Hospital, Mohali",
+        "Designation": "Senior Surgical Oncologist"
+      },
+      {
+        "Sr_No": 15,
+        "Name": "Dr. Ravi Kanna",
+        "Hospital_Site": "CCHRC, Silchar",
+        "Designation": "Director"
+      },
+      {
+        "Sr_No": 16,
+        "Name": "Dr. Ritesh Tapkire",
+        "Hospital_Site": "CCHRC, Silchar",
+        "Designation": "Deputy Director"
+      }
+    ],
+    "Caregivers": {
+      "Total": 34,
+      "Passed_Away": 6,
+      "Active": 23,
+      "Not_Responding": 5,
+      "Mentors": 6,
+      "Early_Treatments_Initiated": "95%"
+    }
+  },
+
+  {
+    "Hospital_Location": "Haldwani",
+    "Doctor_Name": "Dr. Shalabh Arora",
+    "Patient_Name": "Tulsi Devi",
+    "Caregiver_Name": "Asha",
+    "Treatment": "GemCis",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "No response.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "07.08.2024"
+  },
+  {
+    "Hospital_Location": "Pithoragarh",
+    "Doctor_Name": "Dr. Shalabh Arora",
+    "Patient_Name": "Leelavati Devi",
+    "Caregiver_Name": "Govindh",
+    "Treatment": "GemCis",
+    "Physical_Status_of_Patient": "The patient has swelling in the mouth and feet, a lack of appetite, and irregular bowel movements, only passing gas for the past 5-6 days.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "Strained, Tensed, Worried, Anxious, Helplessness.",
+    "Latest_Update": "12 chemotherapy sessions completed. Doctor has recommended a CT scan for swelling in the mouth and feet.",
+    "Recent_Hospital_Visit_Date": "01.08.2024",
+    "Last_Call_Date": "29/07/2024"
+  },
+  {
+    "Hospital_Location": "Amritsar",
+    "Doctor_Name": "Dr Anant Ramaswamy, Dr Minit Shah",
+    "Patient_Name": "Renu Gupta",
+    "Caregiver_Name": "Saransh Gupta",
+    "Treatment": "Durvalumab+GemCis",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "Happy with treatment progress.",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The patient and caregiver are happy with the progress of the treatment.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "08.07.2024"
+  },
+  {
+    "Hospital_Location": "Nanavati, Mumbai",
+    "Patient_Name": "Mahendra Gupta",
+    "Caregiver_Name": "Niraj Gupta",
+    "Treatment": "Operation and Chemotherapy",
+    "Physical_Status_of_Patient": "The patient has recovered and is now resuming normal activities. Chemotherapy was recommended, and a CTC test was completed. An S1 oral pill was suggested, but a PYD Nutrition test needs to be done first. Results for the PYD Nutrition test are expected by July 18, 2024.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The patient has fully recovered and is now returning to their usual activities. Waiting for the PYD Nutrition test by 18 July.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "17.07.2024"
+  },
+  {
+    "Hospital_Location": "Yashoda Hospital",
+    "Patient_Name": "Shami Kumar",
+    "Caregiver_Name": "Prateek Kumar",
+    "Treatment": "Getting a biopsy done to decide the treatment course.",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "29.07.2024 (did not pick up), In touch with Priyanka"
+  },
+  {
+    "Hospital_Location": "Sher-i-Kashmir Hospital",
+    "Doctor_Name": "Dr. Maheera",
+    "Patient_Name": "Hajira Khanday",
+    "Caregiver_Name": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The caregiver will provide the patient’s son’s number soon.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "07.08.2024"
+  },
+  {
+    "Patient_Name": "Lone Ghulam Mohiuddin",
+    "Caregiver_Name": "Rangrez",
+    "Physical_Status_of_Patient": "Chemotherapy sessions are done and the doctor will now run some tests to guide further course of treatment.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "He is handling the situation well and is doing good. His tone seemed calm and happy.",
+    "Latest_Update": "The patient and caregiver are both doing well. The patient has expressed that no additional assistance is needed at this time.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "07.08.2024"
+  },
+  {
+    "Hospital_Location": "PGI Chandigarh",
+    "Doctor_Name": "Dr. Raghav",
+    "Patient_Name": "Jhabari Devi",
+    "Caregiver_Name": "Harsh Rawat",
+    "Treatment": "Getting Biopsy and then Endoscopy done so that the doctor can devise what should be the next step.",
+    "Physical_Status_of_Patient": "The patient has experienced intermittent fever, likely due to the heat, and has undergone multiple tests including an ultrasound and CT scan. A biopsy and endoscopy are scheduled to determine the next steps in treatment. The patient is currently in the early stages of the condition.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "He is trying to hold on optimistically.",
+    "Latest_Update": "The patient and caregiver are managing the situation, although the patient is struggling with the heat and wishes to return to her home state. The caregiver, Mr. Rawat, remains optimistic but is facing some frustration due to delays in appointments. The next appointment is scheduled for Monday, with a biopsy and endoscopy planned.",
+    "Recent_Hospital_Visit_Date": "22.07.2024",
+    "Last_Call_Date": "20/07/2024"
+  },
+  {
+    "Patient_Name": "Ram Kumar",
+    "Caregiver_Name": "Jai Karan",
+    "Physical_Status_of_Patient": "The patient is experiencing severe pain, particularly when eating. Chemotherapy is scheduled to begin on July 9, 2024, with the last session set for July 17, 2024.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "A test is scheduled in the OPD tomorrow, July 18. The patient's next visit is scheduled for Monday.",
+    "Recent_Hospital_Visit_Date": "Appointment scheduled for 23.07.2024.",
+    "Last_Call_Date": "17/07/2024"
+  },
+  {
+    "Hospital_Location": "SSB Agra",
+    "Doctor_Name": "Dr. Dhruv Mahajan, Dr. Narendra",
+    "Patient_Name": "Kant Shree",
+    "Caregiver_Name": "Ritik Kumar",
+    "Treatment": "Report shared on whatsapp",
+    "Physical_Status_of_Patient": "The patient is experiencing unbearable pain, especially during nights, due to a severely inflamed gallbladder with an 11mm stone and a swollen liver.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The patient urgently requires pain alleviation or gall bladder removal and has not yet used their Ayushman card to avoid treatment delays.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "29.07.2024 (Phone number temporarily out of service)"
+  },
+  {
+    "Patient_Name": "Sunita",
+    "Caregiver_Name": "Raghav Rana",
+    "Treatment": "Chemotherapy",
+    "Physical_Status_of_Patient": "The patient is currently undergoing their sixth chemotherapy session and is experiencing typical side effects. However, progress is evident, and the patient is feeling better.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "They were a bit concerned about the number of cycles of chemo sessions.",
+    "Latest_Update": "The patient has completed their sixth chemotherapy session. Tomorrow, they have a doctor's appointment to discuss their progress since the last session on July 11th.",
+    "Recent_Hospital_Visit_Date": "18.07.2024",
+    "Last_Call_Date": "21.07.2024"
+  },
+  {
+    "Patient_Name": "Munni Devi",
+    "Caregiver_Name": "Sachin",
+    "Treatment": "Visiting the doctor tomorrow for follow-up on chemo, the patient had surgery.",
+    "Physical_Status_of_Patient": "The patient has completed weekly chemotherapy sessions and is currently at home, doing fine after a previous high fever.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "He was talking normally but was rushed in his speech. He will call for further assistance if needed.",
+    "Latest_Update": "The patient has been discharged, advised to follow up in 10 days, and is awaiting further treatment plans from the doctor.",
+    "Recent_Hospital_Visit_Date": "28.07.2024",
+    "Last_Call_Date": "29.07.2024"
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "Dr. Jitender Rohilla",
+    "Patient_Name": "Ashok",
+    "Caregiver_Name": "Himself",
+    "Treatment": "Operation done, undergoing chemotherapy",
+    "Physical_Status_of_Patient": "The patient is doing well post-surgery and has started regular work, though experiencing slight weakness and pain in the legs due to chemotherapy.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The patient has completed 2 chemotherapy sessions with the next one scheduled for July 29th, aiming to complete a total of 6 cycles, and reports no major issues besides low platelet count and mild weakness.",
+    "Recent_Hospital_Visit_Date": "29.07.2024",
+    "Last_Call_Date": "22.07.2024"
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "",
+    "Patient_Name": "Baljit Singh",
+    "Caregiver_Name": "Sukhpal Singh",
+    "Treatment": "Chemotherapy",
+    "Physical_Status_of_Patient": "The patient’s condition remains stable, but ongoing stress and fatigue are evident, impacting overall well-being.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "He is deeply worried about his father, showing signs of stress and fatigue. Despite holding on bravely, he is aware of the emotional turmoil he is experiencing. He remains hopeful for positive outcomes in upcoming appointments.",
+    "Latest_Update": "The caregiver expresses deep concern and stress over the treatment process, hoping for positive outcomes in the next hospital appointment on August 10th, while feeling the emotional strain of being the sole decision-maker.",
+    "Recent_Hospital_Visit_Date": "Next appointment is scheduled for 10.08.2024",
+    "Last_Call_Date": "21.07.2024"
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "",
+    "Patient_Name": "Jaswinder Kaur",
+    "Caregiver_Name": "Barinder Kaur",
+    "Treatment": "Underwent Operation & Chemo, currently PET Scan is clear focusing on follow-up.",
+    "Physical_Status_of_Patient": "The patient has undergone an operation and chemotherapy, with a currently clear PET scan.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The focus is now on follow-up care after successful treatment and a clear PET scan.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "BMH Hospital, Pune",
+    "Doctor_Name": "Dr. Sachin Hingmire",
+    "Patient_Name": "Mayuri",
+    "Caregiver_Name": "Saloni",
+    "Treatment": "Chemotherapy - Folfox",
+    "Physical_Status_of_Patient": "The patient is undergoing chemotherapy (Folfox) and has started experiencing back pain.",
+    "Mental_Health_of_Patient": "She is trying to stay positive.",
+    "Emotional_Check_of_Caregiver": "The patient has a strong emotional dependence on her mother, indicating a deep need for maternal support. Her parents, especially her father, are struggling emotionally, with her father relying on spirituality to cope. The caregivers remain dedicated, though they are facing their own emotional challenges.",
+    "Latest_Update": "The next chemotherapy session is scheduled for August 14th.",
+    "Recent_Hospital_Visit_Date": "27.07.2024",
+    "Last_Call_Date": "30.07.2024"
+  },
+  {
+    "Hospital_Location": "Hyderabad",
+    "Doctor_Name": "",
+    "Patient_Name": "",
+    "Caregiver_Name": "Azhar",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "They are trying their best to stay positive.",
+    "Emotional_Check_of_Caregiver": "They are doing well and trusting the process and the doctors.",
+    "Latest_Update": "Had a CT scan done and are waiting for the follow-up.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "07.08.2024"
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "Dr. Ravi Kannan, Dr. Ritesh Tapkire",
+    "Patient_Name": "Nanda Rani Devi",
+    "Caregiver_Name": "Shobon Devi",
+    "Treatment": "Stent placement in the oesophagus following chemotherapy and radiation therapy.",
+    "Physical_Status_of_Patient": "The patient has become very weak due to not eating properly and has shown no improvement since the last hospital admission. An endoscopy revealed partial paralysis of the vocal cord, and the patient is experiencing ongoing health challenges.",
+    "Mental_Health_of_Patient": "Patient not very positive and is in constant distress.",
+    "Emotional_Check_of_Caregiver": "He is losing hope as the patient is not getting better or eating properly.",
+    "Latest_Update": "The patient was admitted from August 2 to August 4, 2024. After the placement of a stent in the oesophagus, the frequency of vomiting has decreased, but the patient remains weak. Doctors have determined that surgery is not a viable option due to the potential for complications.",
+    "Recent_Hospital_Visit_Date": "02.08.2024. The next appointment is scheduled for 15th August.",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "",
+    "Patient_Name": "Hazera Begum",
+    "Caregiver_Name": "Imadul Azad Lashkar",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "",
+    "Patient_Name": "Ramendra Bhattacharjee",
+    "Caregiver_Name": "Rupam Bhattacharjee",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Narayana",
+    "Doctor_Name": "",
+    "Patient_Name": "Vijay Venu",
+    "Caregiver_Name": "",
+    "Treatment": "Chemotherapy",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Voice_of_Hope": {
+      "Reviews": {
+        "Testimonials": [
+          {
+            "Patient_Name": "Tulsi Devi",
+            "Location": "Haldwani",
+            "Role": "Cancer fighter",
+            "Testimonial": "My mother’s cancer diagnosis left us devastated and financially strained. Jarurat Care stepped in when we needed help the most. Their support not only eased our financial burden but also gave us the emotional strength to face each day. They treated us like family, and for that, we are forever grateful."
+          },
+          {
+            "Patient_Name": "Mayuri",
+            "Location": "Pune",
+            "Role": "Cancer fighter",
+            "Testimonial": "As a single parent, caring for my daughter with cancer seemed impossible at times. Jarurat Care provided us with the financial assistance and emotional guidance we desperately needed. Their kindness and empathy made a world of difference in our journey. We couldn’t have made it this far without them."
+          },
+          {
+            "Patient_Name": "Ashok",
+            "Location": "Mohali",
+            "Role": "Cancer fighter",
+            "Testimonial": "The team at Jarurat Care went above and beyond to help us through the toughest days of my sister’s treatment. They not only provided financial aid but also connected us with counselors who understood our pain. Their support gave us hope when we thought there was none."
+          },
+          {
+            "Patient_Name": "Leelavati Devi",
+            "Location": "Pithoragarh",
+            "Role": "Cancer fighter",
+            "Testimonial": "Jarurat Care has been a true blessing in our lives. When my wife was diagnosed with cancer, we didn’t know where to turn. They offered financial help and were there to listen whenever we felt overwhelmed. Their support has been a crucial part of our healing process."
+          },
+          {
+            "Patient_Name": "Mahendra Gupta",
+            "Location": "Mumbai",
+            "Role": "Cancer fighter",
+            "Testimonial": "Cancer is a battle that no family should face alone, and thanks to Jarurat Care, we didn’t have to. They provided the financial relief we needed to focus on my father’s care and were a constant source of emotional support. We will always be thankful for their kindness."
+          },
+          {
+            "Patient_Name": "Azhar",
+            "Location": "Hyderabad",
+            "Role": "Cancer fighter",
+            "Testimonial": "Jarurat Care gave us the strength to keep fighting. With their financial assistance, we could afford the best care for my husband, and their emotional support kept us grounded through the ups and downs. They were truly a lifeline in our time of need."
+          },
+          {
+            "Patient_Name": "Jhabari Devi",
+            "Location": "Chandigarh",
+            "Role": "Cancer fighter",
+            "Testimonial": "When cancer struck our family, we were lost. Jarurat Care provided not only the financial help we desperately needed but also emotional guidance that helped us stay strong for my daughter. Their unwavering support has been a source of comfort and hope."
+          },
+          {
+            "Patient_Name": "Kant Shree",
+            "Location": "SSB Agra",
+            "Role": "Cancer fighter",
+            "Testimonial": "The journey through cancer treatment is never easy, but Jarurat Care made it more bearable. They helped us navigate the financial challenges and offered emotional support that was priceless. We are deeply grateful for everything they’ve done for us."
+          },
+          {
+            "Patient_Name": "Sunita",
+            "Location": "",
+            "Role": "Cancer fighter",
+            "Testimonial": "Jarurat Care’s support has been a beacon of light in our darkest days. They provided financial assistance when we couldn’t afford my mother’s treatment and were always there to lend a listening ear. Their compassion has made all the difference."
+          },
+          {
+            "Patient_Name": "Munni Devi",
+            "Location": "",
+            "Role": "Cancer fighter",
+            "Testimonial": "We were overwhelmed by the costs and emotional strain of my wife’s cancer diagnosis. Jarurat Care stepped in and provided the financial and emotional support we needed to keep going. Their dedication to helping families like ours is truly remarkable."
+          },
+          {
+            "Patient_Name": "Nanda Rani Devi",
+            "Location": "Cachar",
+            "Role": "Cancer fighter",
+            "Testimonial": "When my wife was diagnosed with cancer, our world turned upside down. The financial burden and emotional toll were overwhelming. But then we found Jarurat Care, and they became our beacon of hope. Not only did they provide the much-needed financial assistance for his treatment, but they also offered unwavering emotional support during our most difficult times. The compassion and care we received gave us the strength to keep going. I truly don’t know where we would be without them. Jarurat Care is more than an organization; they are a lifeline for families like ours."
+          }
+        ]
+      },
+      "Instagram_Videos": [
+        "https://www.instagram.com/reel/C9M7UL8NGOv/?igsh=YmRodGl0cDA1eWZr",
+        "https://www.instagram.com/reel/C-R2cKSIY8Z/?igsh=MWtjcHQ1cmJpZncyZA==",
+        "https://www.instagram.com/reel/C-kea0xznMb/?igsh=MXRteWZudGVhcWxl",
+        "https://www.instagram.com/p/C-IYvHfzBYO/?igsh=ZThsbmVna3Nxb2wx",
+        "https://www.instagram.com/reel/C94uoBAIoMw/?igsh=ZHN4MnFlczB0dzBn",
+        "https://www.instagram.com/reel/C8ZdSPYypsS/?igsh=bmVuYnUwaWw4b3d1",
+        "https://www.instagram.com/reel/C8US0P9yhXo/?igsh=aDNsNG9rMXp2Z2dl"
+      ]
+    }
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "Dr. Jitender Rohilla",
+    "Patient_Name": "Ashok",
+    "Caregiver_Name": "Himself",
+    "Treatment": "Operation done, undergoing chemotherapy",
+    "Physical_Status_of_Patient": "The patient is doing well post-surgery and has started regular work, though experiencing slight weakness and pain in the legs due to chemotherapy.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The patient has completed 2 chemotherapy sessions with the next one scheduled for July 29th, aiming to complete a total of 6 cycles, and reports no major issues besides low platelet count and mild weakness.",
+    "Recent_Hospital_Visit_Date": "29.07.2024",
+    "Last_Call_Date": "22.07.2024"
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "",
+    "Patient_Name": "Baljit Singh",
+    "Caregiver_Name": "Sukhpal Singh",
+    "Treatment": "Chemotherapy",
+    "Physical_Status_of_Patient": "The patient’s condition remains stable, but ongoing stress and fatigue are evident, impacting overall well-being.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "He is deeply worried about his father, showing signs of stress and fatigue. Despite holding on bravely, he is aware of the emotional turmoil he is experiencing. He remains hopeful for positive outcomes in upcoming appointments.",
+    "Latest_Update": "The caregiver expresses deep concern and stress over the treatment process, hoping for positive outcomes in the next hospital appointment on August 10th, while feeling the emotional strain of being the sole decision-maker.",
+    "Recent_Hospital_Visit_Date": "Next appointment is scheduled for 10.08.2024",
+    "Last_Call_Date": "21.07.2024"
+  },
+  {
+    "Hospital_Location": "Fortis, Mohali",
+    "Doctor_Name": "",
+    "Patient_Name": "Jaswinder Kaur",
+    "Caregiver_Name": "Barinder Kaur",
+    "Treatment": "Underwent Operation & Chemo, currently PET Scan is clear focusing on follow-up.",
+    "Physical_Status_of_Patient": "The patient has undergone an operation and chemotherapy, with a currently clear PET scan.",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "The focus is now on follow-up care after successful treatment and a clear PET scan.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "BMH Hospital, Pune",
+    "Doctor_Name": "Dr. Sachin Hingmire",
+    "Patient_Name": "Mayuri",
+    "Caregiver_Name": "Saloni",
+    "Treatment": "Chemotherapy - Folfox",
+    "Physical_Status_of_Patient": "The patient is undergoing chemotherapy (Folfox) and has started experiencing back pain.",
+    "Mental_Health_of_Patient": "She is trying to stay positive.",
+    "Emotional_Check_of_Caregiver": "The patient has a strong emotional dependence on her mother, indicating a deep need for maternal support. Her parents, especially her father, are struggling emotionally, with her father relying on spirituality to cope. The caregivers remain dedicated, though they are facing their own emotional challenges.",
+    "Latest_Update": "The next chemotherapy session is scheduled for August 14th.",
+    "Recent_Hospital_Visit_Date": "27.07.2024",
+    "Last_Call_Date": "30.07.2024"
+  },
+  {
+    "Hospital_Location": "Hyderabad",
+    "Doctor_Name": "",
+    "Patient_Name": "",
+    "Caregiver_Name": "Azhar",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "They are trying their best to stay positive.",
+    "Emotional_Check_of_Caregiver": "They are doing well and trusting the process and the doctors.",
+    "Latest_Update": "Had a CT scan done and are waiting for the follow-up.",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": "07.08.2024"
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "Dr. Ravi Kannan, Dr. Ritesh Tapkire",
+    "Patient_Name": "Nanda Rani Devi",
+    "Caregiver_Name": "Shobon Devi",
+    "Treatment": "Stent placement in the oesophagus following chemotherapy and radiation therapy.",
+    "Physical_Status_of_Patient": "The patient has become very weak due to not eating properly and has shown no improvement since the last hospital admission. An endoscopy revealed partial paralysis of the vocal cord, and the patient is experiencing ongoing health challenges.",
+    "Mental_Health_of_Patient": "Patient not very positive and is in constant distress.",
+    "Emotional_Check_of_Caregiver": "He is losing hope as the patient is not getting better or eating properly.",
+    "Latest_Update": "The patient was admitted from August 2 to August 4, 2024. After the placement of a stent in the oesophagus, the frequency of vomiting has decreased, but the patient remains weak. Doctors have determined that surgery is not a viable option due to the potential for complications.",
+    "Recent_Hospital_Visit_Date": "02.08.2024. The next appointment is scheduled for 15th August.",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "",
+    "Patient_Name": "Hazera Begum",
+    "Caregiver_Name": "Imadul Azad Lashkar",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Cachar Cancer Hospital",
+    "Doctor_Name": "",
+    "Patient_Name": "Ramendra Bhattacharjee",
+    "Caregiver_Name": "Rupam Bhattacharjee",
+    "Treatment": "",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "Hospital_Location": "Narayana",
+    "Doctor_Name": "",
+    "Patient_Name": "Vijay Venu",
+    "Caregiver_Name": "",
+    "Treatment": "Chemotherapy",
+    "Physical_Status_of_Patient": "",
+    "Mental_Health_of_Patient": "",
+    "Emotional_Check_of_Caregiver": "",
+    "Latest_Update": "",
+    "Recent_Hospital_Visit_Date": "",
+    "Last_Call_Date": ""
+  },
+  {
+    "FAQs": {
+      "Initial_Diagnosis": {
+        "Question": "What are the most common symptoms of gallbladder cancer?",
+        "Symptoms": [
+          {
+            "Symptom": "Abdominal Pain",
+            "Description": "Particularly in the upper right side"
+          },
+          {
+            "Symptom": "Nausea and Vomiting",
+            "Description": "Feeling sick and throwing up"
+          },
+          {
+            "Symptom": "Jaundice",
+            "Description": "Yellowing of the skin and eyes"
+          },
+          {
+            "Symptom": "Unexplained Weight Loss",
+            "Description": "Losing weight without trying"
+          },
+          {
+            "Symptom": "Fever",
+            "Description": "Elevated body temperature"
+          },
+          {
+            "Symptom": "Lumps in Abdomen",
+            "Description": "Noticeable masses in the abdominal area"
+          }
+        ],
+        "Note": "If you observe any of these symptoms, visit your healthcare professional for further evaluation and guidance."
+      },
+      "How_is_gallbladder_cancer_detected": {
+        "Imaging_Tests": [
+          {
+            "Test": "Ultrasound",
+            "Description": "First-line imaging to detect abnormalities."
+          },
+          {
+            "Test": "CT Scans",
+            "Description": "Detailed cross-sectional images to check for spread."
+          },
+          {
+            "Test": "MRI",
+            "Description": "Detailed images of soft tissues, more precise than CT."
+          }
+        ],
+        "Blood_Tests": [
+          {
+            "Test": "Liver Function Tests",
+            "Description": "To detect abnormalities in liver enzymes."
+          },
+          {
+            "Test": "Tumour Markers",
+            "Description": "Elevated levels of substances like CA 19-9."
+          }
+        ],
+        "Biopsy": [
+          {
+            "Procedure": "Fine-Needle Aspiration (FNA)",
+            "Description": "Removing a small tissue sample for examination."
+          }
+        ]
+      },
+      "Do_I_have_gallbladder_cancer": {
+        "Symptoms": [
+          "Abdominal pain",
+          "Nausea",
+          "Jaundice",
+          "Unexplained weight loss",
+          "Fever",
+          "Fatigue",
+          "Dark urine",
+          "Pale stools"
+        ],
+        "Diagnosis": {
+          "Methods": [
+            "Blood tests (liver function tests, CA 19-9)",
+            "Imaging tests (ultrasound, MRI, CT scan, PET scan)",
+            "Biopsy"
+          ]
+        },
+        "Consultation": "Essential for personalized assessment. Discuss symptoms, comorbidities (like diabetes or hypertension), and treatment options with your healthcare provider."
+      },
+      "What_stage_is_my_cancer_and_what_does_that_mean_in_my_case": {
+        "Stages_of_Cancer": {
+          "Stage_0": {
+            "T": "Tis: Tumor only within the innermost layer of the gallbladder",
+            "N": "N0: No lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_I": {
+            "T": "T1: Tumor invades the lamina propria or muscularis",
+            "N": "N0: No lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IIa": {
+            "T": "T2a: Tumor invades the fibrous tissue near the abdominal cavity lining",
+            "N": "N0: No lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IIb": {
+            "T": "T2b: Tumor invades the fibrous tissue near the liver, but not the liver itself",
+            "N": "N0: No lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IIIa": {
+            "T": "T3: Tumor invades the outermost covering of the gallbladder and/or nearby structures (liver, stomach, duodenum, colon, pancreas)",
+            "N": "N0: No lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IIIb": {
+            "T": "T1-T3: Tumor invades up to the outermost covering of the gallbladder and/or nearby structures",
+            "N": "N1: Metastasis in 1-3 regional lymph nodes",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IVa": {
+            "T": "T4: Tumor invades major blood vessels or two or more nearby organs",
+            "N": "N0-N1: No or limited lymph node involvement",
+            "M": "M0: No distant metastasis"
+          },
+          "Stage_IVb": {
+            "T": "Any T: Any size/extent of the primary tumor",
+            "N": "N2: Metastasis in 4 or more regional lymph nodes",
+            "M": "M1: Distant Metastasis"
+          }
+        }
+      }
+    }
+  },
+  {
+    "Discussing_with_Healthcare_Providers": {
+      "What_type_of_doctor_should_I_see_for_gallbladder_cancer": {
+        "Oncologist": "Cancer specialist.",
+        "Medical_Oncologist": "Specializes in cancer treatment using medications like chemotherapy and targeted therapy.",
+        "Gastroenterologist": "Digestive system specialist.",
+        "Radiation_Oncologist": "Specializes in cancer treatment using radiation therapy to target and destroy cancer cells while minimizing damage to healthy tissue.",
+        "Surgeon": "Specialized in hepato-pancreato-biliary (HPB) surgery."
+      },
+      "How_might_my_comorbidities_affect_my_treatment_for_gallbladder_cancer": {
+        "Diabetes": "Affects treatment tolerance, can interfere with healing, may complicate surgery, and can interact with medications.",
+        "High_Blood_Pressure": "Increases risk during surgery, can complicate anesthesia, may affect medication choices, and requires careful monitoring.",
+        "Chronic_Pulmonary_Disease": "Affects breathing during surgery, can complicate anesthesia, may impact recovery, and requires specific management strategies.",
+        "Dementia": "Complicates communication and consent processes, may interfere with treatment adherence, and necessitates tailored care plans.",
+        "Heart_Disease": "Increases risk during surgery, affects anesthesia tolerance, may complicate recovery, and requires cardiology consultation.",
+        "Obesity": "Increases surgical risks, can complicate anesthesia, may affect healing, and requires specific management of comorbid conditions."
+      },
+      "Note": "It's crucial to discuss all health conditions with your healthcare provider to tailor a treatment plan that considers your overall well-being.",
+      "What_are_the_latest_advancements_in_gallbladder_cancer_treatment": {
+        "Targeted_Therapies": "Drugs that target specific cancer cells.",
+        "Immunotherapy": "Boosts the body’s natural defenses to fight cancer.",
+        "Clinical_Trials": "Participation in new and experimental treatments."
+      },
+      "Is_it_advisable_to_get_a_second_opinion_if_I_have_been_diagnosed_with_gallbladder_cancer": {
+        "Recommendation": "Getting a second opinion is recommended as it can confirm the diagnosis, validate the treatment plan, and offer alternative perspectives if there are concerns about the cancer stage or treatment urgency. Discussing any potential treatment delays with your healthcare team is crucial for understanding their impact on your prognosis and making informed decisions about your care."
+      }
+    },
+    "Treatment_Options": {
+      "What_are_my_treatment_options": {
+        "Surgery": {
+          "When_It's_Used": "Early-stage cancer. Local spread that can be removed.",
+          "What_It_Involves": "Removing the gallbladder. Pain relief and antibiotics."
+        },
+        "Chemotherapy": {
+          "When_It's_Used": "Advanced cancer. Post-surgery to kill remaining cells.",
+          "What_It_Involves": "Medicines like gemcitabine, cisplatin, capecitabine."
+        },
+        "Radiation_Therapy": {
+          "When_It's_Used": "Before surgery to shrink tumors. After surgery to kill leftover cells. To relieve symptoms.",
+          "What_It_Involves": "High-energy rays to target cancer cells."
+        },
+        "Targeted_Therapy": {
+          "When_It's_Used": "Cancer with specific genetic changes. When other treatments don’t work.",
+          "What_It_Involves": "Medicines like erlotinib, lapatinib, pembrolizumab."
+        },
+        "Palliative_Care": {
+          "When_It's_Used": "Any stage to manage symptoms. Improve quality of life.",
+          "What_It_Involves": "Pain relief, nausea control, dietary and emotional support."
+        }
+      },
+      "Can_my_cancer_be_removed_with_surgery": {
+        "Depends_on_Stage": "Early stages have higher chances of successful surgery.",
+        "Consultation": "Discuss with your surgeon about feasibility."
+      }
+    },
+    "Surgical_Questions": {
+      "What_is_gallbladder_surgery": {
+        "Cholecystectomy": "Removal of the gallbladder.",
+        "Laparoscopic": "Minimally invasive, quicker recovery.",
+        "Open_Surgery": "Larger incision, longer recovery."
+      },
+      "Will_I_need_radiation_therapy_after_completing_treatment_for_gallbladder_cancer": {
+        "Adjuvant_Therapy": "If there is a high risk of cancer recurrence after surgery, radiation therapy may be used to reduce this risk.",
+        "Palliative_Therapy": "In cases where the cancer cannot be completely removed or has spread to other areas, radiation therapy can help relieve symptoms and improve quality of life.",
+        "Consultation": "Your oncologist will evaluate your specific case and discuss whether radiation therapy is recommended in your treatment plan."
+      }
+    },
+    "Prognosis_and_Survival": {
+      "How_long_can_a_person_live_with_gallbladder_cancer": {
+        "Early_Stage": {
+          "Life_Expectancy": "Higher survival rates, potential for cure with surgery and/or other treatments. A 5-year survival rate can be over 50%.",
+          "Complications": "Surgical risks, infection, recurrence of cancer, bile duct injury, impact on liver function."
+        },
+        "Advanced_Stage": {
+          "Life_Expectancy": "Focus on palliative care to manage symptoms and improve quality of life. Life expectancy is generally shorter, often less than 1 year.",
+          "Complications": "Pain, jaundice, digestive issues, weight loss, fatigue, spread of cancer to other organs (metastasis), complications from treatments like chemotherapy or radiation, liver failure, bowel obstruction."
+        }
+      },
+      "What_are_the_complications_which_develop_after_the_surgery": {
+        "Infection": "Risk at the surgical site. Potential systemic infections. Preventive measures: antibiotics, sterile techniques.",
+        "Bleeding": "Intraoperative or postoperative blood loss. Monitoring for signs of excessive bleeding. Possible need for blood transfusions.",
+        "Blood_Clots": "Risk of deep vein thrombosis (DVT). Risk of pulmonary embolism (PE). Preventive measures: blood thinners, compression devices.",
+        "Bile_Leakage": "Leakage of bile into the abdominal cavity. Symptoms: abdominal pain, fever, nausea. May require additional surgical intervention.",
+        "Digestive_Issues": "Postcholecystectomy syndrome: ongoing digestive problems. Diarrhea and difficulty digesting fatty foods. Dietary adjustments and medications to manage symptoms."
+      },
+      "What_is_the_impact_on_immunity": {
+        "Surgery": "Temporary suppression of the immune system. Increased vulnerability to infections post-surgery. Importance of following postoperative care instructions.",
+        "Chemotherapy": "Further weakening of the immune system. Monitoring for neutropenia (low white blood cell count). Preventive measures: growth factors, antibiotics.",
+        "Management": "Regular monitoring for signs of infection. Maintaining good hygiene practices. Vaccinations as recommended by healthcare providers. Adequate nutrition and rest to support immune function."
+      }
+    },
+    "General_Gallbladder_Health": {
+      "Can_a_blood_test_detect_gallbladder_cancer": {
+        "Supportive_Tests": "No single blood test for definitive diagnosis.",
+        "Combination": "Blood tests support diagnosis with imaging and biopsy."
+      },
+      "Where_does_gallbladder_cancer_metastasize_to": {
+        "Nearby_Organs": "Liver, bile ducts, pancreas, small intestine.",
+        "Regional_Lymph_Nodes": "First spread typically to nearby nodes.",
+        "Distant_Organs": "Lungs, bones, peritoneum."
+      }
+    },
+    "Post_Surgery_and_Recovery": {
+      "How_can_I_manage_pain_after_gallbladder_surgery": {
+        "Pain_Medications": "Prescribed by doctor, over-the-counter options.",
+        "Ice_Packs": "Apply to incision sites to reduce pain and swelling.",
+        "Gradual_Activity": "Start with light activities, gradually increase."
+      },
+      "What_can_I_eat_after_gallbladder_removal": {
+        "Food_Type": {
+          "Bland_Low_Fat": "Initially after surgery. Examples: plain rice, boiled potatoes, applesauce, toast.",
+          "Gradual_Reintroduction": "Slowly add regular foods. Examples: steamed vegetables, skinless chicken, fish, oatmeal.",
+          "Avoid": "Fatty, greasy, and spicy foods. Examples: fried foods, fatty cuts of meat, full-fat dairy, spicy sauces, foods high in sugar."
+        }
+      },
+      "When_can_I_go_back_to_work": {
+        "Surgery_Type": {
+          "Laparoscopic_Surgery": "1-2 weeks.",
+          "Open_Surgery": "4-6 weeks."
+        }
+      },
+      "What_is_the_Recovery_Timeline": {
+        "Activity": {
+          "Laparoscopic_Surgery": {
+            "Hospital_Stay": "1-2 days.",
+            "Light_Activity": "Within a week.",
+            "Full_Recovery": "2-4 weeks.",
+            "Return_to_Work": "1-2 weeks."
+          },
+          "Open_Surgery": {
+            "Hospital_Stay": "2-4 days.",
+            "Light_Activity": "2-4 weeks.",
+            "Full_Recovery": "4-6 weeks.",
+            "Return_to_Work": "4-6 weeks."
+          }
+        }
+      },
+      "What_lifestyle_changes_should_I_make_after_gallbladder_surgery": {
+        "Diet": "Balanced, low-fat diet.",
+        "Exercise": "Regular physical activity.",
+        "Meal_Size": "Smaller, frequent meals.",
+        "Avoid": "Alcohol and smoking."
+      },
+      "Are_there_any_medications_I_need_to_take_after_surgery": {
+        "Short_term": "Pain relief medications, anti-nausea drugs.",
+        "Long_term": "Usually not required, but follow doctor's advice."
+      },
+      "What_support_resources_are_available_for_gallbladder_cancer_patients": {
+        "Support_Groups": "Cancer support organizations, local hospital groups.",
+        "Counselling_Services": "Professional counseling for emotional support.",
+        "Online_Resources": "Forums, educational websites, patient advocacy organizations."
+      },
+      "Can_I_participate_in_support_groups_or_counselling": {
+        "Availability": "Yes, many options through hospitals and cancer organizations.",
+        "Benefits": "Emotional support, shared experiences, and coping strategies."
+      }
+    },
+    "Glossary_of_Cancer_Terms": {
+      "Cancer": "A group of diseases involving abnormal cell growth with the potential to invade or spread to other parts of the body.",
+      "Invasive_Cancer": "Cancer that has spread beyond the layer of tissue in which it developed and is growing into surrounding, healthy tissues.",
+      "Differential_Diagnosis": "The process of distinguishing a disease or condition from others presenting similar symptoms.",
+      "Oncology": "The branch of medicine that specializes in the diagnosis and treatment of cancer.",
+      "Medical_Oncology": "Branch of medicine specializing in diagnosing and treating cancer using chemotherapy, targeted therapy, and immunotherapy.",
+      "Molecular_Oncology": "The field of oncology focusing on the molecular and genetic bases of cancer, including how cancer cells grow and spread.",
+      "Oncologist": "A doctor who specializes in treating cancer.",
+      "Radiation_Oncology": "The medical specialty that involves treating cancer with radiation.",
+      "Radiation_Oncologist": "A doctor who specializes in using radiation to treat cancer.",
+      "Pathology": "The study of diseases and the changes they cause in body tissues and organs.",
+      "Pathologist": "A doctor who examines tissues and cells under a microscope to diagnose diseases.",
+      "Inflammation": "The body's response to injury or infection, which can cause redness, swelling, heat, and pain.",
+      "Vaccination": "The administration of a vaccine to help the immune system develop protection from a disease.",
+      "Screening": "Testing for disease when there are no symptoms to find diseases at an early stage.",
+      "Imaging": "Techniques used to create pictures of the inside of the body for diagnosis and treatment of diseases.",
+      "Radiologist": "A doctor who specializes in interpreting medical images such as X-rays, CT scans, MRI scans, and ultrasounds.",
+      "Ultrasound": "An imaging method that uses high-frequency sound waves to produce images of structures within the body.",
+      "MRI": "An imaging technique that uses magnetic fields and radio waves to create detailed images of the organs and tissues.",
+      "CT_Scan": "An imaging method that uses X-rays to create cross-sectional pictures of the body.",
+      "PET_Scan": "An imaging test that helps reveal how your tissues and organs are functioning using a radioactive drug.",
+      "Biopsy": "The removal of a small amount of tissue for examination under a microscope to diagnose a disease.",
+      "DNA": "The molecule that carries genetic instructions in all living things.",
+      "Gene": "A segment of DNA that contains the instructions for making a specific protein that functions in one or more types of cells in the body.",
+      "Chromosome": "Structures within cells that contain DNA and many genes. Humans have 23 pairs of chromosomes.",
+      "Genetic_Mutation": "A change in the DNA sequence that can lead to cancer and other diseases.",
+      "Benign": "A term used to describe a tumor that is not cancerous. Benign tumors may grow but do not spread to other parts of the body.",
+      "Malignant": "A term used to describe a tumor that is cancerous and can invade and destroy nearby tissue and spread to other parts of the body.",
+      "Neoplasm": "An abnormal growth of tissue, which can be benign or malignant.",
+      "Stage_(TNM)": "A classification system (Tumor, Nodes, Metastasis) used to describe the extent of cancer in the body.",
+      "Tumor": "An abnormal mass of tissue that results from excessive cell division. Tumors can be benign or malignant.",
+      "Stem_Cells": "Cells that have the potential to develop into many different types of cells in the body and serve as a repair system.",
+      "Bone_Marrow": "The soft, spongy tissue in the center of bones where blood cells are produced.",
+      "Metastasis": "The spread of cancer cells from the place where they first formed to another part of the body.",
+      "Lymphatic_System": "A network of tissues and organs that help rid the body of toxins, waste, and other unwanted materials.",
+      "Lymph_Node": "Small, bean-shaped structures that are part of the lymphatic system and help fight infection.",
+      "Lymphocyte": "A type of white blood cell that is part of the immune system.",
+      "Lymphoma": "Cancer that begins in the cells of the lymphatic system.",
+      "Hodgkin's_Lymphoma": "A type of cancer that affects the lymphatic system, characterized by the presence of Reed-Sternberg cells, which are abnormal cells found in the lymph nodes.",
+      "Non-Hodgkin's_Lymphoma": "A diverse group of blood cancers that include any kind of lymphoma except Hodgkin's lymphomas.",
+      "Prognosis": "The likely course of a disease or ailment.",
+      "Survivorship": "The health and life of a person after cancer treatment, including physical, mental, emotional, and social aspects.",
+      "Complete_Response": "The disappearance of all signs of cancer in response to treatment.",
+      "Remission": "A decrease in or disappearance of signs and symptoms of cancer.",
+      "Recurrence": "The return of cancer after treatment and after a period of time during which the cancer was not detected.",
+      "Immunosuppression": "A reduction of the efficacy of the immune system, often a side effect of treatments like chemotherapy.",
+      "Chemotherapy": "The use of drugs to kill cancer cells or slow their growth.",
+      "Radiation_Therapy": "The use of high-energy radiation to kill cancer cells or shrink tumors.",
+      "Targeted_Therapy": "Drugs or other substances that block the growth and spread of cancer by interfering with specific molecules involved in tumor growth and progression.",
+      "Immunotherapy": "Treatment that uses certain parts of a person’s immune system to fight diseases such as cancer.",
+      "Hormone_Therapy": "Treatment that adds, blocks, or removes hormones to slow or stop the growth of cancer cells that need hormones to grow.",
+      "Biological_Therapy": "Treatment that uses living organisms, substances derived from living organisms, or synthetic versions of such substances to treat disease.",
+      "Adjuvant_Therapy": "Additional cancer treatment given after the primary treatment to lower the risk of the cancer returning.",
+      "Clinical_Trial": "Research studies that test new treatments to see how well they work.",
+      "Palliative_Care": "Specialized medical care focused on providing relief from the symptoms and stress of a serious illness, aiming to improve quality of life.",
+      "Leukaemia": "Cancer of the body's blood-forming tissues, including the bone marrow and the lymphatic system."
+    },
+    "Imaging_Techniques_Comparison": {
+      "Ultrasound": {
+        "Use": "Visualising soft tissues.",
+        "Advantages": "No radiation, widely available.",
+        "Limitations": "Less detailed than CT or MRI."
+      },
+      "MRI": {
+        "Use": "Detailed images of organs and tissues.",
+        "Advantages": "High contrast resolution, no radiation.",
+        "Limitations": "Expensive, time-consuming, not suitable for all patients (e.g., those with metal implants)."
+      },
+      "CT_Scan": {
+        "Use": "Cross-sectional images.",
+        "Advantages": "Quick, good for detecting bone and soft tissue abnormalities.",
+        "Limitations": "Radiation exposure, not as detailed as MRI."
+      },
+      "PET_Scan": {
+        "Use": "Metabolic activity of tissues and organs.",
+        "Advantages": "Useful for detecting metastasis.",
+        "Limitations": "Radiation exposure, very expensive, less detailed anatomic structure."
+      }
+    }
+  }
+]

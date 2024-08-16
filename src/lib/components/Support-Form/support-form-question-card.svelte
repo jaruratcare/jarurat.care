@@ -1,14 +1,14 @@
 <script>
-   export let data
-   import CheckPrivacyIcon from "$lib/svg/check-privacy-icon.svelte"
+  export let data;
+  import CheckPrivacyIcon from '$lib/svg/check-privacy-icon.svelte';
 </script>
-<div class="mx-8 mt-8 border-b-2 pb-8  border-[#DBEDFD]">
-    <CheckPrivacyIcon />
-<h1 class="mb-4 tracking-widest w-11/12 ">{data.question}</h1>
- <p class=" w-11/12 text-left">
-   {data.answer}
-</p>
 
+<div class="mx-8 mt-8 border-b-2 pb-8 border-[#DBEDFD]">
+  <CheckPrivacyIcon />
+  <h1 class="mb-4 tracking-widest w-11/12">{data.question}</h1>
+  <p class=" w-11/12 text-left">
+    {data.answer}
+  </p>
 </div>
 <!-- 
 When can I expect updates on my support request?

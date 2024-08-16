@@ -1,32 +1,31 @@
 <script>
-  import HearFromTeam from '$lib/components/hear-from-team.svelte';
-  import VoiceOfHope from '$lib/components/VoiceOfHope.svelte';
-  import Nav from '$lib/components/nav.svelte';
-  import Hero from '$lib/components/hero.svelte';
-  import Donation from '$lib/components/donation.svelte';
-  import Story from '$lib/components/story.svelte';
-  import Impact from '$lib/components/impact.svelte';
-  import SupportSection from '$lib/components/support-section.svelte';
-  import FindMentor from '$lib/components/find-mentor.svelte';
-  import FaqSection from '$lib/components/FAQ-section.svelte';
-  import HospitalsLocation from '$lib/components/hospitals-location.svelte';
-  import MissionSection from '$lib/components/mission-section.svelte';
+  import Blogs from '$lib/components/blogs.svelte';
   import CancerResearch from '$lib/components/cancer-research.svelte';
+  import Faq from '$lib/components/faqs/faq.svelte';
+  import Hero from '$lib/components/hero.svelte';
+  import HowWeSupportYou from '$lib/components/how-we-support-you.svelte';
+  import Impact from '$lib/components/impact.svelte';
+  import MapOfHospitals from '$lib/components/map-of-hospitals.svelte';
+  import MonthlyUpdates from '$lib/components/monthly-updates.svelte';
+  import Nav from '$lib/components/nav.svelte';
+  import Newsletter from '$lib/components/newsletter.svelte';
+  import OurTeam from '$lib/components/our-team.svelte';
+  import SupportDonateMember from '$lib/components/support-donate-member.svelte';
+  import VoiceOfHope from '$lib/components/voice-of-hope.svelte';
+  import WhoWeAre from '$lib/components/who-we-are.svelte';
 </script>
 
 <Nav />
 <Hero />
-<MissionSection />
-<Donation />
-<Story />
+<WhoWeAre />
+<SupportDonateMember />
 <Impact />
-<SupportSection />
-<FindMentor />
-<HospitalsLocation />
-<CancerResearch/>
+<MonthlyUpdates />
+<HowWeSupportYou />
+<MapOfHospitals />
+<CancerResearch />
 <VoiceOfHope />
-<HearFromTeam />
-<FaqSection />
-
-
-
+<OurTeam />
+<Blogs />
+<Faq />
+<Newsletter />

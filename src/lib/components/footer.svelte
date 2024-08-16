@@ -1,68 +1,45 @@
 <script>
-  import Icon from '@iconify/svelte';
+  import LogoSquare from '$lib/svg/logo-square.svelte';
+  import { ArrowUp } from 'lucide-svelte';
+  import Button from './ui/button.svelte';
 </script>
 
-<footer class="bg-[#132442] font-sans py-5">
-  <div class="flex items-center justify-between mx-24">
-    <div class="logo">
-      <img src="./images/logo.svg" alt="logo" height="85px" />
+<div class="bg-[#0D2561] text-white p-4 sm:p-12 flex flex-col gap-8">
+  <div class="flex items-center">
+    <LogoSquare class="max-w-[2.5em] sm:max-w-[3.5em] w-full" />
+    <div class="flex flex-col gap-1 leading-[1] text-[1.2em] md:text-[2em] ml-4">
+      <span class="font-semibold">Jaruratcare Foundation</span>
+      <small class="text-[0.7em] text-[#BFE9E8]">Jaisi Jarurat, Vaisi Care</small>
     </div>
-    <div>
-      <h1 class="text-white text-3xl font-bold">
-        Jaruratcare <span class="text-[#D8E74E]">Foundation</span>
-      </h1>
-      <p class="text-white text-base">Jaisi Jarurat, Vaisi Care</p>
+
+    <div class="grow"></div>
+
+    <div class="relative z-10 text-[0.9em] gap-2 hidden sm:flex">
+      <Button>Donate Now</Button>
+      <Button>Seek Support</Button>
     </div>
-    <div class="flex space-x-8">
+  </div>
+
+  <div class="">
+    <div
+      class="w-full h-0.5 opacity-30"
+      style="background-image: linear-gradient(90deg, #00C8F4 0%, #24D0F5 33%, #D6B7FF 69%, #FFFFFF 94%);"
+    ></div>
+
+    <div
+      class="text-[#2C72B9] mt-4 text-[0.8em] font-rubik flex flex-col sm:flex-row gap-2 sm:items-center"
+    >
+      <a href="/" target="_blank">Privacy Policy</a>
+      <a href="/" target="_blank">Terms of service</a>
+      <div class="grow"></div>
+      <span>©2024 Jarurat Care</span>
+      <div class="grow"></div>
       <button
-        class="bg-[#D8E74E] text-black font-bold py-2 px-5 rounded-full border-none cursor-pointer"
-        >Seek Support</button
+        class="flex gap-1 text-[#FFBA41] justify-end"
+        on:click={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
       >
-      <button
-        class="bg-[#2C72B9] text-white font-bold py-2 px-5 rounded-full border-none cursor-pointer"
-        >Donate</button
-      >
+        Back to top <ArrowUp />
+      </button>
     </div>
   </div>
-
-  <hr class="my-5 mx-24 border-gray-300" />
-
-  <div class="flex text-white text-sm justify-end py-5 mx-24 gap-5">
-    <div class="flex flex-col space-y-2">
-      <p>Home</p>
-      <p>Mission</p>
-      <p>Volunteer</p>
-      <p>Locate Hospitals</p>
-      <p>Terms & Conditions</p>
-    </div>
-    <div class="flex flex-col space-y-2">
-      <p>About Us</p>
-      <p>Blogs</p>
-      <p>News</p>
-      <p>Contact Us</p>
-    </div>
-    <div class="flex flex-col space-y-2">
-      <p>Connect with us</p>
-      <div class="flex space-x-5">
-        <Icon icon="il:instagram" class="icon h-7 cursor-pointer" />
-        <Icon icon="hugeicons:twitter" class="icon h-7 cursor-pointer" />
-        <Icon icon="ic:outline-facebook" class="icon h-7 cursor-pointer" />
-      </div>
-    </div>
-  </div>
-
-  <hr class="my-5 mx-24 border-gray-300" />
-
-  <div class="flex text-[#204D80] justify-between mx-24 py-5">
-    <div class="flex space-x-2 cursor-pointer">
-      <p>Privacy policy</p>
-      <p>Terms of service</p>
-    </div>
-    <div>
-      <p>&copy;2024 HANDSCART LCC. All right reserved</p>
-    </div>
-    <div class="text-[#D8E74E] cursor-pointer">
-      <p>Back to Top &uarr;</p>
-    </div>
-  </div>
-</footer>
+</div>

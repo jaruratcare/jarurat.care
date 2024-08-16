@@ -1,63 +1,57 @@
 <script>
-  import { fade, fly } from 'svelte/transition';
-  import { onMount } from 'svelte';
-  import gradient from '../../assets/gradient.png';
-
-  let showFinalScreen = false;
-
-  onMount(() => {
-    setTimeout(() => {
-      showFinalScreen = true;
-    }, 1500);
-  });
+  import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
+  import Button from './ui/button.svelte';
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
-  id="home"
-  class="relative h-screen w-screen overflow-hidden flex items-center justify-center"
-  tabindex="0"
-  style="background: url({gradient}) no-repeat center center; background-size: cover;"
->
-  {#if !showFinalScreen}
-    <div
-      class="flex flex-col items-center gap-4 text-white"
-      in:fade={{ duration: 500 }}
-      out:fly={{ x: -1000, duration: 1000 }}
-    ></div>
-  {/if}
+<div class="relative h-svh w-full overflow-hidden flex items-center justify-center p-4">
+  <!-- <AnimatedGradientMesh class="z-0 absolute inset-0" /> -->
 
-  {#if showFinalScreen}
-    <div class="flex flex-col items-center text-center gap-4" in:fly={{ y: 1000, duration: 1000 }}>
-      <h1 class="text-8xl font-extrabold" style="color: #0464C4;">JARURAT CARE</h1>
-      <h2 class="text-4xl font-semibold" style="color:#132F78">Jaisi Jarurat Vaisi Care</h2>
-      <p class="text-blue-900 text-xl max-w-md">
-        Providing support, guidance, hope and personalized care for <span
-          class="underline font-bold">cancer patients</span
-        > and their families. Here to ensure you never face your journey alone.
-      </p>
-      <button
-        class="relative z-1 mt-8 px-6 py-3 bg-blue-700 text-2xl text-white border-2 border-[#0155BD] rounded-full hover:text-blue-950 group flex items-center justify-center overflow-hidden duration-200 ease"
-      >
-        <span
-          class="absolute bottom-0 left-1/2 right-1/2 w-0 h-0 bg-[#DBEAFE] rounded-full transition-all duration-400 ease group-hover:w-full group-hover:h-full group-hover:left-0 group-hover:bottom-0 group-hover:right-0"
-          style="transform: translateX(-50%), translateX(50%);"
-        ></span>
-        <span class="relative">Seek Cancer Support</span>
-      </button>
-    </div>
-  {/if}
+  <div class="absolute inset-0 z-0 flex items-end translate-y-1/2">
+    <div
+      class="ribbon aspect-square rounded-full border-[1rem] border-[#48B5E4]/12 z-10 w-[80%] mx-auto mt-[4rem]"
+    ></div>
+  </div>
+
+  <div class="container flex flex-col items-center text-center gap-2 md:gap-4 relative z-10">
+    <h1 class="text-4xl md:text-8xl font-extrabold text-[#0464C4]">JARURAT CARE</h1>
+    <h2 class="text-2xl md:text-4xl font-semibold" style="color:#132F78">
+      Jaisi Jarurat Vaisi Care
+    </h2>
+    <p class="text-blue-900 text-md md:text-xl max-w-md m-3">
+      Providing support, guidance, hope and personalized care for
+      <span class="underline font-bold"> cancer patients </span>
+      and their families. Here to ensure you never face your journey alone.
+    </p>
+
+    <div class="my-4"></div>
+
+    <Button>Seek Cancer Support</Button>
+  </div>
 </div>
 
 <style>
-  div[tabindex='0'] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-    padding: 0;
-    margin: 0;
-    outline: none;
+  @keyframes flyIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .container {
+    opacity: 0;
+    transform: translateY(150%);
+    animation: flyIn 1s cubic-bezier(0.5, 0.36, 0.22, 1) forwards;
+  }
+
+  @keyframes shrink {
+    to {
+      width: 40%;
+      top: auto;
+      bottom: 0;
+    }
+  }
+
+  .ribbon {
+    animation: shrink 1s cubic-bezier(0.5, 0.36, 0.22, 1) forwards;
   }
 </style>

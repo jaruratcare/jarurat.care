@@ -3,48 +3,68 @@
 	import Button from './ui/button.svelte';
 	import Header from './ui/header.svelte';
 	import PaperPlane from '$lib/svg/paper-plane.svelte';
+	import { t } from "$lib/translations/translations";
 
 	const cards = [
 		{
-			title: 'Patient Advocacy',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Insurance Assistance', 'Legal Support', 'Healthcare Navigation'],
+			title: $t("home.supportType.services.patientAdvocacy.title"),
+			description: $t("home.supportType.services.patientAdvocacy.description"),
+			services: [
+				$t("home.supportType.services.patientAdvocacy.service1"),
+				$t("home.supportType.services.patientAdvocacy.service2"),
+				$t("home.supportType.services.patientAdvocacy.service3")
+			],
 			class: 'ring-[#B0DFF9]'
 		},
 		{
-			title: 'Access To Treatment',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Individual Counseling', 'Support Groups', '24/7 Helpline'],
+			title: $t("home.supportType.services.accessToTreatment.title"),
+			description: $t("home.supportType.services.accessToTreatment.description"),
+			services: [
+				$t("home.supportType.services.accessToTreatment.service1"),
+				$t("home.supportType.services.accessToTreatment.service2"),
+				$t("home.supportType.services.accessToTreatment.service3")
+			],
 			class: 'ring-[#E4CFFF]'
 		},
 		{
-			title: 'Holistic Care Options',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Nutrition Counseling', 'Stress Management', 'Wellness Programs'],
+			title: $t("home.supportType.services.holisticCareOptions.title"),
+			description: $t("home.supportType.services.holisticCareOptions.description"),
+			services: [
+				$t("home.supportType.services.holisticCareOptions.service1"),
+				$t("home.supportType.services.holisticCareOptions.service2"),
+				$t("home.supportType.services.holisticCareOptions.service3")
+			],
 			class: 'ring-[#96f3d7]'
 		},
+		// Additional services for fallback or testing
 		{
-			title: 'Patient Advocacy',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Insurance Assistance', 'Legal Support', 'Healthcare Navigation'],
+			title: $t("home.supportType.services.patientAdvocacy.title"),
+			description: $t("home.supportType.services.patientAdvocacy.description"),
+			services: [
+				$t("home.supportType.services.patientAdvocacy.service1"),
+				$t("home.supportType.services.patientAdvocacy.service2"),
+				$t("home.supportType.services.patientAdvocacy.service3")
+			],
 			class: 'ring-[#FFC1F6]'
 		},
 		{
-			title: 'Access To Treatment',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Individual Counseling', 'Support Groups', '24/7 Helpline'],
+			title: $t("home.supportType.services.accessToTreatment.title"),
+			description: $t("home.supportType.services.accessToTreatment.description"),
+			services: [
+				$t("home.supportType.services.accessToTreatment.service1"),
+				$t("home.supportType.services.accessToTreatment.service2"),
+				$t("home.supportType.services.accessToTreatment.service3")
+			],
 			class: 'ring-[#E4CFFF]'
 		},
 		{
-			title: 'Holistic Care Options',
-			description:
-				'We stand by your side, helping navigate treatment options and healthcare systems.',
-			services: ['Nutrition Counseling', 'Stress Management', 'Wellness Programs'],
+			title: $t("home.supportType.services.holisticCareOptions.title"),
+			description: $t("home.supportType.services.holisticCareOptions.description"),
+			services: [
+				$t("home.supportType.services.holisticCareOptions.service1"),
+				$t("home.supportType.services.holisticCareOptions.service2"),
+				$t("home.supportType.services.holisticCareOptions.service3")
+			],
 			class: 'ring-[#FFC1F6]'
 		}
 	];
@@ -60,8 +80,8 @@
 
 	<Header
 		class="z-10"
-		title="How we Support You"
-		subtitle="Comprehensive care and support throughout your cancer journey"
+		title={$t("home.supportType.title")}
+		subtitle={$t("home.supportType.subtitle")}
 	/>
 
 	<div
@@ -109,7 +129,7 @@
 		{/each}
 	</div>
 
-	<a href="/" class="inline-block mx-auto underline"><Button>Seek Support</Button></a>
+	<a href="/" class="inline-block mx-auto underline"><Button>{$t("home.supportType.seekSupport")}</Button></a>
 </div>
 
 <div class="rounded-xl"></div>

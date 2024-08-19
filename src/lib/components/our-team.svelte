@@ -1,21 +1,21 @@
 <script>
 	import Header from './ui/header.svelte';
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
-
+   import {t}from "$lib/translations/translations.js"
 	import ImgPriyanka from '$lib/assets/team-members/priyanka.webp';
 
 	const teamMembers = [
 		{
-			name: 'Priyanka Joshi',
-			designation: 'Co founder',
-			text: `At Jarurat Care, our mission is to bring hope and healing to every person battling cancer. We believe in the power of community support, compassion, and innovation to make a real difference in the lives of those we serve.`,
+			name: $t("home.Team.Name"),
+			designation: $t("home.Team.Designation"),
+			text: $t("home.Team.Message"),
 			imageSrc: ImgPriyanka
 		}
 	];
 </script>
 
 <div class="max-w-[70rem] mx-auto py-16 sm:py-20 px-4 overflow-hidden">
-	<Header title="Hear from our team" class="text-left font-rubik" />
+	<Header title={$t("home.Team.Heading")} class="text-left font-rubik" />
 
 	<Splide
 		hasTrack={false}

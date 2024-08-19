@@ -1,6 +1,6 @@
 <script>
-	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
 	import Button from './ui/button.svelte';
+	import { t } from '$lib/translations/translations.js';
 </script>
 
 <div class="relative h-svh w-full overflow-hidden flex items-center justify-center p-4">
@@ -13,19 +13,19 @@
 	</div>
 
 	<div class="container flex flex-col items-center text-center gap-2 md:gap-4 relative z-10">
-		<h1 class="text-4xl md:text-8xl font-extrabold text-[#0464C4]">JARURAT CARE</h1>
+		<h1 class="text-4xl md:text-8xl font-extrabold text-[#0464C4]">{$t('home.hero.Hero-title')}</h1>
 		<h2 class="text-2xl md:text-4xl font-semibold" style="color:#132F78">
-			Jaisi Jarurat Vaisi Care
+			{$t('home.hero.Hero-sub-title')}
 		</h2>
 		<p class="text-blue-900 text-md md:text-xl max-w-md m-3">
-			Providing support, guidance, hope and personalized care for
-			<span class="underline font-bold"> cancer patients </span>
-			and their families. Here to ensure you never face your journey alone.
+			{$t('home.hero.Hero-description1')}
+			<span class="underline font-bold">{$t('home.hero.Hero-description-download')}</span>
+			{$t('home.hero.Hero-description2')}
 		</p>
 
 		<div class="my-4"></div>
 
-		<Button>Seek Cancer Support</Button>
+		<Button>{$t('home.hero.Hero-main-button-text')}</Button>
 	</div>
 </div>
 

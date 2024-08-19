@@ -1,22 +1,23 @@
 <script>
 	import SingleWave from '$lib/svg/single-wave.svelte';
+	import { t } from '$lib/translations/translations';
 
 	const cards = [
 		{
 			icon: '',
-			title: 'Provide Comprehensive Patient Support'
+			title: $t("home.whatWeDo.cards.card1")
 		},
 		{
 			icon: '',
-			title: 'Facilitate Access to Quality Care'
+			title: $t("home.whatWeDo.cards.card2")
 		},
 		{
 			icon: '',
-			title: 'Promote Awareness and Education'
+			title: $t("home.whatWeDo.cards.card3")
 		},
 		{
 			icon: '',
-			title: 'Advocate for Better Cancer Care'
+			title: $t("home.whatWeDo.cards.card4")
 		}
 	];
 </script>
@@ -26,11 +27,9 @@
 
 	<div class="py-8 sm:py-16 px-4 bg-[#0155BD] relative z-10">
 		<header class="flex flex-col items-center justify-center text-white text-center font-rubik">
-			<h3 class="font-bold text-[2em]">What we do</h3>
+			<h3 class="font-bold text-[2em]">{$t("home.whatWeDo.title")}</h3>
 			<p class="text-sm max-w-[40rem] font-manrope">
-				We focus on delivering crucial support to patients, ensuring access to quality treatment,
-				raising awareness, and advocating for better care. Our efforts aim to provide hope and drive
-				positive change in the fight against cancer.
+				{$t("home.whatWeDo.description")}
 			</p>
 		</header>
 

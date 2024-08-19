@@ -7,25 +7,26 @@
 	import { onMount } from 'svelte';
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
 	import SingleWave from '$lib/svg/single-wave.svelte';
+	import { t } from '$lib/translations/translations';
 
 	let innerWidth = 0;
-	const blogs = [
+  $: blogs = [
 		{
-			title: 'Jarurat Care Launches New Support Program for Cancer Patients',
-			excerpt: `Jarurat Care is excited to announce the launch of its new comprehensive support program for cancer patients. This initiative aims to provide enhanced financial aid, counseling services, and community support for patients`,
-			tag: 'News',
+			title: $t("home.newsAndBlogs.blog1.title"),
+			excerpt: $t("home.newsAndBlogs.blog1.excerpt"),
+			tag: $t("home.newsAndBlogs.blog1.tag"),
 			date: new Date()
 		},
 		{
-			title: 'How Jarurat Care Helped Ravi Overcome His Cancer Battle',
-			excerpt: `In this heartfelt blog post, we share the inspiring journey of Ravi Kumar, one of the many patients who have benef`,
-			tag: 'Blog',
+			title: $t("home.newsAndBlogs.blog2.title"),
+			excerpt: $t("home.newsAndBlogs.blog2.excerpt"),
+			tag: $t("home.newsAndBlogs.blog2.tag"),
 			date: new Date()
 		},
 		{
-			title: 'Jarurat Care Partners with Leading Research Institutions for New Cancer Research',
-			excerpt: `Jarurat Care is proud to announce a new partnership with top cancer research institutions to advance the search for effective treatments and cures. This collaboration aims to fund innovative research projects and share know`,
-			tag: 'News',
+			title: $t("home.newsAndBlogs.blog3.title"),
+			excerpt: $t("home.newsAndBlogs.blog3.excerpt"),
+			tag: $t("home.newsAndBlogs.blog3.tag"),
 			date: new Date()
 		}
 	];
@@ -40,7 +41,7 @@
 
 <SingleWave fill="#d2f1fc" />
 <div class="py-10 sm:py-20 relative px-4 bg-[#dbeffe]">
-	<Header title="News and Blogs" />
+	<Header title={$t("home.newsAndBlogs.title")} />
 
 	<Splide
 		hasTrack={false}

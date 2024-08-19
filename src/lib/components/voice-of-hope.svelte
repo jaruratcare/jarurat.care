@@ -8,7 +8,7 @@
 	import instaReels from '$lib/data/insta-reels-for-testimonials.json';
 	import { ChevronLeft, ChevronRight, QuoteIcon } from 'lucide-svelte';
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
-
+   import {t} from "$lib/translations/translations"
 	let innerWidth = writable(0);
 	let isInstaEmbedOpen = false;
 	let selectedInstaReelUrl = '';
@@ -32,9 +32,9 @@
 	</div>
 
 	<Header
-		title="Voice of Hope"
+		title={$t("home.voicesOfHope.title")}
 		class="relative z-10"
-		subtitle="Inspiring Journeys from the People We've Supported"
+		subtitle={$t("home.voicesOfHope.description")}
 	/>
 
 	<Splide
@@ -117,7 +117,7 @@
 	</Splide>
 
 	<div class="mt-8 flex items-center justify-center z-10 relative">
-		<Button>Submit a Story</Button>
+		<Button>{$t("home.voicesOfHope.button")}</Button>
 	</div>
 
 	<div class="absolute inset-x-0 top-0 z-0">

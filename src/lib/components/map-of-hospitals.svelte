@@ -5,11 +5,12 @@
 	import Direction from '$lib/svg/direction.svelte';
 	import { onMount } from 'svelte';
 	import { Locate, Search } from 'lucide-svelte';
+	import { t } from "$lib/translations/translations.js";
 
 	const hospitals = writable<any[]>([]);
 	const filteredHospitals = writable<any[]>([]);
 	const stateCode = writable('DL');
-	const states: Record<string, string> = {
+const states: Record<string, string> = {
 		AN: 'Andaman and Nicobar Islands',
 		AP: 'Andhra Pradesh',
 		AR: 'Arunachal Pradesh',
@@ -65,7 +66,6 @@
 	stateCode.subscribe((value) => {
 		filteredHospitals.set(
 			$hospitals.filter((hospital) => {
-				console.log(value);
 				return hospital.components.state_code === value;
 			})
 		);
@@ -75,8 +75,8 @@
 <div class="py-16 sm:py-32 px-4 flex flex-col">
 	<Header
 		class="p-4"
-		title="Locate Cancer Hospitals Near You"
-		subtitle="Finding Hope, One Location at a Time"
+		title={$t("home.hospital-locator.heading")}
+		subtitle={$t("home.hospital-locator.subheading")}
 	/>
 
 	<form
@@ -88,7 +88,7 @@
 
 		<input
 			class="py-2 border-0 bg-transparent placeholder:text-[#576171] grow outline-none"
-			placeholder="Enter your location"
+			placeholder={$t("home.hospital-locator.placeholder")}
 		/>
 
 		<div class="py-2 px-3 text-[#576171]">
@@ -101,7 +101,7 @@
 			<p
 				class="px-4 py-2 text-[#0155BD] bg-[#85B6FF]/[0.15] border-l-2 border-[#0155BD] leading-[1.3] text-sm"
 			>
-				Note: we might be missing some hospitals or maybe they are unregistrered
+				{$t("home.hospital-locator.note")}
 			</p>
 
 			<div class="flex flex-col h-full">

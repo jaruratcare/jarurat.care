@@ -3,47 +3,40 @@
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
 	import FaqCard from './faq-card.svelte';
 	import Button from '../ui/button.svelte';
+	import { t } from "$lib/translations/translations.js";
 
 	const faqs = [
 		{
-			question: `What is Mentor?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question1"),
+			answer: $t("home.faqs.answer1")
 		},
 		{
-			question: `How do I apply for assistance?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question2"),
+			answer: $t("home.faqs.answer2")
 		},
 		{
-			question: `What areas or regions does Jarurat Care operate in?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question3"),
+			answer: $t("home.faqs.answer3")
 		},
 		{
-			question: `How can I apply for assistance from Jarurat Care?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question4"),
+			answer: $t("home.faqs.answer4")
 		},
 		{
-			question: `Who is eligible for support?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question5"),
+			answer: $t("home.faqs.answer5")
 		},
 		{
-			question: `Are the services free?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question6"),
+			answer: $t("home.faqs.answer6")
 		},
 		{
-			question: `How can I volunteer or donate?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question3"),
+			answer: $t("home.faqs.answer3")
 		},
 		{
-			question: `How can I volunteer or donate?`,
-			answer: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possimus harum ducimus quos, sunt excepturi facere molestiae cupiditate at tenetur in. Explicabo autem dignissimos alias totam quaerat.`
+			question: $t("home.faqs.question4"),
+			answer: $t("home.faqs.answer4")
 		}
 	];
 
@@ -53,15 +46,12 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possi
 
 <div class="py-16 sm:py-32 px-4 relative">
 	<div class="absolute inset-0 overflow-hidden -z-10">
-		<!-- can't use. performance issue -->
-		<!-- <AnimatedWave class="" /> -->
-
 		<AnimatedGradientMesh />
 	</div>
 
 	<Header
-		title="Frequently asked question"
-		subtitle="Look through some of oue frequently answered questions"
+		title={$t("home.faqs.title")}
+		subtitle={$t("home.faqs.description")}
 	/>
 
 	<div class="max-w-[50rem] mx-auto flex flex-col sm:flex-row sm:gap-4 my-8">
@@ -71,12 +61,12 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Id illum nihil et possi
 			{/each}
 		</div>
 		<div class="grow flex flex-col sm:gap-4">
-			{#each columnOne as faq}
+			{#each columnTwo as faq}
 				<FaqCard question={faq.question} answer={faq.answer} />
 			{/each}
 		</div>
 	</div>
 
-	<Header title="Still have Questions?" subtitle="Feel free to contact us" class="mt-16" />
-	<Button class="mt-8 block mx-auto">Contact Us</Button>
+	<Header title={$t("home.faqs.stillHaveQuestions")} subtitle={$t("home.faqs.contactUs")} class="mt-16" />
+	<Button class="mt-8 block mx-auto">{$t("home.faqs.buttonText")}</Button>
 </div>

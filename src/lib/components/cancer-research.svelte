@@ -5,20 +5,21 @@
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
 	import { ChevronLeft, ChevronRight, Search } from 'lucide-svelte';
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
+	import { t } from '$lib/translations/translations.js';
 
 	let innerWidth = 0;
 	const results = [
 		{
 			title: 'Global Cancer Incidence and Mortality Rates and Trends',
-			excerpt: `There are limited published data on recent cancer incidence and mortality trends worldwide. We used the International Agency for Research on Cancer's CANCERMondial clearinghouse to present age-`
+			excerpt: 'There are limited published data on recent cancer incidence and mortality trends worldwide. We used the International Agency for Research on Cancer\'s CANCERMondial clearinghouse to present age-'
 		},
 		{
 			title: 'Measuring cancer evolution from the genome.',
-			excerpt: `The temporal dynamics of cancer evolution remain elusive, because it is impractical to longitudinally observe cancers unperturbed by treatment. Co`
+			excerpt: 'The temporal dynamics of cancer evolution remain elusive, because it is impractical to longitudinally observe cancers unperturbed by treatment. Co'
 		},
 		{
-			title: `The Role of Telomerase in Breast Cancer's Response to Therapy.`,
-			excerpt: `Currently, breast cancer appears to be the most widespread cancer in the world and the most common cause of cancer deaths. `
+			title: 'The Role of Telomerase in Breast Cancer\'s Response to Therapy.',
+			excerpt: 'Currently, breast cancer appears to be the most widespread cancer in the world and the most common cause of cancer deaths.'
 		}
 	];
 
@@ -39,8 +40,8 @@
 	</div>
 
 	<Header
-		title="Read the Latest in Cancer Research"
-		subtitle="Explore the latest studies and breakthroughs in cancer research."
+		title={$t('home.cancer-research.heading')}
+		subtitle={$t('home.cancer-research.subheading')}
 	/>
 
 	<form
@@ -48,7 +49,7 @@
 	>
 		<input
 			class="py-2 px-4 border-0 bg-transparent placeholder:text-[#576171] grow outline-none"
-			placeholder="Search Topic"
+			placeholder={$t('home.cancer-research.search_placeholder')}
 		/>
 
 		<div class="py-2 px-3 text-[#576171]">
@@ -57,7 +58,7 @@
 	</form>
 
 	<p class="font-manrope text-[#04509C] font-semibold text-center flex items-center justify-center">
-		<span class="px-3 py-1 bg-[#FDDCA1] rounded-full text-sm">Results for “Breast Cancer”</span>
+		<span class="px-3 py-1 bg-[#FDDCA1] rounded-full text-sm">{$t('home.cancer-research.results_for')} “Breast Cancer”</span>
 	</p>
 
 	<Splide
@@ -86,7 +87,7 @@
 							<div class="grow"></div>
 							<p class="text-[#576171]">{result.excerpt.trim().substring(0, 100) + '...'}</p>
 
-							<Button class="mt-4 px-4 py-1 self-start text-sm">Know More</Button>
+							<Button class="mt-4 px-4 py-1 self-start text-sm">{$t('home.cancer-research.read_now')}</Button>
 						</div>
 					</SplideSlide>
 				{/each}

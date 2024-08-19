@@ -1,6 +1,7 @@
-<script>
-
-	import '../app.css';
+<script lang="ts">
+	import { page } from '$app/stores';
+	import Footer from '$lib/components/footer.svelte';
+	import { loadTranslations, locale } from '$lib/translations/translations';
 	import '@fontsource/manrope'; // weight 400
 	import '@fontsource/manrope/500.css';
 	import '@fontsource/manrope/600.css';
@@ -10,11 +11,8 @@
 	import '@fontsource/rubik/500.css';
 
 	import '@splidejs/svelte-splide/css/core';
-	 import { onMount } from 'svelte';
-  import { locale, loadTranslations } from '$lib/translations/translations.js';
-  import { page } from '$app/stores';
-
-  onMount(async () => {
+	import { onMount } from 'svelte';
+	 onMount(async () => {
   const { pathname } = $page.url;
   console.log("Pathname:", pathname);
   const pathSegments = pathname.split('/').filter(Boolean);
@@ -31,5 +29,5 @@
 
 <main class="font-manrope">
 	<slot />
-
+	<Footer />
 </main>

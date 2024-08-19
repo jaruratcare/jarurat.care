@@ -9,43 +9,41 @@
 	import { ChevronLeft, ChevronRight, QuoteIcon } from 'lucide-svelte';
 	import ImgMom from '$lib/assets/mom.webp';
 	import SingleWave from '$lib/svg/single-wave.svelte';
+   import {t}from "$lib/translations/translations.js"
 
-	const cards = [
+	$:cards = [
 		{
 			icon: HandPlatterPlus,
-			title: 'Seek Support',
-			description:
-				'Our NGO is here to help you through your cancer journey. Reach out to us today.',
-			ctaText: 'Seek Support'
+			title: $t("home.cards.seekSupport.title"),
+			description: $t("home.cards.seekSupport.description"),
+			ctaText: $t("home.cards.seekSupport.ctaText")
 		},
 		{
 			icon: HandPlatterHeart,
-			title: 'Donate',
-			description:
-				'One Life at a Time "Donate today and be the light that brings hope and healing to cancer patients.',
-			ctaText: 'Donate Now'
+			title: $t("home.cards.donate.title"),
+			description:$t("home.cards.donate.description"),
+			ctaText: $t("home.cards.donate.ctaText")
 		},
 		{
 			icon: Hand,
-			title: 'Become a Member',
-			description:
-				'Be a hero . Volunteer with us and provide support and hope to those affected by cancer.',
-			ctaText: 'Get Started'
+			title: $t("home.cards.becomeMember.title"),
+			description:$t("home.cards.becomeMember.description"),
+			ctaText: $t("home.cards.becomeMember.ctaText")
 		}
 	];
 
 	const slider = [
 		{
-			title: 'Why Cancer',
-			content: `Cancer remains one of the leading causes of death worldwide, affecting millions of lives each year. Despite advancements in research and treatment, many people still lack access to the care and support they need. By focusing on cancer, we aim to raise awareness, provide vital resources, and drive efforts toward early detection, effective treatment.`
+			title: $t("home.slider.whyCancer.title"),
+			content: $t("home.slider.whyCancer.content")
 		},
 		{
-			title: 'Why Donate',
-			content: `Donations are the lifeblood of Jarurat Care, empowering us to provide critical support to cancer patients who need it most. Your contributions directly fund life-saving treatments, emotional care, and essential services that make a real difference in people's lives. Every donation brings us one step closer to a world where no one has to face cancer alone. Your support is not just important—it's transformative.`
+			title: $t("home.slider.whyDonate.title"),
+			content: $t("home.slider.whyDonate.content")
 		},
 		{
-			title: 'Why Collaborate',
-			content: `Join us because together, we can do so much more. By collaborating, we pool our strengths and resources to bring greater support to those fighting cancer. Your partnership helps us reach more people and make a bigger impact. Let’s work hand in hand to change lives.`
+			title: $t("home.slider.whyCollaborate.title"),
+			content: $t("home.slider.whyCollaborate.content")
 		}
 	];
 </script>
@@ -158,18 +156,17 @@
 						<img src={ImgMom} alt="Rekha Joshi - Jarurat Care" class="size-full object-cover" />
 						<div class="absolute inset-0 bg-[#002944]/65 flex items-center justify-center">
 							<h3 class="hidden sm:block sm:text-[2em] font-black text-[#F9FDFE]">
-								WHERE IT ALL <span class="text-[#FFBA41]">STARTED</span>
+								{$t("home.story.title")}<span class="text-[#FFBA41]">{$t("home.story.started")}</span>
 							</h3>
 
 							<div
 								class="absolute bottom-0 left-0 max-w-[28rem] p-4 sm:p-8 text-[#DBE1E6] text-[0.8em] sm:text-[1.2em] leading-[1.3]"
 							>
 								<h3 class="block sm:hidden text-[1.5em] font-black text-[#F9FDFE] mb-2">
-									WHERE IT ALL <span class="text-[#FFBA41]">STARTED</span>
+									{$t("home.story.title")} <span class="text-[#FFBA41]">{$t("home.story.started")}</span>
 								</h3>
-
-								Rekha's last trip before she started her battle with Cholangiocarcinoma and
-								succumbed on 25th December, 2023
+{$t("home.story.description")}
+								
 							</div>
 						</div>
 					</div>
@@ -177,12 +174,7 @@
 
 				<SplideSlide class="p-1">
 					<div class="size-full flex items-center justify-center p-4 smp-8">
-						Our story commenced in December 2023, marking a pivotal moment in our lives. It was then
-						that we faced the profound loss of our cherished mother, who bravely battled
-						Cholangiocarcinoma, a form of bile duct cancer, for seven months. Motivated by our
-						experiences and driven by the same determination any devoted son or daughter would
-						possess, we established the Jarurat Care Foundation with the intent to rectify these
-						systemic shortcomings and improve the healthcare landscape for others..
+						{$t("home.story.content")}
 					</div>
 				</SplideSlide>
 			{/each}
@@ -196,13 +188,13 @@
 		<div class="flex gap-2">
 			<QuoteIcon class="rotate-180 text-[#0155BD] size-[7em] -mt-[3em]" />
 			<h3 class="text-[1.5em] sm:text-[2em] font-bold text-[#0155BD] leading-[1.1]">
-				Alone we can do so little; together we can do so much.
+				{$t("home.quote.text")}
 			</h3>
 		</div>
 
 		<div class="text-center mt-8 text-[#0D2561] text-[1.1em] sm:text-[1.5em]">
-			<h3 class="font-bold">Priyanka Joshi</h3>
-			<h4 class="font-semibold text-[0.8em]">Founder, Jarurat Care Foundation</h4>
+			<h3 class="font-bold">{$t("home.quote.author")}</h3>
+			<h4 class="font-semibold text-[0.8em]">{$t("home.quote.position")}</h4>
 		</div>
 	</div>
 </div>

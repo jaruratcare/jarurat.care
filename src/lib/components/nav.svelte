@@ -5,7 +5,7 @@
 	import { MenuIcon } from 'lucide-svelte';
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
-
+   import {t} from "$lib/translations/translations"
 	let isMenuOpen = false;
 	let isMobileScreen = false;
 
@@ -20,11 +20,11 @@
 
 	const pathname = $page.url.pathname;
 	const navItems = [
-		{ title: 'Home', href: '/' },
-		{ title: 'About Us', href: '#' },
-		{ title: 'Get Involved', href: '#' },
-		{ title: 'News & Blogs', href: '#' },
-		{ title: 'Contact Us', href: '#' }
+		{ title: $t("home.nav.home"), href: '/' },
+		{ title: $t("home.nav.about"), href: '#' },
+		{ title: $t("home.nav.getInvolved"), href: '#' },
+		{ title: $t("home.nav.news"), href: '#' },
+		{ title: $t("home.nav.contactUs"), href: '#' }
 	];
 </script>
 
@@ -59,7 +59,7 @@
 		</ul>
 
 		<div class="text-[0.8em] hidden md:block">
-			<Button>Donate Now</Button>
+			<Button>{$t("home.nav.donate")}</Button>
 		</div>
 	</nav>
 

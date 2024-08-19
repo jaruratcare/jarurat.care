@@ -2,16 +2,17 @@
 	import Button from './ui/button.svelte';
 	import Header from './ui/header.svelte';
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
+	import { t } from "$lib/translations/translations.js";
 
-	const cards = [
-		{ title: 'Mentor', count: 54, suffix: '' },
-		{ title: 'Doctor', count: 28, suffix: '' },
-		{ title: 'People', count: 1245, suffix: '' },
-		{ title: 'Early Treatments Initiated', count: 95, suffix: '%' },
-		{ title: 'Patients Assisted', count: 1000, suffix: '+' },
-		{ title: 'People Reached', count: 5, suffix: 'M' },
-		{ title: 'Emotional Support Services', count: 50, suffix: '+' },
-		{ title: 'Early Treatments Initiated', count: 95, suffix: '+' }
+	$: cards = [
+		{ title: $t("home.impact.label1"), count: 54, suffix: '' },
+		{ title: $t("home.impact.label2"), count: 28, suffix: '' },
+		{ title: $t("home.impact.label3"), count: 1245, suffix: '' },
+		{ title: $t("home.impact.label4"), count: 95, suffix: '%' },
+		{ title: $t("home.impact.label5"), count: 1000, suffix: '+' },
+		{ title: $t("home.impact.label6"), count: 5, suffix: 'M' },
+		{ title: $t("home.impact.label7"), count: 50, suffix: '+' },
+		{ title: $t("home.impact.label8"), count: 95, suffix: '%' }
 	];
 </script>
 
@@ -24,8 +25,8 @@
 		</div>
 		<div class="max-w-[60rem] mx-auto flex flex-col gap-4 sm:gap-16">
 			<Header
-				title="Our Impact"
-				subtitle="Explore the real-world difference we are making in Cancer Care"
+				title={$t("home.impact.title")}
+				subtitle={$t("home.impact.description")}
 			/>
 
 			<div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-10 p-1 sm:p-4">
@@ -39,6 +40,6 @@
 			</div>
 		</div>
 
-		<a href="/" class="inline-block mx-auto mt-16"><Button>Seek Support</Button></a>
+		<a href="/" class="inline-block mx-auto mt-16"><Button>{$t("home.impact.buttonText")}</Button></a>
 	</div>
 </div>

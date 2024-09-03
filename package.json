@@ -35,6 +35,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/bayon": "^5.0.23",
 		"@fontsource/manrope": "^5.0.20",
 		"@fontsource/playfair-display": "^5.0.24",
 		"@fontsource/rubik": "^5.0.20",

@@ -4,7 +4,9 @@
 </script>
 
 <div class="py-10 sm:py-32 px-2 bg-[#535963]">
-	<div class="max-w-[45rem] w-full mx-auto px-4 py-8 sm:p-8 rounded-xl sm:rounded-3xl bg-white relative z-10">
+	<div
+		class="max-w-[45rem] w-full mx-auto px-4 py-8 sm:p-8 rounded-xl sm:rounded-3xl bg-white relative z-10"
+	>
 		<Header title="Subscribe to our Newsletter" class="text-[0.8em] text-[#0D2561]" />
 
 		<p class="max-w-[25rem] w-full mx-auto leading-[1.2] text-center text-[0.9em] text-[#6F737E]">

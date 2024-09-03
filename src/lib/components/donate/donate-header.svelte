@@ -8,7 +8,9 @@
 >
 	<div class="max-w-[80rem] w-full mx-auto pb-[1rem] sm:pb-[4rem]">
 		<div class="max-w-[30rem] text-white p-4">
-			<h2 class="font-black text-[1.5rem] sm:text-[3rem] font-rubik leading-[1]">DONATE <span class="text-[#ffba41]">TODAY</span></h2>
+			<h2 class="font-black text-[1.5rem] sm:text-[3rem] font-rubik leading-[1]">
+				DONATE <span class="text-[#ffba41]">TODAY</span>
+			</h2>
 			<p class="leading-snug">
 				Every donation brings us one step closer to a cure and a brighter future for those in need.
 			</p>

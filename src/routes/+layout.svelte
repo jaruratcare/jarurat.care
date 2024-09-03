@@ -8,6 +8,7 @@
 	import '@fontsource/manrope/800.css';
 	import '@fontsource/playfair-display/600.css';
 	import '@fontsource/rubik/500.css';
+	import '@fontsource/bayon';
 
 	import '@splidejs/svelte-splide/css/core';
 </script>

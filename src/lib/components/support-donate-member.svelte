@@ -83,13 +83,17 @@
 					}}
 				>
 					<div
-						class="splide__arrows items-center justify-between gap-2 absolute -inset-x-12 translate-y-28 hidden sm:flex"
+						class="splide__arrows items-center justify-between gap-2 absolute -inset-x-20 translate-y-24 hidden sm:flex"
 					>
-						<Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center">
+						<Button
+							class="splide__arrow splide__arrow--prev size-10 p-0 items-center bg-yellow-500 border"
+						>
 							<ChevronLeft class="w-full" />
 						</Button>
 
-						<Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center">
+						<Button
+							class="splide__arrow splide__arrow--next size-10 p-0 flex items-center bg-yellow-500 border"
+						>
 							<ChevronRight class="w-full" />
 						</Button>
 					</div>
@@ -97,15 +101,15 @@
 					<SplideTrack>
 						{#each slider as slide}
 							<SplideSlide class="p-1">
-								<div class="h-full flex flex-col gap-1 rounded-lg p-8 text-center">
-									<h2 class="font-extrabold uppercase text-[1.3em]">{slide.title}</h2>
-									<p class="text-[#656b75]">{slide.content}</p>
+								<div class="h-full flex flex-col rounded-lg p-4 text-center">
+									<h2 class="font-extrabold uppercase text-[1.2em] mb-7">{slide.title}</h2>
+									<p class="text-[#656b75] text-[0.85rem]">{slide.content}</p>
 								</div>
 							</SplideSlide>
 						{/each}
 					</SplideTrack>
 
-					<ul class="splide__pagination flex gap-2"></ul>
+					<ul class="splide__pagination flex gap-3"></ul>
 				</Splide>
 			</div>
 		</section>
@@ -114,26 +118,29 @@
 
 <div
 	id="get-involved"
-	class="relative flex flex-col sm:flex-row bg-[#effafd] sm:bg-white overflow-hidden rounded-t-3xl"
+	class="relative flex flex-col sm:flex-row text-[#0D2561] bg-[#effafd] sm:bg-white border border-[#0072C4] overflow-hidden rounded-3xl"
 >
-	<div class="absolute inset-x-0 top-0 z-0 hidden sm:block">
-		<Wave class="w-full " />
+	<div class="absolute inset-x-0 -top-5 z-0 hidden sm:block">
+		<Wave class="w-full" />
 	</div>
 
 	{#each cards as card}
 		<div
-			class="flex flex-col items-center border-l-0 sm:border-l border-b border-[#0072C4] px-4 sm:px-8 py-8 sm:py-16 grow z-10"
+			class="flex flex-col items-center border-l-0 sm:border-l border-x border-[#0072C4] px-4 sm:px-8 sm:py-12 grow z-10"
 		>
-			<div class="w-14 p-2 bg-white rounded-full mb-4">
+			<div class="w-16 p-2 bg-white rounded-full mb-4">
 				<svelte:component this={card.icon}></svelte:component>
 			</div>
 
 			<h2 class="max-w-[14rem] mx-auto text-center font-playfair-display text-3xl">{card.title}</h2>
 			<div class="grow"></div>
-			<p class="max-w-[15rem] w-full text-center sm:text-left sm:text-sm mt-4">
+			<p
+				class="max-w-[12rem] w-full items-center justify-center md:text-center md:text-[0.76rem] font-semibold sm:text-left sm:text-sm mt-2"
+				style="font-family: Manrope, sans-sarif;"
+			>
 				{card.description}
 			</p>
-			<a class="mt-12 block" href={card.href}>
+			<a class="mt-6 block" href={card.href}>
 				<Button>{card.ctaText}</Button>
 			</a>
 		</div>
@@ -141,24 +148,28 @@
 </div>
 
 <!-- Where it all Started -->
-<div id="about" class="py-8 sm:py-32 bg-[#fefefe] max-w-[60rem] mx-auto">
+<div id="about" class="py-8 sm:py-32 bg-[#fefefe] max-w-[40rem] mx-auto">
 	<Splide hasTrack={false} options={{ perPage: 1, type: 'loop', gap: '2rem', pagination: true }}>
 		<div
-			class="splide__arrows items-center justify-between gap-2 absolute -inset-x-12 h-full hidden xl:flex"
+			class="splide__arrows items-center justify-between gap-2 absolute -inset-x-24 h-full hidden xl:flex"
 		>
-			<Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center">
+			<Button
+				class="splide__arrow splide__arrow--prev size-12 p-0 items-center border-2 bg-yellow-500"
+			>
 				<ChevronLeft class="w-full" />
 			</Button>
 
-			<Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center">
+			<Button
+				class="splide__arrow splide__arrow--next size-12 p-0 flex items-center border-2 bg-yellow-500"
+			>
 				<ChevronRight class="w-full" />
 			</Button>
 		</div>
 
 		<SplideTrack>
 			{#each slider as slide}
-				<SplideSlide class="p-1 aspect-[16/9] ">
-					<div class="size-full relative rounded-xl sm:rounded-3xl overflow-hidden">
+				<SplideSlide class="p-1 aspect-[16/8] ">
+					<div class="size-full relative rounded-xl sm:rounded-2xl overflow-hidden">
 						<img src={ImgMom} alt="Rekha Joshi - Jarurat Care" class="size-full object-cover" />
 						<div class="absolute inset-0 bg-[#002944]/65 flex items-center justify-center">
 							<h3 class="hidden sm:block sm:text-[2em] font-black text-[#F9FDFE]">
@@ -172,8 +183,10 @@
 									WHERE IT ALL <span class="text-[#FFBA41]">STARTED</span>
 								</h3>
 
-								Rekha's last trip before she started her battle with Cholangiocarcinoma and
-								succumbed on 25th December, 2023
+								<p class="text-[0.85rem]">
+									Rekha's last trip before she started her battle with Cholangiocarcinoma and
+									succumbed on 25th December, 2023
+								</p>
 							</div>
 						</div>
 					</div>
@@ -195,18 +208,18 @@
 </div>
 
 <SingleWave fill="#d3f2fc" />
-<div class="py-28 px-8 bg-[#D3F2FC]">
+<div class="py-12 px-8 bg-[#D3F2FC] flex justify-center items-center">
 	<div class="max-w-[30rem] mx-auto">
 		<div class="flex gap-2">
-			<QuoteIcon class="rotate-180 text-[#0155BD] size-[7em] -mt-[3em]" />
+			<QuoteIcon class="rotate-180 text-[#0155BD] fill-[#0155BD] size-[5em] -mt-[3em]" />
 			<h3 class="text-[1.5em] sm:text-[2em] font-bold text-[#0155BD] leading-[1.1]">
 				Alone we can do so little; together we can do so much.
 			</h3>
 		</div>
 
-		<div class="text-center mt-8 text-[#0D2561] text-[1.1em] sm:text-[1.5em]">
-			<h3 class="font-bold">Priyanka Joshi</h3>
-			<h4 class="font-semibold text-[0.8em]">Founder, Jarurat Care Foundation</h4>
+		<div class="text-center mt-8 text-[#0D2561] md:text-[1.2em] sm:text-[1.5em]">
+			<h3 class="font-bold text-2xl ">Priyanka Joshi</h3>
+			<h4 class="font-semibold text-[0.7em]">Founder, Jarurat Care Foundation</h4>
 		</div>
 	</div>
 </div>

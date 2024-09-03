@@ -64,7 +64,7 @@
 	</nav>
 
 	<button
-		class="block md:hidden z-50 px-4"
+		class="block md:hidden z-50 px-4 font-semibold"
 		on:click={() => {
 			isMenuOpen = !isMenuOpen;
 		}}

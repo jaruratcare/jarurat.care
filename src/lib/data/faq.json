@@ -1,78 +1,78 @@
 [
-    {
-        "question": "What are the most common symptoms of gallbladder cancer?",
-        "answer": "Symptom | Description\n--- | ---\nAbdominal Pain | Particularly in the upper right side\nNausea and Vomiting | Feeling sick and throwing up\nJaundice | Yellowing of the skin and eyes\nUnexplained Weight Loss | Losing weight without trying\nFever | Elevated body temperature\nLumps in Abdomen | Noticeable masses in the abdominal area\n\nIf you observe any of these symptoms, visit your healthcare professional for further evaluation and guidance."
-    },
-    {
-        "question": "How is gallbladder cancer detected?",
-        "answer": "- **Imaging Tests:**\n  - **Ultrasound:** First-line imaging to detect abnormalities.\n  - **CT Scans:** Detailed cross-sectional images to check for spread.\n  - **MRI:** Detailed images of soft tissues, more precise than CT.\n\n- **Blood Tests:**\n  - **Liver Function Tests:** To detect abnormalities in liver enzymes.\n  - **Tumor Markers:** Elevated levels of substances like CA 19-9.\n\n- **Biopsy:**\n  - **Fine-Needle Aspiration (FNA):** Removing a small tissue sample for examination."
-    },
-    {
-        "question": "Do I have gallbladder cancer?",
-        "answer": "- **Symptoms:**\n  Common symptoms include abdominal pain, nausea, jaundice, unexplained weight loss, fever, fatigue, dark urine, and pale stools. Consult a healthcare provider if you experience any of these.\n\n- **Diagnosis:**\n  Confirmed through blood tests (liver function tests, CA 19-9), imaging tests (ultrasound, MRI, CT scan, PET scan), and biopsy.\n\n- **Consultation:**\n  Essential for personalized assessment. Discuss symptoms, comorbidities (like diabetes or hypertension), and treatment options with your healthcare provider."
-    },
-    {
-        "question": "What stage is my cancer, and what does that mean in my case?",
-        "answer": "| Stage | T (Primary Tumor) | N (Regional Lymph Nodes) | M (Distant Metastasis) |\n|---|---|---|---|\n| Stage 0 | Tis: Tumor only within the innermost layer of the gallbladder | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage I | T1: Tumor invades the lamina propria or muscularis | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIa | T2a: Tumor invades the fibrous tissue near the abdominal cavity lining | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIb | T2b: Tumor invades the fibrous tissue near the liver, but not the liver itself | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIIa | T3: Tumor invades the outermost covering of the gallbladder and/or nearby structures (liver, stomach, duodenum, colon, pancreas) | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIIb | T1-T3: Tumor invades up to the outermost covering of the gallbladder and/or nearby structures | N1: Metastasis in 1-3 regional lymph nodes | M0: No distant metastasis |\n| Stage IVa | T4: Tumor invades major blood vessels or two or more nearby organs | N0-N1: No or limited lymph node involvement | M0: No distant metastasis |\n| Stage IVb | Any T: Any size/extent of the primary tumor | N2: Metastasis in 4 or more regional lymph nodes | M1: Distant Metastasis |"
-    },
-    {
-        "question": "What type of doctor should I see for gallbladder cancer?",
-        "answer": "- **Oncologist:** Cancer specialist.\n- **Medical Oncologist:** Specializes in cancer treatment using medications like chemotherapy and targeted therapy.\n- **Gastroenterologist:** Digestive system specialist.\n- **Radiation Oncologist:** Specializes in cancer treatment using radiation therapy to target and destroy cancer cells while minimizing damage to healthy tissue.\n- **Surgeon:** Specialized in hepato-pancreato-biliary (HPB) surgery."
-    },
-    {
-        "question": "How might my comorbidities like diabetes and high blood pressure affect my treatment for gallbladder cancer?",
-        "answer": "| Comorbidity | Potential Impact on Gallbladder Cancer Treatment |\n|---|---|\n| Diabetes | Affects treatment tolerance, can interfere with healing, may complicate surgery, and can interact with medications. |\n| High Blood Pressure | Increases risk during surgery, can complicate anesthesia, may affect medication choices, and requires careful monitoring. |\n| Chronic Pulmonary Disease | Affects breathing during surgery, can complicate anesthesia, may impact recovery, and requires specific management strategies. |\n| Dementia | Complicates communication and consent processes, may interfere with treatment adherence, and necessitates tailored care plans. |\n| Heart Disease | Increases risk during surgery, affects anesthesia tolerance, may complicate recovery, and requires cardiology consultation. |\n| Obesity | Increases surgical risks, can complicate anesthesia, may affect healing, and requires specific management of comorbid conditions. |"
-    },
-    {
-        "question": "What are the latest advancements in gallbladder cancer treatment?",
-        "answer": "- **Targeted Therapies:** Drugs that target specific cancer cells.\n- **Immunotherapy:** Boosts the body’s natural defenses to fight cancer.\n- **Clinical Trials:** Participation in new and experimental treatments."
-    },
-    {
-        "question": "Is it advisable to get a second opinion if I have been diagnosed with gallbladder cancer?",
-        "answer": "- **Recommendation:** Getting a second opinion is recommended as it can confirm the diagnosis, validate the treatment plan, and offer alternative perspectives if there are concerns about the cancer stage or treatment urgency. Discussing any potential treatment delays with your healthcare team is crucial for understanding their impact on your prognosis and making informed decisions about your care."
-    },
-    {
-        "question": "What are my treatment options?",
-        "answer": "| Treatment Option | When It's Used | What It Involves |\n|---|---|---|\n| Surgery | - Early-stage cancer.\n  - Local spread that can be removed. | - Removing the gallbladder.\n  - Pain relief and antibiotics. |\n| Chemotherapy | - Advanced cancer.\n  - Post-surgery to kill remaining cells. | - Medicines like gemcitabine, cisplatin, capecitabine. |\n| Radiation Therapy | - Before surgery to shrink tumors.\n  - After surgery to kill leftover cells.\n  - To relieve symptoms. | - High-energy rays to target cancer cells. |\n| Targeted Therapy | - Cancer with specific genetic changes.\n  - When other treatments don’t work. | - Medicines like erlotinib, lapatinib, pembrolizumab. |\n| Palliative Care | - Any stage to manage symptoms.\n  - Improve quality of life. | - Pain relief, nausea control, dietary and emotional support. |"
-    },
-    {
-        "question": "Can my cancer be removed with surgery?",
-        "answer": "- **Depends on Stage:** Early stages have higher chances of successful surgery.\n- **Consultation:** Discuss with your surgeon about feasibility."
-    },
-    {
-        "question": "What is gallbladder surgery?",
-        "answer": "- **Cholecystectomy:** Removal of the gallbladder.\n  - **Laparoscopic:** Minimally invasive, quicker recovery.\n  - **Open Surgery:** Larger incision, longer recovery."
-    },
-    {
-        "question": "Will I need radiation therapy after completing treatment for gallbladder cancer?",
-        "answer": "Whether radiation therapy is needed after completing treatment for gallbladder cancer depends on several factors, including the stage of the cancer, the success of surgery, and other treatments received. Radiation therapy may be recommended in the following situations:\n\n- **Adjuvant Therapy:** If there is a high risk of cancer recurrence after surgery, radiation therapy may be used to reduce this risk.\n- **Palliative Therapy:** In cases where the cancer cannot be completely removed or has spread to other areas, radiation therapy can help relieve symptoms and improve quality of life.\n\nYour oncologist will evaluate your specific case and discuss whether radiation therapy is recommended in your treatment plan."
-    },
-    {
-        "question": "How long can a person live with gallbladder cancer?",
-        "answer": "| Stage | Life Expectancy | Complications |\n|---|---|---|\n| Early Stage | Higher survival rates, potential for cure with surgery and/or other treatments. A 5-year survival rate can be over 50%. | Surgical risks, infection, recurrence of cancer, bile duct injury, impact on liver function. |\n| Advanced Stage | Focus on palliative care to manage symptoms and improve quality of life. Life expectancy is generally shorter, often less than 1 year. | Pain, jaundice, digestive issues, weight loss, fatigue, spread of cancer to other organs. |"
-    },
-    {
-        "question": "What happens after the surgery?",
-        "answer": "After gallbladder surgery, you can expect the following:\n\n- **Recovery Period:**\n  - **Laparoscopic Surgery:** Recovery typically takes 1-2 weeks.\n  - **Open Surgery:** Recovery may take 4-6 weeks.\n\n- **Dietary Changes:**\n  - Initially, a low-fat diet is recommended to ease digestion as the body adjusts to the absence of the gallbladder.\n  - Gradually, you can return to your regular diet, but it's essential to monitor how your body responds to certain foods.\n\n- **Follow-Up Care:**\n  - Regular check-ups with your healthcare provider to monitor your recovery and overall health.\n  - Potential imaging tests or blood tests to ensure no recurrence or complications.\n\n- **Managing Side Effects:**\n  - Some patients may experience diarrhea or bloating after surgery, which usually improves over time.\n  - Pain management is crucial, so follow your doctor’s advice regarding medications and activities."
-    },
-    {
-        "question": "What is gallbladder cancer?",
-        "answer": "Gallbladder cancer is a rare type of cancer that originates in the gallbladder, a small organ located beneath the liver. The gallbladder's primary function is to store bile, a fluid produced by the liver to aid in digestion. When cancer develops in the gallbladder, it usually starts in the cells lining the organ and can spread to other parts of the body if not detected and treated early.\n\n### Types of Gallbladder Cancer\n- **Adenocarcinoma:** The most common type, starting in gland-like cells in the gallbladder's lining.\n- **Squamous Cell Carcinoma:** A rarer form that begins in the flat, skin-like cells lining the gallbladder.\n- **Neuroendocrine Tumors:** These develop from hormone-producing cells and are very rare.\n\n### Risk Factors\n- **Gallstones:** The most significant risk factor for gallbladder cancer.\n- **Chronic Gallbladder Inflammation:** Often related to gallstones or infection.\n- **Obesity:** Increases the risk of gallbladder cancer.\n- **Gender:** Women are more likely to develop gallbladder cancer than men.\n- **Age:** The risk increases with age, particularly after 65.\n- **Ethnicity:** Higher rates are observed in Native Americans and certain Hispanic populations."
-    },
-    {
-        "question": "Why do some people get gallbladder cancer?",
-        "answer": "Gallbladder cancer develops due to a combination of genetic, environmental, and lifestyle factors. Some of the reasons include:\n\n- **Gallstones:** Chronic irritation caused by gallstones can lead to the development of cancerous cells in the gallbladder.\n- **Chronic Inflammation:** Inflammation of the gallbladder lining, known as cholecystitis, is a significant risk factor.\n- **Polyp Growth:** Gallbladder polyps, especially those larger than 1 centimeter, can be precursors to cancer.\n- **Family History:** A family history of gallbladder cancer increases the risk.\n- **Obesity:** Excess body weight is linked to a higher risk of gallbladder cancer.\n- **Exposure to Certain Chemicals:** Exposure to specific industrial chemicals and carcinogens can increase the risk."
-    },
-    {
-        "question": "Why do patients with gallbladder cancer have to see so many doctors?",
-        "answer": "Patients with gallbladder cancer require care from various specialists due to the complex nature of the disease. This multidisciplinary approach ensures comprehensive care and better outcomes.\n\n- **Oncologist:** Manages overall cancer treatment, including chemotherapy and radiation.\n- **Gastroenterologist:** Focuses on digestive system health and gallbladder function.\n- **Surgeon:** Performs procedures to remove the gallbladder and any cancerous tissue.\n- **Radiation Oncologist:** Specializes in radiation therapy to target cancer cells.\n- **Palliative Care Specialist:** Helps manage symptoms and improve quality of life."
-    },
-    {
-        "question": "What are the statistics on gallbladder cancer?",
-        "answer": "- **Incidence:** Approximately 4,000 new cases of gallbladder cancer are diagnosed annually in the United States.\n- **Survival Rate:** The 5-year survival rate for early-stage gallbladder cancer can be as high as 50%, while it drops to about 5% for advanced-stage cancer.\n- **Risk Factors:** Women, older adults, and individuals with a history of gallstones or chronic gallbladder inflammation are at higher risk.\n- **Ethnic Disparities:** Native Americans, Hispanic Americans, and individuals from certain regions in South America and Asia have higher incidence rates."
-    },
-    {
-        "question": "Why don’t all hospitals have the necessary expertise to treat gallbladder cancer?",
-        "answer": "Gallbladder cancer is rare, and its treatment requires specialized expertise and advanced facilities that are not available in all hospitals. This includes:\n\n- **Complex Surgical Procedures:** Gallbladder cancer surgery is highly specialized and may require a hepato-pancreato-biliary (HPB) surgeon with specific training in this area.\n- **Multidisciplinary Care:** Effective treatment often involves a team of specialists, including oncologists, gastroenterologists, and radiation oncologists.\n- **Advanced Diagnostic Tools:** Accurate diagnosis and staging may require specialized imaging technologies and pathology expertise.\n\nFor these reasons, treatment is often concentrated in larger cancer centers with the necessary resources and expertise."
-    }
+	{
+		"question": "What are the most common symptoms of gallbladder cancer?",
+		"answer": "Symptom | Description\n--- | ---\nAbdominal Pain | Particularly in the upper right side\nNausea and Vomiting | Feeling sick and throwing up\nJaundice | Yellowing of the skin and eyes\nUnexplained Weight Loss | Losing weight without trying\nFever | Elevated body temperature\nLumps in Abdomen | Noticeable masses in the abdominal area\n\nIf you observe any of these symptoms, visit your healthcare professional for further evaluation and guidance."
+	},
+	{
+		"question": "How is gallbladder cancer detected?",
+		"answer": "- **Imaging Tests:**\n  - **Ultrasound:** First-line imaging to detect abnormalities.\n  - **CT Scans:** Detailed cross-sectional images to check for spread.\n  - **MRI:** Detailed images of soft tissues, more precise than CT.\n\n- **Blood Tests:**\n  - **Liver Function Tests:** To detect abnormalities in liver enzymes.\n  - **Tumor Markers:** Elevated levels of substances like CA 19-9.\n\n- **Biopsy:**\n  - **Fine-Needle Aspiration (FNA):** Removing a small tissue sample for examination."
+	},
+	{
+		"question": "Do I have gallbladder cancer?",
+		"answer": "- **Symptoms:**\n  Common symptoms include abdominal pain, nausea, jaundice, unexplained weight loss, fever, fatigue, dark urine, and pale stools. Consult a healthcare provider if you experience any of these.\n\n- **Diagnosis:**\n  Confirmed through blood tests (liver function tests, CA 19-9), imaging tests (ultrasound, MRI, CT scan, PET scan), and biopsy.\n\n- **Consultation:**\n  Essential for personalized assessment. Discuss symptoms, comorbidities (like diabetes or hypertension), and treatment options with your healthcare provider."
+	},
+	{
+		"question": "What stage is my cancer, and what does that mean in my case?",
+		"answer": "| Stage | T (Primary Tumor) | N (Regional Lymph Nodes) | M (Distant Metastasis) |\n|---|---|---|---|\n| Stage 0 | Tis: Tumor only within the innermost layer of the gallbladder | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage I | T1: Tumor invades the lamina propria or muscularis | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIa | T2a: Tumor invades the fibrous tissue near the abdominal cavity lining | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIb | T2b: Tumor invades the fibrous tissue near the liver, but not the liver itself | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIIa | T3: Tumor invades the outermost covering of the gallbladder and/or nearby structures (liver, stomach, duodenum, colon, pancreas) | N0: No lymph node involvement | M0: No distant metastasis |\n| Stage IIIb | T1-T3: Tumor invades up to the outermost covering of the gallbladder and/or nearby structures | N1: Metastasis in 1-3 regional lymph nodes | M0: No distant metastasis |\n| Stage IVa | T4: Tumor invades major blood vessels or two or more nearby organs | N0-N1: No or limited lymph node involvement | M0: No distant metastasis |\n| Stage IVb | Any T: Any size/extent of the primary tumor | N2: Metastasis in 4 or more regional lymph nodes | M1: Distant Metastasis |"
+	},
+	{
+		"question": "What type of doctor should I see for gallbladder cancer?",
+		"answer": "- **Oncologist:** Cancer specialist.\n- **Medical Oncologist:** Specializes in cancer treatment using medications like chemotherapy and targeted therapy.\n- **Gastroenterologist:** Digestive system specialist.\n- **Radiation Oncologist:** Specializes in cancer treatment using radiation therapy to target and destroy cancer cells while minimizing damage to healthy tissue.\n- **Surgeon:** Specialized in hepato-pancreato-biliary (HPB) surgery."
+	},
+	{
+		"question": "How might my comorbidities like diabetes and high blood pressure affect my treatment for gallbladder cancer?",
+		"answer": "| Comorbidity | Potential Impact on Gallbladder Cancer Treatment |\n|---|---|\n| Diabetes | Affects treatment tolerance, can interfere with healing, may complicate surgery, and can interact with medications. |\n| High Blood Pressure | Increases risk during surgery, can complicate anesthesia, may affect medication choices, and requires careful monitoring. |\n| Chronic Pulmonary Disease | Affects breathing during surgery, can complicate anesthesia, may impact recovery, and requires specific management strategies. |\n| Dementia | Complicates communication and consent processes, may interfere with treatment adherence, and necessitates tailored care plans. |\n| Heart Disease | Increases risk during surgery, affects anesthesia tolerance, may complicate recovery, and requires cardiology consultation. |\n| Obesity | Increases surgical risks, can complicate anesthesia, may affect healing, and requires specific management of comorbid conditions. |"
+	},
+	{
+		"question": "What are the latest advancements in gallbladder cancer treatment?",
+		"answer": "- **Targeted Therapies:** Drugs that target specific cancer cells.\n- **Immunotherapy:** Boosts the body’s natural defenses to fight cancer.\n- **Clinical Trials:** Participation in new and experimental treatments."
+	},
+	{
+		"question": "Is it advisable to get a second opinion if I have been diagnosed with gallbladder cancer?",
+		"answer": "- **Recommendation:** Getting a second opinion is recommended as it can confirm the diagnosis, validate the treatment plan, and offer alternative perspectives if there are concerns about the cancer stage or treatment urgency. Discussing any potential treatment delays with your healthcare team is crucial for understanding their impact on your prognosis and making informed decisions about your care."
+	},
+	{
+		"question": "What are my treatment options?",
+		"answer": "| Treatment Option | When It's Used | What It Involves |\n|---|---|---|\n| Surgery | - Early-stage cancer.\n  - Local spread that can be removed. | - Removing the gallbladder.\n  - Pain relief and antibiotics. |\n| Chemotherapy | - Advanced cancer.\n  - Post-surgery to kill remaining cells. | - Medicines like gemcitabine, cisplatin, capecitabine. |\n| Radiation Therapy | - Before surgery to shrink tumors.\n  - After surgery to kill leftover cells.\n  - To relieve symptoms. | - High-energy rays to target cancer cells. |\n| Targeted Therapy | - Cancer with specific genetic changes.\n  - When other treatments don’t work. | - Medicines like erlotinib, lapatinib, pembrolizumab. |\n| Palliative Care | - Any stage to manage symptoms.\n  - Improve quality of life. | - Pain relief, nausea control, dietary and emotional support. |"
+	},
+	{
+		"question": "Can my cancer be removed with surgery?",
+		"answer": "- **Depends on Stage:** Early stages have higher chances of successful surgery.\n- **Consultation:** Discuss with your surgeon about feasibility."
+	},
+	{
+		"question": "What is gallbladder surgery?",
+		"answer": "- **Cholecystectomy:** Removal of the gallbladder.\n  - **Laparoscopic:** Minimally invasive, quicker recovery.\n  - **Open Surgery:** Larger incision, longer recovery."
+	},
+	{
+		"question": "Will I need radiation therapy after completing treatment for gallbladder cancer?",
+		"answer": "Whether radiation therapy is needed after completing treatment for gallbladder cancer depends on several factors, including the stage of the cancer, the success of surgery, and other treatments received. Radiation therapy may be recommended in the following situations:\n\n- **Adjuvant Therapy:** If there is a high risk of cancer recurrence after surgery, radiation therapy may be used to reduce this risk.\n- **Palliative Therapy:** In cases where the cancer cannot be completely removed or has spread to other areas, radiation therapy can help relieve symptoms and improve quality of life.\n\nYour oncologist will evaluate your specific case and discuss whether radiation therapy is recommended in your treatment plan."
+	},
+	{
+		"question": "How long can a person live with gallbladder cancer?",
+		"answer": "| Stage | Life Expectancy | Complications |\n|---|---|---|\n| Early Stage | Higher survival rates, potential for cure with surgery and/or other treatments. A 5-year survival rate can be over 50%. | Surgical risks, infection, recurrence of cancer, bile duct injury, impact on liver function. |\n| Advanced Stage | Focus on palliative care to manage symptoms and improve quality of life. Life expectancy is generally shorter, often less than 1 year. | Pain, jaundice, digestive issues, weight loss, fatigue, spread of cancer to other organs. |"
+	},
+	{
+		"question": "What happens after the surgery?",
+		"answer": "After gallbladder surgery, you can expect the following:\n\n- **Recovery Period:**\n  - **Laparoscopic Surgery:** Recovery typically takes 1-2 weeks.\n  - **Open Surgery:** Recovery may take 4-6 weeks.\n\n- **Dietary Changes:**\n  - Initially, a low-fat diet is recommended to ease digestion as the body adjusts to the absence of the gallbladder.\n  - Gradually, you can return to your regular diet, but it's essential to monitor how your body responds to certain foods.\n\n- **Follow-Up Care:**\n  - Regular check-ups with your healthcare provider to monitor your recovery and overall health.\n  - Potential imaging tests or blood tests to ensure no recurrence or complications.\n\n- **Managing Side Effects:**\n  - Some patients may experience diarrhea or bloating after surgery, which usually improves over time.\n  - Pain management is crucial, so follow your doctor’s advice regarding medications and activities."
+	},
+	{
+		"question": "What is gallbladder cancer?",
+		"answer": "Gallbladder cancer is a rare type of cancer that originates in the gallbladder, a small organ located beneath the liver. The gallbladder's primary function is to store bile, a fluid produced by the liver to aid in digestion. When cancer develops in the gallbladder, it usually starts in the cells lining the organ and can spread to other parts of the body if not detected and treated early.\n\n### Types of Gallbladder Cancer\n- **Adenocarcinoma:** The most common type, starting in gland-like cells in the gallbladder's lining.\n- **Squamous Cell Carcinoma:** A rarer form that begins in the flat, skin-like cells lining the gallbladder.\n- **Neuroendocrine Tumors:** These develop from hormone-producing cells and are very rare.\n\n### Risk Factors\n- **Gallstones:** The most significant risk factor for gallbladder cancer.\n- **Chronic Gallbladder Inflammation:** Often related to gallstones or infection.\n- **Obesity:** Increases the risk of gallbladder cancer.\n- **Gender:** Women are more likely to develop gallbladder cancer than men.\n- **Age:** The risk increases with age, particularly after 65.\n- **Ethnicity:** Higher rates are observed in Native Americans and certain Hispanic populations."
+	},
+	{
+		"question": "Why do some people get gallbladder cancer?",
+		"answer": "Gallbladder cancer develops due to a combination of genetic, environmental, and lifestyle factors. Some of the reasons include:\n\n- **Gallstones:** Chronic irritation caused by gallstones can lead to the development of cancerous cells in the gallbladder.\n- **Chronic Inflammation:** Inflammation of the gallbladder lining, known as cholecystitis, is a significant risk factor.\n- **Polyp Growth:** Gallbladder polyps, especially those larger than 1 centimeter, can be precursors to cancer.\n- **Family History:** A family history of gallbladder cancer increases the risk.\n- **Obesity:** Excess body weight is linked to a higher risk of gallbladder cancer.\n- **Exposure to Certain Chemicals:** Exposure to specific industrial chemicals and carcinogens can increase the risk."
+	},
+	{
+		"question": "Why do patients with gallbladder cancer have to see so many doctors?",
+		"answer": "Patients with gallbladder cancer require care from various specialists due to the complex nature of the disease. This multidisciplinary approach ensures comprehensive care and better outcomes.\n\n- **Oncologist:** Manages overall cancer treatment, including chemotherapy and radiation.\n- **Gastroenterologist:** Focuses on digestive system health and gallbladder function.\n- **Surgeon:** Performs procedures to remove the gallbladder and any cancerous tissue.\n- **Radiation Oncologist:** Specializes in radiation therapy to target cancer cells.\n- **Palliative Care Specialist:** Helps manage symptoms and improve quality of life."
+	},
+	{
+		"question": "What are the statistics on gallbladder cancer?",
+		"answer": "- **Incidence:** Approximately 4,000 new cases of gallbladder cancer are diagnosed annually in the United States.\n- **Survival Rate:** The 5-year survival rate for early-stage gallbladder cancer can be as high as 50%, while it drops to about 5% for advanced-stage cancer.\n- **Risk Factors:** Women, older adults, and individuals with a history of gallstones or chronic gallbladder inflammation are at higher risk.\n- **Ethnic Disparities:** Native Americans, Hispanic Americans, and individuals from certain regions in South America and Asia have higher incidence rates."
+	},
+	{
+		"question": "Why don’t all hospitals have the necessary expertise to treat gallbladder cancer?",
+		"answer": "Gallbladder cancer is rare, and its treatment requires specialized expertise and advanced facilities that are not available in all hospitals. This includes:\n\n- **Complex Surgical Procedures:** Gallbladder cancer surgery is highly specialized and may require a hepato-pancreato-biliary (HPB) surgeon with specific training in this area.\n- **Multidisciplinary Care:** Effective treatment often involves a team of specialists, including oncologists, gastroenterologists, and radiation oncologists.\n- **Advanced Diagnostic Tools:** Accurate diagnosis and staging may require specialized imaging technologies and pathology expertise.\n\nFor these reasons, treatment is often concentrated in larger cancer centers with the necessary resources and expertise."
+	}
 ]

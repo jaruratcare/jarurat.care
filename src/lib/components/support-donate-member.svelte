@@ -218,7 +218,7 @@
 		</div>
 
 		<div class="text-center mt-8 text-[#0D2561] md:text-[1.2em] sm:text-[1.5em]">
-			<h3 class="font-bold text-2xl ">Priyanka Joshi</h3>
+			<h3 class="font-bold text-2xl">Priyanka Joshi</h3>
 			<h4 class="font-semibold text-[0.7em]">Founder, Jarurat Care Foundation</h4>
 		</div>
 	</div>

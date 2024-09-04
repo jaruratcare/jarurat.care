@@ -16,7 +16,7 @@
 <button
 	on:click={onClick}
 	class={cn(
-		'py-3 px-6 text-[#F9FFF2] rounded-full font-semibold inline-block',
+		'py-2.5 px-6 text-[#F9FFF2] rounded-full font-semibold inline-block',
 		'relative overflow-hidden',
 		className
 	)}

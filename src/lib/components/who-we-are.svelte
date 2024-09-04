@@ -3,10 +3,11 @@
 	import SmallCircle from '$lib/svg/small-circle.svelte';
 </script>
 
-<div class="bg-[#0D2561] flex justify-between md:py-0  sm:py-28 relative overflow-hidden sm:rounded-b-3xl z-10 ">
-
+<div
+	class="bg-[#0D2561] flex justify-between md:py-0 sm:py-28 relative overflow-hidden sm:rounded-b-3xl z-10"
+>
 	<div class="absolute top-0">
-		<SmallCircle/>
+		<SmallCircle />
 	</div>
 
 	<section class="w-[39rem] flex sm:flex-row flex-col my-28 ml-44 sm:gap-4 max-w-[57rem] relative">
@@ -24,5 +25,4 @@
 			</p>
 		</div>
 	</section>
-
 </div>

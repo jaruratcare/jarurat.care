@@ -31,17 +31,12 @@
 </script>
 
 <div class="py-10 sm:py-20 relative px-4">
-	<div class="absolute inset-0 overflow-hidden -z-10">
-		<!-- can't use. performance issue -->
-		<!-- <AnimatedWave class="" /> -->
-
-		<AnimatedGradientMesh />
+	
+	<div class=" ">
+		<div  class="text-center  " >
+		<h1 class=" text-[#0D2561] text-[1.7rem] " style="font-family: Rubik">Read the Latest in <span class="text-[#0155BD] ">Cancer Research</span></h1>
+		<p class="text-[0.9rem] text-[#707685] font-thin  ">Explore the latest studies and breakthroughs in cancer research.</p>
 	</div>
-
-	<Header
-		title="Read the Latest in Cancer Research"
-		subtitle="Explore the latest studies and breakthroughs in cancer research."
-	/>
 
 	<form
 		class="border rounded-full max-w-[35rem] w-full mx-auto bg-[#DBE1E6] overflow-hidden flex items-center my-14 relative z-10"
@@ -55,6 +50,7 @@
 			<Search />
 		</div>
 	</form>
+	</div>
 
 	<p class="font-manrope text-[#04509C] font-semibold text-center flex items-center justify-center">
 		<span class="px-3 py-1 bg-[#FDDCA1] rounded-full text-sm">Results for “Breast Cancer”</span>

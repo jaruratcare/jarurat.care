@@ -25,7 +25,7 @@
 
 		<div class="my-4"></div>
 
-		<a href="mailto:jaruratcare@gmail.com?subject=Seek%20Support%20For%20Cancer">
+		<a href="/seek-support">
 			<Button>Seek Cancer Support</Button>
 		</a>
 	</div>

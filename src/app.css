@@ -23,3 +23,18 @@ html {
 .scroll-container{
     scrollbar-width: none;
 }
+
+
+.scrollbar::-webkit-scrollbar {
+    width: 1px;               /* width of the entire scrollbar */
+  }
+  
+  .scrollbar::-webkit-scrollbar-track {
+    background: #CFD6DF;        /* color of the tracking area */
+  }
+  
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #3B3E43;    /* color of the scroll thumb */
+    border-radius: 10px;       /* roundness of the scroll thumb */
+    border: 2px solid #CFD6DF;  /* creates padding around scroll thumb */
+  }

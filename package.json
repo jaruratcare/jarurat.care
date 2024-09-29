@@ -45,6 +45,9 @@
 		"lucide-svelte": "^0.416.0",
 		"marked": "^14.0.0",
 		"nanoid": "^5.0.7",
+		"react-redux": "^9.1.2",
+		"redux": "^5.0.1",
+		"svelte-redux": "^1.1.1",
 		"tailwind-merge": "^2.4.0",
 		"zod": "^3.23.8"
 	},

@@ -17,7 +17,7 @@
 			description:
 				'Our NGO is here to help you through your cancer journey. Reach out to us today.',
 			ctaText: 'Seek Support',
-			href: 'mailto:jaruratcare@gmail.com?subject=Seek%20Support%20For%20Cancer'
+			href: '/seek-support'
 		},
 		{
 			icon: HandPlatterHeart,

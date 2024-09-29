@@ -1,7 +1,22 @@
-// src/store/reducers/userReducer.js
-import { UPDATE_USER_DETAILS} from "../action/useraction";
+import { UPDATE_USER_DETAILS } from "../action/useraction";
 
-// Initial state for user details
+//Make a common model class for the user object for better structure @Priyam
+/**
+ * @typedef {Object} UserState
+ * @property {string} fullName
+ * @property {string} gender
+ * @property {string} email
+ * @property {string} dob
+ * @property {string} phoneNumber
+ * @property {string} addressLine1
+ * @property {string} addressLine2
+ * @property {string} country
+ * @property {string} city
+ * @property {string} pincode
+ */
+
+//Make a common model class for the user object for better structure @Priyam (give default values for default state )
+/** @type {UserState} */
 const initialState = {
   fullName: '',
   gender: '',
@@ -15,7 +30,18 @@ const initialState = {
   pincode: '',
 };
 
-// User reducer to update user details
+/**
+ * @typedef {Object} UpdateUserDetailsAction
+ * @property {string} type
+ * @property {Partial<UserState>} payload
+ */
+
+/**
+ * User reducer to update user details
+ * @param {UserState} state
+ * @param {UpdateUserDetailsAction} action
+ * @returns {UserState}
+ */
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_USER_DETAILS:

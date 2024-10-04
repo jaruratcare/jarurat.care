@@ -8,7 +8,7 @@
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
 	import { ChevronLeft, ChevronRight, QuoteIcon } from 'lucide-svelte';
 	import ImgMom from '$lib/assets/mom.webp';
-	import SingleWave from '$lib/svg/single-wave.svelte';
+	import SingleWave from '$lib/svg/single-wavedown.svelte';
 
 	const cards = [
 		{

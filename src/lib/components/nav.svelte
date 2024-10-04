@@ -30,8 +30,8 @@
 </script>
 
 <div class="fixed inset-x-0 z-50 text-[0.9em] bg-white flex items-center justify-between">
-	<nav class="flex items-center font-rubik text-[#0D2561] px-2 md:px-4 py-2 grow">
-		<span class="inline-block w-[8rem] sm:w-[10rem]">
+	<nav class="flex items-center font-rubik text-[#0D2561] px-2 md:px-4 py-1 md:py-2 grow">
+		<span class="inline-block w-[5rem] sm:w-[10rem]">
 			<Logo />
 		</span>
 

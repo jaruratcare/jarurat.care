@@ -23,3 +23,56 @@ html {
 .scroll-container{
     scrollbar-width: none;
 }
+
+.splide__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.splide__pagination li {
+    list-style: none;
+}
+
+.splide__pagination li button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #b6c8b4;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.splide__pagination li.is-active button {
+    background-color: #ffba41 !important;
+}
+
+.scroll-container {
+    scrollbar-width: none;
+}
+
+.splide_line_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* gap: 0.5rem; */
+}
+
+.splide_line_pagination li {
+    list-style: none;
+}
+
+.splide_line_pagination li button {
+    width: 10vw;
+    height: 5px;
+    background-color: #b6c8b4;
+    border: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.splide_line_pagination li.is-active button {
+    background-color: #0D2561 !important;
+}

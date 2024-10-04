@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { CheckIcon } from 'lucide-svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	export let type: 'radio' | 'checkbox' = 'checkbox';
@@ -26,7 +25,7 @@
 		{disabled}
 		on:change={(ev) => onChange(ev.currentTarget.value)}
 	/>
-	<small class="px-2 py-1 md:px-6 md:py-2 flex items-center gap-1">
+	<small class="md:py-2 py-1 px-6 md:px-12 text-[0.7em] md:text-[0.8em] flex items-center gap-1">
 		{label || value}
 	</small>
 </label>
@@ -35,8 +34,8 @@
 	input ~ small {
 		color: #868B93;
 		border-radius: 0.4rem;
-		border: 0.1rem solid #868B93;
-		background-color: white;
+		border: 0.1rem solid #e8ebf1;
+		background-color: #e8ebf1;
 	}
 
 	input:checked ~ small {

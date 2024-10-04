@@ -6,13 +6,7 @@
 	export let amount;
 </script>
 
-<div
-	class="font-manrope flex flex-col items-center gap-8 pt-10 rounded-2xl bg-[#EFF2F5] shadow border overflow-hidden"
->
-	<p class="text-[#0D2561] px-4 text-center font-medium leading-tight">
-		Your donation is making a real difference in the fight against cancer.
-	</p>
-
+<div class="font-manrope flex flex-col items-center gap-8 rounded-2xl bg-[#EFF2F5] shadow border overflow-hidden">
 	<div class="rounded-t-3xl bg-white w-full flex flex-col justofy-center items-center pt-8 pb-2">
 		<PaymentSuccessIcon class="size-[4rem]" />
 
@@ -23,9 +17,10 @@
 		>
 			<p>Your donation of ₹{amount} has been successfully processed.</p>
 			<p>Transaction ID : <strong>{txnId}</strong></p>
+			<!-- <p>Transaction ID : <strong>5667</strong></p> -->
 
 			<p
-				class="bg-[#D3F2FC] flex items-center gap-2 text-[0.7em] self-center px-2 py-1 rounded-r-sm mt-2 text-[#0155BD] border-l-2 border-[#0155BD] hidden"
+				class="bg-[#D3F2FC] flex items-center gap-2 text-[0.7em] self-center px-2 py-1 rounded-r-sm mt-2 text-[#0155BD] border-l-2 border-[#0155BD]"
 			>
 				<MailIcon />
 				A receipt has been sent to your email

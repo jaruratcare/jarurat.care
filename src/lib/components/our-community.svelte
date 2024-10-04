@@ -1,7 +1,7 @@
 <script>
 	import Connect from "$lib/svg/connect.svelte";
 	import Resources from "$lib/svg/resources.svelte";
-	import SingleWave from "$lib/svg/single-wave.svelte";
+	import SingleWave from "$lib/svg/single-wavedown.svelte";
 import OurCommunityItem from "./our-community-item.svelte";
 // import Carousel from 'svelte-carousel'
 	import { onMount } from "svelte";

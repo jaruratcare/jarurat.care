@@ -10,21 +10,21 @@ const items = [
 			title: 'The Cancer Project',
             about:"India ’ s first ever cancer podcast and webinar series for discussions on treatments, stories, and expert insights."
 		},
-		{
-			icon: Connect,
-			title: 'Resource Guidance',
-            about:"Building India’s largest Edtech hub for any cancer queries in 7+ regional languages."
-		},
-        {
-            icon: Resources,
-            title: 'Social Community',
-            about:"Building social media hub to discuss early detection & prevention of terminal cancers."
-        },
-        {
-			icon: Resources,
-			title: 'Patient Advocacy',
-            about:"Advocating patients’ rights & educating people about what’ s rightfully correct in healthcare space."
-		},
+		// {
+		// 	icon: Connect,
+		// 	title: 'Resource Guidance',
+        //     about:"Building India’s largest Edtech hub for any cancer queries in 7+ regional languages."
+		// },
+        // {
+        //     icon: Resources,
+        //     title: 'Social Community',
+        //     about:"Building social media hub to discuss early detection & prevention of terminal cancers."
+        // },
+        // {
+		// 	icon: Resources,
+		// 	title: 'Patient Advocacy',
+        //     about:"Advocating patients’ rights & educating people about what’ s rightfully correct in healthcare space."
+		// },
     ]
 </script>
 

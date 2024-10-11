@@ -9,8 +9,11 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"moduleResolution": "bundler"
-	}
+		"moduleResolution": "bundler",
+    	"module": "esnext",
+    	"target": "es6",
+	},
+	"include": ["src/**/*.ts", "src/**/*.svelte", "svelte-carousel.d.ts"]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	// except $lib which is handled by https://kit.svelte.dev/docs/configuration#files
 	//

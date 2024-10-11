@@ -11,8 +11,8 @@ import Nav from "$lib/components/nav.svelte";
 <div class="bg-[#F8FCFF]">
     <Nav/>
     <HeroSection/>
-    <!-- <OurServices/> -->
-    <!-- <HowWeSupport/> -->
+    <OurServices/>
+    <HowWeSupport/>
     <OurVisionSeeksupport/>
     <CaregivingSeeksupport/>
     <SharedJourney/>

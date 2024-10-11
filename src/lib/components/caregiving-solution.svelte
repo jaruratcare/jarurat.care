@@ -12,17 +12,28 @@
 	import PreviousIcon from '$lib/svg/previous-icon.svelte';
 	import NextIcon from '$lib/svg/next-icon.svelte';
 	import WaveUnion from '$lib/svg/about/wave-union.svelte';
-	// import Carousel from 'svelte-carousel';
+	// import { Carousel, Slide } from 'svelte-carousel';
+	import { onMount } from 'svelte';
+	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 
-	// let carousel; // for calling methods of the carousel instance
+	
+	let splideInstance;
 
-	// const handleNextClick = () => {
-	// 	carousel.goToNext();
-	// };
 
-	// function goToPrevPage() {
-	// 	carousel.goToPrev({ animated: false });
-	// }
+
+  // Go to next slide
+  const handleNextClick = () => {
+    
+      splideInstance.go('>');
+    
+  };
+
+   // Go to previous slide
+   const handlePrevClick = () => {
+    
+      splideInstance.go('<');
+    
+  };
 
 	const items = [
 		{
@@ -53,12 +64,17 @@
 		},
 		{
 			image: priyanka,
-			name: 'Priyanka',
+			name: 'priyam',
 			about: 'Medical Oncologist'
 		},
 		{
 			image: priyanka,
-			name: 'Priyanka',
+			name: 'abdus',
+			about: 'Medical Oncologist'
+		},
+		{
+			image: priyanka,
+			name: 'sourav',
 			about: 'Medical Oncologist'
 		}
 	];
@@ -74,19 +90,43 @@
 			name: 'Neha M.',
 			position: 'Member',
 			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
+		},
+		{
+			image: member,
+			name: 'Neha M.',
+			position: 'Member',
+			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
 		}
-		// {
-		// 	image: member,
-		// 	name: 'Neha M.',
-		// 	position: 'Member',
-		// 	about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		// },
-		// {
-		// 	image: member,
-		// 	name: 'Neha M.',
-		// 	position: 'Member',
-		// 	about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		// }
 	];
 </script>
 
@@ -115,20 +155,38 @@
 				the best care and staying updated on treatment advances, helping us make a real difference.
 			</div>
 		</div>
-		<div class="cards flex justify-center gap-5 md:w-1/2 relative z-30">
-			<div
-				class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 top-[45%]"
+		<div class="cards px-4 md:px-0  gap-5 md:w-1/2 relative z-30">
+			<button class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
+			on:click={handlePrevClick}
 			>
 				<PreviousIcon />
-			</div>
-			<div
-				class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 top-[45%]"
+				
+			</button>
+
+			<button class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]" 
+			
+			on:click={handleNextClick}
 			>
 				<NextIcon />
-			</div>
-			{#each cards as card}
-				<Cards image={card.image} name={card.name} about={card.about} />
-			{/each}
+			</button>
+			<Splide
+			options={{
+			  type: 'loop',
+			  perPage: 3,
+			  gap: '16rem',
+			  autoplay: false,
+			  speed: 800,
+			  arrows: false,
+			  pagination: false,
+			}}
+			bind:this={splideInstance}
+		  >
+				{#each cards as card}
+				<SplideSlide>
+					<Cards image={card.image} name={card.name} about={card.about} />
+				</SplideSlide>
+				{/each}
+			</Splide>
 		</div>
 	</div>
 
@@ -186,23 +244,38 @@
 				the best care and staying updated on treatment advances, helping us make a real difference.
 			</div>
 		</div>
-		<div class="cards px-4 md:px-0 flex justify-center gap-5 md:w-1/2 relative z-30">
-			<div
-				class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 top-[45%]"
-				
+		<div class="cards px-4 md:px-0  gap-5 md:w-1/2 relative z-30">
+			<button class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
+			on:click={handlePrevClick}
 			>
 				<PreviousIcon />
-			</div>
-			<div
-				class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 top-[45%]" 
+				
+			</button>
+
+			<button class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]" 
+			
+			on:click={handleNextClick}
 			>
 				<NextIcon />
-			</div>
-			<!-- <Carousel bind:this={carousel}> -->
+			</button>
+			<Splide
+			options={{
+			  type: 'loop',
+			  perPage: 2,
+			  gap: '-3rem',
+			  autoplay: false,
+			  speed: 800,
+			  arrows: false,
+			  pagination: false,
+			}}
+			bind:this={splideInstance}
+		  >
 				{#each cards as card}
+				<SplideSlide>
 					<Cards image={card.image} name={card.name} about={card.about} />
+				</SplideSlide>
 				{/each}
-			<!-- </Carousel> -->
+			</Splide>
 		</div>
 	</div>
 </div>
@@ -212,24 +285,43 @@
 	<div class="flex justify-between mb-9">
 		<div class="text-[#0D2460] pl-8 md:pl-0 font-extrabold">Hear from our community</div>
 		<div class="flex gap-6 pr-7">
-			<div class="bakward w-8 h-8 hidden md:block cursor-pointer rounded-full p-2 bg-[#CFD6DF]">
+			<button class="bakward w-8 h-8 hidden md:block cursor-pointer rounded-full p-2 bg-[#CFD6DF]"
+			on:click={handlePrevClick}
+			>
 				<PreviousIcon />
-			</div>
-			<div class="upward w-8 h-8 cursor-pointer hidden md:block rounded-full p-2 bg-[#CFD6DF]">
+			</button>
+			<button class="upward w-8 h-8 cursor-pointer hidden md:block rounded-full p-2 bg-[#CFD6DF]"
+			on:click={handleNextClick}
+			>
 				<NextIcon />
-			</div>
+			</button>
 		</div>
 	</div>
 	<div class="cards overflow-x-hidden">
-		<div class="card flex gap-11 px-8 md:px-0">
+		<div class="card  px-8 md:px-0">
+			<Splide
+			options={{
+			  type: 'loop',
+			  perPage: 3,
+			  gap: '2rem',
+			  autoplay: false,
+			  speed: 800,
+			  arrows: false,
+			  pagination: false,
+			}}
+			bind:this={splideInstance}
+		  >
 			{#each comunityMember as member}
+			<SplideSlide>
 				<ComunityCard
 					name={member.name}
 					image={member.image}
 					about={member.about}
 					position={member.position}
 				/>
+			</SplideSlide>
 			{/each}
+			</Splide>
 		</div>
 	</div>
 

@@ -18,18 +18,18 @@
 			about:
 				'A group of committed caregivers ready to assist with connecting patients, caregivers, and healthcare professionals for sharing updates, promoting awareness, and accessing educational resources.'
 		},
-		{
-			icon: WhiteLogo,
-			title: 'Treatment Care Think Tank',
-			about:
-				'An expert team of oncologists, officials, dieticians, and spiritual advisors to analyze individual cases for tailored, comprehensive patient care.'
-		},
-		{
-			icon: ChatbotIcon,
-			title: 'Hope - AI Chatbot',
-			about:
-				'Available on our website jarurat.care, Hope provides immediate support and information, designed to answer questions and provide guidance at any time.'
-		}
+		// {
+		// 	icon: WhiteLogo,
+		// 	title: 'Treatment Care Think Tank',
+		// 	about:
+		// 		'An expert team of oncologists, officials, dieticians, and spiritual advisors to analyze individual cases for tailored, comprehensive patient care.'
+		// },
+		// {
+		// 	icon: ChatbotIcon,
+		// 	title: 'Hope - AI Chatbot',
+		// 	about:
+		// 		'Available on our website jarurat.care, Hope provides immediate support and information, designed to answer questions and provide guidance at any time.'
+		// }
 	];
 
 	const cards = [
@@ -57,7 +57,7 @@
 </script>
 
 <div class="bg-[#D3F2FC] h-[35rem] mb-5">
-	<!-- <div class="h-[18rem] w-[90%] mx-auto">
+	<div class="h-[18rem] w-[90%] mx-auto">
 		<div class="lg:px-16 px-8 py-16 bg-[#0D2561] rounded-3xl">
 			<div class="text-xl text-start md:text-center font-extrabold mb-8">
 				<span class="text-white"> CAREGIVING </span> <span class="text-[#FFBA41]">Solution</span>
@@ -68,7 +68,7 @@
 				{/each}
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
 
 <div
@@ -77,12 +77,12 @@
 	<!-- pioneers of our foundation -->
 
 	 <div class="bg-[#FFFFFF] flex flex-col lg:flex-row bg-gradient-to-b from-white to-[#abd7e793] md:w-2/3 mx-auto pt-10 mt-20 rounded-3xl z-10 absolute -top-80 shadow-lg"> 
-		<div class="md:text-center text-start lg:pl-16 ">
+		<div class="md:text-center text-start lg:pl-16 pl-5 md:pl-0">
 			<div class="mb-5">
 				<div class="text-primaryBlue font-extrabold text-2xl">Pioneers Of</div>
 				<div class="font-extrabold text-2xl">Our Foundation</div>
 			</div>
-			<div class="text-[#00408A] text-sm font-semibold">
+			<div class="text-[#00408A] text-sm font-semibold ">
 				The heart behind our foundation is someone who personally knows the challenges of battling
 				cancer. Driven by a deep desire to help others, they started Jarurat Care to offer support,
 				hope, and a community to those facing this difficult journey.
@@ -91,7 +91,7 @@
 			
 		</div>
 
-		<div class="cards flex flex-col md:flex-row  justify-center items-center gap-10 pt-9 pb-16 rounded-b-3xl lg:px-16 ">
+		<div class="cards flex flex-col md:flex-row  justify-center items-center gap-10 pt-9 md:pb-16 rounded-b-3xl lg:px-16 ">
 			{#each founders as item}
 				<div class="card relative z-30">
 					<div class="back bg-primaryBlue w-56 md:w-52 h-[18rem] -rotate-2"></div>
@@ -109,11 +109,13 @@
 				</div>
 			{/each}
 		</div>
+		<a class="block md:hidden pb-16" href="/about-us"><Button class="mt-5">About us</Button> </a>
+
 	</div> 
 
 
 	<!-- adviousry Board -->
-	 <div class="md:mt-56 mt-[33rem] lg:mt-20 w-full  flex md:flex-row flex-col bg-red-700 text-center md:text-start justify-center gap-6">
+	 <div class="md:mt-56 mt-[33rem] lg:mt-20 w-full  flex md:flex-row flex-col  text-center md:text-start justify-center gap-6">
 	<div class="md:w-[332px]">
 		<div class="font-extrabold text-xl">
 			<span class="text-primaryBlue">Advisory </span> <span class="text-black">Board</span>

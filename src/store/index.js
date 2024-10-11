@@ -1,6 +1,5 @@
 // src/store/index.js
 import { createStore, combineReducers } from 'redux';
-import { createStoreHook } from 'react-redux';
 import userReducer from './reducers/userReducer';
 
 // Combine multiple reducers (if necessary)

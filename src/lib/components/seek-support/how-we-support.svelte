@@ -11,30 +11,30 @@ import CardsOfSeeksupport from "./cards-of-seeksupport.svelte";
             list2:"Legal Support",
             list3:"Healthcare Navigation",
         },
-        {
-            title:"Patient Advocacy",
-            about:"We stand by your side, helping navigate treatment options and healthcare systems",
-            border:"#B0DFF9",
-            list1:"Insurance Assistance",
-            list2:"Legal Support",
-            list3:"Healthcare Navigation",
-        },
-        {
-            title:"Patient Advocacy",
-            about:"We stand by your side, helping navigate treatment options and healthcare systems",
-            border:"#B0DFF9",
-            list1:"Insurance Assistance",
-            list2:"Legal Support",
-            list3:"Healthcare Navigation",
-        },
-        {
-            title:"Patient Advocacy",
-            about:"We stand by your side, helping navigate treatment options and healthcare systems",
-            border:"#B0DFF9",
-            list1:"Insurance Assistance",
-            list2:"Legal Support",
-            list3:"Healthcare Navigation",
-        },
+        // {
+        //     title:"Patient Advocacy",
+        //     about:"We stand by your side, helping navigate treatment options and healthcare systems",
+        //     border:"#B0DFF9",
+        //     list1:"Insurance Assistance",
+        //     list2:"Legal Support",
+        //     list3:"Healthcare Navigation",
+        // },
+        // {
+        //     title:"Patient Advocacy",
+        //     about:"We stand by your side, helping navigate treatment options and healthcare systems",
+        //     border:"#B0DFF9",
+        //     list1:"Insurance Assistance",
+        //     list2:"Legal Support",
+        //     list3:"Healthcare Navigation",
+        // },
+        // {
+        //     title:"Patient Advocacy",
+        //     about:"We stand by your side, helping navigate treatment options and healthcare systems",
+        //     border:"#B0DFF9",
+        //     list1:"Insurance Assistance",
+        //     list2:"Legal Support",
+        //     list3:"Healthcare Navigation",
+        // },
     ]
 
 </script>
@@ -43,7 +43,7 @@ import CardsOfSeeksupport from "./cards-of-seeksupport.svelte";
     <div class="flex flex-col justify-center items-center gap-3">
 
         <div class="text-3xl font-extrabold"><span>How We </span> <span class="text-[#0D2460]">Support You</span> </div>
-        <div class="text-sm">Comprehensive care and support throughout your cancer journey</div>
+        <div class="text-sm text-center">Comprehensive care and support throughout your cancer journey</div>
     </div>
     <div class="flex gap-5 mt-20 justify-center mb-14">
         {#each items as item}

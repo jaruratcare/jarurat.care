@@ -6,12 +6,13 @@
 	import Abstract from "$lib/components/cancer-research/abstract.svelte";
 	import BlogFullView from "$lib/components/blogs/blog-full-view.svelte";
 	import RightArrow from "$lib/svg/right-arrow.svelte";
-
+import { page } from '$app/stores';
    let advice ="Advicory Board"
   let support="Seek Support"
   let help ="Help"
-
-  
+  const pageName=$page.params.id
+  export let data
+   let Blogdata=data.otherData.blog
 
 
 
@@ -91,6 +92,6 @@
   </div> 
 </div>
  <div class="bg-[#F8FCFF] ">
-<BlogFullView />
+<BlogFullView Blogdata={Blogdata}  currentBlogId={pageName}/>
   <NewsFooter />
     </div>

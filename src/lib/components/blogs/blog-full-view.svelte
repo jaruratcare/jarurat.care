@@ -14,6 +14,47 @@
    let Like="Like"
    let share="Share"
    let query="Raise A Query"
+   export let currentBlogId
+   export let Blogdata
+
+    async function increaseLike(blogId) {
+    try {
+      const response = await fetch(`http://localhost:5000/jc/blogs/addLike/${blogId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to increase like');
+      }
+
+      // Optional: Do something with the response (like update a like count)
+      console.log('Like added successfully!');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+   async function increaseShare(blogId) {
+    try {
+      const response = await fetch(`http://localhost:5000/jc/blogs/addLike/${blogId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to increase share');
+      }
+
+      // Optional: Do something with the response (like update a like count)
+      console.log('Share increased successfully!');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 </script>
 <style>
   .shadow-grad{
@@ -22,15 +63,15 @@
   }
 </style>
 <div class="sm:w-[80%] w-full  mx-auto">
-    <p class=" text-[#0155BD] text-center my-8">{heading}</p>
+    <p class=" text-[#0155BD] text-center my-8">{Blogdata.title}</p>
     <div class="my-12 lg:p-16 p-8 w-full rounded-lg shadow-grad ">
-         <p class=" text-[#0155BD]">26/06/2003 <span class="ml-6">Blogs</span></p>
-          <h1 class=" lg:w-[80%] md:w-[90%] w-full font-[600] text-[#14171C] md:text-[2rem] text-[1.25rem]" >{heading}</h1>
+         <p class=" text-[#0155BD]">{Blogdata.date}<span class="ml-6">Blogs</span></p>
+          <h1 class=" lg:w-[80%] md:w-[90%] w-full font-[600] text-[#14171C] md:text-[2rem] text-[1.25rem]" >{Blogdata.title}</h1>
           <div class="  my-6 flex gap-[1rem]">
                   <img class=" h-[3rem] w-[3rem] rounded-full" src={image1} alt="">
                   <div>
-                     <p class="text-[#464646]">{authorName}</p>
-                     <p class="text-[0.7rem] text-[#464646]">{designation}</p>
+                     <p class="text-[#464646]">{Blogdata.authorName}</p>
+                     <p class="text-[0.7rem] text-[#464646]">{Blogdata.designation}</p>
                   </div>
                   
           </div>
@@ -50,8 +91,12 @@
                <li>{point}</li>
                </div>
     <div class="flex items-center flex-col gap-4 sm:flex-row justify-center mt-8 sm:gap-6">
-         <button   class="w-32 sm:mt-8 h-10 rounded-[1.5rem] text-[#0D2460] border-[#0D2460] border-2 flex justify-between items-center px-6">{Like} <Heart /></button>
-         <button   class="w-32 sm:mt-8 h-10 rounded-[1.5rem] text-[#0D2460] border-[#0D2460] border-2 flex justify-between items-center px-6">{share} <Share /></button>
+         <button on:click={()=>{
+            increaseLike(currentBlogId)
+         }}  class="w-32 sm:mt-8 h-10 rounded-[1.5rem] text-[#0D2460] border-[#0D2460] border-2 flex justify-between items-center px-6">{Like} <Heart /></button>
+         <button on:click={()=>{
+            increaseShare(currentBlogId)
+         }}   class="w-32 sm:mt-8 h-10 rounded-[1.5rem] text-[#0D2460] border-[#0D2460] border-2 flex justify-between items-center px-6">{share} <Share /></button>
          <button   class="w-32 sm:mt-8 h-10 rounded-[1.5rem] text-[#0D2460] border-[#0D2460] border-2 ">{query} </button>
 
     </div>

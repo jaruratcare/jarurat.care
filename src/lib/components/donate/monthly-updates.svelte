@@ -77,7 +77,7 @@
                     <div class="text-[0.6rem] text-white text-center">Get the latest updates, inspiring stories, and important news delivered right to your inbox.</div>
                 </div>
                 <div class="gap-6 flex flex-col md:flex-row">
-                    <input type="text" class="rounded-lg md:w-96 px-2 py-2 placeholder:text-[1rem]" placeholder="Enter you email address">
+                    <input type="text" class="rounded-lg md:w-96 px-2 py-2 placeholder:text-[0.6rem] md:placeholder:text-[0.8rem]" placeholder="Enter you email address">
                     <button class="text-[#ffba41] border border-[#ffba41] font-bold px-6 py-1 rounded-3xl"> Submit</button>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                 Get the latest updates, inspiring stories, and important news delivered right to your inbox.
             </p>
             <div class="gap-6 flex flex-col items-center justify-center">
-                <input type="text" class="rounded-lg w-full text-black px-2 py-2 bg-[#fff0cd] placeholder:text-[1rem]" placeholder="Enter you email address">
+                <input type="text" class="rounded-lg w-full text-black px-2 py-2 bg-[#fff0cd] placeholder:text-[0.7rem]" placeholder="Enter you email address">
                 <Button class=" text-center px-8 text-sm">Submit</Button>
             </div>
         </div>

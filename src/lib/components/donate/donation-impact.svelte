@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import Button from '../ui/button.svelte';
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
@@ -33,6 +33,10 @@
 		paginationDots.forEach((dot) => {
 			activeDotObserver.observe(dot, { attributes: true });
 		});
+
+		onDestroy(() => {
+            activeDotObserver.disconnect();
+        });
 	});
 </script>
 

@@ -97,22 +97,22 @@
 			<h2 class="hidden md:block font-rubik text-white font-medium text-center text-[1.5em] leading-tight py-2">
 				Get <span class="text-[#ffba41]">Involved</span>
 			</h2>
-			<div class="md:grid md:grid-flow-col md:grid-col-1 gap-5 px-12">
+			<div class="md:grid md:grid-flow-col gap-5 md:px-12 px-2">
 
 				<div class="box bg-white shadow-lg rounded-lg mt-6 z-20">
 					<div class="rounded-lg">
 						<div class="">
-							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg py-4">
+							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg pt-8 md:py-4">
 								<div class="rounded-full w-24 h-24 bg-white mx-auto flex justify-center items-center p-2">
 									<JoinTeam />
 								</div>
 							</div>
 							<SingleWavedown fill="#D3F2FC" class="flex md:hidden"/>
 						</div>
-						<div class="bg-white text-[#0D2460] rounded-b-lg pb-4 flex flex-col items-center justify-center gap-2">
-							<h1 class="text-2xl md:px-24 text-center font-semibold font-playfair-display">Join Our Team</h1>
-							<p class="text-center px-12 text-[0.8em]">Our NGO is here to help you through your cancer journey. Reach out to us today.</p>
-							<Button class="custom-button z-10 md:py-2 md:px-6 px-4 py-1 text-[0.9em]">
+						<div class="bg-white text-[#0D2460] rounded-b-lg pb-8 flex flex-col items-center justify-center gap-4">
+							<h1 class="text-2xl md:max-w-24 max-w-full text-center font-semibold font-playfair-display">Join Our Team</h1>
+							<p class="text-center px-6 md:px-12 text-[0.8em]">Be a part of something bigger—join us and make a difference.</p>
+							<Button class="md:custom-button md:text-[0.9em] z-10 md:py-3 md:px-6 px-4 py-2 text-[0.8em]">
 								Apply Now
 							</Button>
 						</div>
@@ -121,17 +121,17 @@
 				<div class="box bg-white shadow-lg rounded-lg mt-6 z-20">
 					<div class="rounded-lg">
 						<div class="">
-							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg py-4">
+							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg pt-8 md:py-4">
 								<div class="rounded-full w-24 h-24 bg-white mx-auto flex justify-center items-center p-2">
 									<BecomeCaregiver />
 								</div>
 							</div>
 							<SingleWavedown fill="#D3F2FC" class="flex md:hidden"/>
 						</div>
-						<div class="bg-white text-[#0D2460] rounded-b-lg pb-4 flex flex-col items-center justify-center gap-2">
-							<h1 class="text-2xl md:px-24 text-center font-semibold font-playfair-display">Become a Caregiver</h1>
-							<p class="text-center px-12 text-[0.8em]">Our NGO is here to help you through your cancer journey. Reach out to us today.</p>
-							<Button class="custom-button z-10 md:py-2 md:px-6 px-4 py-1 text-[0.9em]">
+						<div class="bg-white text-[#0D2460] rounded-b-lg pb-8 flex flex-col items-center justify-center gap-4">
+							<h1 class="text-2xl md:max-w-28 max-w-full text-center font-semibold font-playfair-display">Become a Caregiver</h1>
+							<p class="text-center px-6 md:px-12 text-[0.8em]">Provide care, offer comfort, and change lives every day.</p>
+							<Button class="md:custom-button md:text-[0.9em] z-10 md:py-3 md:px-6 px-4 py-2 text-[0.8em]">
 								Apply Now
 							</Button>
 						</div>
@@ -140,17 +140,17 @@
 				<div class="box bg-white shadow-lg rounded-lg mt-6 z-20">
 					<div class="rounded-lg">
 						<div class="">
-							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg py-4">
+							<div class="bg-[#D3F2FC] md:bg-white rounded-t-lg pt-8 md:py-4">
 								<div class="rounded-full w-24 h-24 bg-white mx-auto flex justify-center items-center p-2">
 									<BecomeMentor />
 								</div>
 							</div>
 							<SingleWavedown fill="#D3F2FC" class="flex md:hidden"/>
 						</div>
-						<div class="bg-white text-[#0D2460] rounded-b-lg pb-4 flex flex-col items-center justify-center gap-2">
-							<h1 class="text-2xl md:px-24 text-center font-semibold font-playfair-display">Become a Mentor</h1>
-							<p class="text-center px-12 text-[0.8em]">Our NGO is here to help you through your cancer journey. Reach out to us today.</p>
-							<Button class="custom-button z-10 md:py-2 md:px-6 px-4 py-1 text-[0.9em]">
+						<div class="bg-white text-[#0D2460] rounded-b-lg pb-8 flex flex-col items-center justify-center gap-4">
+							<h1 class="text-2xl px-4 md:max-w-36 max-w-full text-center font-semibold font-playfair-display">Become a Mentor</h1>
+							<p class="text-center px-6 md:px-12 text-[0.8em]">Inspire growth, share wisdom, and guide the next generation.</p>
+							<Button class="md:custom-button md:text-[0.9em] z-10 md:py-3 md:px-6 px-4 py-2 text-[0.8em]">
 								Apply Now
 							</Button>
 						</div>

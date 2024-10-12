@@ -4,7 +4,7 @@
 	import Button from './ui/button.svelte';
 </script>
 
-<div class="bg-[#0D2561] text-white p-4 sm:p-12 flex flex-col gap-8">
+<div class="bg-[#0D2561] text-white p-4 sm:p-12 flex flex-col gap-4">
 	<div class="md:flex md:flex-row flex-col items-center md:px-8">
 		<div class="flex flex-row items-center py-4">
 			<LogoSquare class="max-w-[2.5em] sm:max-w-[3.5em] w-full" />
@@ -32,17 +32,17 @@
 		 <div class="w-full md:w-1/4 mb-6 md:mb-0">
             <div class="grid text-xs grid-cols-2">
                 <ul class=" space-y-2">
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Home</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Mission</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Volunteer</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Locate Hospitals</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Terms & Conditions</li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Home</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Mission</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Volunteer</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Locate Hospitals</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Terms & Conditions</a></li>
                 </ul>
                 <ul class="space-y-2">
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">About Us</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Blogs</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">News</li>
-                    <li class="hover:text-[#ffba41] hover:cursor-pointer">Contact Us</li>
+                    <li><a href="/#about" class="hover:text-[#ffba41] hover:cursor-pointer">About Us</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Blogs</a></li>
+                    <li><a href="/#news" class="hover:text-[#ffba41] hover:cursor-pointer">News</a></li>
+                    <li><a href="mailto:jaruratcare@gmail.com" class="hover:text-[#ffba41] hover:cursor-pointer">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -53,18 +53,18 @@
 
 		<div class="relative z-10 text-[0.8em] md:text-[0.9em] gap-2 md:flex flex flex-row items-center justify-end md:py-0 pt-4">
 			<div class="w-full md:w-28 text-center md:text-right">
-            <h2 class="text-sm mb-4 text-center">Connect with us</h2>
+            <h2 class="text-sm mb-4 text-center md:normal-case md:text-white text-[#ffba41] font-semibold uppercase">Connect with us</h2>
             <div class="flex justify-center md:justify-end gap-2">
-                <i class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"><Instagram/></i>
-                <i class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"><Twitter/></i>
-                <i class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"><Facebook/></i>
-                <i class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"><Linkedin/></i>
+				<a class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]" href="https://www.instagram.com/jarurat.care/?hl=en"><Instagram/></a>
+				<a class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]" href="https://x.com/JaruratF73422"><Twitter/></a>
+                <a class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"  href="https://twitter.com/Jarurat_care"><Facebook/></a>
+                <a class="bg-[#FFFFFF80] rounded-lg p-2 hover:cursor-pointer hover:text-[#ffba41]"  href="https://www.linkedin.com/company/jaruratcare/posts/?feedView=all"><Linkedin/></a>
             </div>
         </div>
 		</div>
 	</div>
 
-	<div class="w-full h-0.5 opacity-30" style="background-image: linear-gradient(90deg, #00C8F4 0%, #24D0F5 33%, #D6B7FF 69%, #FFFFFF 94%);" ></div>
+	<div class="w-full h-0.5 opacity-30 md:block hidden" style="background-image: linear-gradient(90deg, #00C8F4 0%, #24D0F5 33%, #D6B7FF 69%, #FFFFFF 94%);" ></div>
 
 	<div class="">
 

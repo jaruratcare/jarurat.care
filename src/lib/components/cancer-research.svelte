@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import Header from './ui/header.svelte';
-	import Button from './ui/button.svelte';
+	import Button from './ui/cardbutton.svelte';
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
 	import { ChevronLeft, ChevronRight, Search } from 'lucide-svelte';
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
@@ -39,7 +39,10 @@
 	</div>
 
 	<Header
-		title="Read the Latest in Cancer Research"
+		title="Read the Latest in"
+		spantitle=" Cancer Research"
+		color="#0d2460"
+		spantitleColor="#0054bd"
 		subtitle="Explore the latest studies and breakthroughs in cancer research."
 	/>
 
@@ -67,10 +70,10 @@
 		options={{ perPage: innerWidth < 600 ? 1 : 3, type: 'loop', gap: '2rem' }}
 	>
 		<div class="splide__arrows flex items-center justify-end gap-2 mb-2">
-			<Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center">
+			<Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center transition transform duration-300 ease-in-out">
 				<ChevronLeft class="w-full" />
 			</Button>
-			<Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center">
+			<Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center transition transform duration-300 ease-in-out">
 				<ChevronRight class="w-full" />
 			</Button>
 		</div>
@@ -86,7 +89,7 @@
 							<div class="grow"></div>
 							<p class="text-[#576171]">{result.excerpt.trim().substring(0, 100) + '...'}</p>
 
-							<Button class="mt-4 px-4 py-1 self-start text-sm">Know More</Button>
+							<Button class="mt-4 px-4 py-1 self-start text-sm transition transform duration-300 ease-in-out">Know More</Button>
 						</div>
 					</SplideSlide>
 				{/each}

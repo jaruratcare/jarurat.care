@@ -12,28 +12,101 @@
 	import PreviousIcon from '$lib/svg/previous-icon.svelte';
 	import NextIcon from '$lib/svg/next-icon.svelte';
 	import WaveUnion from '$lib/svg/about/wave-union.svelte';
-	// import { Carousel, Slide } from 'svelte-carousel';
 	import { onMount } from 'svelte';
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 
-	
+	let advisoryBoard = [];
+	let teamMeamber = [];
+	let communityMember = [];
+
+	let splideInstance1;
+	let splideInstance2;
 	let splideInstance;
 
+	let particlesToShow;
 
+	const updateParticlesToShow = () => {
+		if (window.innerWidth < 768) {
+			particlesToShow = 1;
+		} else if (window.innerWidth < 1318) {
+			particlesToShow = 2;
+		} else {
+			particlesToShow = 3;
+		}
+	};
 
-  // Go to next slide
-  const handleNextClick = () => {
-    
-      splideInstance.go('>');
-    
-  };
+	onMount(() => {
+		updateParticlesToShow();
+		window.addEventListener('resize', updateParticlesToShow);
 
-   // Go to previous slide
-   const handlePrevClick = () => {
-    
-      splideInstance.go('<');
-    
-  };
+		return () => window.removeEventListener('resize', updateParticlesToShow);
+	});
+
+	// Go to next slide
+	const handleNextClick = () => {
+		splideInstance.go('>');
+	};
+	const handleNextClick1 = () => {
+		splideInstance1.go('>');
+	};
+	const handleNextClick2 = () => {
+		splideInstance2.go('>');
+	};
+
+	// Go to previous slide
+	const handlePrevClick = () => {
+		splideInstance.go('<');
+	};
+	const handlePrevClick1 = () => {
+		splideInstance1.go('<');
+	};
+	const handlePrevClick2 = () => {
+		splideInstance2.go('<');
+	};
+
+	onMount(async () => {
+		//advisory board
+		try {
+			const response = await fetch(`http://localhost:5001/jc/advisoryBoard/profiles/getAll`);
+			if (!response.ok) {
+				throw new Error('Failed to fetch data');
+			}
+			let advisory = await response.json();
+			advisoryBoard = advisory?.profiles || [];
+			console.log('advisory board ', advisory);
+			console.log('profiles', advisoryBoard);
+			console.log('images', advisoryBoard?.images);
+		} catch (error) {
+			console.log(`network error:- ${error}`);
+		}
+
+		//team Member
+
+		try {
+			const response = await fetch('http://localhost:5001/jc/team/getAll/');
+			if (!response.ok) {
+				throw new Error('Failed to fetch data');
+			}
+			let memberarray = await response.json();
+			teamMeamber = memberarray?.members;
+			console.log('communityMember', teamMeamber);
+		} catch (error) {
+			console.log('network error ', error);
+		}
+
+		//community
+		try {
+			const response = await fetch(`http://localhost:5001/jc/community/getAll/`);
+			if (!response.ok) {
+				throw new Error('Failed to fetch data');
+			}
+			let memberArray = await response.json();
+			communityMember = memberArray?.members || [];
+			console.log('community member images ', communityMember[0]?.images?.[0]);
+		} catch (error) {
+			console.log('Network error:- ', error);
+		}
+	});
 
 	const items = [
 		{
@@ -83,71 +156,43 @@
 		{ image: priyankaWhiteBackgound, name: 'Priyanka Joshi' },
 		{ image: ayush, name: 'Ayush Anand' }
 	];
-
-	const comunityMember = [
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		},
-		{
-			image: member,
-			name: 'Neha M.',
-			position: 'Member',
-			about: 'Being a member of Jarurat Care feels like being part of a caring family.'
-		}
-	];
 </script>
 
-<div class="bg-[#D3F2FC] mt-64 relative">
+<div class="bg-[hsl(195,87%,91%)] mt-64 relative">
 	<div class="h-[411px]">
-		<div class="lg:px-16 px-8 py-16 bg-[#0D2561] absolute -top-44 md:left-[5%] left-0 rounded-3xl">
-			<div class="text-xl text-start md:text-center font-extrabold mb-8">
-				<span class="text-white"> CAREGIVING </span> <span class="text-[#FFBA41]">Solution</span>
+		<div
+			class="lg:px-12 px-8 py-16 bg-[#0D2561] w-[90%] absolute -top-44 md:left-[4%] left-0 rounded-3xl"
+		>
+			<div class="text-2xl text-start md:text-center font-extrabold mb-8">
+				<span class="text-white"> Caregiving </span> <span class="text-[#FFBA41]">Solutions</span>
 			</div>
-			<div class="flex lg:gap-10 gap-6">
-				{#each items as item}
-					<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
-				{/each}
+			<div class="">
+				<Splide
+					options={{
+						type: '',
+						perPage: particlesToShow,
+						gap: '8rem',
+						autoplay: false,
+						speed: 800,
+						arrows: false,
+						pagination: true
+					}}
+					class="w-[98%]  .splide__pagination__page"
+				>
+					{#each items as item}
+						<SplideSlide>
+							<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
+						</SplideSlide>
+					{/each}
+				</Splide>
 			</div>
 		</div>
 	</div>
 	<div
-		class="advisory board flex md:flex-row flex-col px-8 md:px-0 text-center md:text-start justify-center gap-6"
+		class="advisory mt-20 md:mt-1 board flex md:flex-row flex-col justify-center md:px-0 text-center md:text-start gap-9"
 	>
-		<div class="md:w-[332px]">
-			<div class="font-extrabold text-xl">
+		<div class="md:w-[332px] md:ml-20">
+			<div class="font-extrabold text-2xl">
 				<span class="text-primaryBlue">Advisory </span> <span class="text-black">Board</span>
 			</div>
 			<div class="text-[#00408A] text-sm mt-2">
@@ -155,36 +200,47 @@
 				the best care and staying updated on treatment advances, helping us make a real difference.
 			</div>
 		</div>
-		<div class="cards px-4 md:px-0  gap-5 md:w-1/2 relative z-30">
-			<button class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
-			on:click={handlePrevClick}
+		<div class="cards px-4 md:px-0 gap-5 md:w-[63%] relative z-30">
+			<button
+				class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
+				on:click={handlePrevClick1}
 			>
 				<PreviousIcon />
-				
 			</button>
 
-			<button class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]" 
-			
-			on:click={handleNextClick}
+			<button
+				class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]"
+				on:click={handleNextClick1}
 			>
 				<NextIcon />
 			</button>
+
 			<Splide
-			options={{
-			  type: 'loop',
-			  perPage: 3,
-			  gap: '16rem',
-			  autoplay: false,
-			  speed: 800,
-			  arrows: false,
-			  pagination: false,
-			}}
-			bind:this={splideInstance}
-		  >
-				{#each cards as card}
-				<SplideSlide>
-					<Cards image={card.image} name={card.name} about={card.about} />
-				</SplideSlide>
+				options={{
+					type: 'loop',
+					perPage: 3,
+					gap: '5rem',
+					autoplay: false,
+					speed: 800,
+					arrows: false,
+					pagination: false,
+					breakpoints: {
+						768: {
+							perPage: 1, // Ensure 1 card is shown on phones
+							gap: '1rem' // Smaller gap for mobile
+						},
+						1212: {
+							perPage: 2 // 2 cards between 768px and 1212px
+						}
+					}
+				}}
+				bind:this={splideInstance1}
+				class=""
+			>
+				{#each advisoryBoard as profile}
+					<SplideSlide>
+						<Cards image={profile.images[0]} name={profile.name} about={profile.designation} />
+					</SplideSlide>
 				{/each}
 			</Splide>
 		</div>
@@ -192,12 +248,12 @@
 
 	<!-- background wave -->
 	<div class="absolute bottom-[28rem] hidden lg:block left-0 w-[99.5%] rotate-6 z-10">
-		<WaveUnion />
+		<!-- <WaveUnion /> -->
 	</div>
 
 	<!-- pioneers of our foundation -->
 	<div class="bg-[#FFFFFF] w-2/3 mx-auto pt-10 mt-20 rounded-3xl z-10 relative">
-		<div class="md:text-center text-start px-16">
+		<div class="md:text-center text-start md:px-16 px-4">
 			<div class="mb-5">
 				<div class="text-primaryBlue font-extrabold text-2xl">Pioneers Of</div>
 				<div class="font-extrabold text-2xl">Our Foundation</div>
@@ -210,24 +266,44 @@
 		</div>
 
 		<div
-			class="cards flex justify-center gap-10 pt-9 pb-16 rounded-b-3xl lg:px-16 bg-gradient-to-b from-white to-[#D3F2FC]"
+			class="cards gap-10 pt-9 pb-16 rounded-b-3xl lg:px-16 bg-gradient-to-b from-white to-[#D3F2FC]"
 		>
-			{#each founders as item}
-				<div class="card relative z-30">
-					<div class="back bg-primaryBlue w-60 h-[20rem] -rotate-2"></div>
-					<div class="front w-60 h-[20rem] absolute top-0">
-						<div class="image h-[20rem]">
-							<img class="h-[20rem] relative z-30" src={item.image} alt="" />
+			<Splide
+				options={{
+					type: 'loop',
+					perPage: 2,
+					gap: '2rem',
+					autoplay: true,
+					speed: 800,
+					arrows: false,
+					pagination: true,
+					breakpoints: {
+						768: {
+							perPage: 1, // Ensure 1 card is shown on phones
+							gap: '1rem' // Smaller gap for mobile
+						}
+					}
+				}}
+			>
+				{#each founders as item}
+					<SplideSlide>
+						<div class="card relative z-30">
+							<div class="back bg-primaryBlue w-60 h-[20rem] -rotate-2"></div>
+							<div class="front w-60 h-[20rem] absolute top-0">
+								<div class="image h-[20rem]">
+									<img class="h-[20rem] relative z-30" src={item.image} alt="" />
+								</div>
+								<div
+									class="about bg-white flex flex-col justify-center items-center py-4 absolute w-full bottom-[1px]"
+								>
+									<div class="text-[#0D2460]">{item.name}</div>
+									<div class="text-primaryBlue">Co- Founder</div>
+								</div>
+							</div>
 						</div>
-						<div
-							class="about bg-white flex flex-col justify-center items-center py-4 absolute w-full bottom-[1px]"
-						>
-							<div class="text-[#0D2460]">{item.name}</div>
-							<div class="text-primaryBlue">Co- Founder</div>
-						</div>
-					</div>
-				</div>
-			{/each}
+					</SplideSlide>
+				{/each}
+			</Splide>
 		</div>
 	</div>
 
@@ -236,7 +312,7 @@
 		class=" bg-primaryBlue flex md:flex-row flex-col justify-center py-24 gap-6 relative bottom-11"
 	>
 		<div class="md:w-[332px] px-8 md:px-0 lg:mr-12">
-			<div class="font-extrabold text-xl relative z-30">
+			<div class="font-extrabold text-2xl relative z-30">
 				<span class="text-white">Our </span> <span class="text-[#FFBA41]">Team</span>
 			</div>
 			<div class="text-white text-sm mt-2">
@@ -244,36 +320,45 @@
 				the best care and staying updated on treatment advances, helping us make a real difference.
 			</div>
 		</div>
-		<div class="cards px-4 md:px-0  gap-5 md:w-1/2 relative z-30">
-			<button class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
-			on:click={handlePrevClick}
+		<div class="cards px-4 md:px-0 gap-5 md:w-[60%] relative z-30">
+			<button
+				class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
+				on:click={handlePrevClick2}
 			>
 				<PreviousIcon />
-				
 			</button>
 
-			<button class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]" 
-			
-			on:click={handleNextClick}
+			<button
+				class="front-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-right-3 right-4 z-10 top-[45%]"
+				on:click={handleNextClick2}
 			>
 				<NextIcon />
 			</button>
 			<Splide
-			options={{
-			  type: 'loop',
-			  perPage: 2,
-			  gap: '-3rem',
-			  autoplay: false,
-			  speed: 800,
-			  arrows: false,
-			  pagination: false,
-			}}
-			bind:this={splideInstance}
-		  >
-				{#each cards as card}
-				<SplideSlide>
-					<Cards image={card.image} name={card.name} about={card.about} />
-				</SplideSlide>
+				options={{
+					type: 'loop',
+					perPage: 3,
+					gap: '8rem',
+					autoplay: false,
+					speed: 800,
+					arrows: false,
+					pagination: false,
+					breakpoints: {
+						768: {
+							perPage: 1, // Ensure 1 card is shown on phones
+							gap: '1rem' // Smaller gap for mobile
+						},
+						1212: {
+							perPage: 2 // 2 cards between 768px and 1212px
+						}
+					}
+				}}
+				bind:this={splideInstance2}
+			>
+				{#each teamMeamber as member}
+					<SplideSlide>
+						<Cards image={member.images[0]} name={member.name} about={member.designation} />
+					</SplideSlide>
 				{/each}
 			</Splide>
 		</div>
@@ -285,42 +370,69 @@
 	<div class="flex justify-between mb-9">
 		<div class="text-[#0D2460] pl-8 md:pl-0 font-extrabold">Hear from our community</div>
 		<div class="flex gap-6 pr-7">
-			<button class="bakward w-8 h-8 hidden md:block cursor-pointer rounded-full p-2 bg-[#CFD6DF]"
-			on:click={handlePrevClick}
+			<button
+				class="bakward w-8 h-8 hidden md:block cursor-pointer rounded-full p-2 bg-[#CFD6DF]"
+				on:click={handlePrevClick}
 			>
 				<PreviousIcon />
 			</button>
-			<button class="upward w-8 h-8 cursor-pointer hidden md:block rounded-full p-2 bg-[#CFD6DF]"
-			on:click={handleNextClick}
+			<button
+				class="upward w-8 h-8 cursor-pointer hidden md:block rounded-full p-2 bg-[#CFD6DF]"
+				on:click={handleNextClick}
 			>
 				<NextIcon />
 			</button>
 		</div>
 	</div>
 	<div class="cards overflow-x-hidden">
-		<div class="card  px-8 md:px-0">
+		<div class="card px-8 md:px-0 relative">
+			
+				<button
+					class="bakward absolute left-3 top-[50%] z-10 w-8 h-8 md:hidden cursor-pointer rounded-full p-2 bg-[#CFD6DF]"
+					on:click={handlePrevClick}
+				>
+					<PreviousIcon />
+				</button>
+				<button
+					class="upward absolute right-4 top-[50%] z-10  w-8 h-8 cursor-pointer md:hidden  rounded-full p-2 bg-[#CFD6DF]"
+					on:click={handleNextClick}
+				>
+					<NextIcon />
+				</button>
+			
 			<Splide
-			options={{
-			  type: 'loop',
-			  perPage: 3,
-			  gap: '2rem',
-			  autoplay: false,
-			  speed: 800,
-			  arrows: false,
-			  pagination: false,
-			}}
-			bind:this={splideInstance}
-		  >
-			{#each comunityMember as member}
-			<SplideSlide>
-				<ComunityCard
-					name={member.name}
-					image={member.image}
-					about={member.about}
-					position={member.position}
-				/>
-			</SplideSlide>
-			{/each}
+				options={{
+					type: 'loop',
+					perPage: 3,
+					gap: '2rem',
+					autoplay: false,
+					speed: 800,
+					arrows: false,
+					pagination: false,
+					breakpoints: {
+            768: {
+              perPage: 1, // Ensure 1 card is shown on phones
+              gap: '1rem', // Smaller gap for mobile
+            },
+            1212: {
+              perPage: 2, // 2 cards between 768px and 1212px
+			  gap: '4rem'
+            },
+          },
+				}}
+				bind:this={splideInstance}
+			>
+				<!-- {#each communityMember as member} -->
+				{#each cards as member}
+					<SplideSlide>
+						<ComunityCard
+							name={member.name}
+							image={member.image}
+							about={member.about}
+							position={member.about}
+						/>
+					</SplideSlide>
+				{/each}
 			</Splide>
 		</div>
 	</div>
@@ -340,3 +452,13 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	/* Optional: Adjust the pagination dot styles */
+	.splide__pagination__page {
+		background-color: white;
+		border-radius: 50%;
+		width: 10px;
+		height: 10px;
+	}
+</style>

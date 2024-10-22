@@ -17,7 +17,7 @@
     <div class="font-bold text-2xl pb-4">{title}</div>
 
     <div class="text-sm text-[#676E73] pb-3">{about}</div>
-    <ul class="text-sm text-[#0155BD] list-disc ml-4" >
+    <ul class="text-sm hidden md:block text-[#0155BD] list-disc ml-4" >
         <li>{list1}</li>
         <li>{list2}</li>
         <li>{list3}</li>

@@ -3,6 +3,7 @@
   import RightArrow from "$lib/svg/right-arrow.svelte";
   import Search from "$lib/svg/search.svelte";
   import TiltedArrow from "$lib/svg/tilted-arrow.svelte";
+	import Loader from "../ui/loader.svelte";
   let homeBreadCrum="Home"
   let faqBreadCrum="Faqs"
   let questions="How Can We Help You?"
@@ -39,11 +40,9 @@
 
   $: searchInput = "";
   let isSearchReady=false
-  function handleSearch(){
-    isSearchReady=true
-  }
-
-
+  let loading = false;
+  let hasError = false;
+  $: searchResults = [];
   // Pagination variables
   let currentPage = 1;
   const itemsPerPage = 6;
@@ -81,6 +80,28 @@
     isSearchReady = false;
   }
   
+   async function searchBlogs() {
+
+      if (searchInput.trim() !== "") {
+         loading = true;
+         hasError = false; // Reset error state before starting the search
+         try {
+            const response = await fetch(`http://localhost:5000/api/faqs/search?query=${searchInput}`);
+            if (!response.ok) {
+               throw new Error('Search failed');
+            }
+            const result = await response.json();
+            console.log(result);
+               searchResults = result;
+               isSearchReady = true;
+         } catch (error) {
+            console.error("Error searching blogs:", error);
+            hasError = true; // Set error state if an error occurs
+         } finally {
+            loading = false;
+         }
+      }
+   }
 </script>
 
 <style>
@@ -121,7 +142,7 @@
       type="text"
       placeholder="Search Your Query"
       class=" w-11/12 p-4 rounded-tl-[0.5rem] rounded-bl-[0.5rem] rounded-br-[0rem] rounded-tr-[0rem] border border-gray-300"
-      on:keydown={(e) => e.key === 'Enter' && handleSearch()}
+      on:keydown={(e) => e.key === 'Enter' && searchBlogs()}
     >
     <!-- <p class="absolute right-[15%] top-1/2 transform -translate-y-1/2">
       <Search />
@@ -149,9 +170,9 @@
       type="text"
       placeholder="Search Your Query"
       class=" w-11/12 p-4 rounded-tl-[0.5rem] rounded-bl-[0.5rem] rounded-br-[0rem] rounded-tr-[0rem] border border-gray-300"
-      on:keydown={(e) => e.key === 'Enter' && handleSearch()}
+      on:keydown={(e) => e.key === 'Enter' && searchBlogs()}
     >
-    <p on:click={handleSearch} class="absolute right-[15%] top-1/2 transform -translate-y-1/2">
+    <p on:click={searchBlogs} class="absolute right-[15%] top-1/2 transform -translate-y-1/2">
       <Search />
     </p>
   </div> 
@@ -161,12 +182,29 @@
 </div>
 
 <div class="w-[80%] mx-auto py-16">
- {#if searchInput !=='' && isSearchReady===true}
-   <p class=" text-center mb-16 text-[1.25rem] text-[#24272A]">{searchResult}“ {searchInput} ”</p>
+ {#if loading}
+  <div class="loader-container">
+    <Loader />
+  </div>
+{:else if hasError || (searchResults.length === 0 && isSearchReady)}
+  <p class="text-center mb-16 text-[1.25rem] text-[#24272A]">
+    No results found for "{searchInput}"
+  </p>
+{:else if searchInput !== '' && isSearchReady === true}
+  <p class="text-center mb-16 text-[1.25rem] text-[#24272A]">
+    {searchResult}“ {searchInput} ”
+  </p>
+  <!-- Display search results here -->
+  {#each searchResults as item}
+    <div on:click={() => handleClick(item)} class="min-h-[5.5rem] rounded-4 text-[1.25rem] border-2 border-[#FFBA41] md:border-spacing-0 md:bg-[white] flex flex-col justify-center px-4 md:px-0 cursor-pointer">
+      <p class="text-[#24272A] font-[1.25rem] text-center">{item}</p>
+    </div>
+  {/each}
 {:else}
-  
-   <div class="flex flex-col gap-4 mb-16 text-center">
-    <h1 class="text-[#0D2561] font-[600] text-[2.5rem]">{dontKnow} <span class="text-[#0155BD]">{whatToAsk}</span></h1>
+  <div class="flex flex-col gap-4 mb-16 text-center">
+    <h1 class="text-[#0D2561] font-[600] text-[2.5rem]">
+      {dontKnow} <span class="text-[#0155BD]">{whatToAsk}</span>
+    </h1>
     <p>{secondaryDes}</p>
   </div>
 {/if}
@@ -198,7 +236,7 @@
         </div>
       {/each}
     {:else}
-      {#each answers as item}
+      {#each searchResults as item}
         <div on:click={() => handleClick(item)} class="min-h-[5.5rem] rounded-4 text-[1.25rem] border-2 border-[#FFBA41] md:border-spacing-0 md:bg-[white] flex flex-col justify-center px-4 md:px-0 cursor-pointer">
           <p class="text-[#24272A] font-[1.25rem] text-center">{item}</p>
         </div>

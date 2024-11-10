@@ -3,7 +3,7 @@ export let image ;
 export let name;
 export let about;
 </script>
-<div class=" w-[340px] ">
+<div class=" w-[340px]  ">
     <div class="img">
     <img class="w-[360px] h-[330px] rounded-t-2xl" src={image} alt="profileImg">
     </div>

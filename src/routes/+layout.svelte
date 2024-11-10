@@ -10,9 +10,13 @@
 	import '@fontsource/rubik/500.css';
 
 	import '@splidejs/svelte-splide/css/core';
+
 </script>
 
-<main class="font-manrope">
-	<slot />
-	<Footer />
-</main>
+
+
+	<main class="font-manrope">
+		<slot />
+		<Footer />
+	</main>
+

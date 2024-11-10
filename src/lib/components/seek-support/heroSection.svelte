@@ -3,7 +3,7 @@
 </script>
 
 <div class="relative">
-	<div class="w-full h-96 bg-cover bg-center" style={`background-image: url(${background})`}>
+	<div class="w-full md:h-96 h-56 bg-no-repeat  bg-center bg-cover" style={`background-image: url(${background})`}>
 		 <div
 			class="font-extrabold text-2xl text-white md:hidden flex justify-start pb-11 pl-5 items-end h-full"
 		>

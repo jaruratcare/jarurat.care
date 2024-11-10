@@ -62,7 +62,7 @@
 <div class="mx-auto mt-16 w-[90%]">
     <div class="flex gap-3 justify-center ">
         <div class="text-primaryBlue text-center  font-extrabold text-4xl ">OUR </div>
-        <div class="mb-24 text-center font-extrabold text-4xl ">SERVICES</div>
+        <div class="md:mb-24 mb-5  text-center font-extrabold text-4xl ">SERVICES</div>
     </div>
     
     <div class="lg:gap-3 w-[90%] md:w-full gap-2  ">

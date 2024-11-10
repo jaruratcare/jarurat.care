@@ -112,17 +112,40 @@
 			<div class="text-xl text-start md:text-center font-extrabold mb-8">
 				<span class="text-white"> CAREGIVING </span> <span class="text-[#FFBA41]">Solution</span>
 			</div>
-			<div class="flex justify-center lg:gap-10 gap-6">
-				{#each items as item}
-					<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
-				{/each}
+			<div class=" lg:gap-10 gap-6">
+				<Splide
+					options={{
+						type: 'loop',
+						perPage: 3,
+						gap: '2rem',
+						autoplay: false,
+						speed: 800,
+						arrows: false,
+						pagination: true,
+						breakpoints: {
+							768: {
+								perPage: 1, // Ensure 1 card is shown on phones
+								gap: '1rem' // Smaller gap for mobile
+							},
+							1212: {
+								perPage: 2 // 2 cards between 768px and 1212px
+							}
+						}
+					}}
+				>
+					{#each items as item}
+						<SplideSlide>
+							<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
+						</SplideSlide>
+					{/each}
+				</Splide>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div
-	class="advisory board pt-64 mt-80 pb-20 bg-[#D3F2FC] flex md:flex-row flex-col px-8 md:px-0 text-center md:text-start justify-center gap-6 relative"
+	class="advisory board pt-64 mt-80 pb-20 bg-[#D3F2FC] flex md:flex-row flex-col px- md:px-0 text-center md:text-start justify-center gap-6 relative"
 >
 	<!-- pioneers of our foundation -->
 
@@ -167,7 +190,7 @@
 
 	<!-- adviousry Board -->
 	<div
-		class="md:mt-56 mt-[40rem] lg:mt-20 w-full flex md:flex-row flex-col text-center md:text-start justify-center gap-6"
+		class="md:mt-56 mt-[40rem] lg:mt-20 w-full flex md:flex-row flex-col text-center md:text-start justify-center gap-6 "
 	>
 		<div class="md:w-[332px] md:ml-20">
 			<div class="font-extrabold text-2xl">
@@ -178,7 +201,7 @@
 				the best care and staying updated on treatment advances, helping us make a real difference.
 			</div>
 		</div>
-		<div class="cards px-4 md:px-0 gap-5 md:w-[63%] relative z-30">
+		<div class="cards  px-5 md:px-0 gap-5 md:w-[63%] relative z-30">
 			<button
 				class="back-arrow absolute w-8 h-8 cursor-pointer rounded-full p-2 bg-[#CFD6DF] md:-left-3 left-4 z-10 top-[45%]"
 				on:click={handlePrevClick1}

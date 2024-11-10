@@ -2,20 +2,23 @@
 	import Check from '$lib/svg/seek-support/check.svelte';
 	import RightArrow from '$lib/svg/seek-support/right-arrow.svelte';
     import { goto } from '$app/navigation';
+	import userData from '../../../store/userStore.js'
 
-	let fullName = '';
-	let gender = '';
-	let email = '';
-	let dob = '';
-	let phoneNumber = '';
-	let countryCode = '+91'; // Default country code (India)
-	let addressLine1 = '';
-	let addressLine2 = '';
-	let country = '';
-	let city = '';
-	let pincode = '';
-    let agreeToTerms = false;
-  let subscribeToNewsletter = false;
+
+let data;
+  userData.subscribe(value => (data = value));
+
+  const handleSubmit = () => {
+    // Log form data on submission
+    console.log(data);
+    userData.set(data);
+	userData.update(current => ({
+        ...current,
+        ...data 
+    }));
+	
+    goto('/personal-detail2');
+  };
 
 	const countryCodes = [
 		{ code: '+1', country: 'USA' },
@@ -26,28 +29,12 @@
 		// Add more country codes as needed
 	];
 
-	const handleSubmit = () => {
-		console.log({
-			fullName,
-			gender,
-			email,
-			dob,
-			phoneNumber: `${countryCode} ${phoneNumber}`,
-			addressLine1,
-			addressLine2,
-			country,
-			city,
-			pincode,
-            agreeToTerms,
-      subscribeToNewsletter
-		});
-	};
 </script>
 
 <div class="flex justify-center gap-20 mt-16">
 	<!-- form -->
 
-	<form class="  p-6 w-1/2 text-[#0D2561] font-semibold">
+	<form class="  p-6 w-1/2 text-[#0D2561] font-semibold" on:submit|preventDefault={handleSubmit}>
 		<div class=" mb-12">
 			<div class="font-bold text-[#0D2561] text-xl">Personal Details</div>
 			<div class="text-[#576171] text-sm">Please fill in your details correctly</div>
@@ -60,7 +47,7 @@
 			<input
 				type="text"
 				id="fullName"
-				bind:value={fullName}
+				bind:value={data.fullName}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 				required
 			/>
@@ -77,7 +64,7 @@
 					id="male"
 					name="gender"
 					value="male"
-					bind:group={gender}
+					bind:group={data.gender}
 					class="mr-2"
 					required
 				/>
@@ -89,7 +76,7 @@
 					id="female"
 					name="gender"
 					value="female"
-					bind:group={gender}
+					bind:group={data.gender}
 					class="mr-2"
 					required
 				/>
@@ -101,7 +88,7 @@
 					id="other"
 					name="gender"
 					value="other"
-					bind:group={gender}
+					bind:group={data.gender}
 					class="mr-2"
 					required
 				/>
@@ -118,7 +105,7 @@
 			<input
 				type="email"
 				id="email"
-				bind:value={email}
+				bind:value={data.email}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 				required
 			/>
@@ -132,7 +119,7 @@
 			<input
 				type="date"
 				id="dob"
-				bind:value={dob}
+				bind:value={data.dob}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 				required
 			/>
@@ -146,7 +133,7 @@
 			<div class="flex">
 				<select
 					id="countryCode"
-					bind:value={countryCode}
+					bind:value={data.countryCode}
 					class="w-20 px-4 py-2 mr-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 					required
 				>
@@ -157,7 +144,7 @@
 				<input
 					type="tel"
 					id="phoneNumber"
-					bind:value={phoneNumber}
+					bind:value={data.phoneNumber}
 					class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 					placeholder="Phone Number"
 					required
@@ -174,7 +161,7 @@
 				type="text"
 				id="addressLine1"
 				placeholder="Street address"
-				bind:value={addressLine1}
+				bind:value={data.addressLine1}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 				required
 			/>
@@ -187,7 +174,7 @@
 				type="text"
 				id="addressLine2"
 				placeholder="Street address"
-				bind:value={addressLine2}
+				bind:value={data.addressLine2}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 			/>
 		</div>
@@ -198,7 +185,7 @@
 			<input
 				type="text"
 				id="country"
-				bind:value={country}
+				bind:value={data.country}
 				class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 				required
 			/>
@@ -212,7 +199,7 @@
 					type="text"
 					id="city"
 					placeholder="Enter city/town"
-					bind:value={city}
+					bind:value={data.city}
 					class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 					required
 				/>
@@ -224,7 +211,7 @@
 				<input
 					type="text"
 					id="pincode"
-					bind:value={pincode}
+					bind:value={data.pincode}
 					class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
 					required
 				/>
@@ -232,7 +219,7 @@
 		</div>
 
 		<div class="mb-4">
-			<input type="checkbox" id="agreeToTerms" bind:checked={agreeToTerms} class="mr-2" required />
+			<input type="checkbox" id="agreeToTerms" bind:checked={data.agreeToTerms} class="mr-2" required />
 			<label for="agreeToTerms" class="text-gray-700">
 				By submitting this form, I agree to Zarurat Care using and verifying my information for
 				support. I understand my information will be kept confidential.
@@ -244,7 +231,7 @@
 			<input
 				type="checkbox"
 				id="subscribeToNewsletter"
-				bind:checked={subscribeToNewsletter}
+				bind:checked={data.subscribeToNewsletter}
 				class="mr-2"
 			/>
 			<label for="subscribeToNewsletter" class="text-gray-700">
@@ -254,7 +241,7 @@
 
 		<!-- Submit Button -->
 		<div class="flex ">
-			<button type="button" class="px-6 py-5 bg-[#0155BD] text-white rounded-full flex gap-3 hover:bg-blue-600" on:click={() => goto('/personal-detail2')} >
+			<button type="submit" class="px-6 py-5 bg-[#0155BD] text-white rounded-full flex gap-3 hover:bg-blue-600" >
 				Save and Continue
                 <span><RightArrow/></span>
 			</button>

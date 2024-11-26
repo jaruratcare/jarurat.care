@@ -4,6 +4,7 @@
 	import Envolve from "$lib/svg/about/envolve.svelte";
 	import Sustain from "$lib/svg/about/sustain.svelte";
 	import Impact from "$lib/svg/about/impact.svelte";
+	import { Splide, SplideSlide, SplideTrack } from "@splidejs/svelte-splide";
     
     const items = [
 		{
@@ -26,14 +27,26 @@
 			title: 'Evolve',
             about:"We adapt and grow to meet the changing needs of the cancer community, always striving to improve our services and expand our reach."
 		},
+		
 	];
 </script>
 
-<div class="h-[427px] md:ml-32 ml-4">
+<div class=" md:ml-28 ml-4">
 	<div class=" font-extrabold mb-11 text-xl">Our values</div>
-	<div class="flex gap-4 scroll-container overflow-auto">
-		{#each items as item}
-	<OurValueItem icon={item.icon} title={item.title} about={item.about}/>
-	{/each}
-	</div>
+		<Splide
+		hasTrack={false}
+		aria-label="..."
+		class="max-w-[70rem] mx-auto mt-8 z-10"
+		options={{ type: 'loop', arrows: false,perPage:3,autoplay:true,interval:2000,perMove:1,}}
+	>
+
+			<SplideTrack>
+				{#each items as item}
+					<SplideSlide class="p-2 pl-2 md:max-w-[80%] md:aspect-video">
+						<OurValueItem title={item.title} icon={item.icon} about={item.about}  />
+					</SplideSlide>
+				{/each}
+			</SplideTrack>
+
+	</Splide>
 </div>

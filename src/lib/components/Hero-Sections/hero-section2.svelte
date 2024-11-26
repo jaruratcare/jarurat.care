@@ -4,28 +4,29 @@
 </script>
 
 <div
-    class="relative h-screen w-full overflow-hidden flex items-center justify-start p-4 pl-10 mt-20"
+    class="relative h-screen w-full overflow-hidden flex items-center justify-center p-4 md:justify-start md:pl-10 mt-20"
     style="background-image: linear-gradient(to right, rgba(121, 202, 239, 0.5), rgba(69, 116, 137, 0.1)), url({bg}); background-size: cover; background-position: center;"
 >
 
-
-
     <!-- Hero Section -->
-    <div class="w-[600px] h-[383px] flex-col justify-start items-center gap-[50px] inline-flex">
-        <div class="self-stretch h-[269px] flex-col justify-start items-center gap-[21px] flex">
-            <div class="px-5 justify-center items-start gap-2.5 inline-flex">
-                <div class="text-center text-[#0d2460] text-2xl font-extrabold font-['Manrope'] uppercase leading-[28.80px]">Jaisi JARURAT Vaisi CARE</div>
+    <div class="w-full max-w-3xl md:max-w-lg lg:max-w-xl xl:max-w-2xl h-auto flex-col justify-start items-center gap-8 md:gap-12 inline-flex text-center md:text-left">
+        <div class="flex-col justify-start items-center gap-5 md:gap-8 flex">
+            <div class="px-5 flex justify-center items-center gap-2.5">
+                <div class="text-[#0d2460] text-xl md:text-2xl font-extrabold font-['Manrope'] uppercase leading-tight">Jaisi JARURAT Vaisi CARE</div>
             </div>
-            <div class="self-stretch h-[219px] flex-col justify-start items-center flex">
-                <div class="self-stretch h-[73px] flex-col justify-center items-center gap-2.5 flex">
-                    <div class="w-[634px] text-center text-white text-[70px] font-semibold font-['Rubik'] leading-[73.50px]">Make A</div>
+            <div class="flex-col justify-start items-center flex">
+                <div class="flex-col justify-center items-center gap-2.5 flex">
+                    <div class="w-full max-w-xs md:max-w-full text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-['Rubik'] leading-tight">Make A</div>
                 </div>
-                <div class="justify-start items-end gap-[15px] inline-flex">
-                    <div class="text-center"><span class="text-[#0d2460] text-[70px] font-semibold font-['Rubik'] leading-[73.50px]">“Difference”<br/></span><span class="text-white text-[70px] font-semibold font-['Rubik'] leading-[73.50px]">Today !</span></div>
+                <div class="justify-center md:justify-start items-center gap-3 flex flex-wrap">
+                    <div class="text-center">
+                        <span class="text-[#0d2460] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-['Rubik'] leading-tight">“Difference”<br /></span>
+                        <span class="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-['Rubik'] leading-tight">Today!</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <a href="#donate">
+        <a href="#donate" class="mt-5 md:mt-10">
             <Button class="bg-[#0155BD] transition transform hover:scale-110 duration-300 ease-in-out">Donate Today</Button>
         </a>
     </div>

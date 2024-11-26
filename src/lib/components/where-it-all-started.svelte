@@ -7,6 +7,7 @@
   import ImgMom from '$lib/assets/mom.webp';
   import OurVisionCard from "./our-vision-card.svelte";
 	import OurVisionCards from "./LandingPageComponents/cards/our-visionCards.svelte";
+	import Cards from "./cards.svelte";
   
   const slider = [
 		{
@@ -40,81 +41,92 @@
 </script>
 
 
-<div class="whereitallstarted overflow-hidden">
-<WhereItAllStartedwave/>
-
-<div class="w-full h-[fit] px-[210px] pt-[90px] pb-[91px] bg-[#0c2461] justify-center items-center flex-col">
-   <Header color="#ffffff" title="Where it all" spantitle="started"></Header>
-
-   <!-- Where it all Started -->
-<div id="about" class="py-8 sm:py-32 max-w-[60rem] mx-auto">
-	<Splide hasTrack={false} options={{ perPage: 1, type: 'loop', gap: '2rem', pagination: true }}>
-		<div
-			class="splide__arrows items-center justify-between gap-2 absolute -inset-x-16 h-full hidden xl:flex"
-		>
+<div class="whereitallstarted overflow-hidden gap-0">
+	<!-- Wave Section -->
+	<div class="wave">
+	  <WhereItAllStartedwave />
+	</div>
+  
+	<!-- Main Section -->
+	<div
+	  class="w-full px-6 md:px-10 lg:px-[210px] pt-10 md:pt-16 lg:pt-[90px] pb-10 md:pb-16 lg:pb-[91px] bg-[#0c2461] flex flex-col justify-center items-center"
+	>
+	  <Header color="white" title="Where it all" spantitle="started"></Header>
+  
+	  <!-- About Section -->
+	  <div id="about" class="py-8 sm:py-16 lg:py-32 max-w-[60rem] mx-auto">
+		<Splide hasTrack={false} options={{ perPage: 1, type: 'loop', gap: '2rem', pagination: true }}>
+		  <div
+			class="splide__arrows items-center justify-between gap-2 absolute -inset-x-4 sm:-inset-x-8 lg:-inset-x-16 h-full hidden xl:flex"
+		  >
 			<Button class="splide__arrow splide__arrow--prev size-12 p-0 items-center border border-white">
-				<ChevronLeft class="w-full" />
+			  <ChevronLeft class="w-full" />
 			</Button>
-
-			<Button class="splide__arrow splide__arrow--next size-12 p-0 flex items-center bg-[#2CBFE2] ">
-				<ChevronRight class="w-full" />
+			<Button class="splide__arrow splide__arrow--next size-12 p-0 flex items-center bg-[#2CBFE2]">
+			  <ChevronRight class="w-full" />
 			</Button>
-		</div>
-
-		<SplideTrack>
+		  </div>
+  
+		  <SplideTrack>
 			{#each slider as slide}
-				<SplideSlide class="p-1 aspect-[16/9] ">
-					<div class="size-full relative rounded-xl sm:rounded-3xl overflow-hidden">
-						<img src={ImgMom} alt="Rekha Joshi - Jarurat Care" class="size-full object-cover" />
-						<div class="absolute inset-0 bg-[#002944]/40 flex items-center justify-center">
-                        <div class="absolute inset-0 bg-[#0c2461]/50 flex items-center justify-center w-[40%]">
-
-							<div
-								class="absolute top-4 left-0 max-w-[28rem] p-4 sm:p-8 text-[#DBE1E6] text-[0.8em] sm:text-[1.2em] leading-[1.3]"
-							>
-                            <div><span class="text-[#ffba41] text-[22px] font-normal font-['Rubik'] leading-normal">“She was a dedicated and kind spirited woman” <br/></span><span style="text-white text-lg font-normal font-['Rubik'] leading-normal"><br/>No one in the family was ready to hear her diagnosis. Her daughter Priyanka and family diligently helped Rekha ji to fight her battle.<br/><br/>It was Rekha ji’s last trip before she started her battle with Cholangiocarcinoma and succumbed on 25th December2023.<br/></span></div>
-							</div>
-						</div>
-                        </div>
+			<SplideSlide class="p-1 aspect-[16/9]">
+			  <div
+				class="size-full relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden"
+			  >
+				<img src={ImgMom} alt="Rekha Joshi - Jarurat Care" class="size-full object-cover" />
+				<div
+				  class="absolute inset-0 bg-[#002944]/40 flex items-center justify-center"
+				>
+				  <div
+					class="absolute inset-0 bg-[#0c2461]/50 flex items-center justify-center w-[80%] sm:w-[70%] lg:w-[40%]"
+				  >
+					<div
+					  class="absolute top-4 left-0 max-w-full sm:max-w-[28rem] p-4 sm:p-8 text-[#DBE1E6] text-xs sm:text-sm lg:text-base leading-[1.3]"
+					>
+					  <div>
+						<span class="text-[#ffba41] text-[18px] sm:text-[22px] font-normal font-['Rubik'] leading-normal"
+						  >“She was a dedicated and kind-spirited woman”</span
+						>
+						<br />
+						<span
+						  class="text-white text-[10px] sm:text-lg font-normal font-['Rubik'] leading-normal"
+						  ><br />No one in the family was ready to hear her
+						  diagnosis. Her daughter Priyanka and family diligently
+						  helped Rekha ji to fight her battle.<br /><br />It was
+						  Rekha ji’s last trip before she started her battle with
+						  Cholangiocarcinoma and succumbed on 25th December
+						  2023.</span
+						>
+					  </div>
 					</div>
-				</SplideSlide>
-
-				<SplideSlide class="p-1 aspect-[16/9] ">
-					<div class="size-full relative rounded-xl sm:rounded-3xl overflow-hidden">
-						<img src={ImgMom} alt="Rekha Joshi - Jarurat Care" class="size-full object-cover" />
-						<div class="absolute inset-0 bg-[#002944]/65 flex items-center justify-center">
-							<div
-								class="absolute bottom-0 left-0 max-w-[28rem] p-4 sm:p-8 text-[#DBE1E6] text-[0.8em] sm:text-[1.2em] leading-[1.3]"
-							>
-								<h3 class="block sm:hidden text-[1.5em] font-black text-[#F9FDFE] mb-2">
-									WHERE IT ALL <span class="text-[#FFBA41]">STARTED</span>
-								</h3>
-
-								Rekha's last trip before she started her battle with Cholangiocarcinoma and
-								succumbed on 25th December, 2023
-							</div>
-						</div>
-					</div>
-				</SplideSlide>
+				  </div>
+				</div>
+			  </div>
+			</SplideSlide>
 			{/each}
-		</SplideTrack>
-	</Splide>
-</div>
-
-<div class="w-fit max-w-[1200px] mx-auto p-10 h-[450px] bg-gradient-to-b from-[#0c245f] to-[#1055bd] rounded-[40px] flex flex-col justify-center items-center">
-    <!-- Title -->
-    <div class="text-center mb-6">
-        <span class="text-white text-[40px] font-medium font-['Rubik'] capitalize">Our </span>
-        <span class="text-[#ffba41] text-[40px] font-medium font-['Rubik'] capitalize">Vision</span>
-    </div>
-
-    <!-- Vision Cards -->
-    <div class="w-full max-w-[1000px] flex justify-between items-center gap-6 px-4">
-        <OurVisionCards title={card[0].title} subtitle={card[0].subtitle}></OurVisionCards>
-        <OurVisionCards title={card[1].title} subtitle={card[1].subtitle}></OurVisionCards>
-        <OurVisionCards title={card[2].title} subtitle={card[2].subtitle}></OurVisionCards>
-    </div>
-</div>
-</div>
-</div>
- 
+		  </SplideTrack>
+		</Splide>
+	  </div>
+  
+	  <!-- Vision Section -->
+	  <div
+		class="w-full max-w-[1200px] mx-auto p-6 sm:p-8 lg:p-10 h-auto  bg-gradient-to-b from-[#0c245f] to-[#1055bd] rounded-2xl lg:rounded-[40px] flex flex-col justify-center items-center"
+	  >
+		<!-- Title -->
+		<div class="text-center mb-6">
+			<Header color="white" title="Our" spantitle="Vision"></Header>
+		</div>
+  
+		<!-- Vision Cards -->
+		<div class="w-full max-w-[1200px] flex flex-wrap sm:justify-center md:justify-center lg:justify-between items-center">
+			{#each card as card}
+			  <div class="card p-2">
+			  <OurVisionCards title={card.title} subtitle={card.subtitle} /></div>
+			{/each}
+		  </div>
+		  
+		  
+	  </div>
+	</div>
+  </div>
+  

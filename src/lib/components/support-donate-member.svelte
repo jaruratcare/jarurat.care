@@ -51,7 +51,7 @@
 			<div class="w-14 p-2 bg-white rounded-full mb-4">
 				<svelte:component this={card.icon}></svelte:component>
 			</div>
-
+              
 			<h2 class="max-w-[14rem] mx-auto text-center font-playfair-display text-3xl">{card.title}</h2>
 			<div class="grow"></div>
 			<p class="max-w-[15rem] w-full text-center sm:text-left sm:text-sm mt-4">

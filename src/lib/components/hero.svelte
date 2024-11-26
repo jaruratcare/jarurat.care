@@ -138,8 +138,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     overflow: hidden;
     z-index: 1;
     transition: transform 0.3s ease-in-out; 

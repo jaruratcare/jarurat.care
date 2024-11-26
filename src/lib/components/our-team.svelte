@@ -42,7 +42,7 @@
 	<OurTeamwave/>
 </div>
 
-<div class="max-w-[100%] mx-auto pb-16 sm:pb-20 px-2 overflow-hidden flex-col justify-center items-center relative">
+<div class=" mx-auto pb-16 sm:pb-20 px-2 overflow-hidden flex-col justify-center items-center relative">
 	<Header title="Hear from " spantitle="our team" class="text-center font-rubik" />
 
 	<div class="cards w-[80%] flex justify-between mt-10">

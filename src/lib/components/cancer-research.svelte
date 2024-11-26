@@ -64,36 +64,52 @@
 	</p>
 
 	<Splide
-		hasTrack={false}
-		aria-label="..."
-		class="max-w-[80rem] mx-auto mt-4"
-		options={{ perPage: innerWidth < 600 ? 1 : 3, type: 'loop', gap: '2rem' }}
-	>
-		<div class="splide__arrows flex items-center justify-end gap-2 mb-2">
-			<Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center transition transform duration-300 ease-in-out">
-				<ChevronLeft class="w-full" />
-			</Button>
-			<Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center transition transform duration-300 ease-in-out">
-				<ChevronRight class="w-full" />
-			</Button>
-		</div>
+  hasTrack={false}
+  aria-label="..."
+  class="max-w-[80rem] mx-auto mt-4"
+  options={{
+    perPage: innerWidth < 600 ? 1 : 3,
+    type: 'loop',
+    gap: '2rem',
+    breakpoints: {
+      640: {
+        perPage: 1,
+      },
+      768: {
+        perPage: 2,
+      },
+      1024: {
+        perPage: 3,
+      },
+    },
+  }}
+>
+  <div class="splide__arrows flex items-center justify-end gap-2 mb-2">
+    <Button class="splide__arrow splide__arrow--prev size-8 p-0 items-center transition transform duration-300 ease-in-out">
+      <ChevronLeft class="w-full" />
+    </Button>
+    <Button class="splide__arrow splide__arrow--next size-8 p-0 flex items-center transition transform duration-300 ease-in-out">
+      <ChevronRight class="w-full" />
+    </Button>
+  </div>
 
-		<div class="custom-wrapper">
-			<SplideTrack>
-				{#each results as result}
-					<SplideSlide class="p-1">
-						<div class="h-full flex flex-col gap-1 border rounded-lg p-4 sm:p-8 bg-white">
-							<h2 class="text-[#04509C] text-[1.2em] leading-[1.3] font-semibold">
-								{result.title}
-							</h2>
-							<div class="grow"></div>
-							<p class="text-[#576171]">{result.excerpt.trim().substring(0, 100) + '...'}</p>
+  <div class="custom-wrapper">
+    <SplideTrack>
+      {#each results as result}
+        <SplideSlide class="p-1">
+          <div class="h-full flex flex-col gap-1 border rounded-lg p-4 sm:p-8 bg-white">
+            <h2 class="text-[#04509C] text-[1.2em] leading-[1.3] font-semibold">
+              {result.title}
+            </h2>
+            <div class="grow"></div>
+            <p class="text-[#576171]">{result.excerpt.trim().substring(0, 100) + '...'}</p>
 
-							<Button class="mt-4 px-4 py-1 self-start text-sm transition transform duration-300 ease-in-out">Know More</Button>
-						</div>
-					</SplideSlide>
-				{/each}
-			</SplideTrack>
-		</div>
-	</Splide>
+            <Button class="mt-4 px-4 py-1 self-start text-sm transition transform duration-300 ease-in-out">Know More</Button>
+          </div>
+        </SplideSlide>
+      {/each}
+    </SplideTrack>
+  </div>
+</Splide>
+
 </div>

@@ -60,21 +60,21 @@
 	  spantitle="Support You"
 	  spantitleColor="#0155BD" 
 	/>
-
-	<div class="relative flex items-center justify-center w-fit h-screen"> <!-- Changed to relative for absolute positioning -->
+  
+	<div class="relative flex items-center justify-center w-full h-screen">
 		<Splide
 		  hasTrack={false}
 		  aria-label="Carousel"
 		  class="max-w-[80rem] mx-auto mt-4"
 		  options={{
-			perPage, // Now perPage is dynamic and changes after `onMount`
+			perPage, // Dynamic `perPage`
 			type: 'loop',
 			gap: '4rem',
 			pagination: false
 		  }}
 		>
-		  <!-- Custom navigation arrows -->
-		  <div class="splide__arrows flex items-center justify-end gap-2 mb-2">
+		  <!-- Scroll buttons positioned at the bottom for small screens -->
+		  <div class="splide__arrows flex items-center justify-center gap-2 mb-2 absolute bottom-0 left-0 right-0 sm:static sm:bottom-auto sm:mb-0">
 			<Button class="splide__arrow splide__arrow--prev size-12 p-0 items-center">
 			  <ChevronLeft class="w-full" />
 			</Button>
@@ -83,59 +83,57 @@
 			</Button>
 		  </div>
 	  
-		  <!-- Custom wrapper for track and slides -->
 		  <div class="custom-wrapper ml-16">
 			<SplideTrack>
 			  {#each cards as card}
-				<SplideSlide class="p-1">
-				  <div class="w-fit h-full bg-white rounded-[10px] flex-col justify-start items-center gap-2.5 inline-flex">
-					<div class="w-full h-[2rem] sm:h-[2.5rem] relative z-10 flex items-center justify-center">
-					  <div class="aspect-square w-[6rem] sm:w-[6rem] translate-y-1/4 rounded-full p-[0.1rem] bg-white border">
-						<div class="size-full bg-white flex items-center justify-center rounded-full">
-						  <svelte:component this={card.icon} />
-						</div>
-					  </div>
-					</div>
-	  
-					<div class="px-8 sm:px-8 py-6 sm:py-12 rounded-xl sm:rounded-2xl ring bg-white flex flex-col items-center gap-2 sm:gap-4 text-center relative grow">
-					  <div class="flex flex-col gap-2 sm:gap-4 grow mt-6 size-full">
-						<h3 class="font-manrope font-bold text-[1.1em] sm:text-[1.3em] leading-[1]">
-						  {card.title}
-						</h3>
-						<p class="font-manrope font-medium text-[0.9em]">
-						  {card.description}
-						</p>
+			  <SplideSlide class="p-1">
+				<div class="w-fit h-full bg-white rounded-[10px] flex flex-col justify-start items-center gap-2.5">
+				  <!-- Icon Section -->
+				  <div class="w-full h-[2rem] sm:h-[2.5rem] relative z-10 flex items-center justify-center">
+					<div class="aspect-square w-[6rem] sm:w-[6rem] translate-y-1/4 rounded-full p-[0.1rem] bg-transparent">
+					  <div class="size-full bg-white flex items-center justify-center rounded-full">
+						<svelte:component this={card.icon} />
 					  </div>
 					</div>
 				  </div>
-				</SplideSlide>
+	  
+				  <!-- Content Section -->
+				  <div class="px-8 py-6 sm:py-12 mt-6 sm:mt-0 rounded-xl ring bg-white flex flex-col items-center gap-4 text-center relative grow">
+					<h3 class="font-bold text-[1.1em] sm:text-[1.3em]">{card.title}</h3>
+					<p class="font-medium text-[0.9em]">{card.description}</p>
+				  </div>
+				</div>
+			  </SplideSlide>
 			  {/each}
 			</SplideTrack>
 		  </div>
 		</Splide>
 	  
-		<!-- Gradient div in the right corner -->
-		<div class="absolute top-0 right-0 w-[10rem] h-[900px] bg-gradient-to-l from-[rgba(255,255,255,0.3)] to-[rgba(255,255,255,0.7)] flex-col justify-center items-center inline-flex">
-		  <!-- Add any additional content or styles for this div here -->
+		<!-- Gradient Div -->
+		<div class="absolute top-0 right-0 w-[10rem] h-[900px] bg-gradient-to-l from-white/30 to-white/70 flex-col justify-center items-center">
+		  <!-- Additional content -->
 		</div>
 	  </div>
+	  
   
+	<!-- Contact Buttons -->
 	<div class="flex justify-center mt-6">
-	  <div class="btn">
-		<a 
+	  <div class="btn flex gap-4">
+		<a
 		  href="mailto:jaruratcare@gmail.com?subject=Seek%20Support%20For%20Cancer"
-		  class="inline-block p-2 mx-auto underline">
+		  class="underline">
 		  <Button2 color='#0153BC'>Contact Us</Button2>
 		</a>
 		<a
 		  href="mailto:jaruratcare@gmail.com?subject=Seek%20Support%20For%20Cancer"
-		  class="inline-block p-2 mx-auto underline">
+		  class="underline">
 		  <Button>Seek Support</Button>
 		</a>
 	  </div>
-	</div>  
+	</div>
   </div>
-
+  
+  <!-- Services Section -->
   <div class="services flex flex-col lg:flex-row">
 	<!-- First part -->
 	<div class="w-full lg:w-1/2 h-auto px-4 py-10 lg:py-36 bg-[#2cbfe2]/60 flex-col justify-start items-center gap-2.5 relative">
@@ -160,8 +158,10 @@
 			</div>
 		  </div>
 		  <!-- The sliding PNG -->
-		  <div class="sliding-png absolute top-32 right-[-300px] w-[40%] h-full  bg-no-repeat  transition-all duration-500 ease-in-out"
-         style="background-image: url({pngimage});"></div>
+		<div class="sliding-png absolute top-32 right-[-250px] sm:right-[-300px] lg:right-[-300px] w-[50%] sm:w-[50%] lg:w-[40%] h-full bg-no-repeat transition-all duration-500 ease-in-out"
+		style="background-image: url({pngimage});">
+		</div>
+
 		</div>
 		
 	  </div>
@@ -171,7 +171,7 @@
 		<div class="max-w-full lg:w-[800px] h-auto px-[30px] lg:px-[60px] pt-8 pb-6 rounded-[10px] shadow flex-col justify-start items-start gap-2.5 relative z-10 overflow-hidden bg-transition"
 			 style="background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url({caregiverimg}); background-size: cover; background-position: center;">
 		  
-		  <div class="flex flex-col gap-7">
+			 <div class="flex flex-col gap-7 relative z-20">
 			<div>
 			  <div class="text-[#e7ebf1] text-[30px] lg:text-[40px] font-semibold font-['Rubik']">
 				Connect with a <span class="caregiver text-[#2cbfe2]">Caregiver</span> for Your Cancer Journey
@@ -190,15 +190,15 @@
 			</div>
 		  </div>
 	  
-		  <!-- The sliding PNG -->
-		  <div class="sliding-png absolute top-32 right-[-300px] w-[40%] h-full bg-no-repeat transition-all duration-500 ease-in-out"
-			   style="background-image: url({manpngimage});"></div>
+		 <!-- The sliding PNG -->
+		<div class="sliding-png absolute top-32 right-[-250px] sm:right-[-200px] lg:right-[-300px] w-[50%] sm:w-[40%] lg:w-[40%] h-full bg-no-repeat transition-all duration-500 ease-in-out"
+		style="background-image: url({manpngimage});">
+		</div>
 		</div>
 	  </div>
-	  
-	  
-</div>
 
+</div>
+  
   
   <style lang="css">
 	.splide__arrows {

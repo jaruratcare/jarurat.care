@@ -37,12 +37,21 @@
 		hasTrack={false}
 		aria-label="..."
 		class="max-w-[70rem] mx-auto mt-8 z-10"
-		options={{ type: 'loop', arrows: false,perPage:3,autoplay:true,interval:2000,perMove:1,}}
+		options={{ type: 'loop',padding:10, arrows: false,autoplay:true,interval:2000,perMove:1,mediaQuery:"min", breakpoints: {
+            640: {
+                perPage: 2,
+                media: '(min-width: 640px)'
+            },
+            1024: {
+                perPage: 3,
+                media: '(min-width: 1024px)'
+            }
+        }}}
 	>
 
 			<SplideTrack>
 				{#each items as item}
-					<SplideSlide class="p-2 pl-2 md:max-w-[80%] md:aspect-video">
+					<SplideSlide class="p-2 pl-2 md:max-w-[80%]  md:aspect-video">
 						<OurValueItem title={item.title} icon={item.icon} about={item.about}  />
 					</SplideSlide>
 				{/each}

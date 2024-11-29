@@ -1,4 +1,5 @@
 <script>
+	 
 	import CancerProjectTvIcon from '$lib/svg/about/cancer-project-tv-icon.svelte';
 	import PatientAdviosry from '$lib/svg/about/patient-adviosry.svelte';
 	import ResourceGuidenceIcon from '$lib/svg/about/resource-guidence-icon.svelte';

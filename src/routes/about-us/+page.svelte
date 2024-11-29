@@ -1,4 +1,5 @@
 <script>
+    export let data;
     export let name = "About Us";
 	import AboutHeroSection from "$lib/components/about-hero-section.svelte";
 	import AboutUsSection from "$lib/components/about-us-section.svelte";
@@ -20,6 +21,6 @@
         <OurValue/>
     </div> 
     <OurJounery/>
-    <div class="bg-[#F8FCFF] pt-12"><OurCommunity/></div>
-    <CaregivingSolution/>
+    <div class="bg-[#F8FCFF] pt-12"><OurCommunity /></div>
+    <CaregivingSolution  data={data} />
     <NewletterCollabrate/>

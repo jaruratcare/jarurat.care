@@ -1,4 +1,6 @@
 <script>
+	export let data
+	const { advisoryBoardData } = data;
 	import CaregivingCard from './caregiving-card.svelte';
 	import WhiteLogo from '$lib/svg/white-logo.svelte';
 	import PeoplePlus from '$lib/svg/people-plus.svelte';
@@ -15,9 +17,8 @@
 	import { onMount } from 'svelte';
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 
-	let advisoryBoard = [];
 	let teamMeamber = [];
-	let communityMember = [];
+
 
 	let splideInstance1;
 	let splideInstance2;
@@ -63,50 +64,6 @@
 	const handlePrevClick2 = () => {
 		splideInstance2.go('<');
 	};
-
-	onMount(async () => {
-		//advisory board
-		try {
-			const response = await fetch(`http://localhost:5001/jc/advisoryBoard/profiles/getAll`);
-			if (!response.ok) {
-				throw new Error('Failed to fetch data');
-			}
-			let advisory = await response.json();
-			advisoryBoard = advisory?.profiles || [];
-			console.log('advisory board ', advisory);
-			console.log('profiles', advisoryBoard);
-			console.log('images', advisoryBoard?.images);
-		} catch (error) {
-			console.log(`network error:- ${error}`);
-		}
-
-		//team Member
-
-		try {
-			const response = await fetch('http://localhost:5001/jc/team/getAll/');
-			if (!response.ok) {
-				throw new Error('Failed to fetch data');
-			}
-			let memberarray = await response.json();
-			teamMeamber = memberarray?.members;
-			console.log('communityMember', teamMeamber);
-		} catch (error) {
-			console.log('network error ', error);
-		}
-
-		//community
-		try {
-			const response = await fetch(`http://localhost:5001/jc/community/getAll/`);
-			if (!response.ok) {
-				throw new Error('Failed to fetch data');
-			}
-			let memberArray = await response.json();
-			communityMember = memberArray?.members || [];
-			console.log('community member images ', communityMember[0]?.images?.[0]);
-		} catch (error) {
-			console.log('Network error:- ', error);
-		}
-	});
 
 	const items = [
 		{
@@ -188,9 +145,7 @@
 			</div>
 		</div>
 	</div>
-	<div
-		class="advisory mt-20 md:mt-1 board flex md:flex-row flex-col justify-center md:px-0 text-center md:text-start gap-9"
-	>
+	<div class="advisory mt-20 md:mt-1 board flex md:flex-row flex-col justify-center md:px-0 text-center md:text-start gap-9">
 		<div class="md:w-[332px] md:ml-20">
 			<div class="font-extrabold text-2xl">
 				<span class="text-primaryBlue">Advisory </span> <span class="text-black">Board</span>
@@ -214,35 +169,14 @@
 			>
 				<NextIcon />
 			</button>
+       
+			
+				{#each advisoryBoardData as profile}
 
-			<Splide
-				options={{
-					type: 'loop',
-					perPage: 3,
-					gap: '5rem',
-					autoplay: false,
-					speed: 800,
-					arrows: false,
-					pagination: false,
-					breakpoints: {
-						768: {
-							perPage: 1, // Ensure 1 card is shown on phones
-							gap: '1rem' // Smaller gap for mobile
-						},
-						1212: {
-							perPage: 2 // 2 cards between 768px and 1212px
-						}
-					}
-				}}
-				bind:this={splideInstance1}
-				class=""
-			>
-				{#each advisoryBoard as profile}
-					<SplideSlide>
-						<Cards image={profile.images[0]} name={profile.name} about={profile.designation} />
-					</SplideSlide>
+						{console.log("hello")}
+
 				{/each}
-			</Splide>
+			
 		</div>
 	</div>
 

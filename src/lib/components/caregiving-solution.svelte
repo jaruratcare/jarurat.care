@@ -97,14 +97,31 @@
 <!-- Caregiving Section -->
 <div class="bg-[#D3F2FC] mt-64 relative">
 	<div class="h-[411px]">
-		<div class="lg:px-16 px-8 py-16 bg-[#0D2561] absolute -top-44 md:left-[5%] left-0 rounded-3xl">
-			<div class="text-xl text-start md:text-center font-extrabold mb-8">
-				<span class="text-white">CAREGIVING</span> <span class="text-[#FFBA41]">Solution</span>
+		<div
+			class="lg:px-12 px-8 py-16 bg-[#0D2561] w-[90%] absolute -top-44 md:left-[4%] left-0 rounded-3xl"
+		>
+			<div class="text-2xl text-start md:text-center font-extrabold mb-8">
+				<span class="text-white"> Caregiving </span> <span class="text-[#FFBA41]">Solutions</span>
 			</div>
-			<div class="flex lg:gap-10 gap-6">
-				{#each items as item}
-					<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
-				{/each}
+			<div class="">
+				<Splide
+					options={{
+						type: '',
+						perPage: particlesToShow,
+						gap: '8rem',
+						autoplay: false,
+						speed: 800,
+						arrows: false,
+						pagination: true
+					}}
+					class="w-[98%]  .splide__pagination__page"
+				>
+					{#each items as item}
+						<SplideSlide>
+							<CaregivingCard icon={item.icon} about={item.about} title={item.title} />
+						</SplideSlide>
+					{/each}
+				</Splide>
 			</div>
 		</div>
 	</div>
@@ -163,7 +180,7 @@
 
 	<!-- Background Wave -->
 	<div class="absolute bottom-[28rem] hidden lg:block left-0 w-[99.5%] rotate-6 z-10">
-		<WaveUnion />
+		<!-- <WaveUnion /> -->
 	</div>
 
 	<!-- Pioneers Section -->

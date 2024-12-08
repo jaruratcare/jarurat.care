@@ -1,5 +1,28 @@
 <script>
 	import NextIcon from '$lib/svg/next-icon.svelte';
+	let subscribed = false;
+	let email = '';
+
+	const subscribeNewsletter = async (mailId) => {
+		try {
+			const response = await fetch('https://jarurat-care-backend.onrender.com/jc/newsletter/subscription/create', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					email: mailId // Send only the email in the request body
+				})
+			});
+			const result = await response.json();
+			if (result.success == true) {
+				subscribed = true;
+			}
+			console.log(`Success: ${result.message}`);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 </script>
 
 <div class="flex flex-col-reverse lg:flex-row">
@@ -15,14 +38,24 @@
 				</div>
 			</div>
 			<div class="gap-10 flex flex-col md:flex-row">
-				<input
-					type="text"
-					class="rounded-lg md:w-96 px-3 py-4"
-					placeholder="Enter you email address"
-				/>
-				<button class="text-[#0155BD] border border-[#0155BD] font-bold px-4 py-2 rounded-3xl">
-					Submit</button
-				>
+				{#if !subscribed}
+					<input
+						type="email"
+						class="rounded-lg md:w-96 px-3 py-4"
+						placeholder="Enter you email address"
+						bind:value={email}
+					/>
+					<button
+						class="text-[#0155BD] border border-[#0155BD] font-bold px-8 py-2 rounded-[50px]"
+						on:click={subscribeNewsletter(email)}
+					>
+						Submit</button
+					>
+				{:else}
+					<button class="text-[#0155BD] border border-[#0155BD] font-bold px-8 py-2 rounded-[50px]">
+						Subscribed</button
+					>
+				{/if}
 			</div>
 		</div>
 	</div>

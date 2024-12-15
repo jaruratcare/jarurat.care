@@ -25,7 +25,7 @@
 		{disabled}
 		on:change={(ev) => onChange(ev.currentTarget.value)}
 	/>
-	<small class="md:py-2 py-1 px-6 md:px-12 text-[0.7em] md:text-[0.8em] flex items-center gap-1">
+	<small class="sm:py-3 py-2 px-8 sm:px-12 text-[0.8em] sm:text-[0.85em] font-thin flex items-center gap-1">
 		{label || value}
 	</small>
 </label>

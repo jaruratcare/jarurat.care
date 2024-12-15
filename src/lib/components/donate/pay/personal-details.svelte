@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowRight, LoaderCircle, Check } from 'lucide-svelte';
+	import { ArrowRight, LoaderCircle, Check, ArrowLeft } from 'lucide-svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import Input from '$lib/components/ui/input.svelte';
 	import { createEventDispatcher } from 'svelte';
@@ -22,7 +22,7 @@
 	const fields = [
 		{
 			type: 'text',
-			label: 'Full Name',
+			label: 'Name',
 			placeholder: 'Enter your full name',
 			name: 'full-name',
 			required: true
@@ -46,7 +46,7 @@
 		{
 			type: 'tel',
 			label: 'Phone',
-			placeholder: 'Enter your phone',
+			placeholder: 'Enter your Mobile no',
 			prefix: '+91',
 			name: 'phone',
 			required: true
@@ -67,12 +67,13 @@
 	];
 </script>
 
-<div class="font-manrope flex flex-col items-center gap-4 px-4 py-6 rounded-2xl bg-white shadow w-full">
-	<div class="flex gap-4 item-center justify-center">
-		<h3 class="text-[0.7em] font-extralight px-10 py-1.5 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
+
+<div class="font-manrope flex flex-col items-center gap-4 bg-white">
+	<div class="flex gap-4 item-center justify-center py-4">
+		<h3 class="text-[0.9em] font-extralight px-10 py-1.5 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
 			{selectedPaymentType === 'one-time' ? 'Pay-Once' : 'Monthly'}
 		</h3>
-		<h3 class="text-[0.7em] font-extralight py-1.5 px-10 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
+		<h3 class="text-[0.9em] font-extralight py-1.5 px-10 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
 			₹{selectedAmount}
 		</h3>
 	</div>
@@ -111,16 +112,16 @@
 
 	<div class="flex gap-2">
 		<Button
-			class="flex items-center gap-1 px-4 py-1 bg-white text-[#0155bd] border border-[#0155bd] "
-			on:click={() => dispatch('back', {})}
+			class="flex items-center gap-1 px-4 py-2 z-20"
+			on:click={() => dispatch('back')}
 		>
-			Back
+			<ArrowLeft/> Go Back
 		</Button>
-		<Button class="bg-[#0155bd] flex items-center gap-1 px-4 py-1" on:click={onSubmit}>
+		<Button class="bg-[#0155bd] flex items-center gap-1 px-4 py-1 z-10" on:click={onSubmit}>
 			{#if isLoading}
 				<LoaderCircle class="animate-spin" />
 			{:else}
-				Continue <ArrowRight />
+				Procced to Donate <ArrowRight />
 			{/if}
 		</Button>
 	</div>

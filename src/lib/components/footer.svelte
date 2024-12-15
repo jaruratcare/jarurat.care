@@ -9,7 +9,7 @@
 		<div class="flex flex-row items-center py-4">
 			<LogoSquare class="max-w-[2.5em] sm:max-w-[3.5em] w-full" />
 			<div class="flex flex-col gap-1 leading-[1] text-[1.2em] md:text-[2em] ml-4">
-				<span class="font-semibold">Jaruratcare Foundation</span>
+				<span class="font-semibold">Jarurat Care Foundation</span>
 				<small class="text-[0.6em] text-center md:text-start text-[#BFE9E8]">Jaisi Jarurat, Vaisi Care</small>
 			</div>
 		</div>

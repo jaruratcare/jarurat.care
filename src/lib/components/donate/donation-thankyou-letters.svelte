@@ -1,13 +1,14 @@
 <script>
-    import { onDestroy, onMount } from 'svelte';
+	import { onDestroy, onMount, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 	import Button from '../ui/button.svelte';
 	import { Splide, SplideSlide, SplideTrack } from '@splidejs/svelte-splide';
-	import SingleWavedown from '$lib/svg/single-wavedown.svelte';
-    import FindMentorImg from '$lib/assets/donate/find-a-mentor.webp'
+	import ThanksBgImg from '$lib/assets/donate/thank-you-bg-image.webp';
 	import JSON_ThanksLetters from '$lib/data/donate/thank-you-letters.json';
+	import Quotes from '$lib/svg/quotes.svelte';
+	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 
-    let innerWidth = writable(0);
+	let innerWidth = writable(0);
 
 	onMount(() => {
 		innerWidth.set(window.innerWidth);
@@ -35,88 +36,96 @@
 			activeDotObserver.observe(dot, { attributes: true });
 		});
 
-        onDestroy(() => {
-            activeDotObserver.disconnect();
-        });
+		onDestroy(() => {
+			activeDotObserver.disconnect();
+		});
 	});
 </script>
 
-<div>
-    <div class="flex md:hidden w-full mt-20">
-        <div class="w-full bg-[#D3F2FC] rounded-t-3xl relative">
-            <img src="{FindMentorImg}" alt="" class="w-full object-cover object-center">
-            <h1 class="absolute text-2xl text-white max-w-48 font-semibold font-rubik top-8 left-4">Find a Mentor for Your <span class="text-[#ffba41]">Cancer</span> Journey</h1>
-            <Button class="absolute bottom-10 z-10 custom-button left-4 px-7 py-2">Seek Support</Button>
-        </div>
-    </div>
+<div
+	class="sm:min-h-screen sm:max-w-screen min-w-screen sm:bg-cover bg-contain bg-no-repeat bg-right-bottom font-rubik bg-[#92C0DE]"
+	style="background-image: url('{ThanksBgImg}')"
+>
+	<div class="sm:py-16 py-4">
+		<div class="flex flex-col items-start justify-center gap-2 sm:px-40 px-4 py-4">
+			<h2 class="text-[1.5em] sm:text-[2em] text-[#0D2561] leading-tight">
+				Thank You <span class="text-[#0155BD]">Letters</span>
+			</h2>
+			<p class="text-gray-700 leading-snug text-[0.7em] sm:text-[0.9em] md:w-[48%] w-[100%]">
+				The Impact of Your Kindness: Letters from Beneficiaries
+			</p>
+		</div>
 
-    <div class="py-8 sm:py-24 bg-[#D3F2FC] md:bg-white">
-        <div class="flex flex-col items-center justify-center mx-auto px-5 sm:px-10">
-            <h2 class="text-[1.5em] sm:text-[2em] font-bold text-[#0D2561] leading-tight">
-                Thank you <span class="text-[#0155BD]">letters</span>
-            </h2>
-            <p class="text-[#0D2561] text-center font-medium leading-snug text-[0.7em] sm:text-[0.9em] md:w-[48%] w-[100%]">
-                The Impact of Your Kindness: Letters from Beneficiaries
-            </p>
-        </div>
+		<Splide
+			hasTrack={false}
+			class="sm:py-12 pl-4 sm:px-40 z-10 relative"
+			options={{
+				start: 1,
+				perPage: 3,
+				perMove: 1,
+				gap: '5rem',
+				type: 'loop',
+				drag: 'free',
+				snap: false,
+				interval: 3000,
+				arrows: true,
+				pagination: false,
+				rewind: false,
+				rewindByDrag: true,
+				lazyLoad: true,
+				breakpoints: {
+					600: {
+						start: 1,
+						perPage: 1.2,
+						perMove: 1,
+						snap: true,
+						gap:'1rem'
+					}
+				}
+			}}
+		>
+			<div class="custom-wrapper relative">
+				<SplideTrack>
+					{#each JSON_ThanksLetters as item}
+						<SplideSlide>
+							<div
+								class="relative mx-auto sm:aspect-square aspect-auto h-full sm:p-8 p-4 py-8 bg-white rounded-lg shadow-lg overflow-hidden transition-shadow hover:shadow-xl group"
+							>
+								<div class="text-[#1E88E5] group-hover:text-[#FDE3A7] transition-colors">
+									<Quotes class="group-hover:fill-[#ffd06a]"/>
+								</div>
 
-        <Splide
-        hasTrack={false}
-        class="md:px-16 px-4 mt-8 z-10 relative"
-        options={{
-            start: 1,
-            perPage: 4,
-            perMove: 4,
-            gap: '1rem',
-            type: "loop",
-            drag: "free",
-            snap: false,
-            interval: 3000,
-            arrows: false,
-            pagination: true,
-            rewind: true,
-            rewindByDrag: true,
-            lazyLoad: true,
-            breakpoints: {
-                600: {
-                    start:1,
-                    perPage: 1,
-                    perMove: 1,
-                    snap: true
-                }
-            }
-            }}
-            >
+								<div class="mt-4">
+									<h3 class="text-base text-gray-400 transition-transform group-hover:scale-y-110">
+										{item.title}
+									</h3>
+									<p
+										class="mt-2 text-gray-900 text-xs transition-transform group-hover:scale-y-105"
+									>
+										{item.content}
+									</p>
+								</div>
+								<p class="mt-2 text-gray-500 group-hover:text-gray-500 transition-all text-xs">
+									{item.name} <br />
+									{item.description}
+								</p>
 
-            <div class="custom-wrapper relative">
-                <SplideTrack>
-                    {#each JSON_ThanksLetters as item, index}
-                    <SplideSlide>
-                        <div class="h-full flex flex-col justify-start aspect-[6/6] rounded-xl bg-white border-blue-500/50 overflow-hidden relative group">
-                            <div class="w-full h-full py-8 px-4 md:py-16 md:px-12 mx-auto rounded-xl border transition-all duration-300 ease-in-out {index % 2 != 0 ? 'group-hover:bg-white' : 'group-hover:bg-transparent'}">
-                                <small class="block {index % 2 != 0 ? 'text-white group-hover:text-[#0D2561]' : 'text-[#0D2561] group-hover:text-white'} font-bold leading-snug transition-all duration-300 ease-in-out">"{item.title}"</small>
-                                <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-[#0D2561]' : 'text-[#0D2561] group-hover:text-white'} leading-snug min-h-24 py-4 transition-all duration-300 ease-in-out">"{item.content}"</p>
-                                <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-gray-600' : 'text-gray-600 group-hover:text-white'} font-semibold leading-snug transition-all duration-300 ease-in-out">{item.name}</p>
-                                <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-gray-600' : 'text-gray-600 group-hover:text-white'} font-semibold leading-snug transition-all duration-300 ease-in-out">{item.description}</p>
-                            </div>
-                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-300 ease-in-out {index % 2 != 0 ? 'opacity-100 group-hover:opacity-0' : 'opacity-0 group-hover:opacity-100'}" style="background-image: url('{item.imgSrc}');">
-                                <div class="w-full h-full py-8 px-4 md:py-16 md:px-12 mx-auto rounded-xl border transition-all duration-300 ease-in-out {index % 2 != 0 ? 'group-hover:bg-white' : 'group-hover:bg-transparent'}">
-                                    <small class="block {index % 2 != 0 ? 'text-white group-hover:text-[#0D2561]' : 'text-[#0D2561] group-hover:text-white'} font-bold leading-snug transition-all duration-300 ease-in-out">"{item.title}"</small>
-                                    <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-[#0D2561]' : 'text-[#0D2561] group-hover:text-white'} leading-snug min-h-24 py-4 transition-all duration-300 ease-in-out">"{item.content}"</p>
-                                    <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-gray-600' : 'text-gray-600 group-hover:text-white'} font-semibold leading-snug transition-all duration-300 ease-in-out">{item.name}</p>
-                                    <p class="text-[0.7em] {index % 2 != 0 ? 'text-white group-hover:text-gray-600' : 'text-gray-600 group-hover:text-white'} font-semibold leading-snug transition-all duration-300 ease-in-out">{item.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </SplideSlide>
-                    {/each}
-                </SplideTrack>
-
-                <div class="splide__pagination flex justify-center py-6"></div>
-            </div>
-        </Splide>
-
-    </div>
-
-    <SingleWavedown fill="#D3F2FC" class="z-10 flex md:hidden"/>
+								<div
+									class="absolute inset-0 z-[-1] bg-white group-hover:bg-gradient-to-br group-hover:from-[#FDE3A7] group-hover:via-white group-hover:to-[#FDE3A7] transition-all duration-300"
+								></div>
+							</div>
+						</SplideSlide>
+					{/each}
+				</SplideTrack>
+			</div>
+			<div class="splide__arrows flex items-start justify-start gap-4 sm:mt-4 mt-2">
+				<Button class="splide__arrow splide__arrow--prev size-10 p-2 items-center">
+					<ChevronLeft class="w-full" />
+				</Button>
+				<Button class="splide__arrow splide__arrow--next size-10 p-2 flex items-center">
+					<ChevronRight class="w-full" />
+				</Button>
+			</div>
+		</Splide>
+	</div>
 </div>

@@ -3,7 +3,7 @@
 	import Community from '$lib/svg/community.svelte';
 	import Connect from '$lib/svg/connect.svelte';
 	import Resources from '$lib/svg/resources.svelte';
-	import SingleWave from '$lib/svg/single-wavedown.svelte';
+	import SingleWave from '$lib/svg/single-wavelightblue.svelte';
 
 	const cards = [
 		{

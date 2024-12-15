@@ -6,7 +6,7 @@
 	import AnimatedWave from '$lib/svg/animated-wave.svelte';
 	import { onMount } from 'svelte';
 	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
-	import SingleWave from '$lib/svg/single-wavedown.svelte';
+	import SingleWave from '$lib/svg/single-wavelightblue.svelte';
 
 	let innerWidth = 0;
 	const blogs = [

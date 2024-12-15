@@ -6,14 +6,14 @@
 	export let amount;
 </script>
 
-<div class="font-manrope flex flex-col items-center gap-8 rounded-2xl bg-[#EFF2F5] shadow border overflow-hidden">
-	<div class="rounded-t-3xl bg-white w-full flex flex-col justofy-center items-center pt-8 pb-2">
+<div class="font-manrope flex flex-col items-center gap-8 rounded-2xl bg-[#EFF2F5] overflow-hidden">
+	<div class="rounded-t-3xl bg-white w-full flex flex-col justofy-center items-center gap-2">
 		<PaymentSuccessIcon class="size-[4rem]" />
 
-		<h3 class="font-rubik text-[1.4em] text-[#78C520] mt-2">Donation Successful</h3>
+		<h3 class="font-rubik text-[1.5em] font-semibold text-[#78C520] mt-2">Donation Successful</h3>
 
 		<div
-			class="my-4 border w-[90%] mx-auto leading-tight text-center p-4 flex flex-col gap-2 font-[0.8em] text-[#0d2561] rounded-xl"
+			class="my-4 border w-[85%] mx-auto leading-tight text-center p-3 flex flex-col gap-2 text-[0.8em] rounded-xl"
 		>
 			<p>Your donation of ₹{amount} has been successfully processed.</p>
 			<p>Transaction ID : <strong>{txnId}</strong></p>
@@ -27,10 +27,10 @@
 			</p>
 		</div>
 
-		<div class="flex gap-4 items-center text-[0.6em] pb-6 pt-3 text-gray-400 font-rubik">
-			<a href="/">About Us</a>
+		<div class="flex gap-4 items-center text-[0.6em] font-medium">
+			<a href="#about">About Us</a>
 			<a href="/">Advisory Board</a>
-			<a href="/">Need Help?</a>
+			<a href="mailto:jaruratcare@gmail.com">Need Help?</a>
 		</div>
 	</div>
 </div>

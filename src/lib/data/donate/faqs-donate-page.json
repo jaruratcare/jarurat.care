@@ -1,0 +1,82 @@
+[
+  {
+    "question": "What is the purpose of the donation page?",
+    "answer": "The donation page is designed to support cancer patients and fund awareness programs, treatments, and research initiatives."
+  },
+  {
+    "question": "Who manages the funds raised through donations?",
+    "answer": "Donations are managed by [Trust Name]'s finance team, ensuring transparency and accountability."
+  },
+  {
+    "question": "How does my donation help cancer patients?",
+    "answer": "Donations fund treatments, awareness campaigns, caregiver support, and innovative research projects."
+  },
+  {
+    "question": "Can I choose which program my donation supports?",
+    "answer": "Yes, you can specify if your donation should go towards a particular program like patient care or awareness drives."
+  },
+  {
+    "question": "Is my donation tax-deductible?",
+    "answer": "Yes, all donations are eligible for tax benefits under [applicable law or section]."
+  },
+  {
+    "question": "How can I donate to your cancer trust?",
+    "answer": "You can donate via credit/debit cards, bank transfers, or payment apps directly through our secure donation portal."
+  },
+  {
+    "question": "Is my payment information secure?",
+    "answer": "Yes, our donation page uses encryption to ensure the highest level of security for your financial data."
+  },
+  {
+    "question": "Can I set up a recurring donation?",
+    "answer": "Yes, you can opt for monthly, quarterly, or yearly recurring donations."
+  },
+  {
+    "question": "Can I donate anonymously?",
+    "answer": "Yes, you have the option to donate without revealing your identity."
+  },
+  {
+    "question": "Will I receive a receipt for my donation?",
+    "answer": "Yes, a receipt will be emailed to you immediately after the donation is processed."
+  },
+  {
+    "question": "Can I donate in memory or honor of someone?",
+    "answer": "Yes, you can dedicate your donation to a loved one by selecting the \"In Memory\" or \"In Honor\" option."
+  },
+  {
+    "question": "Is there a minimum or maximum donation amount?",
+    "answer": "No, there’s no minimum or maximum limit—every contribution counts."
+  },
+  {
+    "question": "Can businesses or organizations donate?",
+    "answer": "Yes, corporate donations are welcome, and we can provide necessary documentation for your records."
+  },
+  {
+    "question": "What percentage of my donation goes to administrative costs?",
+    "answer": "We allocate [specific percentage, e.g., 90%] directly to programs, with minimal administrative costs."
+  },
+  {
+    "question": "Can I track the impact of my donation?",
+    "answer": "Yes, we provide regular updates on how donations are used through newsletters and reports."
+  },
+  {
+    "question": "What if my transaction fails?",
+    "answer": "If your transaction fails, please contact our support team at [contact info] or try again later."
+  },
+  {
+    "question": "I didn’t receive my receipt—what should I do?",
+    "answer": "Check your spam folder, and if it’s not there, contact us at [email/contact info] for assistance."
+  },
+  {
+    "question": "Can I cancel a recurring donation?",
+    "answer": "Yes, you can cancel or modify your recurring donation anytime through your account settings or by contacting us."
+  },
+  {
+    "question": "What currencies do you accept for donations?",
+    "answer": "We accept donations in [list currencies, e.g., USD, INR, EUR]."
+  },
+  {
+    "question": "Who can I contact if I have more questions about donating?",
+    "answer": "You can reach out to us at [phone number or email] for any additional queries."
+  }
+]

@@ -7,30 +7,27 @@
 	import { billingSchema, personalDetailsSchema } from './schema';
 
 	function updatePaymentData(data: Record<string, string | number>) {
-		paymentData.set({ ...$paymentData, ...data })
+		paymentData.set({ ...$paymentData, ...data });
 		return $paymentData;
 	}
 
-
-	let paymentData = writable({ amount: 1, 'payment-type': 'subscription' });
-
+	let paymentData = writable({ amount: 200, 'payment-type': 'subscription' });
 	let currentScreen = 'billing';
 	let isLoading = writable(false);
 	let transactionId = writable<string>('');
 
 	async function getTokenUrl(amount: number) {
-    transactionId.set('');
-    isLoading.set(true);
-    const resp = await fetch(`/api/payment/get-pay-page-url?amount=${amount}`, {
-        headers: { 'Content-Type': 'application/json' }
-    }).then((resp) => resp.json());
+		transactionId.set('');
+		isLoading.set(true);
+		const resp = await fetch(`/api/payment/get-pay-page-url?amount=${amount}`, {
+			headers: { 'Content-Type': 'application/json' }
+		}).then((resp) => resp.json());
 
-    const txnId = resp?.data?.txnId || '';
-    transactionId.set(txnId);
+		const txnId = resp?.data?.txnId || '';
+		transactionId.set(txnId);
 
-    return resp?.data?.url || '';
-}
-
+		return resp?.data?.url || '';
+	}
 
 	let reqCount = 1;
 	const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
@@ -42,11 +39,9 @@
 	async function paymentCallback() {
 		isLoading.set(true);
 		window.document.body.style.overflow = 'auto';
+
 		try {
-		   const amount = $paymentData.amount;
-         const name = $paymentData['full-name']; // Use bracket notation for properties with special characters
-         const email = $paymentData.email;
-			const response = await fetch(`/api/payment/verify-transaction?txn-id=${$transactionId}&name=${name}&email=${email}&amount=${amount}`, {
+			const response = await fetch(`/api/payment/verify-transaction?txn-id=${$transactionId}`, {
 				headers: { 'Content-Type': 'application/json' }
 			});
 			const json = await response.json();
@@ -128,7 +123,7 @@
 						on:submit={async () => {
 							const billingDetails = billingSchema.parse($paymentData);
 							const personalDetails = personalDetailsSchema.safeParse($paymentData);
-						
+
 							window.document.body.style.overflow = 'hidden';
 
 							if (personalDetails.success) {

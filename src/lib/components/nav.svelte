@@ -21,7 +21,7 @@
 	const pathname = $page.url.pathname;
 	const navItems = [
 		{ title: 'Home', href: '/' },
-		{ title: 'About Us', href: '/#about' },
+		{ title: 'About Us', href: '/about-us' },
 		{ title: 'Get Involved', href: '/get-involved' },
 
 		{ title: 'News & Blogs', href: '/#news' },

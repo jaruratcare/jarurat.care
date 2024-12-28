@@ -31,26 +31,25 @@ onMount(() => {
 	];
 </script>
 
-<div class="pb-10 w-[85%] mx-auto my-24">
+<div class="pb-10 w-[90%] lg:w-[85%] mx-auto my-24">
 	<div
-		class="w-full h-full bg-cover bg-center rounded-3xl"
-		style={`background-image: url(${background})`}
+			class="w-full h-full bg-cover bg-center rounded-3xl p-6 lg:p-10"
+			style={`background-image: url(${background})`}
 	>
-		<div class="text-white text-center flex justify-center items-center flex-col w-full">
-			<div class="py-7 font-extrabold text-xl">Our Vision</div>
-			<div class=" md:w-[580px]">
-				Our vision is to create an all-inclusive community of cancer warriors, caregivers, and
-				doctors in India, fostering support, knowledge sharing, and solidarity in the fight against
-				cancer.
+		<!-- Vision Section -->
+		<div class="text-white text-center flex flex-col justify-center items-center">
+			<div class="py-4 font-extrabold text-2xl lg:text-3xl">Our Vision</div>
+			<div class="mt-4 text-sm lg:text-base max-w-3xl">
+				Our vision is to create an all-inclusive community of cancer warriors, caregivers, and doctors in India, fostering support, knowledge sharing, and solidarity in the fight against cancer.
 			</div>
 		</div>
 
-		<div class="cards flex pl-5 gap-4 mt-8 justify-center  items-center">
-			<!-- <Carousel itemsToShow={particlesToShow} >  -->
-				{#each cards as item}
-					<OurVisionCard content={item} />
-				{/each}
-			 <!-- </Carousel> -->
+		<!-- Cards Section -->
+		<div class="cards grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 justify-center items-center">
+			{#each cards as item}
+				<OurVisionCard content={item} />
+			{/each}
 		</div>
 	</div>
 </div>
+

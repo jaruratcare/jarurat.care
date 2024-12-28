@@ -8,22 +8,23 @@
 	import { TriangleAlert } from 'lucide-svelte';
 	import SingleWaveDown from '$lib/svg/single-wavelightblue.svelte';
 
+  let paymentData = writable({ amount: 200, 'payment-type': 'subscription', email: '' });
+  
+	// Function to update payment data
 	function updatePaymentData(data: Record<string, string | number>) {
 		paymentData.set({ ...$paymentData, ...data });
 		return $paymentData;
 	}
 
-	let paymentData = writable({ amount: 200, 'payment-type': 'one-time' });
 	let currentScreen = 'billing';
-	// let currentScreen = 'details';
-	// let currentScreen = 'success';
 	let isLoading = writable(false);
 	let transactionId = writable<string>('');
-
-	function handleBack() {
+  
+  function handleBack() {
 		currentScreen = 'billing';
 	}
 
+	// Function to get payment token URL
 	async function getTokenUrl(amount: number) {
 		transactionId.set('');
 		isLoading.set(true);
@@ -37,49 +38,84 @@
 		return resp?.data?.url || '';
 	}
 
+	// Retry logic for payment status verification with exponential backoff
 	let reqCount = 1;
 	const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 	const delayTime = 1000;
 	const maxReqCount = 5;
 	const genRangeRandom = (min: number, max: number) =>
-		Math.floor(Math.random() * (max - min + 1)) + min;
+			Math.floor(Math.random() * (max - min + 1)) + min;
 
+	// Payment callback function to verify transaction
 	async function paymentCallback() {
 		isLoading.set(true);
 		window.document.body.style.overflow = 'auto';
 
+		const maxRetries = 5;
+		let retryCount = 0;
+		let backoffTime = 1000;
+
 		try {
-			const response = await fetch(`/api/payment/verify-transaction?txn-id=${$transactionId}`, {
-				headers: { 'Content-Type': 'application/json' }
-			});
-			const json = await response.json();
-			const data = json.data || {};
-			const state = data.state ? data.state.toLowerCase() : 'error';
+			const fetchTransactionStatus = async () => {
+				const response = await fetch(`/api/payment/verify-transaction?txn-id=${$transactionId}`, {
+					headers: { 'Content-Type': 'application/json' }
+				});
 
-			if ((state != 'completed' || state != 'error') && reqCount < maxReqCount) {
-				isLoading.set(true);
+				const json = await response.json();
+				const data = json.data || {};
+				const state = data.state ? data.state.toLowerCase() : 'error';
 
-				const delta = genRangeRandom(1000, 4_000);
-				const totalDelay = delayTime * reqCount + delta;
-				await delay(totalDelay);
-				reqCount++;
+				return { state, data };
+			};
 
-				return paymentCallback();
+			while (retryCount < maxRetries) {
+				const { state, data } = await fetchTransactionStatus();
+
+				if (state === 'completed') {
+					// Transaction successful
+					currentScreen = 'success';
+					isLoading.set(false);
+
+					// Send email with payment details (name, amount, email)
+					await fetch('https://jarurat-care-email-service.onrender.com/jarurat-care/sendMail/', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							name: $paymentData['full-name'],
+							amount: $paymentData.amount,
+							email: $paymentData.email
+						})
+					});
+
+					return { status: 'success', data };
+				}
+
+				if (state === 'error') {
+					// Transaction failed
+					alert('Failed to make the transaction');
+					isLoading.set(false);
+					return { status: 'error', data };
+				}
+
+				// If state is still processing/pending, retry with exponential backoff
+				retryCount++;
+				backoffTime *= 2;
+				console.log(`Retrying... Attempt ${retryCount} with ${backoffTime}ms delay`);
+
+				await new Promise(resolve => setTimeout(resolve, backoffTime));
 			}
 
-			if (state === 'completed') {
-				isLoading.set(false);
-				currentScreen = 'success';
-			} else alert('Failed to make the transaction');
-
-			return json;
-		} catch (err) {
-			2;
-			console.log(err);
-			return {};
-		} finally {
-			// finally
+			// If max retries are exhausted, show an alert
+			alert('Max retries reached. Please try again later.');
 			isLoading.set(false);
+			return { status: 'error', data: null };
+
+		} catch (err) {
+			console.error('Error in payment callback:', err);
+			isLoading.set(false);
+			return { status: 'error', data: null };
 		}
 	}
 </script>
@@ -111,7 +147,7 @@
 					</div>
 				</div>
 			</div>
-
+      
 			<div
 				class=" col-span-2 z-10 font-manrope flex flex-col items-center gap-4 rounded-2xl bg-white shadow overflow-hidden"
 			>
@@ -168,7 +204,6 @@
 							/>
 						{:else}
 							<SuccessScreen txnId={$transactionId} amount={$paymentData.amount} />
-							<!-- <SuccessScreen  amount={$paymentData.amount} /> -->
 						{/if}
 					</div>
 				</div>

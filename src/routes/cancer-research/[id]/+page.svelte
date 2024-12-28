@@ -24,12 +24,7 @@
    .bg-grad{
      background: linear-gradient(180deg, #ECF1F8 0%, #D1F1FB 100%);
   }
-   .border-grad {
-  border: 1px solid; /* Set a solid border to apply the gradient on */
-  border-image-source: linear-gradient(2.73deg, #00C8F4 -55.63%, #24D0F5 20.89%, #D6B7FF 104.25%, #FFFFFF 161.36%);
-  border-image-slice: 1; /* Ensures the gradient covers the entire border */
-  border-radius: 1rem; /* Apply rounded corners */
-}
+
 .text-gradient {
     background: linear-gradient(179.1deg, #132442 0.77%, #0155BD 125%);
     -webkit-background-clip: text;

@@ -2,6 +2,10 @@
 	import LogoSquare from '$lib/svg/logo-square.svelte';
 	import { ArrowUp, Instagram, Twitter, Facebook, Linkedin } from 'lucide-svelte';
 	import Button from './ui/button.svelte';
+	import Icon from '@iconify/svelte';
+	import instagramIcon from '@iconify-icons/mdi/instagram';
+	import twitterIcon from '@iconify-icons/mdi/twitter';
+	import facebookIcon from '@iconify-icons/mdi/facebook';
 </script>
 
 <div class="bg-[#0D2561] text-white p-4 sm:p-12 flex flex-col gap-4">
@@ -14,7 +18,7 @@
 			</div>
 		</div>
 
-		<div class="grow"></div>
+		<hr class="mx-26 border-gray-300" />
 
 		<div class="relative z-10 text-[0.8em] md:text-[0.9em] gap-2 md:flex flex flex-row items-center justify-center">
 			<a href="/donate"><Button class="custom-button md:px-6 md:py-3 px-4 py-2">Donate Now</Button></a>
@@ -22,9 +26,6 @@
 				<Button class="md:px-6 md:py-3 px-4 py-2">Seek Support</Button>
 			</a>
 		</div>
-	</div>
-
-
 
 	<div class="w-full h-[0.07em] opacity-30 md:hidden flex" style="background-image: linear-gradient(90deg, #00C8F4 0%, #24D0F5 33%, #D6B7FF 69%, #FFFFFF 94%);" ></div>
 
@@ -34,14 +35,14 @@
                 <ul class=" space-y-2">
                     <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Home</a></li>
                     <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Mission</a></li>
-                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Volunteer</a></li>
+                    <li><a href="/get-involved" class="hover:text-[#ffba41] hover:cursor-pointer">Volunteer</a></li>
                     <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Locate Hospitals</a></li>
                     <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Terms & Conditions</a></li>
                 </ul>
                 <ul class="space-y-2">
-                    <li><a href="/#about" class="hover:text-[#ffba41] hover:cursor-pointer">About Us</a></li>
+                    <li><a href="/about-us" class="hover:text-[#ffba41] hover:cursor-pointer">About Us</a></li>
                     <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">Blogs</a></li>
-                    <li><a href="/#news" class="hover:text-[#ffba41] hover:cursor-pointer">News</a></li>
+                    <li><a href="/" class="hover:text-[#ffba41] hover:cursor-pointer">News</a></li>
                     <li><a href="mailto:jaruratcare@gmail.com" class="hover:text-[#ffba41] hover:cursor-pointer">Contact Us</a></li>
                 </ul>
             </div>
@@ -83,4 +84,4 @@
 			</button>
 		</div>
 	</div>
-</div>
+</footer>

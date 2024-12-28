@@ -8,8 +8,8 @@
 		{ title: 'Doctor', count: 28, suffix: '' },
 		{ title: 'People', count: 1245, suffix: '' },
 		{ title: 'Early Treatments Initiated', count: 95, suffix: '%' },
-		{ title: 'Patients Assisted', count: 1000, suffix: '+' },
-		{ title: 'People Reached', count: 5, suffix: 'M' },
+		{ title: 'Patients Assisted', count: 150, suffix: '+' },
+		{ title: 'People Reached', count: 2000, suffix: '' },
 		{ title: 'Emotional Support Services', count: 50, suffix: '+' },
 		{ title: 'Early Treatments Initiated', count: 95, suffix: '+' }
 	];

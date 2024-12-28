@@ -10,6 +10,7 @@ const SALY_INDEX = "1";
 
 export async function getPayPageUrl(marchentUserId: string, amount: number) {
     try {
+
         const txnId = nanoid();
         const muId = marchentUserId || nanoid();
         const merchantTransactionId = txnId;
@@ -17,11 +18,8 @@ export async function getPayPageUrl(marchentUserId: string, amount: number) {
             merchantId: PHONEPE_MARCHENT_ID,
             merchantTransactionId: txnId,
             merchantUserId: muId,
-            // name: req.body.name,
             amount: amount * 100,
-            // mobileNumber: req.body.number,
             paymentInstrument: { type: "PAY_PAGE" },
-
             redirectUrl: "https://www.jarurat.care",
             redirectMode: "REDIRECT",
             callbackUrl: "https://www.jarurat.care",
@@ -73,36 +71,43 @@ export async function getPayPageUrl(marchentUserId: string, amount: number) {
     }
 }
 
-export async function verifyTxn(txnId?: string) {
-    try {
-        if (!txnId) throw new Error('No TxnId found')
+export async function verifyTxn(txnId?: string, name?: string, email?: string,amount:number) {
+	try {
+		if (!txnId) throw new Error('No TxnId found');
+		const payload = `/pg/v1/status/${PHONEPE_MARCHENT_ID}/${txnId}`;
+		const keyIndex = 1;
+		const sha256 = createHash('sha256').update(`${payload}${SALT_KEY}`).digest('hex');
+		const checksum = sha256 + '###' + SALY_INDEX;
+		const prodURL = `https://api.phonepe.com/apis/hermes${payload}`;
 
-        const payload = `/pg/v1/status/${PHONEPE_MARCHENT_ID}/${txnId}`;
-        const keyIndex = 1;
-        const sha256 = createHash("sha256")
-            .update(`${payload}${SALT_KEY}`)
-            .digest("hex");
-        const checksum = sha256 + "###" + SALY_INDEX;
+		const resp = await fetch(prodURL, {
+			method: 'GET',
+			headers: {
+				accept: 'application/json',
+				'Content-Type': 'application/json',
+				'X-VERIFY': checksum,
+				'X-MERCHANT-ID': PHONEPE_MARCHENT_ID
+			}
+		});
 
-        const prodURL = `https://api.phonepe.com/apis/hermes${payload}`;
-        const resp = await fetch(prodURL, {
-            method: "GET",
-            headers: {
-                accept: "application/json",
-                "Content-Type": "application/json",
-                "X-VERIFY": checksum,
-                "X-MERCHANT-ID": PHONEPE_MARCHENT_ID,
-            },
-        });
-
-        const json = await resp.json();
-
-        return {
-            status: "success",
-            data: (json || {}).data
-        }
-    } catch (err) {
-        console.log(err);
-        throw err
-    }
+		const json = await resp.json();
+		const data = (json || {}).data;
+		if (data?.status?.toLowerCase() === 'success') {
+            console.log("sending...");
+			await fetch('https://jarurat-care-email-service.onrender.com/jarurat-care/sendMail/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ name, amount: amount, email }) // Use the dynamic values here
+			});
+		}
+		return {
+			status: 'success',
+			data
+		};
+	} catch (err) {
+		console.log(err);
+		throw err;
+	}
 }

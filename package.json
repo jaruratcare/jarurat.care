@@ -40,6 +40,8 @@
 		"@fontsource/manrope": "^5.0.20",
 		"@fontsource/playfair-display": "^5.0.24",
 		"@fontsource/rubik": "^5.0.20",
+		"@iconify-icons/mdi": "^1.2.48",
+		"@iconify/svelte": "^4.0.2",
 		"@splidejs/svelte-splide": "^0.2.9",
 		"buffer": "^6.0.3",
 		"clsx": "^2.1.1",

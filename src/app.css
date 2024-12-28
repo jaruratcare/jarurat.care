@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html {
     font-size: 14pt;
     scroll-behavior: smooth;
@@ -24,7 +25,7 @@ body::-webkit-scrollbar {
 }
 
 
-.scroll-container{
+.scroll-container {
     scrollbar-width: none;
 }
 

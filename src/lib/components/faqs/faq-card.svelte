@@ -17,9 +17,10 @@
 	});
 </script>
 
-<div class="bg-white sm:px-4 py-3 sm:rounded-lg border-b sm:border">
+<div class="sm:px-4 px-2 sm:py-4 py-2 rounded-lg border-b {$isOpen ? "bg-[#FFBA41]":"bg-[#FFF1D2]"}">
 	<button
-		class="flex items-center justify-between cursor-pointer w-full text-[#0D2561] font-medium text-[0.9em] text-left gap-4"
+	    style="font-weight: {$isOpen ? "700" : "400"}"
+		class="flex items-center justify-between cursor-pointer w-full text-[#0D2561] font-sans font-normal sm:text-[0.8em] text-[0.6em] text-left sm:gap-4 gap-0"
 		on:click={() => isOpen.set(!$isOpen)}
 	>
 		{question}
@@ -29,8 +30,8 @@
 	<div
 		bind:this={container}
 		style="height: {$isOpen ? contentHeight : 0}px"
-		class="overflow-hidden transition-all text-gray-700 text-[0.8em]"
+		class="overflow-hidden transition-all text-[#0D2561] sm:text-[0.8em] text-[0.6em]"
 	>
-		<p class="mt-2 px-2 pt-2 border-t prose">{@html marked(answer)}</p>
+		<p class="sm:pt-2 pt-1">{@html marked(answer)}</p>
 	</div>
 </div>

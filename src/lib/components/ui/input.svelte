@@ -26,14 +26,14 @@
 		)}
 	>
 		{#if prefix}
-			<span class="flex items-center justify-center bg-[#D3F2FC] text-[#0D2561] px-4 py-[0.3rem]">
+			<span class="flex items-center justify-center bg-[#D3F2FC] text-[#0D2561] px-2 py-[0.2rem]">
 				{prefix}
 			</span>
 		{/if}
 
 		<input
 			{...$$restProps}
-			class={cn(`px-2 bg-[#e8ebf1] w-full text-[#0D2561] placeholder:text-[#A6B2BA] py-[0.3rem]`)}
+			class={cn(`px-2 bg-[#e8ebf1] text-[1rem] rounded-[0.4rem] w-full text-[#0D2561] placeholder:text-[#889299] py-[0.2rem] placeholder:text-[0.7rem]`)}
 			on:change={(ev) => onChange(ev.currentTarget.value)}
 		/>
 	</label>

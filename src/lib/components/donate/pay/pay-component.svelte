@@ -3,21 +3,26 @@
 	import BillingOptions from './billing-options.svelte';
 	import PersonalDetails from './personal-details.svelte';
 	import SuccessScreen from './success-screen.svelte';
-	import ImgHeroBg from '$lib/assets/donate/hero-img.webp';
+	import ImgHeroBg from '$lib/assets/donate/hero-bg-img.webp';
 	import { billingSchema, personalDetailsSchema } from './schema';
+	import { TriangleAlert } from 'lucide-svelte';
+	import SingleWaveDown from '$lib/svg/single-wavelightblue.svelte';
 
+  let paymentData = writable({ amount: 200, 'payment-type': 'subscription', email: '' });
+  
 	// Function to update payment data
 	function updatePaymentData(data: Record<string, string | number>) {
 		paymentData.set({ ...$paymentData, ...data });
 		return $paymentData;
 	}
 
-	// Writable store to hold payment data
-	let paymentData = writable({ amount: 200, 'payment-type': 'subscription', email: '' });
-
 	let currentScreen = 'billing';
 	let isLoading = writable(false);
 	let transactionId = writable<string>('');
+  
+  function handleBack() {
+		currentScreen = 'billing';
+	}
 
 	// Function to get payment token URL
 	async function getTokenUrl(amount: number) {
@@ -115,74 +120,121 @@
 	}
 </script>
 
-<div id="donate" class="md:p-2 bg-[#D3F2FC]">
+<div id="donate" class="md:py-1 bg-[#D3F2FC]">
 	<div
-			style="background-image: url('{ImgHeroBg}');"
-			class="py-8 px-4 md:my-16 max-w-[66rem] mx-auto md:rounded-xl bg-cover bg-center relative overflow-hidden"
+		class="sm:py-16 py-10 px-4 md:px-48 sm:mt-14 max-w-full mx-auto sm:bg-center relative overflow-hidden bg-cover"
+		style="background-image: url('{ImgHeroBg}')"
 	>
-		<div class="bg-[#D3F2FC] sm:bg-[#797e8a]/80 absolute inset-0"></div>
+		<div class="grid md:grid-cols-4 gap-4 relative z-10">
+			<div class="col-span-2 flex flex-col justify-center sm:max-w-[72%] items-center">
+				<div class="flex flex-col sm:gap-8 gap-4 px-6">
+					<div class="font-rubik text-[#0D2561] sm:text-start text-center sm:text-[2.3em] text-[1.9em] font-semibold leading-tight">
+						<h3>Your <span class="text-[#0155BD]">DONATION</span></h3>
+						<h3>Can Make A Life</h3>
+						<h3>Saving Difference</h3>
+					</div>
 
-		<div class="grid md:grid-cols-3 relative z-10">
-			<div class="col-span-2 hidden md:flex flex-col justify-end px-4 max-w-[70%]">
-				<div class="flex flex-col justify-end items-start gap-2">
-					<h3 class="font-rubik text-white text-[1.4em] leading-tight">Help Us Fight Cancer</h3>
-					<p class="text-white text-[0.9em] leading-tight">
-						Jarurat Care is dedicated to providing comprehensive support to cancer patients and
-						their caregivers in our local community. Through emotional counseling, mental wellness
-						programs, caregiver mentorship, and connections to top medical experts, we aim to
-						empower those impacted by cancer. Your donation will directly fund these vital services,
-						ensuring no one faces their cancer journey alone.
-					</p>
-					<p
-							class="bg-green-400 text-[0.8em] leading-tight p-2 rounded-r-md border-l-2 border-black"
+					<div
+						class="flex items-{currentScreen === 'details'
+							? 'start'
+							: 'center'} bg-[#FFBA41] sm:w-80 md:max-w-{currentScreen === 'details' ? '48' : 'full'}"
 					>
-						All donations to JaruratCare Foundation are eligible for 50% tax exemption under section
-						80G of the Income Tax Act.
-					</p>
+						<TriangleAlert class="w-{currentScreen === 'details' ? '12' : '14'} h-full p-1" />
+						<p class="md:text-[0.61em] text-[0.6em] p-2 text-black-900">
+							All donations to JaruratCare Foundation are eligible for 50% tax exemption under
+							section 80G of the Income Tax Act.
+						</p>
+					</div>
 				</div>
 			</div>
+      
+			<div
+				class=" col-span-2 z-10 font-manrope flex flex-col items-center gap-4 rounded-2xl bg-white shadow overflow-hidden"
+			>
+				<div class="flex-col item-center px-6 py-2">
+					{#if currentScreen != 'success'}
+						<h2 class="flex gap-1 font-rubik text-[#0D2561] font-medium text-[1.5em] justify-center py-4">
+							Donate<span class="text-[#0155BD] md:text-[#0D2561]"> Today</span>
+						</h2>
+					{:else}
+						<p class="text-[#0D2561] px-4 md:px-6 text-[0.7em] md:text-[0.8em] text-center font-semibold leading-tight py-4">
+							Your donation is making a real difference in the fight against cancer.
+						</p>
+					{/if}
+					<div class="w-full z-20">
+						{#if currentScreen === 'billing'}
+							<BillingOptions
+								on:data={(ev) => updatePaymentData(ev.detail)}
+								on:submit={() => {
+									const resp = billingSchema.safeParse($paymentData);
+									if (resp.success) {
+										currentScreen = 'details';
+									} else {
+										alert('Please fill out all required fields.');
+									}
+								}}
+							/>
+						{:else if currentScreen === 'details'}
+							<PersonalDetails
+								selectedAmount={$paymentData.amount}
+								selectedPaymentType={$paymentData['payment-type']}
+								isLoading={$isLoading}
+								on:data={(ev) => updatePaymentData(ev.detail)}
+								on:back={handleBack}
+								on:submit={async () => {
+									const billingDetails = billingSchema.parse($paymentData);
+									const personalDetails = personalDetailsSchema.safeParse($paymentData);
 
-			<div class="z-10">
-				{#if currentScreen === 'billing'}
-					<BillingOptions
-							on:data={(ev) => updatePaymentData(ev.detail)}
-							on:submit={() => {
-							const resp = billingSchema.safeParse($paymentData);
+									window.document.body.style.overflow = 'hidden';
 
-							if (resp.success) {
-								currentScreen = 'details';
-							}
-						}}
-					/>
-				{:else if currentScreen === 'details'}
-					<PersonalDetails
-							isLoading={$isLoading}
-							on:data={(ev) => updatePaymentData(ev.detail)}
-							on:submit={async () => {
-							const billingDetails = billingSchema.parse($paymentData);
-							const personalDetails = personalDetailsSchema.safeParse($paymentData);
-						
-							window.document.body.style.overflow = 'hidden';
+									if (personalDetails.success) {
+										const script = document.createElement('script');
+										script.src = 'https://mercury.phonepe.com/web/bundle/checkout.js';
+										document.head.appendChild(script);
 
-							if (personalDetails.success) {
-								const script = document.createElement('script');
-								script.src = 'https://mercury.phonepe.com/web/bundle/checkout.js';
-								document.head.appendChild(script);
-
-								const tokenUrl = await getTokenUrl(billingDetails.amount);
-								// @ts-ignore
-								window.PhonePeCheckout.transact({
-									tokenUrl,
-									callback: paymentCallback,
-									type: 'IFRAME'
-								});
-							} else alert(personalDetails.error.message);
-						}}
-					/>
-				{:else}
-					<SuccessScreen txnId={$transactionId} amount={$paymentData.amount} />
-				{/if}
+										const tokenUrl = await getTokenUrl(billingDetails.amount);
+										// @ts-ignore
+										window.PhonePeCheckout.transact({
+											tokenUrl,
+											callback: paymentCallback,
+											type: 'IFRAME'
+										});
+									} else alert(personalDetails.error.message);
+								}}
+							/>
+						{:else}
+							<SuccessScreen txnId={$transactionId} amount={$paymentData.amount} />
+						{/if}
+					</div>
+				</div>
+				<div class="text-gray-500 text-xs font-extralight text-center">
+					<h6 class:hidden={currentScreen != 'details'}>3-Step Process</h6>
+					<h6 class:hidden={currentScreen != 'success'}>Completed!</h6>
+				</div>
+				<!-- Progress Status -->
+				<div class="w-full h-2 flex items-center justify-center gap-2">
+					<div class="w-1/3 h-2 bg-[#78C520]"></div>
+					<div
+						class="w-1/3 h-2"
+						class:bg-[#DBEDED]={currentScreen === 'billing'}
+						class:bg-[#78C520]={currentScreen != 'billing'}
+					></div>
+					<div
+						class="w-1/3 h-2"
+						class:bg-[#DBEDED]={currentScreen != 'success'}
+						class:bg-[#78C520]={currentScreen === 'success'}
+					></div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<SingleWaveDown fill="#D3F2FC" class="absolute w-full sm:-mt-36 hidden sm:flex"/>
+
+<style lang="postcss">
+	@media (max-width: 768px) {
+		#donate .bg-cover {
+			background-image: none !important;
+		}
+	}
+</style>

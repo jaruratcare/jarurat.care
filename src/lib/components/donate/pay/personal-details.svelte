@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { ArrowRight, LoaderCircle } from 'lucide-svelte';
+	import { ArrowRight, LoaderCircle, Check, ArrowLeft } from 'lucide-svelte';
 	import Button from '$lib/components/ui/button.svelte';
 	import Input from '$lib/components/ui/input.svelte';
 	import { createEventDispatcher } from 'svelte';
 
 	export let isLoading = false;
+	export let selectedAmount: string | number;
+	export let selectedPaymentType: string;
+	export let isAnonymous = false;
 
 	const dispatch = createEventDispatcher();
 
@@ -19,10 +22,19 @@
 	const fields = [
 		{
 			type: 'text',
-			label: 'Full Name',
+			label: 'Name',
 			placeholder: 'Enter your full name',
 			name: 'full-name',
 			required: true
+		},
+		{
+			type: 'text',
+			label: 'Amount',
+			prefix: `₹`,
+			name: 'amount',
+			value: `${selectedAmount}`,
+			required: true,
+			readonly: true
 		},
 		{
 			type: 'email',
@@ -34,32 +46,43 @@
 		{
 			type: 'tel',
 			label: 'Phone',
-			placeholder: 'Enter your phone',
+			placeholder: 'Enter your Mobile no',
 			prefix: '+91',
 			name: 'phone',
 			required: true
 		},
-		{ type: 'text', label: 'PAN', placeholder: 'Enter your PAN', name: 'pan' }
+		{
+			type: 'textarea',
+			label: 'Message',
+			name: 'message',
+			placeholder: 'Enter your message',
+			height: '50px'
+		},
+		{ 
+			type: 'text', 
+			label: 'PAN', 
+			placeholder: 'Enter your PAN number', 
+			name: 'pan' 
+		}
 	];
 </script>
 
-<div class="font-manrope flex flex-col items-center gap-8 px-4 py-10 rounded-2xl bg-white shadow">
-	<div>
-		<h2 class="flex gap-1 font-rubik font-medium text-[1.5em] justify-center">
-			<span class="text-[#0D2561]">Donate</span>
-			<span class="text-[#0155BD]">Today</span>
-		</h2>
-		<p class="text-[#0D2561] px-4 text-center font-medium leading-tight">
-			Your donation can make a life-saving difference
-		</p>
-	</div>
 
+<div class="font-manrope flex flex-col items-center gap-4 bg-white">
+	<div class="flex gap-4 item-center justify-center py-4">
+		<h3 class="text-[0.9em] font-extralight px-10 py-1.5 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
+			{selectedPaymentType === 'one-time' ? 'Pay-Once' : 'Monthly'}
+		</h3>
+		<h3 class="text-[0.9em] font-extralight py-1.5 px-10 rounded-md leading-tight font-rubik bg-[#FDE3A7] text-[#A15819]">
+			₹{selectedAmount}
+		</h3>
+	</div>
 	<div class="w-full">
 		<h3 class="text-[1.1em] leading-tight font-rubik font-medium text-[#0D2460]">
 			Personal Details
 		</h3>
-		<p class="leading-tight text-[#576171] text-[0.9em]">Please fill in your details correctly</p>
-		<div class="flex flex-col gap-2 flex-wrap mt-2">
+		<p class="leading-tight text-[#576171] text-[0.7em] pb-4">Please fill in your details correctly</p>
+		<div class="grid md:grid-cols-2 gap-1 md:gap-6">
 			{#each fields as field}
 				<Input
 					name={field.name}
@@ -68,23 +91,37 @@
 					placeholder={field.placeholder}
 					prefix={field.prefix}
 					required={field.required}
+					readonly={field.readonly}
+					value={field.value} 
 					on:change={(ev) => onChange({ [field.name]: ev.detail.value })}
 				/>
 			{/each}
+		</div>
+
+		<div class="flex items-center gap-2 mt-4">
+			<label for="anonymous" class="flex items-center cursor-pointer">
+				<div class="relative items-center justify-center">
+					<input type="checkbox" id="anonymous" bind:checked={isAnonymous} class="sr-only peer" />
+					<div class="w-4 h-4 bg-gray-200 rounded border border-gray-300 peer-checked:bg-transparent peer-checked:border-black-900 peer-focus:ring-1 peer-focus:ring-[#010101]"></div>
+					<Check class='absolute w-3 h-3 text-black-900 left-[50%] top-[50%] -translate-y-1/2 -translate-x-1/2 hidden peer-checked:block' />
+				</div>
+				<span class="ml-2 text-[#000000] text-[0.6rem]">Keep Donation Anonymous</span>
+			</label>
 		</div>
 	</div>
 
 	<div class="flex gap-2">
 		<Button
-			class="flex items-center gap-1 px-4 py-1 bg-white text-[#0155bd] border border-[#0155bd] "
+			class="flex items-center gap-1 px-4 py-2 z-20"
+			on:click={() => dispatch('back')}
 		>
-			Back
+			<ArrowLeft/> Go Back
 		</Button>
-		<Button class="bg-[#0155bd] flex items-center gap-1 px-4 py-1" on:click={onSubmit}>
+		<Button class="bg-[#0155bd] flex items-center gap-1 px-4 py-1 z-10" on:click={onSubmit}>
 			{#if isLoading}
 				<LoaderCircle class="animate-spin" />
 			{:else}
-				Continue <ArrowRight />
+				Procced to Donate <ArrowRight />
 			{/if}
 		</Button>
 	</div>

@@ -56,4 +56,35 @@
 	button:hover::after {
 		transform: scale(2);
 	}
+	.custom-button::before {
+    display: block;
+    background-color: #ffba41;
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    z-index: -20;
+    top: 0;
+    left: 0;
+  }
+
+  .custom-button::after {
+    display: block;
+    background-color: #ffa200;
+    width: 100%;
+    height: 100%;
+    content: '';
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    border-radius: 10rem;
+    transition: 0.3s cubic-bezier(0.5, 0.36, 0.22, 1) transform;
+    transform: scale(0);
+    transform-origin: center;
+  }
+
+  .custom-button:hover::after {
+    transform: scale(2);
+  }
 </style>

@@ -1,6 +1,6 @@
 <script>
 	import LogoBlueface from '$lib/svg/about/logo-blueface.svelte';
-	import SingleWave from '$lib/svg/single-wave.svelte';
+	import SingleWave from '$lib/svg/single-wavelightblue.svelte';
 	import RekhaJoshi from '$lib/assets/rekha joshi.png';
 	import cofounders from '$lib/assets/cofounders.png';
 	import podcast from '$lib/assets/prodcast.png';

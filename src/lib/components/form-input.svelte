@@ -1,6 +1,6 @@
 <script>
   export let data;
-
+   
   // Determine if we should show the SVG icon
   let showIcon = data.name === "Address line 2";
 </script>
@@ -35,7 +35,7 @@
 </style>
 
 <div class="relative my-4 md:my-0">
-  <label for="name" class="block mb-1 text-sm font-[400] text-[#676E73] transition-colors duration-300 ease-in-out">
+  <label for="name" class={`block mb-1 text-sm font-[400] ${data.color? "text-white":"text-[#676E73]"} transition-colors duration-300 ease-in-out`}>
     {data.name}
     {#if data.required}
       <span class="text-red-500 ml-1">*</span>

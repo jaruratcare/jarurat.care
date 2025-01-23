@@ -10,8 +10,8 @@
         <div class="flex flex-row max-w-screen-lg w-full bg-white rounded-lg  gap-x-10">
             <!-- Form Section -->
             <img src={jrlogo} alt="JaruratCareLogo" class="absolute top-10 left-20 w-44">
-            <div class="flex-1 p-10 ml-10 mb-8 relative" style="margin-top: 40px;">
-                <div class="mb-6 mr-20 ml-19">
+            <div class="flex-1 p-10 ml-10 mb-8 relative" style="margin-top: 100px;">
+                <div class="mb-4 mr-20 ml-19">
                     <h1 class="text-3xl text-indigo-900">Sign In</h1>
                 </div>
                 <form class="flex flex-col w-full max-w-sm mx-auto">

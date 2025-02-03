@@ -11,7 +11,7 @@
 </script>
 
 <div>
-	<div class=" w-full mx-auto my-24">
+	<div class=" w-full mx-auto">
 		<div class="w-full h-full bg-cover bg-center" style={`background-image: url(${background})`}>
 			<div class="text-white flex justify-start items-start flex-col px-9 w-full">
 				<div class="py-5 font-extrabold text-xl">Our Vision</div>

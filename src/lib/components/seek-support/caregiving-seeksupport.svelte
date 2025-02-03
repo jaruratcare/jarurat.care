@@ -67,19 +67,19 @@
 			title: 'Cancer Connect',
 			about:
 				'A group of committed caregivers ready to assist with connecting patients, caregivers, and healthcare professionals for sharing updates, promoting awareness, and accessing educational resources.'
+		},
+		{
+			icon: WhiteLogo,
+			title: 'Treatment Care Think Tank',
+			about:
+				'An expert team of oncologists, officials, dieticians, and spiritual advisors to analyze individual cases for tailored, comprehensive patient care.'
+		},
+		{
+			icon: ChatbotIcon,
+			title: 'Hope - AI Chatbot',
+			about:
+				'Available on our website jarurat.care, Hope provides immediate support and information, designed to answer questions and provide guidance at any time.'
 		}
-		// {
-		// 	icon: WhiteLogo,
-		// 	title: 'Treatment Care Think Tank',
-		// 	about:
-		// 		'An expert team of oncologists, officials, dieticians, and spiritual advisors to analyze individual cases for tailored, comprehensive patient care.'
-		// },
-		// {
-		// 	icon: ChatbotIcon,
-		// 	title: 'Hope - AI Chatbot',
-		// 	about:
-		// 		'Available on our website jarurat.care, Hope provides immediate support and information, designed to answer questions and provide guidance at any time.'
-		// }
 	];
 
 	const cards = [
@@ -106,8 +106,8 @@
 	];
 </script>
 
-<div class="bg-[#D3F2FC] h-[35rem] mb-5">
-	<div class="h-[18rem] w-[90%] mx-auto">
+<div class="bg-[#D3F2FC] h-[35rem] mb-5 pt-10">
+	<div class="h-[18rem] w-[90%] mx-auto ">
 		<div class="lg:px-16 px-8 py-16 bg-[#0D2561] rounded-3xl">
 			<div class="text-xl text-start md:text-center font-extrabold mb-8">
 				<span class="text-white"> CAREGIVING </span> <span class="text-[#FFBA41]">Solution</span>

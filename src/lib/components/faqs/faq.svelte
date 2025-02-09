@@ -7,6 +7,7 @@
 
 	const columnOne = faqs.slice(0, faqs.length / 2);
 	const columnTwo = faqs.slice(faqs.length / 2);
+
 </script>
 
 <div class="py-16 sm:py-32 px-4 relative">

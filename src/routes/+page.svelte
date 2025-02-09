@@ -42,5 +42,7 @@
 
 <!-- Add the script asynchronously in the document -->
 <svelte:head>
+    <title>Gallbladder Cancer & Biliary Tract Support | Jarurat Care</title>
+    <meta name="description" content="Jarurat Care provides export support for gallbladder cancer, biliary tract cancer, and cholangiocarcinoma. Get medical assistance, awareness, and caregiving support today." />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SR1C89YNC3"></script>
 </svelte:head>

@@ -20,7 +20,59 @@ html {
     font-family: Rubik, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 }
 
+.clip-path-custom {
+    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);;
+}
+
+
 
 .scroll-container {
     scrollbar-width: none;
 }
+
+
+
+/* Custom Scrollbar for WebKit Browsers */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 18px; /* Width of the scrollbar */
+    
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #F1FCFF; /* bg-gray-200 */
+    border: 4px solid rgb(158, 158, 255);
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #1055BD; /* bg-blue-500 */
+    border-radius: 8px;
+    
+    
+}
+
+
+
+
+
+
+.custom-scrollbar-second::-webkit-scrollbar {
+    width: 18px; /* Width of the scrollbar */
+    
+}
+
+.custom-scrollbar-second::-webkit-scrollbar-track {
+    background: #F1FCFF; /* bg-gray-200 */
+    border-left: 1px solid gray;
+}
+
+.custom-scrollbar-second::-webkit-scrollbar-thumb {
+    background: #1055BD; /* bg-blue-500 */
+
+    
+    
+}
+
+
+

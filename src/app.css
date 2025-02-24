@@ -32,24 +32,21 @@ html {
 
 
 
-/* Custom Scrollbar for WebKit Browsers */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 18px; /* Width of the scrollbar */
+    width: 18px; 
     
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #F1FCFF; /* bg-gray-200 */
+    background: #F1FCFF; 
     border: 4px solid rgb(158, 158, 255);
     border-radius: 8px;
     padding: 2px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #1055BD; /* bg-blue-500 */
+    background: #1055BD; 
     border-radius: 8px;
-    
-    
 }
 
 
@@ -58,21 +55,25 @@ html {
 
 
 .custom-scrollbar-second::-webkit-scrollbar {
-    width: 18px; /* Width of the scrollbar */
+    width: 18px; 
     
 }
 
 .custom-scrollbar-second::-webkit-scrollbar-track {
-    background: #F1FCFF; /* bg-gray-200 */
-    border-left: 1px solid gray;
+    background: #F1FCFF;
+    /* border-left: 1px solid gray; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .custom-scrollbar-second::-webkit-scrollbar-thumb {
-    background: #1055BD; /* bg-blue-500 */
-
-    
+    background: #1055BD; 
+    border-top-right-radius: 20px;
     
 }
+
+
+
 
 
 

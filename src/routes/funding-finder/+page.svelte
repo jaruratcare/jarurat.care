@@ -106,19 +106,14 @@
       }
     ];
 
-
-
-
-  
-
-  
-
-  
+  let isDropdownOpen = false;
   function toggleDropDown(){
+    isDropdownOpen = !isDropdownOpen;
     document.getElementById("dropdown")?.classList.toggle("hidden");
   }
-
+  let isDropdownOpen1 = false;
   function toggleDropDown1(){
+    isDropdownOpen1 = !isDropdownOpen1;
     document.getElementById("dropdown1")?.classList.toggle("hidden");
   }
   
@@ -127,9 +122,9 @@
   <div class="min-h-screen bg-white">
     
     <Navbar />
-    <div class="max-w-4xl mx-auto bg-[#F1FCFF] mt-24 p-6 rounded-xl shadow-md">
+    <div class="max-w-5xl mx-auto  bg-[#F1FCFF] mt-24 p-6 rounded-xl shadow-md">
       <div class="flex justify-center items-center mt-12 mb-6 relative">
-        <h1 class="text-4xl  font-extrabold text-center text-[#0D2460] mb-3">Explore Funding Opportunities</h1>
+        <h1 class="text-[50px]  font-extrabold text-center text-[#0D2460] mb-3">Explore Funding Opportunities</h1>
         <button class="absolute right-0 flex items-center font-bold text-[#37393D]">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6.5 4L3 7L6.5 10.5" stroke="#37393D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -146,7 +141,7 @@
           type="text" 
           bind:value={location} 
           placeholder="Enter Your Location"
-          class="w-[70%] mr-11 p-2  border-2 border-blue-600 rounded-3xl font-bold text-center focus:outline-none"
+          class="w-[75%] mr-12 p-2  border-2 border-blue-600 rounded-3xl font-bold text-center focus:outline-none"
         />
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 absolute right-0 mr-40 font-bold text-[#1055BD]">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -155,7 +150,7 @@
       </div>
       
       <div class="flex space-y-4">
-        <div class="w-full lg:w-1/6 p-4  ml-[13%]">
+        <div class="w-full lg:w-1/6 p-4  ml-[10%]">
           
           <div class="flex items-center space-x-2 mb-4">
             
@@ -167,53 +162,53 @@
           </div>
           <div class="relative" id="dropdownButton">
             <div class="flex gap-11">
-              <div  class="block text-sm font-medium text-[#5D5F64] mb-3">Location</div>
-              <svg  width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center mt-2 cursor-pointer" on:click={toggleDropDown}>
+              <div  class="block font-semibold text-[#5D5F64] mb-3">Location</div>
+              <svg  width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-3 items-center mt-2 cursor-pointer transition-transform duration-300" class:rotate-180={isDropdownOpen} on:click={toggleDropDown}>
                 <path d="M4.36719 6L0.903086 0H7.83129L4.36719 6Z" fill="#5D5F64"/>
                 </svg>
             </div>
             <div id="dropdown" class="rounded ml-4 hidden">
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2 "></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">PAN India</div>
+                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer hover:bg-gray-300">PAN India</div>
               </div>
               <div class="flex">
-                <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">State Wise</div>
+                <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2"></div>
+                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer hover:bg-gray-300">State Wise</div>
               </div>
             </div>
-            <div class="border-b-[2px] border-[#5D5F64] mt-5"></div>
+            <div class="border-b-[2px] border-[#5D5F64] mt-3"></div>
           </div>
           
 
           
           <div class="relative" id="dropdownButton1">
-            <div class="flex gap-11">
-              <div class="block text-sm font-medium font-bold text-[#5D5F64] mt-4">Funding Type</div>
-              <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center mt-6 size-3 cursor-pointer" on:click={toggleDropDown1}>
+            <div class="flex gap-13">
+              <div class="block  font-semibold text-[#5D5F64] mt-4">Funding Type</div>
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center mt-5 ml-3.5 size-3 cursor-pointer transition-transform duration-300" class:rotate-180={isDropdownOpen1} on:click={toggleDropDown1}>
                 <path d="M4.36719 6L0.903086 0H7.83129L4.36719 6Z" fill="#5D5F64"/>
                 </svg>
             </div>
             <div  id="dropdown1" class="rounded ml-4 hidden">
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2 "></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">Non Profit</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Non Profit</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">Public/Private Trust</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Public/Private Trust</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">Government Schemes</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Government Schemes</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">Pro-bono Treatment</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Pro-bono Treatment</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] cursor-pointer hover:bg-gray-300">Crowd Funding</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Crowd Funding</div>
               </div>
   
             </div>

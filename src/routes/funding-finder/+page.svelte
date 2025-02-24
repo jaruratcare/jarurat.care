@@ -107,31 +107,13 @@
     ];
 
 
-    import { onMount } from "svelte";
-  import { writable } from "svelte/store";
 
-  // Funding Data (Normally fetched from an API)
-  let fundingData = writable([]);
 
-  // Filters
-  let selectedLocation = writable("");
-  let selectedFundingType = writable("");
+  
 
-  // Sample Data
-  onMount(() => {
-    fundingData.set([
-      { name: "Global Hope Foundation", location: "Mumbai", type: "Grants", email: "carf@cancerarfoundation.org", category: "Non-Profit" },
-      { name: "Education Empowerment Trust", location: "Delhi", type: "Sponsorship", email: "info@visionindiafoundation.org.in", category: "Public/Private Trust" },
-      { name: "Community Development Fund", location: "Dehradun", type: "Grants", email: "team@cuddlesfoundation.com", category: "Govt Scheme" },
-      { name: "Corporate Social Responsibility", location: "Mumbai", type: "Grants", email: "csr@company.com", category: "For-Profit" }
-    ]);
-  });
+  
 
-  // Derived Store to filter data
-  $: filteredFunding = $fundingData.filter(item =>
-    (selectedLocation === "" || item.location === selectedLocation) &&
-    (selectedFundingType === "" || item.type === selectedFundingType)
-  );
+  
   function toggleDropDown(){
     document.getElementById("dropdown")?.classList.toggle("hidden");
   }

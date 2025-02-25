@@ -8,7 +8,7 @@
         type: "Grants",
         email: "care@cancercarefoundation.org",
         badge: "Non Profit",
-        badgecolor: "bg-blue-200 text-blue-700"
+        badgecolor: "#C6A8E4"
       },
       {
         name: "Education Empowerment Trust",
@@ -16,7 +16,7 @@
         type: "Sponsorship",
         email: "info@visionindiafoundation.org.in",
         badge: "Public/Private Trust",
-        badgecolor: "bg-green-200 text-green-700"
+        badgecolor: "#FDD5A7"
       },
       {
         name: "Community Development Fund",
@@ -24,7 +24,7 @@
         type: "Grants",
         email: "team@udidfoundation.com",
         badge: "Govt Schemes",
-        badgecolor: "bg-yellow-200 text-yellow-700"
+        badgecolor: "#A8E6A3"
 
       },
       {
@@ -33,7 +33,7 @@
         type: "Grants",
         email: "csr@corporatefoundation.com",
         badge: "Pro-bono Treatment",
-        badgecolor: "bg-red-200 text-red-700"
+        badgecolor: "#FF736E"
 
       },
       {
@@ -42,7 +42,7 @@
         type: "Grants",
         email: "care@cancercarefoundation.org",
         badge: "Non Profit",
-        badgecolor: "bg-blue-200 text-blue-700"
+        badgecolor: "#C6A8E4"
       },
       {
         name: "Education Empowerment Trust",
@@ -50,7 +50,7 @@
         type: "Sponsorship",
         email: "info@visionindiafoundation.org.in",
         badge: "Public/Private Trust",
-        badgecolor: "bg-green-200 text-green-700"
+        badgecolor: "#FDD5A7"
       },
       {
         name: "Community Development Fund",
@@ -58,7 +58,7 @@
         type: "Grants",
         email: "team@udidfoundation.com",
         badge: "Govt Schemes",
-        badgecolor: "bg-yellow-200 text-yellow-700"
+        badgecolor: "#A8E6A3"
 
       },
       {
@@ -67,7 +67,7 @@
         type: "Grants",
         email: "csr@corporatefoundation.com",
         badge: "Pro-bono Treatment",
-        badgecolor: "bg-red-200 text-red-700"
+        badgecolor: "#FF736E"
 
       },
       {
@@ -76,7 +76,7 @@
         type: "Grants",
         email: "care@cancercarefoundation.org",
         badge: "Non Profit",
-        badgecolor: "bg-blue-200 text-blue-700"
+        badgecolor: "#C6A8E4"
       },
       {
         name: "Education Empowerment Trust",
@@ -84,7 +84,7 @@
         type: "Sponsorship",
         email: "info@visionindiafoundation.org.in",
         badge: "Public/Private Trust",
-        badgecolor: "bg-green-200 text-green-700"
+        badgecolor: "#FDD5A7"
       },
       {
         name: "Community Development Fund",
@@ -92,7 +92,7 @@
         type: "Grants",
         email: "team@udidfoundation.com",
         badge: "Govt Schemes",
-        badgecolor: "bg-yellow-200 text-yellow-700"
+        badgecolor: "#A8E6A3"
 
       },
       {
@@ -101,7 +101,7 @@
         type: "Grants",
         email: "csr@corporatefoundation.com",
         badge: "Pro-bono Treatment",
-        badgecolor: "bg-red-200 text-red-700"
+        badgecolor: "#FF736E"
 
       }
     ];
@@ -217,7 +217,7 @@
 
         </div>
         <div class="funding-available">
-          <div class="w-full lg:w-3/4 mt-6 lg:mt-0 lg:ml-6">
+          <div class="w-full lg:w-[77%] mt-6 lg:mt-0 lg:ml-6">
             <h1 class="text-2xl font-bold text-[#5D5F64]">Funding Available</h1>
             
             <div class="w-[130%] mt-4 space-y-4 overflow-y-auto h-[600px] pr-10 custom-scrollbar">
@@ -261,16 +261,21 @@
                           {fund.email}</a>
                     </div>
                   </div>
-                  <div class="{fund.badgecolor} clip-path-custom">
-                    {fund.badge}
-                  </div>
+                  
                   <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-8 mt-8">
                     <g opacity="0.5">
                     <path d="M2 4.82031C1.0335 4.82031 0.25 5.60381 0.25 6.57031C0.25 7.53681 1.0335 8.32031 2 8.32031V4.82031ZM2 8.32031H14V4.82031H2V8.32031Z" fill="#5D5F64"/>
                     <path d="M15.3488 3.79413L20.7868 7L15.3488 10.2059V3.79413Z" fill="#D9D9D9" stroke="#5D5F64" stroke-width="3.26367"/>
                     </g>
                     </svg>
+
+                    
+                      <svg width="83" height="30" viewBox="0 0 83 30" fill="none" xmlns="http://www.w3.org/2000/svg" class=" ">
+                        <path d="M0.873965 0.857001C0.554221 0.543463 0.776218 0 1.22404 0H65.6442C65.7652 0 65.8821 0.0438681 65.9732 0.123471L82.569 14.6235C82.7971 14.8227 82.7971 15.1773 82.569 15.3765L65.9732 29.8765C65.8821 29.9561 65.7652 30 65.6442 30H1.22404C0.776221 30 0.554222 29.4565 0.873966 29.143L14.9329 15.357C15.1328 15.161 15.1328 14.839 14.9329 14.643L0.873965 0.857001Z" fill="{fund.badgecolor}"/>
+                        </svg>
+                    
                 </div>
+                
               {/each}
             </div>
           </div>

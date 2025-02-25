@@ -150,7 +150,7 @@
       </div>
       
       <div class="flex space-y-4">
-        <div class="w-full lg:w-1/6 p-4  ml-[10%]">
+        <div class="w-full lg:w-[20%] p-4 pt-5 ml-[10%]">
           
           <div class="flex items-center space-x-2 mb-4">
             
@@ -158,61 +158,61 @@
               <path opacity="0.5" d="M15 7.82359H5.65027M2.35005 7.82359H1M2.35005 7.82359C2.35005 7.41059 2.52386 7.01451 2.83325 6.72247C3.14263 6.43044 3.56225 6.26637 3.99978 6.26637C4.43732 6.26637 4.85693 6.43044 5.16632 6.72247C5.4757 7.01451 5.64951 7.41059 5.64951 7.82359C5.64951 8.23659 5.4757 8.63267 5.16632 8.9247C4.85693 9.21674 4.43732 9.3808 3.99978 9.3808C3.56225 9.3808 3.14263 9.21674 2.83325 8.9247C2.52386 8.63267 2.35005 8.23659 2.35005 7.82359ZM15 12.5431H10.6502M10.6502 12.5431C10.6502 12.9562 10.4759 13.3527 10.1665 13.6448C9.85702 13.9369 9.43731 14.101 8.99968 14.101C8.56214 14.101 8.14253 13.9362 7.83314 13.6442C7.52376 13.3522 7.34995 12.9561 7.34995 12.5431M10.6502 12.5431C10.6502 12.13 10.4759 11.7342 10.1665 11.4421C9.85702 11.15 9.43731 10.9859 8.99968 10.9859C8.56214 10.9859 8.14253 11.1499 7.83314 11.442C7.52376 11.734 7.34995 12.1301 7.34995 12.5431M7.34995 12.5431H1M15 3.10409H12.6503M9.35005 3.10409H1M9.35005 3.10409C9.35005 2.69109 9.52386 2.29501 9.83325 2.00297C10.1426 1.71094 10.5622 1.54688 10.9998 1.54688C11.2164 1.54687 11.431 1.58715 11.6311 1.66541C11.8313 1.74367 12.0131 1.85837 12.1663 2.00297C12.3195 2.14757 12.441 2.31924 12.5239 2.50817C12.6068 2.6971 12.6495 2.89959 12.6495 3.10409C12.6495 3.30858 12.6068 3.51108 12.5239 3.70001C12.441 3.88894 12.3195 4.0606 12.1663 4.2052C12.0131 4.3498 11.8313 4.46451 11.6311 4.54277C11.431 4.62102 11.2164 4.6613 10.9998 4.6613C10.5622 4.6613 10.1426 4.49724 9.83325 4.2052C9.52386 3.91317 9.35005 3.51709 9.35005 3.10409Z" stroke="#37393D" stroke-opacity="0.75" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
               </svg>
               
-            <h2 class="text-lg font-semibold text-[#5D5F64]">Filter</h2>
+            <h2 class="text-lg font-semibold text-[#b7b9bf]">Filter</h2>
           </div>
-          <div class="relative" id="dropdownButton">
+          <div class="pt-5 relative" id="dropdownButton">
             <div class="flex gap-11">
-              <div  class="block font-semibold text-[#5D5F64] mb-3">Location</div>
-              <svg  width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-3 items-center mt-2 cursor-pointer transition-transform duration-300" class:rotate-180={isDropdownOpen} on:click={toggleDropDown}>
+              <div  class="block font-semibold text-[#5D5F64] mb-3 mr-1">Location</div>
+              <svg  width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="size-3 items-center mt-2 cursor-pointer transition-tran" class:rotate-180={isDropdownOpen} on:click={toggleDropDown}>
                 <path d="M4.36719 6L0.903086 0H7.83129L4.36719 6Z" fill="#5D5F64"/>
                 </svg>
             </div>
             <div id="dropdown" class="rounded ml-4 hidden">
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2 "></div>
-                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer hover:bg-gray-300">PAN India</div>
+                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer">PAN India</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2"></div>
-                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer hover:bg-gray-300">State Wise</div>
+                <div class="text-[#5D5F64] text-sm font-medium cursor-pointer">State Wise</div>
               </div>
             </div>
-            <div class="border-b-[2px] border-[#5D5F64] mt-3"></div>
+            <div class="w-[180px] border-b-[2px] border-[#5D5F64] mt-3"></div>
           </div>
           
 
           
           <div class="relative" id="dropdownButton1">
             <div class="flex gap-13">
-              <div class="block  font-semibold text-[#5D5F64] mt-4">Funding Type</div>
-              <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center mt-5 ml-3.5 size-3 cursor-pointer transition-transform duration-300" class:rotate-180={isDropdownOpen1} on:click={toggleDropDown1}>
+              <div class="block  font-semibold text-[#5D5F64] mt-3">Funding Type</div>
+              <svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="items-center mt-5 ml-3.5 size-3 cursor-pointer transition-tran" class:rotate-180={isDropdownOpen1} on:click={toggleDropDown1}>
                 <path d="M4.36719 6L0.903086 0H7.83129L4.36719 6Z" fill="#5D5F64"/>
                 </svg>
             </div>
             <div  id="dropdown1" class="rounded ml-4 hidden">
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-2 "></div>
-                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Non Profit</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer mt-1">Non Profit</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Public/Private Trust</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer mt-1 ml-1">Public/Private Trust</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Government Schemes</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer mt-1 ml-1">Government Schemes</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Pro-bono Treatment</div>
+                <div class="text-[#5D5F64]  text-xs font-medium cursor-pointer mt-1 ml-1">Pro-bono Treatment</div>
               </div>
               <div class="flex">
                 <div class="border-[1px] w-2 h-2 border-[#5D5F64] mt-2 mr-1"></div>
-                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer hover:bg-gray-300">Crowd Funding</div>
+                <div class="text-[#5D5F64] text-xs font-medium cursor-pointer mt-1 ml-1">Crowd Funding</div>
               </div>
   
             </div>
-            <div class="border-b-[2px] border-[#5D5F64] mt-5"></div>
+            <div class="w-[180px] border-b-[2px] border-[#5D5F64] mt-5"></div>
           </div>
 
         </div>

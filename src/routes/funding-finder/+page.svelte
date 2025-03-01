@@ -221,7 +221,7 @@
             <div class="w-[130%] mt-4 space-y-4 overflow-y-auto h-[600px] pr-10 custom-scrollbar">
               {#each fundingOptions as fund}
               <div class="parent">
-                <svg width="83" height="30" viewBox="0 0 83 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="83" height="30" viewBox="0 0 83 30" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-1 mx-auto">
                   <path d="M0.873965 0.857001C0.554221 0.543463 0.776218 0 1.22404 0H65.6442C65.7652 0 65.8821 0.0438681 65.9732 0.123471L82.569 14.6235C82.7971 14.8227 82.7971 15.1773 82.569 15.3765L65.9732 29.8765C65.8821 29.9561 65.7652 30 65.6442 30H1.22404C0.776221 30 0.554222 29.4565 0.873966 29.143L14.9329 15.357C15.1328 15.161 15.1328 14.839 14.9329 14.643L0.873965 0.857001Z" fill="{fund.badgecolor}"/>
                   </svg>
               

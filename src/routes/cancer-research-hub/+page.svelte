@@ -20,26 +20,24 @@
 </script>
 
 
-
 <div class="min-h-screen bg-white">
 	
 	<Navbar />
 	<div class="container mx-auto flex flex-col items-center text-center mt-20 px-4 sm:px-6 lg:px-8">
 		<div
-			class="w-full min-h-[400px] bg-cover bg-center bg-no-repeat rounded-lg shadow-lg relative flex flex-col justify-center items-center p-6 sm:p-10"
+			class="w-full min-h-[400px] bg-cover bg-center bg-no-repeat rounded-lg shadow-lg relative sm:flex sm:flex-col justify-center items-center p-6 sm:p-10"
 			style="background-image: url('/bg_image.png');"
 		>
-			<!-- Overlay for better readability -->
 			<div class="absolute inset-0 bg-white bg-opacity-5 rounded-lg"></div>
 
 			<div class="relative z-10">
-				<!-- Title -->
+
 				<h1 class="text-2xl sm:text-4xl font-bold text-[#0D2460]">Cancer Research Hub</h1>
 				<p class="text-sm sm:text-2xl font-bold text-[#1055BD] mt-2">Bringing Cancer Research Within Reach.</p>
 				<div class="lg:flex  flex-row  justify-center">
 					<div class="search-bar relative w-[45%] ml-[29%] mt-8 mr-8" >
-						<!-- Search Bar -->
-						<div class="mt-[5%] flex justify-center relative">
+	
+						<div class="w-[400px] right-[120px] sm:w-auto sm:right-auto mt-[5%] flex justify-center relative">
 							<div class="ml-5 sm:ml-0 w-[700px] sm:w-[1000px] p-3 rounded-3xl cursor-pointer bg-blue-700 text-white text-center placeholder-white border border-gray-300 focus:outline-none mr-10" on:click={toggleDropDown2}>
 								Search Cancer Type</div>
 							<div
@@ -59,7 +57,7 @@
 								viewBox="0 0 10 9"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
-								class="absolute ml-[370px] top-[22px]  size-4 cursor-pointer transition-transform duration-300"
+								class="absolute sm:ml-[370px] ml-[250px] top-[22px]  size-4 cursor-pointer transition-transform duration-300"
 								class:rotate-180={isDropdownOpen}
 								on:click={toggleDropDown2}
 							>
@@ -95,9 +93,9 @@
 					</div>
 				</div>
 
-				<!-- Learn More Section -->
+	
 				<h2 class="lg:text-2xl  font-extrabold text-[#1055BD] lg:flex lg:mt-10 lg:ml-[110px] lg:mb-5 sm:text-center sm:text-xl mt-20 text-xl">Learn more about Cancer</h2>
-				<div class="lg:w-[1000px]  mr-15 mx-auto px-4 grid grid-cols-1 w-[40%]  gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4 lg:mt-4 lg:ml-20">
+				<div class="lg:w-[1000px]  mr-15 mx-auto px-4 grid grid-cols-1 w-full  gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4 lg:mt-4 lg:ml-20">
 					<div class="bg-white p-4 rounded-md shadow-md">
 						<h3 class="font-bold text-gray-900 text-left">What is Cancer?</h3>
 						<p class="text-[#5D5F64CC] text-sm text-left">

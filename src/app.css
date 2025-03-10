@@ -24,3 +24,19 @@ html {
 .scroll-container {
     scrollbar-width: none;
 }
+
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 0;  /* Hide scrollbar */
+}
+
+/* Optional: Hide scrollbar for Firefox */
+.overflow-y-auto {
+    scrollbar-width: none; 
+}
+
+/* Optional: Hide scrollbar for Edge */
+.overflow-y-auto::-ms-scrollbar {
+    display: none;
+}

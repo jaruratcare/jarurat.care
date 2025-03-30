@@ -3,6 +3,7 @@ import LocateIcon from "../../assets/svg/LocateIcon";
 import LocationArrow from "../../assets/svg/LocationArrow";
 import Map from "../../assets/svg/Map";
 import SearchIcon from "../../assets/svg/SearchIcon";
+import "../../css/home/HospitalLocation.css";
 
 const statesAndUnionTerritories = [
   { id: "AP", state: "Andhra Pradesh" },
@@ -47,29 +48,26 @@ const LocateHospitals = () => {
     states.forEach((state) => {
       state.style.cursor = "pointer";
 
-      // Reset all states to white, except selected
       if (state.id === selectedState) {
-        state.style.fill = "#0D2561"; // Keep selected state hovered color
+        state.style.fill = "#0D2561";
       } else {
-        state.style.fill = "#ffffff"; // Default white
+        state.style.fill = "#ffffff";
       }
 
-      // Hover Effect
       const handleMouseEnter = () => {
         if (state.id !== selectedState) {
-          state.style.fill = "#0D2561"; // Highlight on hover
+          state.style.fill = "#0D2561";
         }
       };
 
       const handleMouseLeave = () => {
         if (state.id !== selectedState) {
-          state.style.fill = "#ffffff"; // Reset if not selected
+          state.style.fill = "#ffffff";
         }
       };
 
-      // Click to select state
       const handleClick = (event) => {
-        setSelectedState(event.target.id); // Update selected state
+        setSelectedState(event.target.id);
         setStateName(
           statesAndUnionTerritories.find((s) => s.id === event.target.id)?.state
         );
@@ -79,7 +77,6 @@ const LocateHospitals = () => {
       state.addEventListener("mouseleave", handleMouseLeave);
       state.addEventListener("click", handleClick);
 
-      // Cleanup event listeners
       return () => {
         state.removeEventListener("mouseenter", handleMouseEnter);
         state.removeEventListener("mouseleave", handleMouseLeave);
@@ -89,29 +86,20 @@ const LocateHospitals = () => {
   }, [selectedState]);
 
   return (
-    <div className="w-full py-24 px-4 md:px-16">
-      <div className="text-center">
-        <h2 className="text-[#0D2561] text-3xl md:text-4xl font-semibold">
-          Locate Cancer Hospitals Near You
-        </h2>
-        <p className="text-[#0D2561] text-lg md:text-xl font-medium mt-1">
-          Finding Hope, One Location at a Time
-        </p>
+    <div className="locate-container">
+      <div className="locate-header">
+        <h2>Locate Cancer Hospitals Near You</h2>
+        <p>Finding Hope, One Location at a Time</p>
       </div>
 
-      <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
-        <div className="w-full md:w-[25rem] px-5 flex items-center bg-[#DBE1E6] rounded-full p-2">
-          <SearchIcon className="w-5 h-5" />
-          <input
-            type="text"
-            placeholder="Enter your location"
-            className="flex-1 bg-transparent border-none outline-none text-gray-700 px-4"
-          />
-          <LocateIcon className="w-5 h-5" />
+      <div className="locate-search-container">
+        <div className="search-input">
+          <SearchIcon className="icon" />
+          <input type="text" placeholder="Enter your location" />
+          <LocateIcon className="icon" />
         </div>
-        <div className="w-full md:w-[25rem] flex items-center bg-[#0155BD] rounded-full p-2">
+        <div className="state-dropdown">
           <select
-            className="w-full bg-[#0155BD] border-none outline-none text-white px-4 py-2"
             onChange={(e) => {
               const selected = statesAndUnionTerritories.find(
                 (state) => state.state === e.target.value
@@ -132,34 +120,30 @@ const LocateHospitals = () => {
         </div>
       </div>
 
-      <div className="w-full mt-16 flex flex-col md:flex-row items-start">
-        <div className="w-full md:w-1/2 flex justify-center mb-8 md:mb-0">
-          <div className="w-3/5">
-            <p className="text-sm text-[#0155BD] bg-[#e3efff] py-2 px-4 border-l-4 border-[#0155BD] rounded-r-md">
-              Note: We might be missing some hospitals or they may be
-              unregistered.
-            </p>
-            <div className="mt-5 rounded-t-md overflow-hidden">
-              <p className="bg-[#0D2561] text-white p-3 text-lg md:text-2xl font-semibold">
-                {stateName}
-              </p>
-              <ul>
-                {[...Array(4)].map((_, i) => (
-                  <li key={i} className="py-2 px-4 border-b">
-                    <p>Wockhardt Hospital</p>
-                    <p className="text-[#868B93] flex justify-between">
-                      Kalawad Road Near St. Mary's High Scho...{" "}
-                      <LocationArrow className="w-4 h-4" />
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <div className="locate-content">
+        <div className="hospital-list">
+          <p className="note">
+            Note: We might be missing some hospitals or they may be
+            unregistered.
+          </p>
+          <div className="hospital-card">
+            <p className="hospital-header">{stateName}</p>
+            <ul>
+              {[...Array(4)].map((_, i) => (
+                <li key={i}>
+                  <p>Wockhardt Hospital</p>
+                  <p className="hospital-address">
+                    Kalawad Road Near St. Mary's High Scho...
+                    <LocationArrow className="icon" />
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 flex justify-center">
-          <Map className="w-full max-w-md md:max-w-lg" />
+        <div className="map-container">
+          <Map className="map" />
         </div>
       </div>
     </div>

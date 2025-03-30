@@ -1,0 +1,157 @@
+/* Footer Main Container */
+.footer-container {
+  background-color: rgb(19 36 66 / var(--tw-bg-opacity, 1));
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+/* Footer Top Section */
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* Logo */
+.footer-logo img {
+  height: 4rem;
+}
+
+/* Title & Tagline */
+.footer-title h1 {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.footer-title .highlight {
+  color: #d8e74e;
+}
+
+.footer-title p {
+  color: white;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.footer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (min-width: 640px) {
+  .footer-buttons {
+    flex-direction: row;
+  }
+}
+
+.support-btn {
+  background-color: #d8e74e;
+  color: black;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.donate-btn {
+  background-color: #2c72b9;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* Divider */
+.footer-divider {
+  margin: 20px 0;
+  border-color: gray;
+}
+
+/* Footer Middle Section */
+.footer-middle {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-middle {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-links p {
+  color: white;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+/* Social Icons */
+.footer-social p {
+  color: white;
+}
+
+.social-icons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: #204d80;
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.footer-policy {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .footer-policy {
+    flex-direction: row;
+    gap: 15px;
+  }
+}
+
+.back-to-top {
+  color: #d8e74e;
+  cursor: pointer;
+}

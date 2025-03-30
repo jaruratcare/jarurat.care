@@ -1,0 +1,250 @@
+/* Existing CSS (unchanged) */
+.locate-container {
+  width: 100%;
+  padding: 6rem 1rem;
+}
+
+.locate-header {
+  text-align: center;
+}
+
+.locate-header h2 {
+  color: #0d2561;
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.locate-header p {
+  color: #0d2561;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.locate-search-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #dbe1e6;
+  border-radius: 9999px;
+  padding: 0.8rem;
+}
+
+.state-dropdown {
+  width: 100%;
+  max-width: 25rem;
+  display: flex;
+  align-items: center;
+  background: #0155bd;
+  border-radius: 9999px;
+  padding: 0.5rem;
+}
+
+.search-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #4a4a4a;
+  padding: 0.8rem;
+}
+
+.state-dropdown select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+}
+
+.state-dropdown option {
+  background-color: white;
+  color: black;
+}
+
+.locate-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 70%;
+  align-items: center;
+  margin: 4rem auto;
+  gap: 6rem;
+}
+
+.hospital-list {
+  width: 50%;
+}
+
+.note {
+  color: #0155bd;
+  background: #e3efff;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #0155bd;
+  border-radius: 4px;
+}
+
+.hospital-card {
+  margin-top: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hospital-header {
+  background: #0d2561;
+  color: white;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.hospital-address {
+  color: #868b93;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Updated .map-container */
+.map-container {
+  margin-top: 2rem;
+  width: 100%; /* Full width by default */
+  max-width: 30rem; /* Maximum width for larger screens */
+  height: auto; /* Allow height to adjust */
+  aspect-ratio: 1 / 1; /* Maintain aspect ratio (adjust as needed) */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Responsive */
+/* 🔹 Small Screens (Mobile) */
+@media (max-width: 640px) {
+  .locate-container {
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .search-input {
+    padding-left: 0;
+  }
+
+  .search-bar,
+  .dropdown {
+    width: 100%;
+  }
+
+  .locate-header h2 {
+    font-size: 1.9rem;
+  }
+
+  .locate-header p {
+    font-size: 1rem;
+  }
+
+  .locate-search-container {
+    flex-direction: column;
+  }
+
+  .state-dropdown option {
+    width: 50%;
+  }
+
+  .locate-content {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 2rem auto;
+    gap: 2rem;
+  }
+
+  .hospital-list {
+    width: 90%;
+    margin: 1rem 1rem;
+  }
+
+  .map-container {
+    margin-top: 1rem;
+    width: 90%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Medium Screens (Tablets & Small Laptops) */
+@media (min-width: 768px) {
+  .locate-controls {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .locate-content {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 1000px;
+    gap: 4rem;
+  }
+
+  .hospital-list {
+    width: 50%;
+  }
+
+  .map-container {
+    width: 40%;
+    max-width: 30rem;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* Large Screens (Desktops) */
+@media (min-width: 1024px) {
+  .search-input {
+    width: 40%;
+  }
+
+  .locate-container {
+    padding: 6rem 2rem;
+  }
+
+  .locate-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .locate-header p {
+    font-size: 1.5rem;
+  }
+
+  .locate-controls {
+    gap: 2rem;
+  }
+
+  .search-bar,
+  .dropdown {
+    max-width: 30rem;
+  }
+
+  .locate-content {
+    max-width: 1200px;
+    flex-direction: row;
+    gap: 6rem;
+  }
+
+  .hospital-list {
+    width: 40%;
+  }
+
+  .map-container {
+    width: 50%;
+    max-width: 30rem;
+    aspect-ratio: 1 / 1;
+  }
+}

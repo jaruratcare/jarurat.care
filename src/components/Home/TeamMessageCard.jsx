@@ -1,16 +1,13 @@
 import React from "react";
+import "../../css/home/TeamMessageCard.css"; // Import the external CSS file
 
 const TeamMessageCard = ({ data }) => {
   return (
-    <div className="flex items-center justify-center w-full px-4 m-2 mb-4 mt-2">
-      <div className="relative md:w-3/5 bg-white shadow-lg p-6 md:p-10 rounded-md min-h-[250px] flex flex-col justify-center">
-        <div className="absolute -left-6 md:-left-12 top-8 md:top-10 bg-white rounded-full flex items-center justify-center shadow-md overflow-hidden">
-          <svg
-            className="h-10 w-10 md:h-16 md:w-16 p-2 md:p-3 bg-green-600 rounded-full"
-            viewBox="0 0 32 32"
-            fill="white"
-            transform="rotate(180)"
-          >
+    <div className="team-message-card-container">
+      <div className="team-message-card">
+        {/* Icon */}
+        <div className="team-message-icon">
+          <svg viewBox="0 0 32 32" transform="rotate(180)">
             <g id="SVGRepo_iconCarrier">
               <g>
                 <g id="right_x5F_quote">
@@ -25,11 +22,9 @@ const TeamMessageCard = ({ data }) => {
         </div>
 
         {/* Message Content */}
-        <p className="text-gray-800 text-lg md:text-xl leading-relaxed">
-          {data.message}
-        </p>
-        <p className="mt-4 font-bold text-gray-900">{data.name}</p>
-        <p className="text-sm text-gray-600">{data.designation}</p>
+        <p className="team-message-content">{data.message}</p>
+        <p className="team-message-name">{data.name}</p>
+        <p className="team-message-designation">{data.designation}</p>
       </div>
     </div>
   );

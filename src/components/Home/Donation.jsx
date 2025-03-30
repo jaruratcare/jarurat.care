@@ -1,60 +1,56 @@
+import React from "react";
 import HeartDonateIcon from "../../assets/svg/HeartDonateIcon.jsx";
 import DonateBg from "../../assets/svg/Donatebg.jsx";
 import SeekSupportIcon from "../../assets/svg/SeekSupportIcon.jsx";
 import MemberIcon from "../../assets/svg/MemberIcon.jsx";
 import Button from "./Button.jsx";
+import "../../css/home/Donation.css";
 
 const SupportDonateMember = () => {
   return (
-    <div className="relative w-full border border-[#0072C4] bg-white overflow-hidden mb-10">
+    <div className="support-donate-member-container">
       {/* Background */}
-      <div className="absolute w-full h-full z-0 inset-0 overflow-hidden">
+      <div className="support-donate-member-bg">
         <DonateBg />
       </div>
 
       {/* Content Grid */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 text-center text-white">
+      <div className="support-donate-member-grid">
         {/* Seek Support */}
-        <div className="py-8 px-6 flex flex-col justify-center items-center border-b md:border-b-0">
-          <span className="bg-white p-3 rounded-full">
+        <div className="support-donate-member-section">
+          <span className="support-donate-member-icon">
             <SeekSupportIcon />
           </span>
-          <h2 className="md:mt-6 md:mb-6 mt-4 mb-4 text-2xl md:text-4xl font-bold font-serif text-[#0155BD]">
-            Seek Support
-          </h2>
-          <p className="text-gray-800 text-sm md:text-base w-[70%] md:w-[50%] mt-8 md:mt-12">
+          <h2 className="support-donate-member-heading">Seek Support</h2>
+          <p className="support-donate-member-paragraph">
             Our NGO is here to help you through your cancer journey.{" "}
-            <span className="font-bold">Reach out to us today.</span>
+            <span>Reach out to us today.</span>
           </p>
           <Button text="Seek Support" />
         </div>
 
         {/* Donate */}
-        <div className="py-8 px-6 flex flex-col justify-center items-center border-t md:border-t-0 md:border-x border-[#0072C4] border-b">
-          <span className="bg-white p-3 rounded-full">
+        <div className="support-donate-member-section middle">
+          <span className="support-donate-member-icon">
             <HeartDonateIcon />
           </span>
-          <h2 className="md:mt-6 md:mb-6 mt-4 mb-4 text-2xl md:text-4xl font-bold font-serif text-[#0155BD]">
-            Donate
-          </h2>
-          <p className="text-gray-800 text-sm md:text-base w-[70%] md:w-[50%] mt-8 md:mt-12">
-            One Life at a Time. <span className="font-bold">Donate</span> today
-            and be the light that brings hope and healing to cancer patients.
+          <h2 className="support-donate-member-heading">Donate</h2>
+          <p className="support-donate-member-paragraph">
+            One Life at a Time. <span>Donate</span> today and be the light that
+            brings hope and healing to cancer patients.
           </p>
           <Button text="Donate Now" />
         </div>
 
         {/* Become a Member */}
-        <div className="py-8 px-6 flex flex-col justify-center items-center">
-          <span className="bg-white p-3 rounded-full">
+        <div className="support-donate-member-section">
+          <span className="support-donate-member-icon">
             <MemberIcon />
           </span>
-          <h2 className="md:mt-6 md:mb-6 mt-4 mb-4 text-2xl md:text-4xl font-bold font-serif text-[#0155BD]">
-            Become a Member
-          </h2>
-          <p className="text-gray-800 text-sm md:text-base w-[70%] md:w-[50%] mt-8 md:mt-12">
-            Be a hero. <span className="font-bold">Volunteer</span> with us and
-            provide support and hope to those affected by cancer.
+          <h2 className="support-donate-member-heading">Become a Member</h2>
+          <p className="support-donate-member-paragraph">
+            Be a hero. <span>Volunteer</span> with us and provide support and
+            hope to those affected by cancer.
           </p>
           <Button text="Get Started" />
         </div>

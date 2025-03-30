@@ -1,0 +1,78 @@
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 1.5rem;
+  background: url("../../assets/images/gradient.png") no-repeat center center /
+    cover;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0464c4;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #132f78;
+}
+
+.hero-description {
+  color: #0d2561;
+  font-size: 0.875rem;
+  max-width: 20rem;
+}
+
+.hero-description .highlight {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+/* RESPONSIVE DESIGN */
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+  .hero-subtitle {
+    font-size: 1.875rem;
+  }
+  .hero-description {
+    font-size: 1rem;
+    max-width: 30rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+  .hero-subtitle {
+    font-size: 2.5rem;
+  }
+  .hero-description {
+    font-size: 1.25rem;
+    max-width: 36rem;
+  }
+}

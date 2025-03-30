@@ -1,0 +1,118 @@
+/* ==================== Container Styling ==================== */
+.carousel-card {
+  box-shadow: 0 2rem 3rem rgba(132, 139, 200, 0.18);
+  border: 2px solid rgba(132, 139, 200, 0.18);
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 56rem;
+  min-height: 20rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+}
+
+/* ==================== Image Styling ==================== */
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+@media (min-width: 768px) {
+  .carousel-card {
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  .carousel-card img {
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+}
+
+/* ==================== Content Styling ==================== */
+.carousel-card .content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .carousel-card .content {
+    align-items: flex-start;
+  }
+}
+
+/* ==================== Avatar Section ==================== */
+.carousel-card .avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-card .avatar {
+    align-items: flex-start;
+  }
+}
+
+.carousel-card .avatar img {
+  height: 4rem;
+  width: 4rem;
+  border-radius: 9999px;
+}
+
+.carousel-card .avatar h2 {
+  color: #0d2561;
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.carousel-card .avatar span {
+  color: #0d2561;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+/* ==================== Story Section ==================== */
+.carousel-card .story {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.carousel-card .story svg {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .carousel-card .story svg {
+    margin-left: 2rem;
+  }
+}
+
+.carousel-card .story p {
+  color: #0d2561;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  flex-grow: 1;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-card .story p {
+    margin-left: 3rem;
+    margin-right: 2rem;
+    font-size: 1rem;
+  }
+}

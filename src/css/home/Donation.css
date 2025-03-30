@@ -1,0 +1,100 @@
+/* ==================== Container Styling ==================== */
+.support-donate-member-container {
+  position: relative;
+  width: 100%;
+  border: 1px solid #0072c4;
+  background-color: white;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+/* ==================== Background Styling ==================== */
+.support-donate-member-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ==================== Content Grid Styling ==================== */
+.support-donate-member-grid {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .support-donate-member-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==================== Section Styling ==================== */
+.support-donate-member-section {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #0072c4;
+}
+
+@media (min-width: 768px) {
+  .support-donate-member-section {
+    border-bottom: none;
+  }
+}
+
+.support-donate-member-section.middle {
+  border-top: 1px solid #0072c4;
+  border-left: 1px solid #0072c4;
+  border-right: 1px solid #0072c4;
+}
+
+/* ==================== Icon Styling ==================== */
+.support-donate-member-icon {
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 9999px;
+}
+
+/* ==================== Heading Styling ==================== */
+.support-donate-member-heading {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: serif;
+  color: #0155bd;
+}
+
+@media (min-width: 768px) {
+  .support-donate-member-heading {
+    font-size: 2.25rem;
+  }
+}
+
+/* ==================== Paragraph Styling ==================== */
+.support-donate-member-paragraph {
+  color: #1f2937;
+  font-size: 0.875rem;
+  width: 70%;
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .support-donate-member-paragraph {
+    width: 50%;
+    font-size: 1rem;
+    margin-top: 3rem;
+  }
+}
+
+.support-donate-member-paragraph span {
+  font-weight: bold;
+}

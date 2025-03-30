@@ -1,7 +1,8 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
-import CrouselCard from "./CrouseCard";
+import CarouselCard from "./CarouselCard";
+import "../../css/home/VoiceOfHope.css";
 
 const VoicesOfHope = () => {
   const cancerPatients = [
@@ -32,9 +33,9 @@ const VoicesOfHope = () => {
   ];
 
   return (
-    <div className="my-16 text-center" style={{ color: "#0464C4" }}>
-      <h1 className="text-xl font-bold">Voices Of Hope</h1>
-      <p className="text-lg font-normal mb-10">
+    <div className="voices-of-hope-container">
+      <h1 className="voices-of-hope-heading">Voices Of Hope</h1>
+      <p className="voices-of-hope-subheading">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </p>
 
@@ -55,31 +56,31 @@ const VoicesOfHope = () => {
       >
         {cancerPatients.map((patient, index) => (
           <SplideSlide key={index}>
-            <CrouselCard data={patient} />
+            <CarouselCard data={patient} />
           </SplideSlide>
         ))}
       </Splide>
 
       {/* Line and Buttons Section */}
-      <div className="line mt-16 mx-8 md:mx-32 border-t-2 border-darkblue py-24 relative">
+      <div className="voices-of-hope-line">
         {/* Navigation Buttons */}
         <button
           id="left"
-          className="left absolute top-1 right-16 border-none h-12 w-12 text-lg cursor-pointer bg-white rounded-full shadow-md"
+          className="voices-of-hope-button voices-of-hope-button-left"
         >
-          <span className="text-darkblue">◀︎</span>
+          <span>◀︎</span>
         </button>
         <button
           id="right"
-          className="right absolute top-1 right-0 border-none h-12 w-12 text-lg cursor-pointer bg-white rounded-full shadow-md"
+          className="voices-of-hope-button voices-of-hope-button-right"
         >
-          <span className="text-darkblue">▶︎</span>
+          <span>▶︎</span>
         </button>
 
         {/* Video Grid */}
-        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-3 px-4 md:px-24">
+        <div className="voices-of-hope-video-grid">
           <iframe
-            className="w-full"
+            className="voices-of-hope-video"
             src="https://www.youtube.com/embed/QPjCHJE3_U4?si=f1raf0RZwoAG_uFn"
             title="YouTube video player"
             frameBorder="0"
@@ -88,7 +89,7 @@ const VoicesOfHope = () => {
             allowFullScreen
           ></iframe>
           <iframe
-            className="w-full"
+            className="voices-of-hope-video"
             src="https://www.youtube.com/embed/QPjCHJE3_U4?si=f1raf0RZwoAG_uFn"
             title="YouTube video player"
             frameBorder="0"
@@ -97,7 +98,7 @@ const VoicesOfHope = () => {
             allowFullScreen
           ></iframe>
           <iframe
-            className="w-full"
+            className="voices-of-hope-video"
             src="https://www.youtube.com/embed/QPjCHJE3_U4?si=f1raf0RZwoAG_uFn"
             title="YouTube video player"
             frameBorder="0"

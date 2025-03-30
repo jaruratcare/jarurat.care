@@ -1,0 +1,249 @@
+/* Container for the carousel */
+.articles-carousel-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+/* Wave gradient background */
+.wave-gradient-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Content styling */
+.articles-carousel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1rem;
+}
+
+/* Heading styling */
+.articles-carousel-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0d2561;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Subheading styling */
+.articles-carousel-subheading {
+  color: #0d2561;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Search container */
+.search-container {
+  position: relative;
+  width: 70%;
+  margin-bottom: 1.5rem;
+}
+
+/* Search input */
+.search-input {
+  width: 100%;
+  padding-left: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 9999px;
+  background-color: #f4f4f4;
+  color: #374151;
+  outline: none;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #6a5a58;
+}
+
+/* Search icon */
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+}
+
+/*  Results text */
+.results-text {
+  font-size: 1rem;
+  color: #04509c;
+  margin-bottom: 2.5rem;
+}
+
+/*  Carousel navigation buttons */
+.carousel-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  margin-top: -1.5rem;
+}
+
+/*  Carousel button styling */
+.carousel-button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #ccc;
+}
+
+.carousel-button-next {
+  border-width: 2px;
+}
+
+/*  Carousel items container */
+.carousel-items-container {
+  width: 80%;
+  overflow: hidden;
+}
+
+/*  Carousel items */
+.carousel-items {
+  width: 100%;
+  display: flex;
+  transition: transform 0.5s;
+}
+
+/*  Carousel item */
+.carousel-item {
+  min-width: 100%;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.375rem;
+  margin: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+}
+
+/*  Carousel item title */
+.carousel-item-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #04509c;
+  text-align: left;
+  word-break: break-word;
+}
+
+/*  Carousel item description */
+.carousel-item-description {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  color: #576171;
+  text-align: left;
+  word-break: break-word;
+}
+
+/* Read Now button */
+.read-now-button {
+  position: relative;
+  padding: 0.25rem 1rem;
+  background-color: #0155bd;
+  color: white;
+  border: 2px solid #0155bd;
+  border-radius: 9999px;
+  align-self: flex-start;
+  overflow: hidden;
+}
+
+.read-now-button:hover {
+  color: #1e40af;
+}
+
+.read-now-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #dbeafe;
+  border-radius: 9999px;
+  transition: all 0.5s ease-in-out;
+}
+
+.read-now-button:hover::before {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.read-now-button span {
+  position: relative;
+  z-index: 10;
+}
+
+/* 18. Media Queries for Responsiveness */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .search-container {
+    width: 100%;
+  }
+
+  .articles-carousel-heading {
+    font-size: 1.75rem;
+  }
+
+  .articles-carousel-subheading {
+    font-size: 1rem;
+  }
+
+  .results-text {
+    font-size: 0.875rem;
+  }
+
+  .carousel-item {
+    min-width: 50%;
+  }
+}
+
+/* For mobile devices (480px and below) */
+@media (max-width: 480px) {
+  .search-container {
+    width: 100%;
+  }
+
+  .articles-carousel-heading {
+    font-size: 1.5rem;
+  }
+
+  .articles-carousel-subheading {
+    font-size: 0.875rem;
+  }
+
+  .results-text {
+    font-size: 0.75rem;
+  }
+
+  .carousel-item {
+    min-width: 100%;
+  }
+
+  .carousel-buttons {
+    margin-right: 0.5rem;
+  }
+
+  .carousel-button {
+    width: 35px;
+    height: 35px;
+  }
+}

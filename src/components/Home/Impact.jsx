@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "./Button";
+import "../../css/home/Impact.css";
 
 const ImpactSection = () => {
   const [impactData, setImpactData] = useState([
@@ -13,7 +14,6 @@ const ImpactSection = () => {
     { label: "Early Treatments Initiated", value: "0%" },
   ]);
 
-  // Simulate fetching data
   useEffect(() => {
     setTimeout(() => {
       setImpactData([
@@ -26,27 +26,25 @@ const ImpactSection = () => {
         { label: "Emotional Support Services", value: 300 },
         { label: "Early Treatments Initiated", value: "85%" },
       ]);
-    }, 2000); // Simulate API delay
+    }, 2000);
   }, []);
 
   return (
-    <section className="py-12 bg-gradient-to-r from-blue-50 to-blue-100 px-4">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 text-blue-950">Our Impact</h2>
-        <p className="text-lg mb-12 text-blue-950">
+    <section className="impact-section">
+      <div className="impact-container">
+        <h2 className="impact-title">Our Impact</h2>
+        <p className="impact-description">
           Explore the real-world difference we're making in cancer care.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="impact-grid">
           {impactData.map((item, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-              <p className="text-5xl font-bold text-blue-950 mb-2 text-left">
-                {item.value}
-              </p>
-              <p className="text-gray-600 text-left">{item.label}</p>
+            <div key={index} className="impact-card">
+              <p className="impact-value">{item.value}</p>
+              <p className="impact-label">{item.label}</p>
             </div>
           ))}
         </div>
-        <div className="flex justify-center items-center mt-6">
+        <div className="impact-button-container">
           <Button text="Seek Support" />
         </div>
       </div>

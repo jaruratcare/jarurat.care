@@ -1,7 +1,9 @@
 import React from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import Button from "./Button";
 import "@splidejs/react-splide/css";
 import TeamMessageCard from "./TeamMessageCard";
+import "../../css/home/TeamMessageCarousel.css"; // Import the external CSS file
 
 const memberData = [
   {
@@ -15,10 +17,8 @@ const memberData = [
 
 const TeamMessageCarousel = () => {
   return (
-    <div className="container mx-auto px-4 h-fit">
-      <h1 className="text-blue-900 text-3xl font-bold text-center my-16 mb-4">
-        Hear From Our Team
-      </h1>
+    <div className="team-message-carousel-container">
+      <h1 className="team-message-heading">Hear From Our Team</h1>
       <Splide
         options={{
           type: "loop",
@@ -42,11 +42,13 @@ const TeamMessageCarousel = () => {
           </SplideSlide>
         ))}
       </Splide>
-      <div className="flex justify-center items-center m-8 gap-4">
-        <button className="border-2 border-blue-900 px-4 py-2 text-blue-900 rounded-3xl">
+      <div className="team-message-button-container">
+        <button className="team-message-button team-message-button-about">
           About Us
         </button>
-        <button className="border-2 border-blue-900 px-4 py-2 text-white bg-blue-900 rounded-3xl">
+
+        {/* <Button text="About Us" /> */}
+        <button className="team-message-button team-message-button-contact">
           Contact Us
         </button>
       </div>

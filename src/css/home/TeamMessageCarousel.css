@@ -1,0 +1,95 @@
+/* Container for the carousel */
+.team-message-carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: fit-content;
+  box-sizing: content-box;
+}
+
+/* Heading styling */
+.team-message-heading {
+  color: #0d2561;
+  font-size: 1.875rem; /* 30px */
+  font-weight: 700;
+  text-align: center;
+  margin: 4rem 0 1rem 0;
+}
+
+/* Button container styling */
+.team-message-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+/* Button styling */
+.team-message-button {
+  border: 2px solid #0d2561;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* About Us button */
+.team-message-button-about {
+  color: #0d2561;
+  background-color: transparent;
+}
+
+.team-message-button-about:hover {
+  background-color: #0d2561;
+  color: white;
+}
+
+/* Contact Us button */
+.team-message-button-contact {
+  color: white;
+  background-color: #0d2561;
+}
+
+.team-message-button-contact:hover {
+  background-color: transparent;
+  color: #0d2561;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For tablets (768px and below) */
+@media (max-width: 768px) {
+  .team-message-carousel-container {
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+
+  .team-message-heading {
+    font-size: 1.5rem;
+    margin: 2rem 0 0.5rem 0;
+  }
+
+  .team-message-button-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .team-message-button {
+    width: 90%;
+    text-align: center;
+  }
+}
+
+/* For mobile devices (480px and below) */
+@media (max-width: 480px) {
+  .team-message-heading {
+    font-size: 1.25rem;
+  }
+
+  .team-message-button {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

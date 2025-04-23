@@ -1,3 +1,9 @@
+<script>
+  
+  export let value;
+
+ </script>
+
 <style>
   input:focus {
     background-color: #D3F2FC; /* Change to the desired background color when selected */
@@ -25,6 +31,7 @@
             </label>
              <span class="text-red-500 ml-1">*</span>
             <div class="relative  text-[#3B3E43]">
-                <input  type="tel"  placeholder="Enter Your Phone Number" class="w-full pl-[0.5rem] pr-3 py-[0.75rem] md:text-[1rem] text-[1.25rem] appearance-none md:bg-[#E8EBF1] bg-white outline-none border focus:border-slate-600 shadow-sm rounded-lg">
+                <input bind:value={value} 
+                type="tel"  placeholder="Enter Your Phone Number" class="w-full pl-[0.5rem] pr-3 py-[0.75rem] md:text-[1rem] text-[1.25rem] appearance-none md:bg-[#E8EBF1] bg-white outline-none border focus:border-slate-600 shadow-sm rounded-lg">
             </div>
         </div>

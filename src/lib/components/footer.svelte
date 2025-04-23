@@ -5,6 +5,10 @@
 	import instagramIcon from '@iconify-icons/mdi/instagram';
 	import twitterIcon from '@iconify-icons/mdi/twitter';
 	import facebookIcon from '@iconify-icons/mdi/facebook';
+
+	function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 
 <footer class="bg-[#132442] font-sans py-5">
@@ -71,9 +75,10 @@
 			<div>
 				<p>&copy;2024 JARURAT CARE LCC. All rights reserved</p>
 			</div>
-			<div class="text-[#D8E74E] cursor-pointer">
-				<p>Back to Top &uarr;</p>
-			</div>
+		
+<div class="text-[#D8E74E] cursor-pointer" on:click={scrollToTop}>
+  <p>Back to Top &uarr;</p>
+</div>
 		</div>
 	</div>
 </footer>

@@ -1,6 +1,28 @@
 <script>
 	import NextIcon from '$lib/svg/next-icon.svelte';
+
+	let email = '';
+	let message = '';
+	let timeout;
+
+	async function handleSubmit() {
+		if (!email || !email.includes('@')) {
+			message = 'Please enter a valid email.';
+			clearTimeout(timeout);
+			timeout = setTimeout(() => message = '', 3000);
+			return;
+		}
+
+		
+		//  Temporary feedback logic
+		message = 'Thanks for subscribing!';
+		email = '';
+
+		clearTimeout(timeout);
+		timeout = setTimeout(() => message = '', 3000); // Hide after 3 seconds
+	}
 </script>
+
 
 <div class="flex flex-col-reverse lg:flex-row">
 	<div
@@ -16,13 +38,23 @@
 			</div>
 			<div class="gap-10 flex flex-col md:flex-row">
 				<input
-					type="text"
-					class="rounded-lg md:w-96 px-3 py-4"
-					placeholder="Enter you email address"
-				/>
-				<button class="text-[#0155BD] border border-[#0155BD] font-bold px-4 py-2 rounded-3xl">
-					Submit</button
-				>
+	type="text"
+	bind:value={email}
+	class="rounded-lg md:w-96 px-3 py-4"
+	placeholder="Enter your email address"
+/>
+<button
+	on:click={handleSubmit}
+	class="text-[#0155BD] border border-[#0155BD] font-bold px-4 py-2 rounded-3xl"
+>
+	Submit
+</button>
+
+{#if message}
+	<p class="text-sm mt-2 text-[#0155BD]">{message}</p>
+{/if}
+
+
 			</div>
 		</div>
 	</div>

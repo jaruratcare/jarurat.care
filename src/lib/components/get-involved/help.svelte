@@ -22,16 +22,21 @@
 			your generosity and kindness.
 		</p>
 		<div class="buttons my-5 flex flex-col md:flex-row gap-2 md:gap-4">
+			<a href="#volunteer">
 			<button
 				class="bg-[#9CCB44] text-white py-2 px-4 border-[2px] border-double border-[#c2ec8b] rounded-full text-sm md:text-base"
 			>
 				Volunteer
 			</button>
+			</a>
+			<a href="#joinTeam">
 			<button
 				class="bg-[#0155BD] text-white py-2 px-4 border-[2px] border-double border-[#78a8e2] rounded-full text-sm md:text-base"
 			>
 				Join Our Team
 			</button>
+			</a>
+			<a href="#partnership">
 			<button
 				class="bg-[#FFBA41] text-white py-2 px-4 border-[2px] border-double border-[#efc171] rounded-full text-sm md:text-base"
 			>
@@ -40,3 +45,4 @@
 		</div>
 	</div>
 </div>
+

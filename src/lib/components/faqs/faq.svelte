@@ -37,7 +37,7 @@
 	</div>
 
 	<Header title="Still have Questions?" subtitle="Feel free to contact us" class="mt-16" />
-	<a href="mailto:Priyanka.joshi@jarurat.care?subject=">
+	<a href="/contact-us">
 		<Button class="mt-8 block mx-auto">Contact Us</Button>
 	</a>
 </div>

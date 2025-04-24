@@ -1,6 +1,7 @@
 <script lang="ts">
   import DropDownArrow from "$lib/svg/drop-down-arrow.svelte";
   let selectedRole = "";
+  export let value
 </script>
 
 <style>
@@ -30,13 +31,13 @@
   <div class="select-wrapper text-gray-500">
     <select
       id="roleSelect"
-      bind:value={selectedRole}
+      bind:value={value}
       class="hover:border-[#0155BD] focus:outline-none focus:border-[#0155BD] relative w-full h-12 text-sm font-[600] bg-[white] md:bg-[#E8EBF1] text-[#0155BD] outline-none rounded-lg pl-4 pr-10"
     >
       <option value="">-- Select an option --</option>
-      <option value="ABC">ABC</option>
-      <option value="XYZ">XYZ</option>
-      <option value="RFC">RFC</option>
+      <option value="volunteer">Volunteer</option>
+      <option value="partner">Partnership</option>
+      <option value="join">Join Team</option>
     </select>
     <DropDownArrow/>
   </div>

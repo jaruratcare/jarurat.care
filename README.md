@@ -26,3 +26,18 @@ JaruratCare HopeBot is a Spring Boot-based WhatsApp chatbot built to assist canc
 
 
 <img width="808" alt="Architecture" src="https://github.com/user-attachments/assets/34041aed-a8b7-444b-8a50-1a740fd0cdc5" />
+
+
+✅ Ultra-Light Firebase Structure (Only Intent)
+📁 Collection: users
+
+Each user gets a single document (based on WhatsApp number).
+🔸 Example Document (users/whatsapp:+919999000001)
+
+{
+  "userId": "whatsapp:+919999000001",
+  "language": "English",
+  "currentIntent": "Accommodation Support",
+  "lastSeen": "2025-06-18T12:30:00Z"
+}
+

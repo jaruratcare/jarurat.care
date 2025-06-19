@@ -41,3 +41,5 @@ Each user gets a single document (based on WhatsApp number).
   "lastSeen": "2025-06-18T12:30:00Z"
 }
 
+
+https://developers.facebook.com/docs/whatsapp/cloud-api

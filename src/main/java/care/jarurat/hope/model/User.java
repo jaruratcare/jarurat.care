@@ -11,4 +11,5 @@ public class User {
     private String language;
     private String CurrentIntent;
     private String lastSeen;
+    private String Phone;
 }

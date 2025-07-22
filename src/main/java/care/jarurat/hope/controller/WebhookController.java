@@ -1,12 +1,14 @@
 package care.jarurat.hope.controller;
-import care.jarurat.hope.model.User;
+
 import care.jarurat.hope.service.UserService;
 import care.jarurat.hope.service.WhatsAppService;
 import com.fasterxml.jackson.databind.JsonNode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/webhook")
 public class WebhookController {
@@ -22,19 +24,20 @@ public class WebhookController {
         this.whatsappService = whatsappService;
     }
 
-    //  Webhook verification (GET)
+    // Webhook verification (GET)
     @GetMapping
     public ResponseEntity<String> verifyWebhook(@RequestParam("hub.mode") String mode,
                                                 @RequestParam("hub.token") String token,
                                                 @RequestParam("hub.challenge") String challenge) {
         if ("subscribe".equals(mode) && VERIFY_TOKEN.equals(token)) {
+            log.info("Webhook verified successfully");
             return ResponseEntity.ok(challenge);
         } else {
+            log.warn("Webhook verification failed: mode={}, token={}", mode, token);
             return ResponseEntity.status(403).body("Verification failed");
         }
     }
-
-    //  Receive WhatsApp message (POST)
+    // Receive WhatsApp message (POST)
     @PostMapping
     public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
         try {
@@ -44,12 +47,15 @@ public class WebhookController {
             JsonNode messages = value.get("messages");
 
             if (messages == null || messages.isEmpty()) {
+                log.info("Received webhook with no message.");
                 return ResponseEntity.ok("No message found");
             }
 
             JsonNode message = messages.get(0);
-            String from = message.get("from").asText(); // WhatsApp number (user ID)
+            String from = message.get("from").asText(); //  (user ID)
             String messageBody = message.get("text").get("body").asText();
+
+            log.info("Received message from {}: {}", from, messageBody);
 
             // Handle message
             whatsappService.handleMessage(from, messageBody);
@@ -57,7 +63,7 @@ public class WebhookController {
             return ResponseEntity.ok("Message processed");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error processing webhook payload", e);
             return ResponseEntity.status(500).body("Webhook error");
         }
     }

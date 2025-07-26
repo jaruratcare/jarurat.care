@@ -27,7 +27,7 @@ public class WebhookController {
     // Webhook verification (GET)
     @GetMapping
     public ResponseEntity<String> verifyWebhook(@RequestParam("hub.mode") String mode,
-                                                @RequestParam("hub.token") String token,
+                                                @RequestParam("hub.verify_token") String token,
                                                 @RequestParam("hub.challenge") String challenge) {
         if ("subscribe".equals(mode) && VERIFY_TOKEN.equals(token)) {
             log.info("Webhook verified successfully");

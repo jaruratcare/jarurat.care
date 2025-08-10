@@ -7,14 +7,16 @@ import care.jarurat.hope.model.User;
 import java.time.Instant;
 
 public class UserMapper {
-    public static User toUser(UserRequestDto dto){
-        User user = new User();
-        user.setUserId(dto.getUserId());
-        user.setLanguage(dto.getLanguage());
-        user.setCurrentIntent(dto.getIntent());
-        user.setLastSeen(Instant.now().toString());
-        return user;
-    }
+   public static User toUser(UserRequestDto dto){
+    User user = new User();
+    user.setUserId(dto.getUserId());
+    user.setLanguage(dto.getLanguage());
+    user.setCurrentIntent(dto.getIntent());
+    user.setLastSeen(Instant.now().toString());
+    System.out.println("Mapping UserRequestDto to User: currentIntent=" + dto.getIntent());
+    return user;
+}
+
 
     public static UserResponseDto toResponseDto(User user){
         UserResponseDto dto = new UserResponseDto();

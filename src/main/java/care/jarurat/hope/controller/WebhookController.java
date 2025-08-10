@@ -1,28 +1,28 @@
 package care.jarurat.hope.controller;
 
 import care.jarurat.hope.model.User;
-import care.jarurat.hope.service.UserService;
 import care.jarurat.hope.service.WhatsAppService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import care.jarurat.hope.service.UserService;
 
 @Slf4j
 @RestController
 @RequestMapping("/webhook")
 public class WebhookController {
 
-    private final UserService userService;
     private final WhatsAppService whatsappService;
+    private final UserService userService;
 
     @Value("${whatsapp.verify.token}")
     private String VERIFY_TOKEN;
 
-    public WebhookController(UserService userService, WhatsAppService whatsappService) {
-        this.userService = userService;
+    public WebhookController(WhatsAppService whatsappService,UserService userService) {
         this.whatsappService = whatsappService;
+        this.userService=userService;
     }
 
     @GetMapping
@@ -37,8 +37,7 @@ public class WebhookController {
             return ResponseEntity.status(403).body("Verification failed");
         }
     }
-
-    @PostMapping
+@PostMapping
 public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
     try {
         log.debug("📩 Incoming payload: {}", payload.toPrettyString());
@@ -52,30 +51,50 @@ public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
             return ResponseEntity.ok("No message to process");
         }
 
-        JsonNode messages = value.get("messages");
-        JsonNode message = messages.get(0);
-
+        JsonNode message = value.get("messages").get(0);
         String from = message.get("from").asText(); // user phone number
         String messageBody = message.get("text").get("body").asText();
 
         log.info("💬 Received message from {}: {}", from, messageBody);
 
-        // ✅ Extract user name and save user
+        String name = null, phone = null;
         if (value.has("contacts")) {
             JsonNode contact = value.get("contacts").get(0);
-            String name = contact.get("profile").get("name").asText();
-            String phone = contact.get("wa_id").asText();
+            name = contact.get("profile").get("name").asText();
+            phone = contact.get("wa_id").asText();
+        }
 
-            User user = new User();
+        // Load user from DB (could be null)
+        User user = userService.getUserById(from);
+
+        if (user == null) {
+            user = new User();
             user.setUserId(from);
             user.setName(name);
             user.setPhone(phone);
-            user.setLastSeen(java.time.Instant.now().toString());
-
-            userService.saveUser(user);
+            user.setCurrentIntent(null);
+            log.info("🆕 New user created: {}", from);
+            // Do NOT save here to avoid premature overwrite
+        } else {
+            // Update name/phone only if changed
+            if (name != null && !name.equals(user.getName())) {
+                user.setName(name);
+            }
+            if (phone != null && !phone.equals(user.getPhone())) {
+                user.setPhone(phone);
+            }
         }
 
-        whatsappService.handleMessage(from, messageBody);
+        // Update lastSeen timestamp
+        user.setLastSeen(java.time.Instant.now().toString());
+
+        // Now pass user and message to flow service which will update user state and save the user
+        String responseMessage = whatsappService.handleMessage(
+            user.getUserId(),
+            user.getName(),
+            user.getPhone(),
+            messageBody
+        );
 
         return ResponseEntity.ok("Message processed");
 
@@ -84,5 +103,6 @@ public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
         return ResponseEntity.status(500).body("Webhook error");
     }
 }
+
 
 }

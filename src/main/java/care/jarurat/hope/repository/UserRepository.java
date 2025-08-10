@@ -7,6 +7,8 @@ import com.google.firebase.cloud.FirestoreClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Slf4j
@@ -18,7 +20,7 @@ public class UserRepository {
     public void save(User user) {
         try {
             Firestore db = FirestoreClient.getFirestore();
-            db.collection(COLLECTION_NAME).document(user.getUserId()).set(user);
+            db.collection(COLLECTION_NAME).document(user.getUserId()).set(user).get();
             log.info("User saved: {}", user.getUserId());
         } catch (Exception e) {
             log.error("Error saving user {}: {}", user.getUserId(), e.getMessage());
@@ -32,7 +34,9 @@ public class UserRepository {
         try {
             DocumentSnapshot snapshot = future.get();
             if (snapshot.exists()) {
-                return snapshot.toObject(User.class);
+                User user = snapshot.toObject(User.class);
+                log.info("User found: {}", userId);
+                return user;
             } else {
                 log.info("User not found: {}", userId);
                 return null;
@@ -43,10 +47,32 @@ public class UserRepository {
         }
     }
 
+    public void updateUser(User user) {
+        try {
+            Firestore db = FirestoreClient.getFirestore();
+
+            Map<String, Object> updates = new HashMap<>();
+            if (user.getName() != null) updates.put("name", user.getName());
+            if (user.getLanguage() != null) updates.put("language", user.getLanguage());
+            if (user.getCurrentIntent() != null) updates.put("currentIntent", user.getCurrentIntent());
+            if (user.getLastSeen() != null) updates.put("lastSeen", user.getLastSeen());
+            if (user.getPhone() != null) updates.put("phone", user.getPhone());
+
+            if (!updates.isEmpty()) {
+                db.collection(COLLECTION_NAME).document(user.getUserId()).update(updates).get();
+                log.info("User updated: {}", user.getUserId());
+            } else {
+                log.info("No fields to update for user: {}", user.getUserId());
+            }
+        } catch (Exception e) {
+            log.error("Error updating user {}: {}", user.getUserId(), e.getMessage());
+        }
+    }
+
     public void delete(String userId) {
         try {
             Firestore db = FirestoreClient.getFirestore();
-            db.collection(COLLECTION_NAME).document(userId).delete();
+            db.collection(COLLECTION_NAME).document(userId).delete().get();
             log.info("User deleted: {}", userId);
         } catch (Exception e) {
             log.error("Error deleting user {}: {}", userId, e.getMessage());

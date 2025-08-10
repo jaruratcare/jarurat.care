@@ -2,8 +2,8 @@ package care.jarurat.hope.service;
 
 import care.jarurat.hope.Userflow.MainUserFlowService;
 import care.jarurat.hope.model.User;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -14,6 +14,7 @@ import java.util.Map;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class WhatsAppService {
 
     @Value("${whatsapp.api.url}")
@@ -22,35 +23,42 @@ public class WhatsAppService {
     @Value("${whatsapp.token}")
     private String apiToken;
 
+    private final UserService userService;
+    private final MainUserFlowService mainUserFlowService;
     private final RestTemplate restTemplate = new RestTemplate();
 
-    @Autowired
-    private UserService userService;
+    public String handleMessage(String userId, String name, String phone, String messageBody) {
+        User user = userService.getUserById(userId);
 
-    @Autowired
-    private MainUserFlowService mainUserFlowService;
-
-    public void handleMessage(String from, String messageBody) {
-        String input = messageBody.trim().toLowerCase();
-
-        // Retrieve or create new user
-        User user = userService.getUserById(from);
         if (user == null) {
             user = new User();
-            user.setUserId(from);
+            user.setUserId(userId);
+            if (name != null) user.setName(name);
+            if (phone != null) user.setPhone(phone);
+            user.setCurrentIntent(null); // explicitly set to null for new user
+            log.info("🆕 Created new user: {}", userId);
+            userService.saveUser(user);
+        } else {
+            if (name != null && !name.equals(user.getName())) user.setName(name);
+            if (phone != null && !phone.equals(user.getPhone())) user.setPhone(phone);
         }
 
-        // Update last seen timestamp
         user.setLastSeen(Instant.now().toString());
 
-        // Use flow logic to get response and update user state
-        String reply = mainUserFlowService.getResponse(user, input);
+        log.debug("WhatsAppService: currentIntent before processing = {}", user.getCurrentIntent());
 
-        // Save updated user state to Firestore
-        userService.saveUser(user);
+        // Process message and get reply
+        String reply = mainUserFlowService.getResponse(user, messageBody);
 
-        // Send reply
-        sendTextMessage(from, reply);
+        log.debug("WhatsAppService: currentIntent after processing = {}", user.getCurrentIntent());
+
+        // Save updated user
+        userService.updateUser(user);
+
+        // Send reply to WhatsApp user
+        sendTextMessage(user.getPhone(), reply);
+
+        return reply;
     }
 
     private void sendTextMessage(String to, String message) {

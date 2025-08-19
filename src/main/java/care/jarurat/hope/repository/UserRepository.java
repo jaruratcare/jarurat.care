@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 @Repository
 public class UserRepository {
-
+    
     private static final String COLLECTION_NAME = "users";
 
     public void save(User user) {
@@ -48,26 +48,41 @@ public class UserRepository {
     }
 
     public void updateUser(User user) {
-        try {
-            Firestore db = FirestoreClient.getFirestore();
+    try {
+        Firestore db = FirestoreClient.getFirestore();
 
-            Map<String, Object> updates = new HashMap<>();
-            if (user.getName() != null) updates.put("name", user.getName());
-            if (user.getLanguage() != null) updates.put("language", user.getLanguage());
-            if (user.getCurrentIntent() != null) updates.put("currentIntent", user.getCurrentIntent());
-            if (user.getLastSeen() != null) updates.put("lastSeen", user.getLastSeen());
-            if (user.getPhone() != null) updates.put("phone", user.getPhone());
+        Map<String, Object> updates = new HashMap<>();
+        if (user.getName() != null) updates.put("name", user.getName());
+        if (user.getLanguage() != null) updates.put("language", user.getLanguage());
+        if (user.getCurrentIntent() != null) updates.put("currentIntent", user.getCurrentIntent());
+        if (user.getLastSeen() != null) updates.put("lastSeen", user.getLastSeen());
+        if (user.getPhone() != null) updates.put("phone", user.getPhone());
 
-            if (!updates.isEmpty()) {
-                db.collection(COLLECTION_NAME).document(user.getUserId()).update(updates).get();
-                log.info("User updated: {}", user.getUserId());
-            } else {
-                log.info("No fields to update for user: {}", user.getUserId());
-            }
-        } catch (Exception e) {
-            log.error("Error updating user {}: {}", user.getUserId(), e.getMessage());
+        // add preferences if not null
+        if (user.getPreference() != null && !user.getPreference().isEmpty()) {
+            updates.put("preference", user.getPreference());
         }
+
+        // add PDF URL if not null
+        if (user.getMealPlanPdfUrl() != null) {
+            updates.put("mealPlanPdfUrl", user.getMealPlanPdfUrl());
+        }
+
+        if (!updates.isEmpty()) {
+            db.collection(COLLECTION_NAME)
+              .document(user.getUserId())
+              .update(updates)
+              .get();
+
+            log.info("User updated: {}", user.getUserId());
+        } else {
+            log.info("No fields to update for user: {}", user.getUserId());
+        }
+    } catch (Exception e) {
+        log.error("Error updating user {}: {}", user.getUserId(), e.getMessage());
     }
+}
+
 
     public void delete(String userId) {
         try {
@@ -78,4 +93,5 @@ public class UserRepository {
             log.error("Error deleting user {}: {}", userId, e.getMessage());
         }
     }
+    
 }

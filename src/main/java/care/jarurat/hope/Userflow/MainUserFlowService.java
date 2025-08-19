@@ -16,91 +16,104 @@ public class MainUserFlowService {
     public String getResponse(User user, String input) {
         input = input.trim().toLowerCase();
 
-        // Debug current intent
-        System.out.println("DEBUG: Current intent before processing = " + user.getCurrentIntent());
+        System.out.println("DEBUG: CurrentIntent before processing = " + user.getCurrentIntent());
 
         // Start conversation
         if ("hi".equalsIgnoreCase(input)) {
-            user.setCurrentIntent("choose_language");
-
-            // Save or update user depending on existence
-            if (user.getLanguage() == null) {
-                userService.saveUser(user);
-            } else {
-                userService.updateUser(user);
-            }
-
+            user.setCurrentIntent("language_selection");
+            saveOrUpdate(user);
             return "👋 Welcome to Hope, Your Caregiving Companion 💜!\n"
-                + "Please choose your language:\n"
-                + "1) English 🇺🇸\n"
-                + "2) हिंदी 🇮🇳";
+                    + "Please choose your language:\n"
+                    + "1) English 🇺🇸\n"
+                    + "2) हिंदी 🇮🇳";
         }
 
-        // If intent null or blank, force language selection
+        // If no state, force language selection
         if (user.getCurrentIntent() == null || user.getCurrentIntent().isBlank()) {
-            user.setCurrentIntent("choose_language");
-            userService.updateUser(user);
+            user.setCurrentIntent("language_selection");
+            saveOrUpdate(user);
             return "Please choose your language:\n1) English 🇺🇸\n2) हिंदी 🇮🇳";
         }
 
-        switch (user.getCurrentIntent().toLowerCase()) {
-            case "choose_language":
-                switch (input) {
-                    case "1":
-                        user.setLanguage("english");
-                        user.setCurrentIntent("main_menu");
-                        userService.updateUser(user);
-                        return "You selected English. How can I help you today?\n"
-                            + "1) Financial Guidance 💰\n"
-                            + "2) Nutrition Care 🥗\n"
-                            + "3) Emotional Support 💜";
-                    case "2":
-                        user.setLanguage("hindi");
-                        user.setCurrentIntent("main_menu");
-                        userService.updateUser(user);
-                        return "आपने हिंदी चुना। आप किस प्रकार की सहायता चाहते हैं?\n"
-                            + "1) वित्तीय मार्गदर्शन 💰\n"
-                            + "2) पोषण संबंधी देखभाल 🥗\n"
-                            + "3) भावनात्मक समर्थन 💜";
-                    default:
-                        return "❌ Invalid language choice. Type 'Hi' to start again.";
-                }
+        // Nutrition module routing
+        if (user.getCurrentIntent().startsWith("nutrition_")) {
+            String reply = nutritionCareService.handleNutrition(user, input);
+            userService.updateUser(user);
+            return reply;
+        }
 
-            case "main_menu":
-                switch (input) {
-                    case "1":
-                        user.setCurrentIntent("financial_guidance");
-                        userService.updateUser(user);
-                        return "📊 Financial Guidance:\n1) Budget Planning\n2) Saving Tips";
-                    case "2":
-                        user.setCurrentIntent("nutrition_care");
-                        userService.updateUser(user);
-                        return "🥗 Nutrition Care:\n1) Balanced Diet\n2) Nutrition Tips";
-                    case "3":
-                        user.setCurrentIntent("emotional_support");
-                        userService.updateUser(user);
-                        return "🧠 Emotional support module is coming soon. Type 'Hi' to restart.";
-                    default:
-                        return "❌ Invalid choice. Type 'Hi' to start again.";
-                }
+        // Main flow switch
+        return switch (user.getCurrentIntent()) {
+            case "language_selection" -> handleLanguageSelection(user, input);
+            case "main_menu" -> handleMainMenu(user, input);
+            default -> {
+                user.setCurrentIntent("language_selection");
+                saveOrUpdate(user);
+                yield "🤖 I didn’t understand that. Please type 'Hi' to start again.";
+            }
+        };
+    }
 
-            case "financial_guidance":
-                String replyFG = financialGuidanceService.handle(user, input);
-                userService.updateUser(user);
-                return replyFG;
+    private String handleLanguageSelection(User user, String input) {
+        return switch (input) {
+            case "1" -> {
+                user.setLanguage("english");
+                user.setCurrentIntent("main_menu");
+                saveOrUpdate(user);
+                yield getMainMenuEnglish();
+            }
+            case "2" -> {
+                user.setLanguage("hindi");
+                user.setCurrentIntent("main_menu");
+                saveOrUpdate(user);
+                yield getMainMenuHindi();
+            }
+            default -> "❌ Invalid choice, Please type 1 for English or 2 for हिंदी.";
+        };
+    }
 
-            case "nutrition_care":
-                String replyNC = nutritionCareService.handle(user, input);
-                userService.updateUser(user);
-                return replyNC;
+    private String handleMainMenu(User user, String input) {
+        return switch (input) {
+            case "2" -> {
+                user.setCurrentIntent("nutrition_step1");
+                saveOrUpdate(user);
+                yield "🍽️ Are you vegetarian or non-vegetarian?";
+            }
+            default -> "❌ Invalid choice. Please select an option from the menu.";
+        };
+    }
 
-            case "emotional_support":
-                return "🧠 Emotional support module is coming soon. Type 'Hi' to restart.";
+    private String getMainMenuEnglish() {
+        return "How can I help you today?\n" +
+                "1) Financial Guidance 💰\n" +
+                "2) Nutritional Care 🥗\n" +
+                "3) Emotional Support 💜\n" +
+                "4) Nearby Hospitals 🏥\n" +
+                "5) Free/Low-Cost Stay & Food 🛏️🍛\n" +
+                "6) Diagnostic Labs 🧪\n" +
+                "7) Palliative & Hospice Care 🕊️\n" +
+                "8) Talk to a Volunteer 📞\n" +
+                "9) Change Language 🌐";
+    }
 
-            default:
-                user.setCurrentIntent("choose_language");
-                userService.updateUser(user);
-                return "Unknown state. Type 'Hi' to start again.";
+    private String getMainMenuHindi() {
+        return "आप किस प्रकार की सहायता चाहते हैं?\n" +
+                "1) वित्तीय मार्गदर्शन 💰\n" +
+                "2) पोषण संबंधी देखभाल 🥗\n" +
+                "3) भावनात्मक समर्थन 💜\n" +
+                "4) नजदीकी अस्पताल 🏥\n" +
+                "5) मुफ्त/कम लागत ठहराव और भोजन 🛏️🍛\n" +
+                "6) डायग्नोस्टिक लैब 🧪\n" +
+                "7) उपशामक और होस्पिस देखभाल 🕊️\n" +
+                "8) स्वयंसेवक से बात करें 📞\n" +
+                "9) भाषा बदलें 🌐";
+    }
+
+    private void saveOrUpdate(User user) {
+        if (user.getLanguage() == null) {
+            userService.saveUser(user);
+        } else {
+            userService.updateUser(user);
         }
     }
 }

@@ -19,26 +19,26 @@ public class FirebaseConfig {
 
     @Bean
     public Firestore getFireStore() throws IOException {
-        if(FirebaseApp.getApps().isEmpty()){
+        if (FirebaseApp.getApps().isEmpty()) {
             String envCredentials = System.getenv("FIREBASE_CREDENTIALS");
 
             InputStream serviceAccount;
-            if(envCredentials != null && !envCredentials.isEmpty()){
-                 serviceAccount = new ByteArrayInputStream(envCredentials.getBytes(StandardCharsets.UTF_8));
-
+            if (envCredentials != null && !envCredentials.isEmpty()) {
+                serviceAccount = new ByteArrayInputStream(envCredentials.getBytes(StandardCharsets.UTF_8));
             } else {
                 serviceAccount = getClass().getClassLoader().getResourceAsStream("firebase-service-account.json");
                 if (serviceAccount == null) {
                     throw new FileNotFoundException("firebase-service-account.json not found in classpath");
                 }
             }
+
             FirebaseOptions options = FirebaseOptions.builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setStorageBucket("whatsbot-b61c8.firebasestorage.app") // ✅ Added bucket name
+                    .build();
 
             FirebaseApp.initializeApp(options);
-
         }
         return FirestoreClient.getFirestore();
-
     }
 }

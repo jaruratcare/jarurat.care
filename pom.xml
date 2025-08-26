@@ -16,62 +16,10 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/>  <!-- Use latest compatible version -->
+        <relativePath/>
     </parent>
 
-    <properties>
-        <java.version>17</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <!-- Spring Boot Web -->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Firebase Admin SDK -->
-
-        <dependency>
-            <groupId>com.google.firebase</groupId>
-            <artifactId>firebase-admin</artifactId>
-            <version>9.1.1</version>
-        </dependency>
-
-        <!-- JSON Processing -->
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <!-- Optional: Lombok (to simplify models) -->
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- Optional: Testing -->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!--OpenAi Dependency-->
-        
-       <dependency>
-          <groupId>com.theokanning.openai-gpt3-java</groupId>
-          <artifactId>service</artifactId>
-          <version>0.18.2</version>
-       </dependency>
-       <!-- iText 7  dependencies -->
-
-        <dependency>
+      <dependency>
            <groupId>com.itextpdf</groupId>
            <artifactId>kernel</artifactId>
            <version>7.2.4</version>
@@ -81,12 +29,84 @@
            <artifactId>layout</artifactId>
            <version>7.2.4</version>
         </dependency>
+
+
+    <dependencies>
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Firebase Admin SDK -->
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-admin</artifactId>
+            <version>9.1.1</version>
+        </dependency>
+
+        <!-- JSON Processing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>kernel</artifactId>
+            <version>7.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>io</artifactId>
+            <version>7.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>layout</artifactId>
+            <version>7.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>forms</artifactId>   <!-- useful for tables/fields -->
+            <version>7.2.3</version>
+        </dependency>
+        <dependency>
+           <groupId>com.itextpdf</groupId>
+           <artifactId>html2pdf</artifactId>
+           <version>5.0.3</version>
+        
+        </dependency>
+    
+        <!-- Lombok (optional) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+         <!--OpenAi Dependency-->
+        
+       <dependency>
+          <groupId>com.theokanning.openai-gpt3-java</groupId>
+          <artifactId>service</artifactId>
+          <version>0.18.2</version>
+       </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <!-- Spring Boot Maven Plugin -->
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

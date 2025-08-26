@@ -1,119 +1,163 @@
 package care.jarurat.hope.Userflow;
 
+import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
+import care.jarurat.hope.service.GlobalCommandService;
+import care.jarurat.hope.service.LanguageService;
+import care.jarurat.hope.service.MainMenuService;
+import care.jarurat.hope.service.OnboardingService;
 import care.jarurat.hope.service.UserService;
+import care.jarurat.hope.Userflow.financialguidance.FinancialGuidanceService;
+import care.jarurat.hope.Userflow.financialguidance.GovernmentSchemesService;
+import care.jarurat.hope.Userflow.financialguidance.NgosAndTrustsService;
+import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
+import care.jarurat.hope.Userflow.financialguidance.CrowdfundingService;
+import care.jarurat.hope.Userflow.financialguidance.InsuranceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MainUserFlowService {
 
-    private final FinancialGuidanceService financialGuidanceService;
-    private final NutritionCareService nutritionCareService;
     private final UserService userService;
+    private final GlobalCommandService globalCommandService;
+    private final LanguageService languageService;
+    private final OnboardingService onboardingService;
+    private final MainMenuService mainMenuService;
+    private final FinancialGuidanceService financialGuidanceService;
+    private final GovernmentSchemesService governmentSchemesService;
+    private final NgosAndTrustsService ngosAndTrustsService;
+    private final CrowdfundingService crowdfundingService;
+    private final InsuranceService insuranceService;
+    private final NutritionCareRouter nutritionCareRouter;
 
-    public String getResponse(User user, String input) {
-        input = input.trim().toLowerCase();
-
-        System.out.println("DEBUG: CurrentIntent before processing = " + user.getCurrentIntent());
-
-        // Start conversation
-        if ("hi".equalsIgnoreCase(input)) {
-            user.setCurrentIntent("language_selection");
-            saveOrUpdate(user);
-            return "👋 Welcome to Hope, Your Caregiving Companion 💜!\n"
-                    + "Please choose your language:\n"
-                    + "1) English 🇺🇸\n"
-                    + "2) हिंदी 🇮🇳";
+    public Object getResponse(User user, String input) {
+        if (input == null || input.trim().isEmpty()) {
+            return "Please send a message. Type 'Hi' to start.";
         }
 
-        // If no state, force language selection
-        if (user.getCurrentIntent() == null || user.getCurrentIntent().isBlank()) {
-            user.setCurrentIntent("language_selection");
-            saveOrUpdate(user);
-            return "Please choose your language:\n1) English 🇺🇸\n2) हिंदी 🇮🇳";
+        input = input.trim();
+        String intent = user.getCurrentIntent();
+
+        Object globalResponse = globalCommandService.handleGlobalCommand(user, input);
+        if (globalResponse != null) {
+            return globalResponse;
         }
 
-        // Nutrition module routing
-        if (user.getCurrentIntent().startsWith("nutrition_")) {
-            String reply = nutritionCareService.handleNutrition(user, input);
+        if (input.equalsIgnoreCase("main_menu")) {
+            user.setCurrentIntent("main_menu");
             userService.updateUser(user);
-            return reply;
+            return mainMenuService.getMainMenuMessage("en".equals(user.getLanguage()));
         }
 
-        // Main flow switch
-        return switch (user.getCurrentIntent()) {
-            case "language_selection" -> handleLanguageSelection(user, input);
-            case "main_menu" -> handleMainMenu(user, input);
-            default -> {
-                user.setCurrentIntent("language_selection");
-                saveOrUpdate(user);
-                yield "🤖 I didn’t understand that. Please type 'Hi' to start again.";
-            }
-        };
-    }
+        if (input.equalsIgnoreCase("back_to_financial_menu")) {
+            return financialGuidanceService.sendMainFinancialGuidanceMenu(user);
+        }
 
-    private String handleLanguageSelection(User user, String input) {
-        return switch (input) {
-            case "1" -> {
-                user.setLanguage("english");
-                user.setCurrentIntent("main_menu");
-                saveOrUpdate(user);
-                yield getMainMenuEnglish();
-            }
-            case "2" -> {
-                user.setLanguage("hindi");
-                user.setCurrentIntent("main_menu");
-                saveOrUpdate(user);
-                yield getMainMenuHindi();
-            }
-            default -> "❌ Invalid choice, Please type 1 for English or 2 for हिंदी.";
-        };
-    }
-
-    private String handleMainMenu(User user, String input) {
-        return switch (input) {
-            case "2" -> {
-                user.setCurrentIntent("nutrition_step1");
-                saveOrUpdate(user);
-                yield "🍽️ Are you vegetarian or non-vegetarian?";
-            }
-            default -> "❌ Invalid choice. Please select an option from the menu.";
-        };
-    }
-
-    private String getMainMenuEnglish() {
-        return "How can I help you today?\n" +
-                "1) Financial Guidance 💰\n" +
-                "2) Nutritional Care 🥗\n" +
-                "3) Emotional Support 💜\n" +
-                "4) Nearby Hospitals 🏥\n" +
-                "5) Free/Low-Cost Stay & Food 🛏️🍛\n" +
-                "6) Diagnostic Labs 🧪\n" +
-                "7) Palliative & Hospice Care 🕊️\n" +
-                "8) Talk to a Volunteer 📞\n" +
-                "9) Change Language 🌐";
-    }
-
-    private String getMainMenuHindi() {
-        return "आप किस प्रकार की सहायता चाहते हैं?\n" +
-                "1) वित्तीय मार्गदर्शन 💰\n" +
-                "2) पोषण संबंधी देखभाल 🥗\n" +
-                "3) भावनात्मक समर्थन 💜\n" +
-                "4) नजदीकी अस्पताल 🏥\n" +
-                "5) मुफ्त/कम लागत ठहराव और भोजन 🛏️🍛\n" +
-                "6) डायग्नोस्टिक लैब 🧪\n" +
-                "7) उपशामक और होस्पिस देखभाल 🕊️\n" +
-                "8) स्वयंसेवक से बात करें 📞\n" +
-                "9) भाषा बदलें 🌐";
-    }
-
-    private void saveOrUpdate(User user) {
-        if (user.getLanguage() == null) {
-            userService.saveUser(user);
-        } else {
+        if ("onboarding_start".equalsIgnoreCase(input)) {
+            user.setCurrentIntent("onboarding_handle_name");
             userService.updateUser(user);
+
+            boolean isEnglish = "en".equals(user.getLanguage());
+            return isEnglish
+                    ? "To personalize support, please tell me your name."
+                    : "आपका समर्थन व्यक्तिगत बनाने के लिए, कृपया अपना नाम बताएं।";
         }
+
+        log.debug("Processing message '{}' for user {} with intent: {}",
+                input, user.getUserId(), intent);
+
+        if (intent == null || intent.isBlank()) {
+            return InteractiveMessage.builder()
+                    .body("Please choose your preferred language:")
+                    .footer("Choose your language / अपनी भाषा चुनें")
+                    .buttons(Arrays.asList(
+                            InteractiveMessage.Button.builder().id("english").title("🇬🇧 English").build(),
+                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()
+                    ))
+                    .build();
+        }
+
+        if ("financial_guidance_menu".equals(intent)) {
+            switch (input) {
+                case "fg_govt_schemes_start":
+                    user.setCurrentIntent("fg_govt_schemes");
+                    userService.updateUser(user);
+                    return governmentSchemesService.handleGovernmentSchemes(user, input);
+
+                case "fg_ngos_and_trusts_start":
+                    user.setCurrentIntent("fg_ngos_and_trusts");
+                    userService.updateUser(user);
+                    return ngosAndTrustsService.handleNgosAndTrusts(user, input);
+
+                case "fg_crowdfunding_start":
+                    user.setCurrentIntent("fg_crowdfunding");
+                    userService.updateUser(user);
+                    return crowdfundingService.handleCrowdfunding(user, input);
+
+                case "fg_insurance_start":
+                    user.setCurrentIntent("fg_insurance");
+                    userService.updateUser(user);
+                    return insuranceService.handleInsurance(user, input);
+            }
+        }
+
+        if (intent.startsWith("fg_")) {
+            if (intent.startsWith("fg_govt_schemes")) {
+                return governmentSchemesService.handleGovernmentSchemes(user, input);
+            } else if (intent.startsWith("fg_ngos_and_trusts")) {
+                return ngosAndTrustsService.handleNgosAndTrusts(user, input);
+            } else if (intent.startsWith("fg_crowdfunding")) {
+                return crowdfundingService.handleCrowdfunding(user, input);
+            } else if (intent.startsWith("fg_insurance")) {
+                return insuranceService.handleInsurance(user, input);
+            }
+        }
+
+        switch (intent.toLowerCase()) {
+            case "choose_language":
+                return languageService.handleLanguageSelection(user, input);
+
+            case "onboarding_handle_name":
+            case "onboarding_handle_location":
+            case "onboarding_handle_role":
+            case "onboarding_handle_medical":
+                Object onboardingResp = onboardingService.handleOnboardingStep(user, input);
+                if ("onboarding_complete".equals(user.getCurrentIntent())) {
+                    user.setCurrentIntent("main_menu");
+                    userService.updateUser(user);
+                    return mainMenuService.getMainMenuMessage("en".equals(user.getLanguage()));
+                }
+                return onboardingResp;
+
+           case "main_menu":
+    Object menuResponse = mainMenuService.handleMainMenu(user, input);
+    if (menuResponse == null) {
+        if ("nutrition_care_start".equals(user.getCurrentIntent())) {
+            // Kick off Nutrition flow
+            user.setCurrentIntent("nutrition_step1");
+            userService.updateUser(user);
+            return nutritionCareRouter.handle(user, input);
+        } else if ("financial_guidance_start".equals(user.getCurrentIntent())) {
+            return financialGuidanceService.sendMainFinancialGuidanceMenu(user);
+        }
+    }
+    return menuResponse;
+            case "nutrition_step1":
+            case "nutrition_step2":
+            case "nutrition_step3":
+            case "nutrition_step4":
+            case "nutrition_generate_confirm":
+            case "nutrition_pdf_offer":
+                return nutritionCareRouter.handle(user, input);
+        }
+
+        log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());
+        return mainMenuService.getMainMenuMessage("en".equals(user.getLanguage()));
     }
 }

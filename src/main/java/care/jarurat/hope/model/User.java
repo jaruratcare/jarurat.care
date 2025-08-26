@@ -1,14 +1,12 @@
 package care.jarurat.hope.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,17 +20,17 @@ public class User {
     private String currentIntent;
     private String lastSeen;
     private String phone;
-    private Map<String, String> preference = new HashMap<>();
-    private String mealPlanPdfUrl;
-    // custom methods
-    public void setPreference(String key, String value) {
-        if (preference == null) {
-            preference = new HashMap<>();
-        }
-        preference.put(key, value);
-    }
-    public String getPreference(String key) {
-        return preference != null ? preference.get(key) : null;
-    }
+    private String nutritionSymptoms;    
+    //  THESE ARE NUTRITION FIELDS:
+    private String foodPreference; // vegetarian, non_vegetarian
+    private String eatingCondition; // soft, liquid, normal
+    private String dietType; // soft, liquid, normal
 
+    // New fields for onboarding
+    private String city;
+    private String state;
+    private String role; // PATIENT or CAREGIVER
+    private String cancerType;
+    private String cancerStage;
+    private String incomeRange;
 }

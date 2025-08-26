@@ -22,8 +22,12 @@ public class UserService {
     public void updateUser(User user) {
         userRepository.updateUser(user);
     }
-    
+
     public void deleteUser(String userId) {
         userRepository.delete(userId);
+    }
+
+    public User findByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
 }

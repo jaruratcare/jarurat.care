@@ -1,28 +1,35 @@
 package care.jarurat.hope.controller;
 
 import care.jarurat.hope.model.User;
-import care.jarurat.hope.service.WhatsAppService;
+import care.jarurat.hope.model.InteractiveMessage; // Gemini-added
+import care.jarurat.hope.Userflow.MainUserFlowService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import care.jarurat.hope.service.UserService;
+import care.jarurat.hope.service.WhatsAppService; // Gemini-added
+import care.jarurat.hope.model.ListMessage;
+
 
 @Slf4j
 @RestController
 @RequestMapping("/webhook")
 public class WebhookController {
 
-    private final WhatsAppService whatsappService;
+    private final MainUserFlowService mainUserFlowService;
     private final UserService userService;
+    private final WhatsAppService whatsAppService; // Gemini-added
 
     @Value("${whatsapp.verify.token}")
     private String VERIFY_TOKEN;
 
-    public WebhookController(WhatsAppService whatsappService,UserService userService) {
-        this.whatsappService = whatsappService;
-        this.userService=userService;
+    public WebhookController(MainUserFlowService mainUserFlowService, UserService userService, WhatsAppService
+            whatsAppService) {
+        this.mainUserFlowService = mainUserFlowService;
+        this.userService = userService;
+        this.whatsAppService = whatsAppService; // Gemini-added
     }
 
     @GetMapping
@@ -37,72 +44,94 @@ public class WebhookController {
             return ResponseEntity.status(403).body("Verification failed");
         }
     }
-@PostMapping
-public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
-    try {
-        log.debug("📩 Incoming payload: {}", payload.toPrettyString());
 
-        JsonNode entry = payload.get("entry").get(0);
-        JsonNode changes = entry.get("changes").get(0);
-        JsonNode value = changes.get("value");
+    @PostMapping
+    public ResponseEntity<String> receiveMessage(@RequestBody JsonNode payload) {
+        try {
+            log.debug("📩 Incoming payload: {}", payload.toPrettyString());
 
-        if (!value.has("messages")) {
-            log.info("📭 No messages in payload.");
-            return ResponseEntity.ok("No message to process");
-        }
+            JsonNode entry = payload.get("entry").get(0);
+            JsonNode changes = entry.get("changes").get(0);
+            JsonNode value = changes.get("value");
 
-        JsonNode message = value.get("messages").get(0);
-        String from = message.get("from").asText(); // user phone number
-        String messageBody = message.get("text").get("body").asText();
+            if (!value.has("messages")) {
+                log.info("📭 No messages in payload.");
+                return ResponseEntity.ok("No message to process");
+            }
 
-        log.info("💬 Received message from {}: {}", from, messageBody);
+            JsonNode message = value.get("messages").get(0);
+            String from = message.get("from").asText(); // user phone number
+            String messageBody;
 
-        String name = null, phone = null;
-        if (value.has("contacts")) {
-            JsonNode contact = value.get("contacts").get(0);
-            name = contact.get("profile").get("name").asText();
-            phone = contact.get("wa_id").asText();
-        }
+            if (message.has("text")) {
+                messageBody = message.get("text").get("body").asText();
+            } else if (message.has("interactive")) {
+                JsonNode interactive = message.get("interactive");
+                if (interactive.has("button_reply")) {
+                    messageBody = interactive.get("button_reply").get("id").asText();
+                } else if (interactive.has("list_reply")) {
+                    messageBody = interactive.get("list_reply").get("id").asText();
+                } else {
+                    log.warn("Received unhandled interactive message type.");
+                    messageBody = ""; // Default to empty string to avoid breaking flow
+                }
+            } else {
+                log.warn("Received message with no text or interactive content.");
+                messageBody = ""; // Default to empty string to avoid breaking flow
+            }
 
-        // Load user from DB (could be null)
-        User user = userService.getUserById(from);
+            log.info("💬 Received message from {}: {}", from, messageBody);
 
-        if (user == null) {
-            user = new User();
-            user.setUserId(from);
-            user.setName(name);
-            user.setPhone(phone);
-            user.setCurrentIntent(null);
-            log.info("🆕 New user created: {}", from);
-            // Do NOT save here to avoid premature overwrite
-        } else {
-            // Update name/phone only if changed
-            if (name != null && !name.equals(user.getName())) {
+            String name = null, phone = null;
+            if (value.has("contacts")) {
+                JsonNode contact = value.get("contacts").get(0);
+                name = contact.get("profile").get("name").asText();
+                phone = contact.get("wa_id").asText();
+            }
+
+            // Load user from DB (could be null)
+            User user = userService.getUserById(from);
+
+            if (user == null) {
+                user = new User();
+                user.setUserId(from);
                 user.setName(name);
-            }
-            if (phone != null && !phone.equals(user.getPhone())) {
                 user.setPhone(phone);
+                user.setCurrentIntent(null);
+                log.info("🆕 New user created: {}", from);
+                // Do NOT save here to avoid premature overwrite
+            } else {
+                // Update name/phone only if changed
+                if (name != null && !name.equals(user.getName())) {
+                    user.setName(name);
+                }
+                if (phone != null && !phone.equals(user.getPhone())) {
+                    user.setPhone(phone);
+                }
             }
+
+            // Update lastSeen timestamp
+            user.setLastSeen(java.time.Instant.now().toString());
+
+            // Process message through main user flow service
+            Object response = mainUserFlowService.getResponse(user, messageBody);
+
+            log.info("📤 Response generated for user {}: {}", from, response);
+
+            // Gemini-added: Actually send the response back to the user
+            if (response instanceof InteractiveMessage) {
+                whatsAppService.sendInteractiveMessage(from, (InteractiveMessage) response);
+            } else if (response instanceof String) {
+                whatsAppService.sendTextMessage(from, (String) response);
+            } else if (response instanceof ListMessage) { // NEW
+                whatsAppService.sendListMessage(from, (ListMessage) response); // NEW
+            }
+
+            return ResponseEntity.ok("Message processed");
+
+        } catch (Exception e) {
+            log.error("❌ Error processing webhook payload", e);
+            return ResponseEntity.status(500).body("Webhook error");
         }
-
-        // Update lastSeen timestamp
-        user.setLastSeen(java.time.Instant.now().toString());
-
-        // Now pass user and message to flow service which will update user state and save the user
-        String responseMessage = whatsappService.handleMessage(
-            user.getUserId(),
-            user.getName(),
-            user.getPhone(),
-            messageBody
-        );
-
-        return ResponseEntity.ok("Message processed");
-
-    } catch (Exception e) {
-        log.error("❌ Error processing webhook payload", e);
-        return ResponseEntity.status(500).body("Webhook error");
     }
-}
-
-
 }

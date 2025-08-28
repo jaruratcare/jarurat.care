@@ -26,11 +26,11 @@ public class  ImmunityService {
         String diat_type=user.getDietType() !=null && !user.getDietType().isEmpty() ? user.getDietType() : "general";
         String prefrence=user.getFoodPreference() !=null && !user.getFoodPreference().isEmpty() ? user.getFoodPreference() :"general";
 
-        String systemPrompt = "You are a healthcare assistant specializing in safe, affordable supplements for cancer patients. Always keep responses concise and practical.";
+       String systemPrompt = "You are a healthcare assistant specializing in boosting immunity for cancer patients through safe, natural, and practical methods. Always keep responses concise and easy to follow.";
 
         String userPrompt = lang.equals("hi")
-                ? String.format("कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती सप्लीमेंट्स सुझाएं। अधिकतम 800 वर्ण।", symptom , diat_type,prefrence)
-                : String.format("Suggest safe and affordable supplements for cancer patients based on %s. Max 800 characters.", symptom,diat_type,prefrence);
+        ? String.format("कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती इम्यूनिटी बढ़ाने के उपाय सुझाएं। अधिकतम 800 वर्ण।", symptom, diat_type, prefrence)
+        : String.format("Suggest safe and affordable immunity-boosting tips for cancer patients based on %s. Max 800 characters.", symptom, diat_type, prefrence);
 
         String supplements = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 300);
 

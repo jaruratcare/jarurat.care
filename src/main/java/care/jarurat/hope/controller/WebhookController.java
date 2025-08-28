@@ -1,7 +1,7 @@
 package care.jarurat.hope.controller;
 
 import care.jarurat.hope.model.User;
-import care.jarurat.hope.model.InteractiveMessage; // Gemini-added
+import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.Userflow.MainUserFlowService;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import care.jarurat.hope.service.UserService;
-import care.jarurat.hope.service.WhatsAppService; // Gemini-added
+import care.jarurat.hope.service.WhatsAppService;
 import care.jarurat.hope.model.ListMessage;
-
 
 @Slf4j
 @RestController
@@ -20,7 +19,7 @@ public class WebhookController {
 
     private final MainUserFlowService mainUserFlowService;
     private final UserService userService;
-    private final WhatsAppService whatsAppService; // Gemini-added
+    private final WhatsAppService whatsAppService;
 
     @Value("${whatsapp.verify.token}")
     private String VERIFY_TOKEN;
@@ -29,7 +28,7 @@ public class WebhookController {
             whatsAppService) {
         this.mainUserFlowService = mainUserFlowService;
         this.userService = userService;
-        this.whatsAppService = whatsAppService; // Gemini-added
+        this.whatsAppService = whatsAppService;
     }
 
     @GetMapping
@@ -65,6 +64,7 @@ public class WebhookController {
 
             if (message.has("text")) {
                 messageBody = message.get("text").get("body").asText();
+
             } else if (message.has("interactive")) {
                 JsonNode interactive = message.get("interactive");
                 if (interactive.has("button_reply")) {
@@ -73,11 +73,22 @@ public class WebhookController {
                     messageBody = interactive.get("list_reply").get("id").asText();
                 } else {
                     log.warn("Received unhandled interactive message type.");
-                    messageBody = ""; // Default to empty string to avoid breaking flow
+                    messageBody = "";
                 }
+
+            } else if ("location".equals(message.get("type").asText()) && message.has("location")) {
+                JsonNode location = message.get("location");
+                double lat = location.get("latitude").asDouble();
+                double lon = location.get("longitude").asDouble();
+                String address = location.has("address") ? location.get("address").asText() : "";
+                log.info("📍 Received location from {}: {}, {} ({})", from, lat, lon, address);
+
+                // Convert into a string input that your NearbyHospitalRouter can parse
+                messageBody = lat + "," + lon;
+
             } else {
-                log.warn("Received message with no text or interactive content.");
-                messageBody = ""; // Default to empty string to avoid breaking flow
+                log.warn("Received message with no text, interactive, or location content.");
+                messageBody = "";
             }
 
             log.info("💬 Received message from {}: {}", from, messageBody);
@@ -99,7 +110,6 @@ public class WebhookController {
                 user.setPhone(phone);
                 user.setCurrentIntent(null);
                 log.info("🆕 New user created: {}", from);
-                // Do NOT save here to avoid premature overwrite
             } else {
                 // Update name/phone only if changed
                 if (name != null && !name.equals(user.getName())) {
@@ -118,13 +128,13 @@ public class WebhookController {
 
             log.info("📤 Response generated for user {}: {}", from, response);
 
-            // Gemini-added: Actually send the response back to the user
+            // Send the response back to the user
             if (response instanceof InteractiveMessage) {
                 whatsAppService.sendInteractiveMessage(from, (InteractiveMessage) response);
             } else if (response instanceof String) {
                 whatsAppService.sendTextMessage(from, (String) response);
-            } else if (response instanceof ListMessage) { // NEW
-                whatsAppService.sendListMessage(from, (ListMessage) response); // NEW
+            } else if (response instanceof ListMessage) {
+                whatsAppService.sendListMessage(from, (ListMessage) response);
             }
 
             return ResponseEntity.ok("Message processed");

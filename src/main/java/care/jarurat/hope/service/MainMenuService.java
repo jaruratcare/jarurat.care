@@ -31,6 +31,11 @@ public class MainMenuService {
             user.setCurrentIntent("nutrition_care_start");
             userService.updateUser(user);
             return null;
+            
+            case "4": // Nearby Hospitals
+            user.setCurrentIntent("nearby_hospitals");
+            userService.updateUser(user);
+            return null;
 
             // ... other cases
             default:

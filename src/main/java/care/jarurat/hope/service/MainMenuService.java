@@ -40,6 +40,10 @@ public class MainMenuService {
             user.setCurrentIntent("palliative_care");
             userService.updateUser(user);
             return null;
+            case "5":
+            user.setCurrentIntent("accommodation_food");
+            userService.updateUser(user);
+            return null;
 
             // ... other cases
             default:

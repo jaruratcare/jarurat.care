@@ -2,23 +2,17 @@ package care.jarurat.hope.Userflow;
 
 import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
-import care.jarurat.hope.service.GlobalCommandService;
-import care.jarurat.hope.service.LanguageService;
-import care.jarurat.hope.service.MainMenuService;
-import care.jarurat.hope.service.OnboardingService;
-import care.jarurat.hope.service.UserService;
-import care.jarurat.hope.Userflow.financialguidance.FinancialGuidanceService;
-import care.jarurat.hope.Userflow.financialguidance.GovernmentSchemesService;
-import care.jarurat.hope.Userflow.financialguidance.NgosAndTrustsService;
+import care.jarurat.hope.service.*;
+import care.jarurat.hope.Userflow.financialguidance.*;
 import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
-import care.jarurat.hope.Userflow.financialguidance.CrowdfundingService;
-import care.jarurat.hope.Userflow.financialguidance.InsuranceService;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
+import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler; // ✅ import PalliativeCareHandler
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -37,6 +31,7 @@ public class MainUserFlowService {
     private final InsuranceService insuranceService;
     private final NutritionCareRouter nutritionCareRouter;
     private final NearbyHospitalRouter nearbyHospitalRouter; 
+    private final PalliativeCareHandler palliativeCareHandler; // ✅ injected PalliativeCareHandler
 
     public Object getResponse(User user, String input) {
         if (input == null || input.trim().isEmpty()) {
@@ -53,12 +48,11 @@ public class MainUserFlowService {
         }
 
         // ✅ allow main_menu command anytime
-       if ("back_to_menu".equalsIgnoreCase(input) || "main_menu".equalsIgnoreCase(input)) {
-       user.setCurrentIntent("main_menu");
-       userService.updateUser(user);
-       return mainMenuService.getMainMenuMessage("en".equals(user.getLanguage()));
-}
-
+        if ("back_to_menu".equalsIgnoreCase(input) || "main_menu".equalsIgnoreCase(input)) {
+            user.setCurrentIntent("main_menu");
+            userService.updateUser(user);
+            return mainMenuService.getMainMenuMessage("en".equals(user.getLanguage()));
+        }
 
         if (input.equalsIgnoreCase("back_to_financial_menu")) {
             return financialGuidanceService.sendMainFinancialGuidanceMenu(user);
@@ -75,8 +69,7 @@ public class MainUserFlowService {
                     : "आपका समर्थन व्यक्तिगत बनाने के लिए, कृपया अपना नाम बताएं।";
         }
 
-        log.debug("Processing message '{}' for user {} with intent: {}",
-                input, user.getUserId(), intent);
+        log.debug("Processing message '{}' for user {} with intent: {}", input, user.getUserId(), intent);
 
         // ✅ If no intent yet, ask language
         if (intent == null || intent.isBlank()) {
@@ -149,7 +142,6 @@ public class MainUserFlowService {
                 Object menuResponse = mainMenuService.handleMainMenu(user, input);
                 if (menuResponse == null) {
                     if ("nutrition_care_start".equals(user.getCurrentIntent())) {
-                        // Kick off Nutrition flow
                         user.setCurrentIntent("nutrition_step1");
                         userService.updateUser(user);
                         return nutritionCareRouter.handle(user, input);
@@ -160,9 +152,17 @@ public class MainUserFlowService {
                     } else if ("nearby_hospitals".equals(user.getCurrentIntent())
                             || "awaiting_location".equals(user.getCurrentIntent())
                             || "awaiting_hospital_type".equals(user.getCurrentIntent())) {
-                        // ✅ delegate to hospital router
                         return nearbyHospitalRouter.handle(user, input);
+                    } 
+                    // ✅ PalliativeCare integration
+                    else if ("palliative_care".equals(user.getCurrentIntent()) ||
+                            "awaiting_palliative_city".equals(user.getCurrentIntent()) ||
+                             "awaiting_palliative_type".equals(user.getCurrentIntent()) ||
+                             "awaiting_palliative_care_type".equals(user.getCurrentIntent()) ) {
+    
+                         return palliativeCareHandler.handle(user, input);
                     }
+
                 }
                 return menuResponse;
 
@@ -175,12 +175,19 @@ public class MainUserFlowService {
             case "nutrition_pdf_offer":
                 return nutritionCareRouter.handle(user, input);
 
-            // ✅ hospital flow (direct catch if intent was already set)
+            // ✅ hospital flow
             case "nearby_hospitals":
             case "awaiting_location":
             case "awaiting_hospital_type":
             case "hospital_pdf_offer":
                 return nearbyHospitalRouter.handle(user, input);
+
+            // ✅ palliative care flow
+            case "palliative_care":
+            case "awaiting_palliative_city":
+            case "awaiting_palliative_type":
+             case "awaiting_palliative_care_type":
+                return palliativeCareHandler.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

@@ -21,7 +21,7 @@ public class WebhookController {
     private final UserService userService;
     private final WhatsAppService whatsAppService;
 
-    @Value("${whatsapp.verify.token}")
+     @Value("${whatsapp.verify.token}")
     private String VERIFY_TOKEN;
 
     public WebhookController(MainUserFlowService mainUserFlowService, UserService userService, WhatsAppService

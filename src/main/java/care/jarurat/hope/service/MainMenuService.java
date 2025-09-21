@@ -36,6 +36,10 @@ public class MainMenuService {
             user.setCurrentIntent("nearby_hospitals");
             userService.updateUser(user);
             return null;
+            case "7": // Palliative Care
+            user.setCurrentIntent("palliative_care");
+            userService.updateUser(user);
+            return null;
 
             // ... other cases
             default:

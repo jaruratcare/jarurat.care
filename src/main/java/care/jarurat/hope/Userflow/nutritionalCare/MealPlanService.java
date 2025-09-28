@@ -52,17 +52,17 @@ public class MealPlanService {
                 ? String.format("""
                     आप एक पोषण विशेषज्ञ हैं। कृपया कैंसर मरीज के लिए पूरे सप्ताह की व्यक्तिगत भारतीय भोजन योजना तैयार करें।
                     आहार प्रकार: %s
-                    खाने की स्थिति: %s
+                    खाने की पसंद: %s
                     लक्षण: %s
                     आउटपुट प्रारूप: सोमवार से रविवार (नाश्ता, दोपहर का भोजन, रात का खाना, स्नैक्स)।
                     """, dietType, foodPreference, symptoms)
                 : String.format("""
                     You are a nutritionist. Create a personalized Indian meal plan for a cancer patient for the whole week.
                     Diet Type: %s
-                    Eating Condition: %s
+                    foodPreference: %s
                     Symptoms: %s
                     Output format: Monday to Sunday (Breakfast, Lunch, Dinner, Snacks).
-                    """, dietType, eatingCondition, symptoms);
+                    """, dietType, foodPreference, symptoms);
 
         // AI call
         String aiMealPlan = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 2000);

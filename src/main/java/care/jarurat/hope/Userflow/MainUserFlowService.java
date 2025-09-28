@@ -169,14 +169,16 @@ public class MainUserFlowService {
 
                     //  Accommodation & Food
                     } else if ("accommodation_food".equals(user.getCurrentIntent()) ||
-                            "awaiting_af_city".equals(user.getCurrentIntent()) ||
-                            "awaiting_af_type".equals(user.getCurrentIntent()) ||
-                             "awaiting_af_income".equals(user.getCurrentIntent())
-                            
-                            ) {
+        "awaiting_af_hospital".equals(user.getCurrentIntent()) ||
+        "awaiting_af_help_type".equals(user.getCurrentIntent()) ||
+        "awaiting_af_city".equals(user.getCurrentIntent()) ||
+        "awaiting_af_type".equals(user.getCurrentIntent()) ||
+        "awaiting_af_income".equals(user.getCurrentIntent()) ||
+        "awaiting_af_service_selection".equals(user.getCurrentIntent())
+        ) {
 
-                        return accommodationFoodHandler.handle(user, input);
-                    }
+    return accommodationFoodHandler.handle(user, input);
+}
 
                 }
                 return menuResponse;
@@ -205,11 +207,14 @@ public class MainUserFlowService {
                 return palliativeCareHandler.handle(user, input);
 
             //  accommodation food flow
-            case "accommodation_food":
-            case "awaiting_af_city":
-            case "awaiting_af_type":
-            case "awaiting_af_income":
-                return accommodationFoodHandler.handle(user, input);
+          case "accommodation_food":
+case "awaiting_af_hospital":
+case "awaiting_af_help_type":
+case "awaiting_af_city":
+case "awaiting_af_type":
+case "awaiting_af_income":
+case "awaiting_af_service_selection":
+    return accommodationFoodHandler.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

@@ -12,4 +12,7 @@ public class AccommodationFoodFacility {
     private String type;    
     private String services;  
     private String priceRange; 
+    private String category;
+    private String food;
+    private String open_hour;
 }

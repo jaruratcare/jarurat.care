@@ -96,6 +96,7 @@ public class UserRepository {
             if (user.getNutritionSymptoms() != null) updates.put("nutritionSymptoms", user.getNutritionSymptoms());
             if (user.getLatitude() != null) updates.put("latitude", user.getLatitude());
             if (user.getLongitude() != null) updates.put("longitude", user.getLongitude());
+            if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
 
             if (!updates.isEmpty()) {
                 db.collection(COLLECTION_NAME).document(user.getUserId()).update(updates).get();

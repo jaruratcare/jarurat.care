@@ -29,8 +29,18 @@ public class  ImmunityService {
        String systemPrompt = "You are a healthcare assistant specializing in boosting immunity for cancer patients through safe, natural, and practical methods. Always keep responses concise and easy to follow.";
 
         String userPrompt = lang.equals("hi")
-        ? String.format("कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती इम्यूनिटी बढ़ाने के उपाय सुझाएं। अधिकतम 800 वर्ण।", symptom, diat_type, prefrence)
-        : String.format("Suggest safe and affordable immunity-boosting tips for cancer patients based on %s. Max 800 characters.", symptom, diat_type, prefrence);
+        ? String.format(
+            "कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती इम्यूनिटी बढ़ाने के उपाय सुझाएं। " +
+            "आहार प्रकार: %s, खाने की पसंद: %s। यदि शाकाहारी है तो मांसाहारी आइटम शामिल न करें। अधिकतम 800 वर्ण।",
+            symptom, diat_type, prefrence
+        )
+        : String.format(
+            "Suggest safe and affordable immunity-boosting tips for cancer patients based on %s. " +
+            "User diet type: %s, food preference: %s. " +
+            "Do NOT include any non-vegetarian items if the preference is vegetarian. Max 800 characters.",
+            symptom, diat_type, prefrence
+        );
+
 
         String supplements = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 300);
 
@@ -42,7 +52,7 @@ public class  ImmunityService {
         log.info("Generated supplements length: {} characters", supplements.length());
 
         return InteractiveMessage.builder()
-                .header(lang.equals("hi") ? "📦 किफायती सप्लीमेंट्स" : "📦 Affordable Supplements")
+                .header(lang.equals("hi") ?  "🛡️ इम्यूनिटी टिप्स" : "🛡️ Immunity Tips")
                 .body(supplements)
                 .footer(lang.equals("hi")
                         ? "कृपया आगे बढ़ने के लिए नीचे से विकल्प चुनें।"

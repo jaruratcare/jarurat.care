@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,8 +31,10 @@ public class User {
     private String cancerType;
     private String cancerStage;
     private String incomeRange;
-    //field for NearbyHospital
+    // Field for NearbyHospital
     private Double latitude;
     private Double longitude;
 
+    // NEW FIELD: store user selected help type (stay_food, only_stay, only_food)
+    private String helpType;
 }

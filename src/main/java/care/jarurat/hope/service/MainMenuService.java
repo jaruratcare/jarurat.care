@@ -44,6 +44,11 @@ public class MainMenuService {
             user.setCurrentIntent("accommodation_food");
             userService.updateUser(user);
             return null;
+            //diagonastics
+            case "6":
+            user.setCurrentIntent("diagnostic_lab_start");
+            userService.updateUser(user);
+            return null;
 
             // ... other cases
             default:

@@ -7,6 +7,7 @@ import care.jarurat.hope.Userflow.financialguidance.*;
 import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
 import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler; // ✅ import PalliativeCareHandler
+import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
 import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler; // ✅ import AccommodationFoodHandler
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,10 @@ public class MainUserFlowService {
     private final NearbyHospitalRouter nearbyHospitalRouter; 
     private final PalliativeCareHandler palliativeCareHandler;
     private final AccommodationFoodHandler accommodationFoodHandler; 
+    private final DiagnosticHandler diagnosticHandler;
+
+    
+
 
     public Object getResponse(User user, String input) {
         if (input == null || input.trim().isEmpty()) {
@@ -169,16 +174,21 @@ public class MainUserFlowService {
 
                     //  Accommodation & Food
                     } else if ("accommodation_food".equals(user.getCurrentIntent()) ||
-        "awaiting_af_hospital".equals(user.getCurrentIntent()) ||
-        "awaiting_af_help_type".equals(user.getCurrentIntent()) ||
-        "awaiting_af_city".equals(user.getCurrentIntent()) ||
-        "awaiting_af_type".equals(user.getCurrentIntent()) ||
-        "awaiting_af_income".equals(user.getCurrentIntent()) ||
-        "awaiting_af_service_selection".equals(user.getCurrentIntent())
-        ) {
+                               "awaiting_af_hospital".equals(user.getCurrentIntent()) ||
+                               "awaiting_af_help_type".equals(user.getCurrentIntent()) ||
+                               "awaiting_af_city".equals(user.getCurrentIntent()) ||
+                               "awaiting_af_type".equals(user.getCurrentIntent()) ||
+                               "awaiting_af_income".equals(user.getCurrentIntent()) ||
+                               "awaiting_af_service_selection".equals(user.getCurrentIntent()) ) {
 
-    return accommodationFoodHandler.handle(user, input);
-}
+                        return accommodationFoodHandler.handle(user, input);
+                    //diagonostics
+                    }else if ("diagnostic_lab_start".equals(user.getCurrentIntent()) ||
+                   "diagnostic_awaiting_location_confirmation".equals(user.getCurrentIntent()) ||
+                   "diagnostic_awaiting_location".equals(user.getCurrentIntent())) {
+
+                        return diagnosticHandler.handle(user, input);
+        }
 
                 }
                 return menuResponse;
@@ -207,14 +217,18 @@ public class MainUserFlowService {
                 return palliativeCareHandler.handle(user, input);
 
             //  accommodation food flow
-          case "accommodation_food":
-case "awaiting_af_hospital":
-case "awaiting_af_help_type":
-case "awaiting_af_city":
-case "awaiting_af_type":
-case "awaiting_af_income":
-case "awaiting_af_service_selection":
-    return accommodationFoodHandler.handle(user, input);
+            case "accommodation_food":
+            case "awaiting_af_hospital":
+            case "awaiting_af_help_type":
+            case "awaiting_af_city":
+            case "awaiting_af_income":
+            case "awaiting_af_service_selection":
+            return accommodationFoodHandler.handle(user, input);
+            // diagnostics flow
+            case "diagnostic_lab_start":
+            case "diagnostic_awaiting_location_confirmation":
+            case "diagnostic_awaiting_location":
+            return diagnosticHandler.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

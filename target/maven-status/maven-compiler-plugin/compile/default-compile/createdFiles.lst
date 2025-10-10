@@ -11,7 +11,9 @@ care\jarurat\hope\dto\UserResponseDto.class
 care\jarurat\hope\HopeBotApplication.class
 care\jarurat\hope\model\InteractiveMessage$InteractiveMessageBuilder.class
 care\jarurat\hope\service\MainMenuService.class
+care\jarurat\hope\Userflow\diagonostics\DiagnosticService.class
 care\jarurat\hope\Userflow\nearbyHospital\Hospital.class
+care\jarurat\hope\Userflow\diagonostics\model\Location.class
 care\jarurat\hope\Userflow\financialguidance\NgosAndTrustsService.class
 care\jarurat\hope\model\ListMessage$ListMessageBuilder.class
 care\jarurat\hope\model\ListMessage$Section.class
@@ -23,12 +25,16 @@ care\jarurat\hope\service\UserService.class
 care\jarurat\hope\Userflow\PalliativeCareHandler\PalliativeCareFacility.class
 care\jarurat\hope\util\PdfGeneratorUploader.class
 care\jarurat\hope\Userflow\nutritionalCare\NutritionCareRouter.class
+care\jarurat\hope\Userflow\diagonostics\DiagnosticMessageBuilder.class
 care\jarurat\hope\Userflow\AccommodationFood\AccommodationFoodMessageBuilder.class
+care\jarurat\hope\Userflow\diagonostics\DiagnosticHandler.class
 care\jarurat\hope\Userflow\financialguidance\GovernmentSchemesService.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep1Service.class
+care\jarurat\hope\Userflow\diagonostics\model\Place.class
 care\jarurat\hope\Userflow\PalliativeCareHandler\PalliativeCareMessageBuilder.class
 care\jarurat\hope\Userflow\financialguidance\CrowdfundingService.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep3Service.class
+care\jarurat\hope\Userflow\diagonostics\model\Geometry.class
 care\jarurat\hope\Userflow\nearbyHospital\NearbyHospitalHandler.class
 care\jarurat\hope\service\LanguageService.class
 care\jarurat\hope\Userflow\nearbyHospital\NearbyHospitalRouter.class
@@ -49,6 +55,7 @@ care\jarurat\hope\Userflow\AccommodationFood\AccommodationFoodService.class
 care\jarurat\hope\Userflow\nearbyHospital\NearbyHospitalService.class
 care\jarurat\hope\service\WhatsAppService.class
 care\jarurat\hope\Userflow\PalliativeCareHandler\PalliativeCareService.class
+care\jarurat\hope\Userflow\diagonostics\model\PlacesApiResponse.class
 care\jarurat\hope\dto\UserRequestDto.class
 care\jarurat\hope\model\InteractiveMessage$Button$ButtonBuilder.class
 care\jarurat\hope\model\InteractiveMessage.class

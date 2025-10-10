@@ -31,6 +31,7 @@ public class User {
     private String cancerType;
     private String cancerStage;
     private String incomeRange;
+    private String tempPolicySelection;
     // Field for NearbyHospital
     private Double latitude;
     private Double longitude;

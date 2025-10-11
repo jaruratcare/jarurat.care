@@ -38,4 +38,7 @@ public class User {
 
     // NEW FIELD: store user selected help type (stay_food, only_stay, only_food)
     private String helpType;
+
+    // NEW FIELD: temporary storage for volunteer mode (Chat / Phone Call)
+    private String tempMode;
 }

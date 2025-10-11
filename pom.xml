@@ -90,6 +90,35 @@
             <artifactId>service</artifactId>
             <version>0.18.2</version>
         </dependency>
+        
+        <!-- Google API Client - COMPATIBLE VERSION -->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.32.1</version>
+        </dependency>
+
+        <!-- Google OAuth2 for authentication -->
+        <dependency>
+            <groupId>com.google.auth</groupId>
+            <artifactId>google-auth-library-oauth2-http</artifactId>
+            <version>1.22.0</version>
+        </dependency>
+
+        <!-- Google Calendar API -->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-calendar</artifactId>
+            <version>v3-rev20211026-1.32.1</version>
+        </dependency>
+
+        <!-- Additional Google dependencies for compatibility -->
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.42.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

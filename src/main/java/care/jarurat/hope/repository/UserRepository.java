@@ -97,7 +97,8 @@ public class UserRepository {
             if (user.getLatitude() != null) updates.put("latitude", user.getLatitude());
             if (user.getLongitude() != null) updates.put("longitude", user.getLongitude());
             if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
-
+            if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
+            if (user.getTempMode() != null) updates.put("tempMode", user.getTempMode());
             if (!updates.isEmpty()) {
                 db.collection(COLLECTION_NAME).document(user.getUserId()).update(updates).get();
                 log.info("User updated: {}", user.getUserId());

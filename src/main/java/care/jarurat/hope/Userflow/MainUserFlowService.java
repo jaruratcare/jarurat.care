@@ -6,9 +6,10 @@ import care.jarurat.hope.service.*;
 import care.jarurat.hope.Userflow.financialguidance.*;
 import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
-import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler; // ✅ import PalliativeCareHandler
+import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler;
 import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
-import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler; // ✅ import AccommodationFoodHandler
+import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler;
+import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler; // ✅ Add Volunteer
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,9 +36,7 @@ public class MainUserFlowService {
     private final PalliativeCareHandler palliativeCareHandler;
     private final AccommodationFoodHandler accommodationFoodHandler; 
     private final DiagnosticHandler diagnosticHandler;
-
-    
-
+    private final VolunteerHandler volunteerHandler; // ✅ Add Volunteer
 
     public Object getResponse(User user, String input) {
         if (input == null || input.trim().isEmpty()) {
@@ -182,13 +181,21 @@ public class MainUserFlowService {
                                "awaiting_af_service_selection".equals(user.getCurrentIntent()) ) {
 
                         return accommodationFoodHandler.handle(user, input);
-                    //diagonostics
-                    }else if ("diagnostic_lab_start".equals(user.getCurrentIntent()) ||
-                   "diagnostic_awaiting_location_confirmation".equals(user.getCurrentIntent()) ||
-                   "diagnostic_awaiting_location".equals(user.getCurrentIntent())) {
+                    
+                    //  Diagnostics
+                    } else if ("diagnostic_lab_start".equals(user.getCurrentIntent()) ||
+                               "diagnostic_awaiting_location_confirmation".equals(user.getCurrentIntent()) ||
+                               "diagnostic_awaiting_location".equals(user.getCurrentIntent())) {
 
                         return diagnosticHandler.handle(user, input);
-        }
+
+                    //  Volunteer
+                    } else if ("volunteer_start".equals(user.getCurrentIntent()) ||
+                               "volunteer_choose_mode".equals(user.getCurrentIntent()) ||
+                               "volunteer_ask_datetime".equals(user.getCurrentIntent())) {
+
+                        return volunteerHandler.handle(user, input);
+                    }
 
                 }
                 return menuResponse;
@@ -223,12 +230,19 @@ public class MainUserFlowService {
             case "awaiting_af_city":
             case "awaiting_af_income":
             case "awaiting_af_service_selection":
-            return accommodationFoodHandler.handle(user, input);
-            // diagnostics flow
+                return accommodationFoodHandler.handle(user, input);
+
+            //  diagnostics flow
             case "diagnostic_lab_start":
             case "diagnostic_awaiting_location_confirmation":
             case "diagnostic_awaiting_location":
-            return diagnosticHandler.handle(user, input);
+                return diagnosticHandler.handle(user, input);
+
+            //  volunteer flow
+            case "volunteer_start":
+            case "volunteer_choose_mode":
+            case "volunteer_ask_datetime":
+                return volunteerHandler.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

@@ -52,7 +52,7 @@ public class PdfGeneratorUploader {
     document.close();
 
     // Firebase upload
-    String bucketName = "whatsbot-b61c8.firebasestorage.app";
+    String bucketName = "jaruratcare-hopebot-1a52e.firebasestorage.app";
     String fileName = "nutrition_plans/" + userId + ".pdf";
 
     StorageClient.getInstance()
@@ -69,7 +69,7 @@ public class PdfGeneratorUploader {
 
     Storage storage = StorageOptions.newBuilder()
             .setCredentials(credentials)
-            .setProjectId("whatsbot-b61c8")
+            .setProjectId("jaruratcare-hopebot-1a52e")
             .build()
             .getService();
 
@@ -86,7 +86,7 @@ public class PdfGeneratorUploader {
             return;
         }
         try {
-            String bucket = "whatsbot-b61c8.firebasestorage.app";
+            String bucket = "jaruratcare-hopebot-1a52e.firebasestorage.app";
             String object;
 
             if (url.contains("/o/")) {
@@ -114,7 +114,7 @@ public class PdfGeneratorUploader {
 
             Storage storage = StorageOptions.newBuilder()
                     .setCredentials(credentials)
-                    .setProjectId("whatsbot-b61c8")
+                    .setProjectId("jaruratcare-hopebot-1a52e")
                     .build()
                     .getService();
 

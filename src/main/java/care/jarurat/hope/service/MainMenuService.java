@@ -49,6 +49,9 @@ public class MainMenuService {
             user.setCurrentIntent("diagnostic_lab_start");
             userService.updateUser(user);
             return null;
+            case "8":
+            user.setCurrentIntent("volunteer_start");
+            return null;
 
             // ... other cases
             default:

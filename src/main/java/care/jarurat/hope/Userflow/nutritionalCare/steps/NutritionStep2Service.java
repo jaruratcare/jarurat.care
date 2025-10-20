@@ -1,7 +1,7 @@
 package care.jarurat.hope.Userflow.nutritionalCare.steps;
 
-import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.ListMessage;
+import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ public class NutritionStep2Service {
 
     public Object handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
+
         boolean valid = switch (input.toLowerCase()) {
-            case "soft", "liquid", "normal" -> true;
-            case "नरम", "तरल", "तरल आहार", "सामान्य", "सामान्य आहार" -> true;
+            case "soft", "liquid", "normal", "नरम", "तरल", "तरल आहार", "सामान्य", "सामान्य आहार" -> true;
             default -> false;
         };
 
@@ -33,10 +33,13 @@ public class NutritionStep2Service {
                     ))
                     .build();
         }
-        user.setDietType(input);
+
         user.setEatingCondition(input);
-        user.setCurrentIntent("nutrition_step3");
+        user.setDietType(input);
+        user.setCurrentIntent("nutrition_step3"); // Next: Symptoms
         userService.updateUser(user);
+
+        // Go to symptoms selection
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
                 .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")

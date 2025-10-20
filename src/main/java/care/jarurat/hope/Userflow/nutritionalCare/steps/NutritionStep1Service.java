@@ -1,4 +1,5 @@
 package care.jarurat.hope.Userflow.nutritionalCare.steps;
+
 import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
@@ -21,37 +22,36 @@ public class NutritionStep1Service {
                 || "शाकाहारी".equalsIgnoreCase(input) || "मांसाहारी".equalsIgnoreCase(input)) {
 
             user.setFoodPreference(input);
-            user.setCurrentIntent("nutrition_step0");
+            user.setCurrentIntent("nutrition_step0"); // go to diabetic step
             userService.updateUser(user);
 
+            // Ask diabetic status
             return InteractiveMessage.builder()
-                    .body(lang.equals("hi") ? "🥗 खाने की स्थिति क्या है?" : "🥗 What is the eating condition?")
+                    .body(lang.equals("hi") ? "❓ क्या आप मधुमेह के रोगी हैं?" : "❓ Are you diabetic?")
                     .buttons(List.of(
-                            InteractiveMessage.Button.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
-                            InteractiveMessage.Button.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
-                            InteractiveMessage.Button.builder().id("normal").title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build()
+                            InteractiveMessage.Button.builder()
+                                    .id("yes_diabetic")
+                                    .title(lang.equals("hi") ? "✅ हाँ" : "✅ Yes").build(),
+                            InteractiveMessage.Button.builder()
+                                    .id("no_diabetic")
+                                    .title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build()
                     ))
                     .build();
         }
 
         return InteractiveMessage.builder()
-        .body(lang.equals("hi")
-                ? "कृपया अपनी पसंद चुनें:"
-                : "Please choose your preference:")
-        .footer(lang.equals("hi")
-                ? "शाकाहारी या मांसाहारी चुनें"
-                : "Select Vegetarian or Non-Vegetarian")
-        .buttons(Arrays.asList(
-                InteractiveMessage.Button.builder()
-                        .id("vegetarian")
-                        .title(lang.equals("hi") ? "🥗 शाकाहारी" : "🥗 Vegetarian")
-                        .build(),
-                InteractiveMessage.Button.builder()
-                        .id("non_vegetarian")
-                        .title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian")
-                        .build()
-        ))
-        .build();
+                .body(lang.equals("hi") ? "कृपया अपनी पसंद चुनें:" : "Please choose your preference:")
+                .footer(lang.equals("hi") ? "शाकाहारी या मांसाहारी चुनें" : "Select Vegetarian or Non-Vegetarian")
+                .buttons(Arrays.asList(
+                        InteractiveMessage.Button.builder()
+                                .id("vegetarian")
+                                .title(lang.equals("hi") ? "🥗 शाकाहारी" : "🥗 Vegetarian")
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("non_vegetarian")
+                                .title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian")
+                                .build()
+                ))
+                .build();
     }
-
 }

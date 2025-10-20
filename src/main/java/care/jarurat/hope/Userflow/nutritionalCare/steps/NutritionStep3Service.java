@@ -13,6 +13,7 @@ import java.util.List;
 public class NutritionStep3Service {
 
     private final UserService userService;
+
     public ListMessage createSymptomsListMessage(String lang) {
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
@@ -35,18 +36,23 @@ public class NutritionStep3Service {
 
     public Object handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
+
         if (user.getDietType() == null || !"nutrition_step3".equals(user.getCurrentIntent())) {
             return "❌ " + (lang.equals("hi") ? "कृपया पहले अपना आहार प्रकार चुनें" : "Please select your diet type first");
         }
+
         List<String> validSymptoms = List.of("gut_health", "nausea", "fatigue", "loss_appetite", "low_immunity");
         if (!validSymptoms.contains(input.toLowerCase())) {
             return createSymptomsListMessage(lang);
         }
+
         user.setNutritionSymptoms(input.toLowerCase());
         user.setCurrentIntent("nutrition_step4");
         userService.updateUser(user);
+
         return createNextOptionsMessage(lang);
     }
+
     private ListMessage createNextOptionsMessage(String lang) {
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "💡 आज आप किस चीज़ में मदद चाहते हैं?" : "💡 What would you like help with today?")

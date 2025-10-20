@@ -21,7 +21,7 @@ public class NutritionStep1Service {
                 || "शाकाहारी".equalsIgnoreCase(input) || "मांसाहारी".equalsIgnoreCase(input)) {
 
             user.setFoodPreference(input);
-            user.setCurrentIntent("nutrition_step2");
+            user.setCurrentIntent("nutrition_step0");
             userService.updateUser(user);
 
             return InteractiveMessage.builder()

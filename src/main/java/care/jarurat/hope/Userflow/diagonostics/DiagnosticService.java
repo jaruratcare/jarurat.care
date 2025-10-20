@@ -1,4 +1,5 @@
 package care.jarurat.hope.Userflow.diagonostics;
+
 import care.jarurat.hope.Userflow.diagonostics.model.PlacesApiResponse;
 import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
@@ -12,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -38,10 +39,16 @@ public class DiagnosticService {
             PlacesApiResponse response = restTemplate.getForObject(builder.toUriString(), PlacesApiResponse.class);
 
             if (response != null && "OK".equals(response.getStatus()) && response.getResults() != null && !response.getResults().isEmpty()) {
-                String labsList = response.getResults().stream()
-                        .limit(5)
+                // Short body text for WhatsApp
+                String body = isEnglish
+                        ? "Here are some labs I found near " + locationQuery + ":"
+                        : "यहाँ " + locationQuery + " के पास कुछ लैब हैं जो मुझे मिलीं:";
+
+                // Prepare up to 3 buttons for WhatsApp
+                List<InteractiveMessage.Button> buttons = response.getResults().stream()
+                        .limit(3) // WhatsApp allows max 3 buttons
                         .map(place -> {
-                            String name = place.getName() != null ? place.getName() : "Unnamed Lab";
+                            String name = place.getName() != null ? place.getName() : "Lab";
                             String address = (place.getFormattedAddress() != null && !place.getFormattedAddress().isEmpty())
                                     ? place.getFormattedAddress()
                                     : (place.getVicinity() != null ? place.getVicinity() : "Address not available");
@@ -49,30 +56,20 @@ public class DiagnosticService {
                             String encodedAddress = URLEncoder.encode(name + ", " + address, StandardCharsets.UTF_8);
                             String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
 
-                            String labInfo = "🏥 " + name;
-                            if (!"Address not available".equals(address)) {
-                                labInfo += "\n📍 " + address;
-                            }
-                            labInfo += "\n🔗 " + googleMapsUrl;
-                            return labInfo;
+                            return InteractiveMessage.Button.builder()
+                                    .type("url")
+                                    .title(name.length() > 20 ? name.substring(0, 17) + "..." : name) 
+                                    .url(googleMapsUrl)
+                                    .build();
                         })
-                        .collect(Collectors.joining("\n\n"));
-
-                String header = isEnglish
-                        ? "Here are some labs I found near " + locationQuery + ":"
-                        : "यहाँ " + locationQuery + " के पास कुछ लैब हैं जो मुझे मिलीं:";
+                        .collect(Collectors.toList());
 
                 user.setCurrentIntent("main_menu");
                 userService.updateUser(user);
 
-                String body = header + "\n\n" + labsList;
-                String buttonTitle = isEnglish ? "Main Menu" : "मुख्य मेनू";
-
                 return InteractiveMessage.builder()
                         .body(body)
-                        .buttons(Arrays.asList(
-                                InteractiveMessage.Button.builder().id("main_menu").title(buttonTitle).build()
-                        ))
+                        .buttons(buttons)
                         .build();
             } else {
                 user.setCurrentIntent("main_menu");

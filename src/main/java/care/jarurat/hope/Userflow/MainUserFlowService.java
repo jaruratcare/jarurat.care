@@ -202,6 +202,7 @@ public class MainUserFlowService {
 
             //  nutrition flow
             case "nutrition_step1":
+            case "nutrition_step0":
             case "nutrition_step2":
             case "nutrition_step3":
             case "nutrition_step4":

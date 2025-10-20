@@ -88,15 +88,16 @@ public class UserRepository {
             if (user.getCancerType() != null) updates.put("cancerType", user.getCancerType());
             if (user.getCancerStage() != null) updates.put("cancerStage", user.getCancerStage());
             if (user.getIncomeRange() != null) updates.put("incomeRange", user.getIncomeRange());
+            if (user.getTempPolicySelection() != null) updates.put("tempPolicySelection", user.getTempPolicySelection());
 
             // Nutrition fields (now single string for symptoms)
             if (user.getFoodPreference() != null) updates.put("foodPreference", user.getFoodPreference());
             if (user.getDietType() != null) updates.put("dietType", user.getDietType());
+            if (user.getDietType() != null) updates.put("DiabeticStatus", user.getDiabeticStatus());
             if (user.getEatingCondition() != null) updates.put("eatingCondition", user.getEatingCondition());
             if (user.getNutritionSymptoms() != null) updates.put("nutritionSymptoms", user.getNutritionSymptoms());
             if (user.getLatitude() != null) updates.put("latitude", user.getLatitude());
             if (user.getLongitude() != null) updates.put("longitude", user.getLongitude());
-            if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
             if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
             if (user.getTempMode() != null) updates.put("tempMode", user.getTempMode());
             if (!updates.isEmpty()) {

@@ -23,6 +23,7 @@ public class User {
     private String foodPreference; // vegetarian, non_vegetarian
     private String eatingCondition; // soft, liquid, normal
     private String dietType; // soft, liquid, normal
+    private String DiabeticStatus;
 
     // New fields for onboarding
     private String city;
@@ -41,4 +42,5 @@ public class User {
 
     // NEW FIELD: temporary storage for volunteer mode (Chat / Phone Call)
     private String tempMode;
+  
 }

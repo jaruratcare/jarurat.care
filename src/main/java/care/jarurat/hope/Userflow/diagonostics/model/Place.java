@@ -10,5 +10,5 @@ public class Place {
     private String name;
     private String vicinity;
     private Geometry geometry;
-    private String formattedAddress; // ✅ add this
+    private String formattedAddress; 
 }

@@ -6,7 +6,6 @@ import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -23,9 +22,12 @@ public class NutritionStep2Service {
             default -> false;
         };
 
-        if (!valid) {
+        // Handle Back / Main Menu
+        if (input.equalsIgnoreCase("back") || input.equals("🔙")) {
+            user.setCurrentIntent("nutrition_step1");
+            userService.updateUser(user);
             return InteractiveMessage.builder()
-                    .body(lang.equals("hi") ? "❌ अमान्य विकल्प। कृपया पुनः चुनें:" : "❌ Invalid choice. Please select again:")
+                    .body(lang.equals("hi") ? "कृपया अपना भोजन प्रकार चुनें:" : "Please choose your food type:")
                     .buttons(List.of(
                             InteractiveMessage.Button.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
                             InteractiveMessage.Button.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
@@ -34,12 +36,38 @@ public class NutritionStep2Service {
                     .build();
         }
 
+        if (input.equalsIgnoreCase("main_menu") || input.equals("🏠")) {
+            user.setCurrentIntent("main_menu");
+            userService.updateUser(user);
+            return InteractiveMessage.builder()
+                    .body(lang.equals("hi") ? "मुख्य मेनू में आपका स्वागत है!" : "Welcome to the main menu!")
+                    .buttons(List.of(
+                            InteractiveMessage.Button.builder().id("nutrition").title(lang.equals("hi") ? "🍎 पोषण देखभाल" : "🍎 Nutritional Care").build(),
+                            InteractiveMessage.Button.builder().id("palliative").title(lang.equals("hi") ? "💊 उपशामक देखभाल" : "💊 Palliative Care").build()
+                    ))
+                    .build();
+        }
+
+        if (!valid) {
+            return InteractiveMessage.builder()
+                    .body(lang.equals("hi") ? "❌ अमान्य विकल्प। कृपया पुनः चुनें:" : "❌ Invalid choice. Please select again:")
+                    .buttons(List.of(
+                            InteractiveMessage.Button.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
+                            InteractiveMessage.Button.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
+                            InteractiveMessage.Button.builder().id("normal").title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build(),
+                            InteractiveMessage.Button.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
+                            InteractiveMessage.Button.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                    ))
+                    .build();
+        }
+
+        // Continue to Step 3
         user.setEatingCondition(input);
         user.setDietType(input);
-        user.setCurrentIntent("nutrition_step3"); // Next: Symptoms
+        user.setLastIntent(user.getCurrentIntent());
+        user.setCurrentIntent("nutrition_step3");
         userService.updateUser(user);
 
-        // Go to symptoms selection
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
                 .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")

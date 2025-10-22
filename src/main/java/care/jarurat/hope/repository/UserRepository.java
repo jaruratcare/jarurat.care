@@ -80,6 +80,7 @@ public class UserRepository {
             if (user.getName() != null) updates.put("name", user.getName());
             if (user.getLanguage() != null) updates.put("language", user.getLanguage());
             if (user.getCurrentIntent() != null) updates.put("currentIntent", user.getCurrentIntent());
+            if (user.getLastIntent() != null) updates.put("lastIntent", user.getLastIntent());
             if (user.getLastSeen() != null) updates.put("lastSeen", user.getLastSeen());
             if (user.getPhone() != null) updates.put("phone", user.getPhone());
             if (user.getCity() != null) updates.put("city", user.getCity());

@@ -23,7 +23,7 @@ public class MealPlanService {
     private final Map<String, List<String>> userWeeklyPlans = new ConcurrentHashMap<>();
     private final Map<String, Integer> userCurrentDay = new ConcurrentHashMap<>();
 
-    // generate weekly plan
+    // Step 1: Generate weekly plan
     public InteractiveMessage handleGenerateConfirm(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
         String dietType = (user.getDietType() != null) ? user.getDietType() : "not specified";
@@ -46,7 +46,6 @@ public class MealPlanService {
                     .build();
         }
 
-        // Prompts
         String systemPrompt = "You are a nutritionist who creates healthy Indian meal plans.";
         String userPrompt = lang.equals("hi")
                 ? String.format("""
@@ -59,12 +58,11 @@ public class MealPlanService {
                 : String.format("""
                     You are a nutritionist. Create a personalized Indian meal plan for a cancer patient for the whole week.
                     Diet Type: %s
-                    foodPreference: %s
+                    Food Preference: %s
                     Symptoms: %s
                     Output format: Monday to Sunday (Breakfast, Lunch, Dinner, Snacks).
                     """, dietType, foodPreference, symptoms);
 
-        // AI call
         String aiMealPlan = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 2000);
         log.info("Generated weekly plan for {}: {}", user.getPhone(), aiMealPlan);
 
@@ -73,8 +71,6 @@ public class MealPlanService {
                 : new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
         List<String> dayPlans = new ArrayList<>();
-
-        // Parse response
         if (aiMealPlan == null || aiMealPlan.trim().isEmpty()) {
             for (String dayMarker : dayMarkers) {
                 dayPlans.add(dayMarker + ": " + (lang.equals("hi") ? "कोई योजना उपलब्ध नहीं" : "No plan available"));
@@ -98,11 +94,8 @@ public class MealPlanService {
 
                     dayPlans.add(dayContent);
 
-                    if (nextIndex >= 0) {
-                        remainingText = remainingText.substring(nextIndex);
-                    } else {
-                        break;
-                    }
+                    if (nextIndex >= 0) remainingText = remainingText.substring(nextIndex);
+                    else break;
                 } else {
                     dayPlans.add(currentDayMarker + ": " + (lang.equals("hi") ? "कोई योजना उपलब्ध नहीं" : "No plan available"));
                 }
@@ -119,7 +112,7 @@ public class MealPlanService {
         return createDayMessage(user.getPhone(), 0, lang);
     }
 
-    // Step 2: Show next day's plan 
+    // Step 2: Show next day's plan
     public InteractiveMessage handleNextDay(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
         List<String> dayPlans = userWeeklyPlans.get(user.getPhone());
@@ -144,7 +137,7 @@ public class MealPlanService {
         return createDayMessage(user.getPhone(), currentDay, lang);
     }
 
-    // Step 3:  day message 
+    // Step 3: Create day message with Back and Main Menu
     private InteractiveMessage createDayMessage(String phoneNumber, int dayIndex, String lang) {
         List<String> dayPlans = userWeeklyPlans.get(phoneNumber);
 
@@ -158,9 +151,7 @@ public class MealPlanService {
         String dayText = dayPlans.get(dayIndex);
         String prefix = "📝 ";
         int maxLength = 1024 - prefix.length();
-        if (dayText.length() > maxLength) {
-            dayText = dayText.substring(0, maxLength - 3) + "...";
-        }
+        if (dayText.length() > maxLength) dayText = dayText.substring(0, maxLength - 3) + "...";
 
         boolean isLastDay = (dayIndex == dayPlans.size() - 1);
         String nextButtonId = isLastDay ? "show_pdf_offer" : "day_" + (dayIndex + 1);
@@ -174,13 +165,21 @@ public class MealPlanService {
                         InteractiveMessage.Button.builder()
                                 .id(nextButtonId)
                                 .title(nextButtonTitle)
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("back")
+                                .title(lang.equals("hi") ? "🔙 पिछला दिन" : "🔙 Back")
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("main_menu")
+                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                 .build()
                 ))
                 .build();
     }
 
-    // Step 4: handle pdf
-    public Object handlePdfOffer(User user, String input) {
+    // Step 4: Handle PDF offer with Back and Main Menu
+    public InteractiveMessage handlePdfOffer(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
         List<String> weekPlan = userWeeklyPlans.get(user.getPhone());
 
@@ -192,19 +191,16 @@ public class MealPlanService {
                         : new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
                 for (int i = 0; i < dayMarkers.length; i++) {
-                    if (i < weekPlan.size() && weekPlan.get(i) != null) {
-                        content.append(weekPlan.get(i)).append("\n\n");
-                    } else {
-                        content.append(dayMarkers[i]).append(": No plan available.\n\n");
-                    }
+                    content.append((i < weekPlan.size() && weekPlan.get(i) != null)
+                            ? weekPlan.get(i)
+                            : dayMarkers[i] + ": " + (lang.equals("hi") ? "कोई योजना उपलब्ध नहीं" : "No plan available"))
+                            .append("\n\n");
                 }
 
                 String pdfUrl = PdfGeneratorUploader.generateAndUploadPdf(content.toString(), user.getPhone());
-
                 userWeeklyPlans.remove(user.getPhone());
                 userCurrentDay.remove(user.getPhone());
 
-                // ✅ Keep user in nutrition flow (step4)
                 user.setCurrentIntent("nutrition_step4");
                 userService.saveUser(user);
 
@@ -213,13 +209,14 @@ public class MealPlanService {
                         .body(lang.equals("hi")
                                 ? "आपकी व्यक्तिगत भोजन योजना पीडीएफ तैयार है।\nडाउनलोड करें:\n" + pdfUrl
                                 : "Your personalized meal plan PDF is ready.\nDownload:\n" + pdfUrl)
-                        .footer(lang.equals("hi")
-                                ? "कृपया आगे बढ़ने के लिए नीचे से विकल्प चुनें।"
-                                : "Please choose an option below to continue.")
                         .buttons(List.of(
                                 InteractiveMessage.Button.builder()
-                                        .id("back_to_menu")
-                                        .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
+                                        .id("back")
+                                        .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
+                                        .build(),
+                                InteractiveMessage.Button.builder()
+                                        .id("main_menu")
+                                        .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                         .build()
                         ))
                         .build();
@@ -228,7 +225,6 @@ public class MealPlanService {
                 userWeeklyPlans.remove(user.getPhone());
                 userCurrentDay.remove(user.getPhone());
 
-                // ✅ Also redirect back to nutrition_step4
                 user.setCurrentIntent("nutrition_step4");
                 userService.saveUser(user);
 
@@ -239,8 +235,12 @@ public class MealPlanService {
                                 : "Okay, no problem. Type 'Hi' to start a new session.")
                         .buttons(List.of(
                                 InteractiveMessage.Button.builder()
-                                        .id("back_to_menu")
-                                        .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
+                                        .id("back")
+                                        .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
+                                        .build(),
+                                InteractiveMessage.Button.builder()
+                                        .id("main_menu")
+                                        .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                         .build()
                         ))
                         .build();
@@ -258,6 +258,14 @@ public class MealPlanService {
                                 InteractiveMessage.Button.builder()
                                         .id("no_pdf")
                                         .title(lang.equals("hi") ? "❌ नहीं, धन्यवाद" : "❌ No, thanks")
+                                        .build(),
+                                InteractiveMessage.Button.builder()
+                                        .id("back")
+                                        .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
+                                        .build(),
+                                InteractiveMessage.Button.builder()
+                                        .id("main_menu")
+                                        .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                         .build()
                         ))
                         .build();
@@ -273,8 +281,12 @@ public class MealPlanService {
                             : "Error generating PDF. Please try again later. Type 'Hi' to start a new session.")
                     .buttons(List.of(
                             InteractiveMessage.Button.builder()
-                                    .id("back_to_menu")
-                                    .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
+                                    .id("back")
+                                    .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
+                                    .build(),
+                            InteractiveMessage.Button.builder()
+                                    .id("main_menu")
+                                    .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                     .build()
                     ))
                     .build();

@@ -52,17 +52,21 @@ public class  ImmunityService {
         log.info("Generated supplements length: {} characters", supplements.length());
 
         return InteractiveMessage.builder()
-                .header(lang.equals("hi") ?  "🛡️ इम्यूनिटी टिप्स" : "🛡️ Immunity Tips")
-                .body(supplements)
-                .footer(lang.equals("hi")
-                        ? "कृपया आगे बढ़ने के लिए नीचे से विकल्प चुनें।"
-                        : "Please choose an option below to continue.")
-                .buttons(List.of(
-                        InteractiveMessage.Button.builder()
-                                .id("back_to_menu")
-                                .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
-                                .build()
-                ))
-                .build();
+        .header(lang.equals("hi") ?  "🛡️ इम्यूनिटी टिप्स" : "🛡️ Immunity Tips")
+        .body(supplements)
+        .footer(lang.equals("hi")
+                ? "कृपया आगे बढ़ने के लिए नीचे से विकल्प चुनें।"
+                : "Please choose an option below to continue.")
+        .buttons(List.of(
+                InteractiveMessage.Button.builder()
+                        .id("back")
+                        .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
+                        .build(),
+                InteractiveMessage.Button.builder()
+                        .id("main_menu")
+                        .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
+                        .build()
+        ))
+        .build();
     }
 }

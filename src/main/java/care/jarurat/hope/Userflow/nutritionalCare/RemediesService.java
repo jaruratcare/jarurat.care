@@ -61,7 +61,11 @@ public class RemediesService {
                 .buttons(List.of(
                         InteractiveMessage.Button.builder()
                                 .id("back_to_menu")
-                                .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
+                                .title(lang.equals("hi") ? "🔙 पिछली मेनू" : "🔙 Back to Menu")
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("main_menu")
+                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                 .build()
                 ))
                 .build();

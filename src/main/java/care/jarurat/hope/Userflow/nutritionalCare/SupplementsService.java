@@ -6,10 +6,9 @@ import care.jarurat.hope.service.OpenAiServiceWrapper;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
@@ -24,23 +23,23 @@ public class SupplementsService {
         String symptom = user.getNutritionSymptoms() != null && !user.getNutritionSymptoms().isEmpty()
                 ? user.getNutritionSymptoms()
                 : "general";
-        String diat_type=user.getDietType() !=null && !user.getDietType().isEmpty() ? user.getDietType() : "general";
-        String prefrence=user.getFoodPreference() !=null && !user.getFoodPreference().isEmpty() ? user.getFoodPreference() :"general";
+        String diat_type = user.getDietType() != null && !user.getDietType().isEmpty() ? user.getDietType() : "general";
+        String prefrence = user.getFoodPreference() != null && !user.getFoodPreference().isEmpty() ? user.getFoodPreference() : "general";
 
         String systemPrompt = "You are a healthcare assistant specializing in safe, affordable supplements for cancer patients. Always keep responses concise and practical.";
         String userPrompt = lang.equals("hi")
-        ? String.format(
-        "कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती सप्लीमेंट्स सुझाएं। " +
-        "आहार प्रकार: %s, खाने की पसंद: %s। मांसाहारी आइटम शामिल न करें यदि शाकाहारी है। " +
-        "अधिकतम 800 वर्ण।",
-        symptom, diat_type, prefrence
+                ? String.format(
+                "कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती सप्लीमेंट्स सुझाएं। " +
+                        "आहार प्रकार: %s, खाने की पसंद: %s। मांसाहारी आइटम शामिल न करें यदि शाकाहारी है। " +
+                        "अधिकतम 800 वर्ण।",
+                symptom, diat_type, prefrence
         )
-        : String.format(
-        "Suggest safe and affordable supplements for cancer patients based on %s. " +
-        "User diet type: %s, food preference: %s. " +
-        "Do NOT include any non-vegetarian items if the preference is vegetarian. " +
-        "Max 800 characters.",
-        symptom, diat_type, prefrence
+                : String.format(
+                "Suggest safe and affordable supplements for cancer patients based on %s. " +
+                        "User diet type: %s, food preference: %s. " +
+                        "Do NOT include any non-vegetarian items if the preference is vegetarian. " +
+                        "Max 800 characters.",
+                symptom, diat_type, prefrence
         );
 
         String supplements = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 300);
@@ -61,7 +60,11 @@ public class SupplementsService {
                 .buttons(List.of(
                         InteractiveMessage.Button.builder()
                                 .id("back_to_menu")
-                                .title(lang.equals("hi") ? "🔙 मेनू पर जाएँ" : "🔙 Back to Menu")
+                                .title(lang.equals("hi") ? "🔙 पिछली मेनू" : "🔙 Back to Menu")
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("main_menu")
+                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                 .build()
                 ))
                 .build();

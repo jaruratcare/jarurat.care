@@ -14,18 +14,23 @@ public class User {
     private String userId;
     private String name;
     private String language;
+
     @PropertyName("currentIntent")
     private String currentIntent;
+    private String lastIntent; // 👈 Added for back button tracking
+
     private String lastSeen;
     private String phone;
+
     private String nutritionSymptoms;    
-    //  THESE ARE NUTRITION FIELDS:
+
+    //  NUTRITION FIELDS
     private String foodPreference; // vegetarian, non_vegetarian
     private String eatingCondition; // soft, liquid, normal
     private String dietType; // soft, liquid, normal
     private String DiabeticStatus;
 
-    // New fields for onboarding
+    // ONBOARDING FIELDS
     private String city;
     private String state;
     private String role; // PATIENT or CAREGIVER
@@ -33,14 +38,14 @@ public class User {
     private String cancerStage;
     private String incomeRange;
     private String tempPolicySelection;
-    // Field for NearbyHospital
+
+    // NEARBY HOSPITAL
     private Double latitude;
     private Double longitude;
 
-    // NEW FIELD: store user selected help type (stay_food, only_stay, only_food)
+    // HELP TYPE (stay_food, only_stay, only_food)
     private String helpType;
 
-    // NEW FIELD: temporary storage for volunteer mode (Chat / Phone Call)
+    // TEMPORARY FIELD for volunteer mode (Chat / Phone Call)
     private String tempMode;
-  
 }

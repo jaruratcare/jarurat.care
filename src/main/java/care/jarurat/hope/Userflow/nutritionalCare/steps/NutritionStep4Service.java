@@ -26,8 +26,34 @@ public class NutritionStep4Service {
 
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
+        // 🔙 Back button handling
+        if (input.equalsIgnoreCase("back") || input.equals("🔙")) {
+            String last = user.getLastIntent() != null ? user.getLastIntent() : "nutrition_step3";
+            user.setCurrentIntent(last);
+            userService.updateUser(user);
+
+            if ("nutrition_step3".equals(last)) {
+                return nutritionStep3Service.createSymptomsListMessage(lang);
+            }
+            // You can add more steps if needed
+        }
+
+        // 🏠 Main Menu handling
+        if (input.equalsIgnoreCase("main_menu") || input.equals("🏠")) {
+            user.setCurrentIntent("main_menu");
+            userService.updateUser(user);
+            return InteractiveMessage.builder()
+                    .body(lang.equals("hi") ? "मुख्य मेनू में आपका स्वागत है!" : "Welcome to the main menu!")
+                    .buttons(List.of(
+                            InteractiveMessage.Button.builder().id("nutrition").title(lang.equals("hi") ? "🍎 पोषण देखभाल" : "🍎 Nutritional Care").build(),
+                            InteractiveMessage.Button.builder().id("palliative").title(lang.equals("hi") ? "💊 उपशामक देखभाल" : "💊 Palliative Care").build()
+                    ))
+                    .build();
+        }
+
         return switch (input.toLowerCase()) {
             case "meal_plan", "भोजन योजना" -> {
+                user.setLastIntent(user.getCurrentIntent());
                 user.setCurrentIntent("nutrition_generate_confirm");
                 userService.updateUser(user);
                 yield InteractiveMessage.builder()
@@ -45,15 +71,15 @@ public class NutritionStep4Service {
             case "remedies", "उपचार" -> remediesService.getRemedies(user);
             case "immunity", "प्रतिरक्षा" -> immunityService.getImmunityTips(user);
             case "supplements", "सप्लीमेंट्स" -> supplementsService.getSupplements(user);
-            case "back_to_menu", "🔙 मेनू पर जाएँ" -> {
-                user.setCurrentIntent("nutrition_step3");
-                userService.updateUser(user);
-                yield nutritionStep3Service.createSymptomsListMessage(lang);
-            }
             default -> {
-                yield lang.equals("hi")
-                        ? "❌ अमान्य विकल्प। कृपया पुनः चुनें।"
-                        : "❌ Invalid choice. Please pick again.";
+                // Add Back + Main Menu buttons to invalid input
+                yield InteractiveMessage.builder()
+                        .body(lang.equals("hi") ? "❌ अमान्य विकल्प। कृपया पुनः चुनें।" : "❌ Invalid choice. Please pick again.")
+                        .buttons(List.of(
+                                InteractiveMessage.Button.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
+                                InteractiveMessage.Button.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                        ))
+                        .build();
             }
         };
     }

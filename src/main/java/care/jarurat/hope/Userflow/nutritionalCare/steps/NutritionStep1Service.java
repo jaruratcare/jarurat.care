@@ -18,9 +18,8 @@ public class NutritionStep1Service {
     public InteractiveMessage handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
-        // 🧭 Handle Back Button (go back to main menu or restart)
         if ("back".equalsIgnoreCase(input)) {
-            // Step1 is the first step — so 'back' means go to main menu
+       
             user.setCurrentIntent(null);
             userService.updateUser(user);
 
@@ -36,13 +35,12 @@ public class NutritionStep1Service {
                     .build();
         }
 
-        // ✅ Handle valid food preference
         if ("vegetarian".equalsIgnoreCase(input) || "non_vegetarian".equalsIgnoreCase(input)
                 || "शाकाहारी".equalsIgnoreCase(input) || "मांसाहारी".equalsIgnoreCase(input)) {
 
             user.setFoodPreference(input);
             user.setLastIntent(user.getCurrentIntent());
-            user.setCurrentIntent("nutrition_step0"); // Go to next step
+            user.setCurrentIntent("nutrition_step0"); 
             userService.updateUser(user);
 
             return InteractiveMessage.builder()
@@ -54,18 +52,12 @@ public class NutritionStep1Service {
                             InteractiveMessage.Button.builder()
                                     .id("no_diabetic")
                                     .title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build(),
-                            // 👇 Added buttons
                             InteractiveMessage.Button.builder()
                                     .id("back")
-                                    .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
-                                    .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                                    .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build()
                     ))
                     .build();
         }
-
-        // 🧩 Default response (initial question)
         return InteractiveMessage.builder()
                 .body(lang.equals("hi") ? "कृपया अपनी पसंद चुनें:" : "Please choose your preference:")
                 .footer(lang.equals("hi") ? "शाकाहारी या मांसाहारी चुनें" : "Select Vegetarian or Non-Vegetarian")
@@ -78,14 +70,10 @@ public class NutritionStep1Service {
                                 .id("non_vegetarian")
                                 .title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian")
                                 .build(),
-                        // 👇 Added navigation buttons
+                        // 👇 Only back button (limit 3 buttons)
                         InteractiveMessage.Button.builder()
                                 .id("back")
                                 .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back")
-                                .build(),
-                        InteractiveMessage.Button.builder()
-                                .id("main_menu")
-                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                 .build()
                 ))
                 .build();

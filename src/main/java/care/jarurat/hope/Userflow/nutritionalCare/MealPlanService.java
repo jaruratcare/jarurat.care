@@ -29,6 +29,7 @@ public class MealPlanService {
         String dietType = (user.getDietType() != null) ? user.getDietType() : "not specified";
         String eatingCondition = (user.getEatingCondition() != null) ? user.getEatingCondition() : "not specified";
         String foodPreference = (user.getFoodPreference() != null) ? user.getFoodPreference() : "not specified";
+        String Diabetic=user.getDiabeticStatus() != null && !user.getFoodPreference().isEmpty() ? user.getDiabeticStatus() : "not specified";
         String symptoms = (user.getNutritionSymptoms() != null && !user.getNutritionSymptoms().isEmpty())
                 ? user.getNutritionSymptoms()
                 : "none";
@@ -47,22 +48,23 @@ public class MealPlanService {
         }
 
         String systemPrompt = "You are a nutritionist who creates healthy Indian meal plans.";
-        String userPrompt = lang.equals("hi")
-                ? String.format("""
-                    आप एक पोषण विशेषज्ञ हैं। कृपया कैंसर मरीज के लिए पूरे सप्ताह की व्यक्तिगत भारतीय भोजन योजना तैयार करें।
-                    आहार प्रकार: %s
-                    खाने की पसंद: %s
-                    लक्षण: %s
-                    आउटपुट प्रारूप: सोमवार से रविवार (नाश्ता, दोपहर का भोजन, रात का खाना, स्नैक्स)।
-                    """, dietType, foodPreference, symptoms)
-                : String.format("""
-                    You are a nutritionist. Create a personalized Indian meal plan for a cancer patient for the whole week.
-                    Diet Type: %s
-                    Food Preference: %s
-                    Symptoms: %s
-                    Output format: Monday to Sunday (Breakfast, Lunch, Dinner, Snacks).
-                    """, dietType, foodPreference, symptoms);
-
+       String userPrompt = lang.equals("hi")
+        ? String.format("""
+            आप एक पोषण विशेषज्ञ हैं। कृपया कैंसर मरीज के लिए पूरे सप्ताह की व्यक्तिगत भारतीय भोजन योजना तैयार करें।
+            आहार प्रकार: %s
+            खाने की पसंद: %s
+            लक्षण: %s
+            डायबिटीज़: %s
+            आउटपुट प्रारूप: सोमवार से रविवार (नाश्ता, दोपहर का भोजन, रात का खाना, स्नैक्स)।
+            """, dietType, foodPreference, symptoms, Diabetic)
+        : String.format("""
+            You are a nutritionist. Create a personalized Indian meal plan for a cancer patient for the whole week.
+            Diet Type: %s
+            Food Preference: %s
+            Symptoms: %s
+            Diabetic: %s
+            Output format: Monday to Sunday (Breakfast, Lunch, Dinner, Snacks).
+            """, dietType, foodPreference, symptoms, Diabetic);
         String aiMealPlan = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 2000);
         log.info("Generated weekly plan for {}: {}", user.getPhone(), aiMealPlan);
 

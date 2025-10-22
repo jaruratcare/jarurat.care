@@ -60,8 +60,6 @@ public class NutritionStep2Service {
                     ))
                     .build();
         }
-
-        // Continue to Step 3
         user.setEatingCondition(input);
         user.setDietType(input);
         user.setLastIntent(user.getCurrentIntent());
@@ -75,15 +73,17 @@ public class NutritionStep2Service {
                 .sections(List.of(
                         ListMessage.Section.builder()
                                 .title(lang.equals("hi") ? "लक्षण" : "Symptoms")
-                                .rows(List.of(
-                                        ListMessage.Row.builder().id("gut_health").title(lang.equals("hi") ? "पाचन समस्या" : "Gut issues").description(lang.equals("hi") ? "पाचन तंत्र की समस्या" : "Gut health issues").build(),
-                                        ListMessage.Row.builder().id("nausea").title(lang.equals("hi") ? "मतली / उल्टी" : "Nausea / Vomit").description(lang.equals("hi") ? "मतली या उल्टी" : "Nausea / vomiting").build(),
-                                        ListMessage.Row.builder().id("fatigue").title(lang.equals("hi") ? "थकान / कमजोरी" : "Fatigue / Weak").description(lang.equals("hi") ? "थकान या कमजोरी" : "Fatigue / weakness").build(),
-                                        ListMessage.Row.builder().id("loss_appetite").title(lang.equals("hi") ? "भूख न लगना" : "Loss of Appetite").description(lang.equals("hi") ? "भूख न लगना / वजन घटना" : "Loss of appetite / weight loss").build(),
-                                        ListMessage.Row.builder().id("low_immunity").title(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low Immunity").description(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low immunity").build()
+                               .rows(List.of(
+                                         ListMessage.Row.builder().id("constipation").title(lang.equals("hi") ? "कब्ज़" : "Constipation").description(lang.equals("hi") ? "पाचन समस्या - कब्ज़" : "Digestive issue - constipation").build(),
+                                         ListMessage.Row.builder().id("diarrhea").title(lang.equals("hi") ? "दस्त" : "Diarrhea").description(lang.equals("hi") ? "पाचन समस्या - दस्त" : "Digestive issue - diarrhea").build(),
+                                         ListMessage.Row.builder().id("nausea").title(lang.equals("hi") ? "मतली / उल्टी" : "Nausea / Vomit").description(lang.equals("hi") ? "मतली या उल्टी" : "Nausea / vomiting").build(),
+                                         ListMessage.Row.builder().id("fatigue").title(lang.equals("hi") ? "थकान / कमजोरी" : "Fatigue / Weak").description(lang.equals("hi") ? "थकान या कमजोरी" : "Fatigue / weakness").build(),
+                                         ListMessage.Row.builder().id("loss_appetite").title(lang.equals("hi") ? "भूख न लगना" : "Loss of Appetite").description(lang.equals("hi") ? "भूख न लगना / वजन घटना" : "Loss of appetite / weight loss").build(),
+                                         ListMessage.Row.builder().id("low_immunity").title(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low Immunity").description(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low immunity").build()
                                 ))
+
                                 .build()
-                ))
+                 ))
                 .build();
     }
 }

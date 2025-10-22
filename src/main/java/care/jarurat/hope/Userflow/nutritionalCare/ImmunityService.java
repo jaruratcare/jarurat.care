@@ -25,23 +25,22 @@ public class  ImmunityService {
                 : "general";
         String diat_type=user.getDietType() !=null && !user.getDietType().isEmpty() ? user.getDietType() : "general";
         String prefrence=user.getFoodPreference() !=null && !user.getFoodPreference().isEmpty() ? user.getFoodPreference() :"general";
+        String Diabetic=user.getDiabeticStatus() != null && !user.getFoodPreference().isEmpty() ? user.getDiabeticStatus() : "general";
 
        String systemPrompt = "You are a healthcare assistant specializing in boosting immunity for cancer patients through safe, natural, and practical methods. Always keep responses concise and easy to follow.";
 
         String userPrompt = lang.equals("hi")
         ? String.format(
             "कैंसर रोगियों के लिए %s के आधार पर सुरक्षित और किफायती इम्यूनिटी बढ़ाने के उपाय सुझाएं। " +
-            "आहार प्रकार: %s, खाने की पसंद: %s। यदि शाकाहारी है तो मांसाहारी आइटम शामिल न करें। अधिकतम 800 वर्ण।",
-            symptom, diat_type, prefrence
+            "आहार प्रकार: %s, खाने की पसंद: %s, डायबिटीज़: %s। यदि शाकाहारी है तो मांसाहारी आइटम शामिल न करें। अधिकतम 800 वर्ण।",
+            symptom, diat_type, prefrence, Diabetic
         )
         : String.format(
             "Suggest safe and affordable immunity-boosting tips for cancer patients based on %s. " +
-            "User diet type: %s, food preference: %s. " +
+            "User diet type: %s, food preference: %s, diabetic: %s. " +
             "Do NOT include any non-vegetarian items if the preference is vegetarian. Max 800 characters.",
-            symptom, diat_type, prefrence
+            symptom, diat_type, prefrence, Diabetic
         );
-
-
         String supplements = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 300);
 
         if (supplements.length() > 1024) {

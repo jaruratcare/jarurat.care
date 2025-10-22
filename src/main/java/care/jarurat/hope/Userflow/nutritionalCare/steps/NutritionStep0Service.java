@@ -86,7 +86,7 @@ public class NutritionStep0Service {
         }
 
         user.setLastIntent(user.getCurrentIntent());
-        user.setCurrentIntent("nutrition_step2"); // Next: Eating Condition
+        user.setCurrentIntent("nutrition_step2"); 
         userService.updateUser(user);
 
         return InteractiveMessage.builder()

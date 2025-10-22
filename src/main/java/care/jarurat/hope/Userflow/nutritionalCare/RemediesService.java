@@ -25,21 +25,21 @@ public class RemediesService {
                 : "general";
         String foodPreference = (user.getFoodPreference() != null) ? user.getFoodPreference() : "not specified";
         String dietType = (user.getDietType() != null) ? user.getDietType() : "not specified";
+        String Diabetic=user.getDiabeticStatus() != null && !user.getFoodPreference().isEmpty() ? user.getDiabeticStatus() : "not specified";
 
         String systemPrompt = "You are a healthcare assistant specializing in safe, simple home remedies for cancer patients. Always keep responses concise.";
 
-        String userPrompt = lang.equals("hi")
+       String userPrompt = lang.equals("hi")
         ? String.format(
             "कैंसर रोगियों के लिए %s के सुरक्षित घरेलू उपचार सुझाएं। " +
-            "आहार प्रकार: %s, खाने की पसंद: %s। अधिकतम 800 वर्ण।",
-            symptom, dietType, foodPreference
+            "आहार प्रकार: %s, खाने की पसंद: %s, डायबिटीज़: %s। अधिकतम 800 वर्ण।",
+            symptom, dietType, foodPreference, Diabetic
         )
         : String.format(
             "Suggest safe home remedies for %s for cancer patients. " +
-            "User diet type: %s, food preference: %s. Max 800 characters.",
-            symptom, dietType, foodPreference
+            "User diet type: %s, food preference: %s, diabetic: %s. Max 800 characters.",
+            symptom, dietType, foodPreference, Diabetic
         );
-
         String remedies = openAiServiceWrapper.generateResponse(systemPrompt, userPrompt, 0.7, 300);
 
         if (remedies.length() > 1024) {

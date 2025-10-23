@@ -24,7 +24,7 @@ public class NutritionStep2Service {
             default -> false;
         };
 
-        // 🔙 Back → Step0
+        //  Back
         if ("back".equalsIgnoreCase(input) || input.equals("🔙")) {
             user.setCurrentIntent("nutrition_step0");
             userService.updateUser(user);
@@ -50,7 +50,7 @@ public class NutritionStep2Service {
                     .build();
         }
 
-        // 🏠 Main Menu
+        //  Main Menu
         if ("main_menu".equalsIgnoreCase(input) || input.equals("🏠")) {
             user.setCurrentIntent(null);
             userService.updateUser(user);
@@ -72,7 +72,7 @@ public class NutritionStep2Service {
                     .build();
         }
 
-        // ❌ Invalid selection
+        //  Invalid selection
         if (!valid) {
             return ListMessage.builder()
                     .header(lang.equals("hi") ? "❌ अमान्य विकल्प" : "❌ Invalid Choice")
@@ -93,7 +93,7 @@ public class NutritionStep2Service {
                     .build();
         }
 
-        // ✅ Save selection & go to Step3
+        //  Save selection & go to Step3
         user.setEatingCondition(input);
         user.setDietType(input);
         user.setLastIntent(user.getCurrentIntent());

@@ -17,7 +17,7 @@ public class NutritionStep3Service {
 
     private final UserService userService;
 
-    // ✅ Create the symptoms list message
+    //  Create the symptoms list message
     public ListMessage createSymptomsListMessage(String lang) {
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
@@ -47,7 +47,7 @@ public class NutritionStep3Service {
                 .build();
     }
 
-    // ✅ Handles user input
+    //  Handles user input
     public Object handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
@@ -74,7 +74,7 @@ public class NutritionStep3Service {
                     .build();
         }
 
-        // 🏠 Main Menu
+        // Main Menu
         if ("main_menu".equalsIgnoreCase(input) || input.equals("🏠")) {
             user.setCurrentIntent("main_menu");
             userService.updateUser(user);
@@ -87,12 +87,12 @@ public class NutritionStep3Service {
                     .build();
         }
 
-        // ❌ If diet type not selected
+        // If diet type not selected
         if (user.getDietType() == null || !"nutrition_step3".equals(user.getCurrentIntent())) {
             return "❌ " + (lang.equals("hi") ? "कृपया पहले अपना आहार प्रकार चुनें।" : "Please select your diet type first.");
         }
 
-        // ✅ Valid symptoms
+        //  Valid symptoms
         List<String> validSymptoms = List.of(
                 "constipation", "diarrhea", "gut_health", "nausea", "fatigue", "loss_appetite", "low_immunity"
         );
@@ -102,7 +102,7 @@ public class NutritionStep3Service {
             return createSymptomsListMessage(lang);
         }
 
-        // ✅ Save selection and move to Step 4
+        //  Save selection and move to Step 4
         user.setNutritionSymptoms(input.toLowerCase());
         user.setLastIntent(user.getCurrentIntent());
         user.setCurrentIntent("nutrition_step4");
@@ -111,7 +111,7 @@ public class NutritionStep3Service {
         return createNextOptionsMessage(lang);
     }
 
-    // ✅ Next options after symptom selection
+    // Next options after symptom selection
     private ListMessage createNextOptionsMessage(String lang) {
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "💡 आज आप किस चीज़ में मदद चाहते हैं?" : "💡 What would you like help with today?")

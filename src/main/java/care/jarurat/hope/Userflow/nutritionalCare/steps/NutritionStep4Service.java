@@ -8,6 +8,7 @@ import care.jarurat.hope.Userflow.nutritionalCare.ImmunityService;
 import care.jarurat.hope.Userflow.nutritionalCare.RemediesService;
 import care.jarurat.hope.Userflow.nutritionalCare.SupplementsService;
 import care.jarurat.hope.model.InteractiveMessage;
+import care.jarurat.hope.model.ListMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,20 +27,15 @@ public class NutritionStep4Service {
 
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
-        // 🔙 Back button handling
-        if (input.equalsIgnoreCase("back") || input.equals("🔙")) {
-            String last = user.getLastIntent() != null ? user.getLastIntent() : "nutrition_step3";
-            user.setCurrentIntent(last);
+        // 🔙 Back → Step3
+        if ("back".equalsIgnoreCase(input) || input.equals("🔙")) {
+            user.setCurrentIntent("nutrition_step3");
             userService.updateUser(user);
-
-            if ("nutrition_step3".equals(last)) {
-                return nutritionStep3Service.createSymptomsListMessage(lang);
-            }
-            // You can add more steps if needed
+            return nutritionStep3Service.createSymptomsListMessage(lang);
         }
 
-        // 🏠 Main Menu handling
-        if (input.equalsIgnoreCase("main_menu") || input.equals("🏠")) {
+        // 🏠 Main Menu
+        if ("main_menu".equalsIgnoreCase(input) || input.equals("🏠")) {
             user.setCurrentIntent("main_menu");
             userService.updateUser(user);
             return InteractiveMessage.builder()
@@ -51,12 +47,13 @@ public class NutritionStep4Service {
                     .build();
         }
 
-        return switch (input.toLowerCase()) {
-            case "meal_plan", "भोजन योजना" -> {
+        // ✅ Valid inputs → show next options
+        switch (input.toLowerCase()) {
+            case "meal_plan", "भोजन योजना":
                 user.setLastIntent(user.getCurrentIntent());
                 user.setCurrentIntent("nutrition_generate_confirm");
                 userService.updateUser(user);
-                yield InteractiveMessage.builder()
+                return InteractiveMessage.builder()
                         .body(lang.equals("hi")
                                 ? "📝 मैं आपकी व्यक्तिगत भोजन योजना तैयार करूंगा। कृपया आगे बढ़ने के लिए 'जारी रखें' पर क्लिक करें।"
                                 : "📝 I will prepare your personalized meal plan. Please click Continue to proceed.")
@@ -67,20 +64,21 @@ public class NutritionStep4Service {
                                         .build()
                         ))
                         .build();
-            }
-            case "remedies", "उपचार" -> remediesService.getRemedies(user);
-            case "immunity", "प्रतिरक्षा" -> immunityService.getImmunityTips(user);
-            case "supplements", "सप्लीमेंट्स" -> supplementsService.getSupplements(user);
-            default -> {
-                // Add Back + Main Menu buttons to invalid input
-                yield InteractiveMessage.builder()
+            case "remedies", "उपचार":
+                return remediesService.getRemedies(user);
+            case "immunity", "प्रतिरक्षा":
+                return immunityService.getImmunityTips(user);
+            case "supplements", "सप्लीमेंट्स":
+                return supplementsService.getSupplements(user);
+            default:
+                // 🔄 Invalid → show Back + Main Menu
+                return InteractiveMessage.builder()
                         .body(lang.equals("hi") ? "❌ अमान्य विकल्प। कृपया पुनः चुनें।" : "❌ Invalid choice. Please pick again.")
                         .buttons(List.of(
                                 InteractiveMessage.Button.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
                                 InteractiveMessage.Button.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
                         ))
                         .build();
-            }
-        };
+        }
     }
 }

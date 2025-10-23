@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class NutritionStep1Service {
@@ -18,21 +17,16 @@ public class NutritionStep1Service {
     public InteractiveMessage handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
+        // 🔙 Back → Main Menu
         if ("back".equalsIgnoreCase(input)) {
-       
             user.setCurrentIntent(null);
             userService.updateUser(user);
-
             return InteractiveMessage.builder()
-                    .body(lang.equals("hi")
-                            ? "🏠 मुख्य मेनू पर वापस आ गए।"
-                            : "🏠 You are back to the main menu.")
+                    .body(lang.equals("hi") ? "🏠 मुख्य मेनू पर वापस आ गए।" : "🏠 You are back to the main menu.")
                     .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
+                            InteractiveMessage.Button.builder().id("main_menu")
                                     .title(lang.equals("hi") ? "🔙 मुख्य मेनू" : "🔙 Main Menu").build()
-                    ))
-                    .build();
+                    )).build();
         }
 
         if ("vegetarian".equalsIgnoreCase(input) || "non_vegetarian".equalsIgnoreCase(input)
@@ -40,42 +34,25 @@ public class NutritionStep1Service {
 
             user.setFoodPreference(input);
             user.setLastIntent(user.getCurrentIntent());
-            user.setCurrentIntent("nutrition_step0"); 
+            user.setCurrentIntent("nutrition_step0");
             userService.updateUser(user);
 
             return InteractiveMessage.builder()
                     .body(lang.equals("hi") ? "❓ क्या आप मधुमेह के रोगी हैं?" : "❓ Are you diabetic?")
                     .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("yes_diabetic")
-                                    .title(lang.equals("hi") ? "✅ हाँ" : "✅ Yes").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("no_diabetic")
-                                    .title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("back")
-                                    .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build()
-                    ))
-                    .build();
+                            InteractiveMessage.Button.builder().id("yes_diabetic").title(lang.equals("hi") ? "✅ हाँ" : "✅ Yes").build(),
+                            InteractiveMessage.Button.builder().id("no_diabetic").title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build(),
+                            InteractiveMessage.Button.builder().id("back").title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build()
+                    )).build();
         }
+
         return InteractiveMessage.builder()
                 .body(lang.equals("hi") ? "कृपया अपनी पसंद चुनें:" : "Please choose your preference:")
                 .footer(lang.equals("hi") ? "शाकाहारी या मांसाहारी चुनें" : "Select Vegetarian or Non-Vegetarian")
                 .buttons(Arrays.asList(
-                        InteractiveMessage.Button.builder()
-                                .id("vegetarian")
-                                .title(lang.equals("hi") ? "🥗 शाकाहारी" : "🥗 Vegetarian")
-                                .build(),
-                        InteractiveMessage.Button.builder()
-                                .id("non_vegetarian")
-                                .title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian")
-                                .build(),
-                        // 👇 Only back button (limit 3 buttons)
-                        InteractiveMessage.Button.builder()
-                                .id("back")
-                                .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back")
-                                .build()
-                ))
-                .build();
+                        InteractiveMessage.Button.builder().id("vegetarian").title(lang.equals("hi") ? "🥗 शाकाहारी" : "🥗 Vegetarian").build(),
+                        InteractiveMessage.Button.builder().id("non_vegetarian").title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian").build(),
+                        InteractiveMessage.Button.builder().id("back").title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build()
+                )).build();
     }
 }

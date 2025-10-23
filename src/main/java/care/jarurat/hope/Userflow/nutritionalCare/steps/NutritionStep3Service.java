@@ -1,11 +1,14 @@
 package care.jarurat.hope.Userflow.nutritionalCare.steps;
 
 import care.jarurat.hope.model.ListMessage;
+import care.jarurat.hope.model.ListMessage.Row;
+import care.jarurat.hope.model.ListMessage.Section;
 import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -14,52 +17,65 @@ public class NutritionStep3Service {
 
     private final UserService userService;
 
+    // ✅ Create the symptoms list message
     public ListMessage createSymptomsListMessage(String lang) {
-    return ListMessage.builder()
-            .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
-            .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
-            .buttonText(lang.equals("hi") ? "लक्षण चुनें" : "Choose symptom")
-            .sections(List.of(
-                    ListMessage.Section.builder()
-                            .title(lang.equals("hi") ? "लक्षण" : "Symptoms")
-                            .rows(List.of(
-                                    ListMessage.Row.builder().id("constipation").title(lang.equals("hi") ? "कब्ज़" : "Constipation")
-                                            .description(lang.equals("hi") ? "पाचन समस्या - कब्ज़" : "Digestive issue - constipation").build(),
-                                    ListMessage.Row.builder().id("diarrhea").title(lang.equals("hi") ? "दस्त" : "Diarrhea")
-                                            .description(lang.equals("hi") ? "पाचन समस्या - दस्त" : "Digestive issue - diarrhea").build(),
-                                    ListMessage.Row.builder().id("nausea").title(lang.equals("hi") ? "मतली / उल्टी" : "Nausea / Vomit")
-                                            .description(lang.equals("hi") ? "मतली या उल्टी" : "Nausea / vomiting").build(),
-                                    ListMessage.Row.builder().id("fatigue").title(lang.equals("hi") ? "थकान / कमजोरी" : "Fatigue / Weak")
-                                            .description(lang.equals("hi") ? "थकान या कमजोरी" : "Fatigue / weakness").build(),
-                                    ListMessage.Row.builder().id("loss_appetite").title(lang.equals("hi") ? "भूख न लगना" : "Loss of Appetite")
-                                            .description(lang.equals("hi") ? "भूख न लगना / वजन घटना" : "Loss of appetite / weight loss").build(),
-                                    ListMessage.Row.builder().id("low_immunity").title(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low Immunity")
-                                            .description(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low immunity").build()
-                            ))
-                            .build()
-            ))
-            .build();
-}
+        return ListMessage.builder()
+                .header(lang.equals("hi") ? "क्या आपको कोई लक्षण हैं?" : "Do you have any symptoms?")
+                .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
+                .buttonText(lang.equals("hi") ? "लक्षण चुनें" : "Choose symptom")
+                .sections(List.of(
+                        Section.builder()
+                                .title(lang.equals("hi") ? "लक्षण" : "Symptoms")
+                                .rows(List.of(
+                                        Row.builder().id("constipation").title(lang.equals("hi") ? "कब्ज़" : "Constipation").build(),
+                                        Row.builder().id("diarrhea").title(lang.equals("hi") ? "दस्त" : "Diarrhea").build(),
+                                        Row.builder().id("gut_health").title(lang.equals("hi") ? "पाचन समस्या" : "Gut issues")
+                                                .description(lang.equals("hi") ? "पाचन तंत्र की समस्या" : "Gut health issues").build(),
+                                        Row.builder().id("nausea").title(lang.equals("hi") ? "मतली / उल्टी" : "Nausea / Vomit")
+                                                .description(lang.equals("hi") ? "मतली या उल्टी" : "Nausea / vomiting").build(),
+                                        Row.builder().id("fatigue").title(lang.equals("hi") ? "थकान / कमजोरी" : "Fatigue / Weak")
+                                                .description(lang.equals("hi") ? "थकान या कमजोरी" : "Fatigue / weakness").build(),
+                                        Row.builder().id("loss_appetite").title(lang.equals("hi") ? "भूख न लगना" : "Loss of Appetite")
+                                                .description(lang.equals("hi") ? "भूख न लगना / वजन घटना" : "Loss of appetite / weight loss").build(),
+                                        Row.builder().id("low_immunity").title(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low Immunity")
+                                                .description(lang.equals("hi") ? "कमज़ोर प्रतिरक्षा" : "Low immunity").build(),
+                                        Row.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
+                                        Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                                ))
+                                .build()
+                ))
+                .build();
+    }
+
+    // ✅ Handles user input
     public Object handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
-        // 🟡 Back button handling
-        if (input.equalsIgnoreCase("back") || input.equals("🔙")) {
+        // 🔙 Back
+        if ("back".equalsIgnoreCase(input) || input.equals("🔙")) {
             user.setCurrentIntent("nutrition_step2");
             userService.updateUser(user);
-            return InteractiveMessage.builder()
-                    .body(lang.equals("hi") ? "कृपया अपना आहार प्रकार चुनें:" : "Please select your diet type:")
-                    .buttons(List.of(
-                            InteractiveMessage.Button.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
-                            InteractiveMessage.Button.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
-                            InteractiveMessage.Button.builder().id("normal").title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build(),
-                            InteractiveMessage.Button.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+            return ListMessage.builder()
+                    .header(lang.equals("hi") ? "कृपया अपना आहार प्रकार चुनें:" : "Please select your diet type:")
+                    .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
+                    .buttonText(lang.equals("hi") ? "आहार प्रकार चुनें" : "Choose diet type")
+                    .sections(List.of(
+                            ListMessage.Section.builder()
+                                    .title(lang.equals("hi") ? "आहार प्रकार" : "Diet Type")
+                                    .rows(List.of(
+                                            Row.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
+                                            Row.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
+                                            Row.builder().id("normal").title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build(),
+                                            Row.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
+                                            Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                                    ))
+                                    .build()
                     ))
                     .build();
         }
 
-        // 🏠 Main Menu handling
-        if (input.equalsIgnoreCase("main_menu") || input.equals("🏠")) {
+        // 🏠 Main Menu
+        if ("main_menu".equalsIgnoreCase(input) || input.equals("🏠")) {
             user.setCurrentIntent("main_menu");
             userService.updateUser(user);
             return InteractiveMessage.builder()
@@ -71,23 +87,22 @@ public class NutritionStep3Service {
                     .build();
         }
 
-        // 🧩 Ensure correct intent flow
+        // ❌ If diet type not selected
         if (user.getDietType() == null || !"nutrition_step3".equals(user.getCurrentIntent())) {
-            return "❌ " + (lang.equals("hi") ? "कृपया पहले अपना आहार प्रकार चुनें" : "Please select your diet type first");
+            return "❌ " + (lang.equals("hi") ? "कृपया पहले अपना आहार प्रकार चुनें।" : "Please select your diet type first.");
         }
 
-        List<String> validSymptoms = List.of("gut_health", "nausea", "fatigue", "loss_appetite", "low_immunity");
+        // ✅ Valid symptoms
+        List<String> validSymptoms = List.of(
+                "constipation", "diarrhea", "gut_health", "nausea", "fatigue", "loss_appetite", "low_immunity"
+        );
+
         if (!validSymptoms.contains(input.toLowerCase())) {
-            // Add Back + Main Menu buttons to the invalid input message
-            ListMessage message = createSymptomsListMessage(lang);
-            message.getSections().get(0).getRows().addAll(List.of(
-                    ListMessage.Row.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
-                    ListMessage.Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
-            ));
-            return message;
+            // Invalid input: ignore or optionally resend list
+            return createSymptomsListMessage(lang);
         }
 
-        // ✅ Valid symptom → go to Step 4
+        // ✅ Save selection and move to Step 4
         user.setNutritionSymptoms(input.toLowerCase());
         user.setLastIntent(user.getCurrentIntent());
         user.setCurrentIntent("nutrition_step4");
@@ -96,21 +111,26 @@ public class NutritionStep3Service {
         return createNextOptionsMessage(lang);
     }
 
+    // ✅ Next options after symptom selection
     private ListMessage createNextOptionsMessage(String lang) {
         return ListMessage.builder()
                 .header(lang.equals("hi") ? "💡 आज आप किस चीज़ में मदद चाहते हैं?" : "💡 What would you like help with today?")
                 .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
                 .buttonText(lang.equals("hi") ? "विकल्प चुनें" : "Choose option")
                 .sections(List.of(
-                        ListMessage.Section.builder()
+                        Section.builder()
                                 .title(lang.equals("hi") ? "विकल्प" : "Options")
                                 .rows(List.of(
-                                        ListMessage.Row.builder().id("meal_plan").title(lang.equals("hi") ? "दैनिक भोजन योजना" : "Daily Meal Plan").description(lang.equals("hi") ? "व्यक्तिगत दैनिक भोजन योजना प्राप्त करें" : "Get a tailored daily meal plan").build(),
-                                        ListMessage.Row.builder().id("remedies").title(lang.equals("hi") ? "उपचार" : "Remedies").description(lang.equals("hi") ? "लक्षणों के उपचार" : "Remedies for symptoms").build(),
-                                        ListMessage.Row.builder().id("immunity").title(lang.equals("hi") ? "प्रतिरक्षा सुझाव" : "Immunity Tips").description(lang.equals("hi") ? "प्रतिरक्षा बढ़ाने के सुझाव" : "Immunity building tips").build(),
-                                        ListMessage.Row.builder().id("supplements").title(lang.equals("hi") ? "सप्लीमेंट्स" : "Supplements").description(lang.equals("hi") ? "किफायती सप्लीमेंट्स" : "Affordable supplements").build(),
-                                        ListMessage.Row.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
-                                        ListMessage.Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                                        Row.builder().id("meal_plan").title(lang.equals("hi") ? "दैनिक भोजन योजना" : "Daily Meal Plan")
+                                                .description(lang.equals("hi") ? "व्यक्तिगत दैनिक भोजन योजना प्राप्त करें" : "Get a tailored daily meal plan").build(),
+                                        Row.builder().id("remedies").title(lang.equals("hi") ? "उपचार" : "Remedies")
+                                                .description(lang.equals("hi") ? "लक्षणों के उपचार" : "Remedies for symptoms").build(),
+                                        Row.builder().id("immunity").title(lang.equals("hi") ? "प्रतिरक्षा सुझाव" : "Immunity Tips")
+                                                .description(lang.equals("hi") ? "प्रतिरक्षा बढ़ाने के सुझाव" : "Immunity building tips").build(),
+                                        Row.builder().id("supplements").title(lang.equals("hi") ? "सप्लीमेंट्स" : "Supplements")
+                                                .description(lang.equals("hi") ? "किफायती सप्लीमेंट्स" : "Affordable supplements").build(),
+                                        Row.builder().id("back").title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back").build(),
+                                        Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
                                 ))
                                 .build()
                 ))

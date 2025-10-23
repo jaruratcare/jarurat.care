@@ -32,6 +32,8 @@ public class NutritionCareRouter {
         String intent = user.getCurrentIntent() != null ? user.getCurrentIntent() : "";
 
         log.info("Handling input: '{}' with intent: '{}' for user: {}", input, intent, user.getPhone());
+
+
         if ("show_pdf_offer".equalsIgnoreCase(input)) {
             user.setLastIntent(user.getCurrentIntent());
             user.setCurrentIntent("nutrition_pdf_offer");

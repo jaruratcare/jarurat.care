@@ -1,13 +1,16 @@
 package care.jarurat.hope.Userflow.nutritionalCare.steps;
 
 import care.jarurat.hope.model.InteractiveMessage;
+import care.jarurat.hope.model.ListMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
+// ================== Nutrition Step 0 ==================
 @Service
 @RequiredArgsConstructor
 public class NutritionStep0Service {
@@ -17,40 +20,32 @@ public class NutritionStep0Service {
     public Object handle(User user, String input) {
         String lang = user.getLanguage() != null ? user.getLanguage() : "en";
 
-        // 🧭 Handle Back Button
+        // 🔙 Back to Step1
         if ("back".equalsIgnoreCase(input)) {
             user.setCurrentIntent("nutrition_step1");
             userService.updateUser(user);
             return InteractiveMessage.builder()
                     .body(lang.equals("hi") ? "कृपया अपनी पसंद चुनें:" : "Please choose your preference:")
                     .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("vegetarian")
+                            InteractiveMessage.Button.builder().id("vegetarian")
                                     .title(lang.equals("hi") ? "🥗 शाकाहारी" : "🥗 Vegetarian").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("non_vegetarian")
+                            InteractiveMessage.Button.builder().id("non_vegetarian")
                                     .title(lang.equals("hi") ? "🍗 मांसाहारी" : "🍗 Non-Vegetarian").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
+                            InteractiveMessage.Button.builder().id("main_menu")
                                     .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
-                    ))
-                    .build();
+                    )).build();
         }
 
-        // 🏠 Handle Main Menu
+        // 🏠 Main Menu
         if ("main_menu".equalsIgnoreCase(input)) {
             user.setCurrentIntent(null);
             userService.updateUser(user);
             return InteractiveMessage.builder()
-                    .body(lang.equals("hi")
-                            ? "🏠 मुख्य मेनू पर वापस आ गए।"
-                            : "🏠 You are back to the main menu.")
+                    .body(lang.equals("hi") ? "🏠 मुख्य मेनू पर वापस आ गए।" : "🏠 You are back to the main menu.")
                     .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
+                            InteractiveMessage.Button.builder().id("main_menu")
                                     .title(lang.equals("hi") ? "🔙 मुख्य मेनू" : "🔙 Main Menu").build()
-                    ))
-                    .build();
+                    )).build();
         }
 
         boolean valid = switch (input.toLowerCase()) {
@@ -58,54 +53,49 @@ public class NutritionStep0Service {
             default -> false;
         };
 
-        if (!valid) {
-            return InteractiveMessage.builder()
-                    .body(lang.equals("hi") ? "❌ कृपया हाँ या नहीं चुनें:" : "❌ Please choose Yes or No:")
-                    .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("yes_diabetic")
-                                    .title(lang.equals("hi") ? "✅ हाँ" : "✅ Yes").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("no_diabetic")
-                                    .title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("back")
-                                    .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build(),
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
-                                    .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
-                    ))
-                    .build();
-        }
+       if (!valid) {
+    return ListMessage.builder()
+            .header(lang.equals("hi") ? "❌ कृपया हाँ या नहीं चुनें:" : "❌ Please choose Yes or No:")
+            .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
+            .buttonText(lang.equals("hi") ? "चुनें" : "Choose")
+            .sections(List.of(
+                    ListMessage.Section.builder()
+                            .title(lang.equals("hi") ? "विकल्प" : "Options")
+                            .rows(List.of(
+                                    ListMessage.Row.builder().id("yes_diabetic")
+                                            .title(lang.equals("hi") ? "✅ हाँ" : "✅ Yes").build(),
+                                    ListMessage.Row.builder().id("no_diabetic")
+                                            .title(lang.equals("hi") ? "❌ नहीं" : "❌ No").build(),
+                                    ListMessage.Row.builder().id("back")
+                                            .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build(),
+                                    ListMessage.Row.builder().id("main_menu")
+                                            .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                            ))
+                            .build()
+            ))
+            .build();
+}
 
-        // ✅ Store answer and move to next step
-        if (input.equalsIgnoreCase("yes_diabetic") || input.equalsIgnoreCase("✅ हाँ")) {
-            user.setDiabeticStatus("Diabetic");
-        } else {
-            user.setDiabeticStatus("Not Diabetic");
-        }
-
+        // ✅ Store answer and move to Step2
+        user.setDiabeticStatus(input.equalsIgnoreCase("yes_diabetic") || input.equalsIgnoreCase("✅ हाँ") ? "Diabetic" : "Not Diabetic");
         user.setLastIntent(user.getCurrentIntent());
-        user.setCurrentIntent("nutrition_step2"); 
+        user.setCurrentIntent("nutrition_step2");
         userService.updateUser(user);
 
-        return InteractiveMessage.builder()
-                .body(lang.equals("hi") ? "🥗 खाने की स्थिति क्या है?" : "🥗 What is the eating condition?")
-                .buttons(List.of(
-                        InteractiveMessage.Button.builder().id("soft")
-                                .title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
-                        InteractiveMessage.Button.builder().id("liquid")
-                                .title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
-                        InteractiveMessage.Button.builder().id("normal")
-                                .title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build(),
-                        // 👇 Navigation
-                        InteractiveMessage.Button.builder()
-                                .id("back")
-                                .title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build(),
-                        InteractiveMessage.Button.builder()
-                                .id("main_menu")
-                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
-                ))
-                .build();
+        return ListMessage.builder()
+                .header(lang.equals("hi") ? "🥗 खाने की स्थिति क्या है?" : "🥗 What is the eating condition?")
+                .body(lang.equals("hi") ? "एक चुनें:" : "Select one:")
+                .buttonText(lang.equals("hi") ? "स्थिति चुनें" : "Choose condition")
+                .sections(List.of(
+                        ListMessage.Section.builder()
+                                .title(lang.equals("hi") ? "खाने की स्थिति" : "Eating Condition")
+                                .rows(List.of(
+                                        ListMessage.Row.builder().id("soft").title(lang.equals("hi") ? "1) नरम" : "1) Soft").build(),
+                                        ListMessage.Row.builder().id("liquid").title(lang.equals("hi") ? "2) तरल आहार" : "2) Liquid Diet").build(),
+                                        ListMessage.Row.builder().id("normal").title(lang.equals("hi") ? "3) सामान्य आहार" : "3) Normal Diet").build(),
+                                        ListMessage.Row.builder().id("back").title(lang.equals("hi") ? "🔙 वापस" : "🔙 Back").build(),
+                                        ListMessage.Row.builder().id("main_menu").title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+                                )).build()
+                )).build();
     }
 }

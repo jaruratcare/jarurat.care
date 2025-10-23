@@ -1,6 +1,8 @@
 package care.jarurat.hope.Userflow.nutritionalCare;
 
 import care.jarurat.hope.model.InteractiveMessage;
+import care.jarurat.hope.model.ListMessage;
+import care.jarurat.hope.model.ListMessage.Row;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.OpenAiServiceWrapper;
 import care.jarurat.hope.service.UserService;
@@ -167,14 +169,6 @@ public class MealPlanService {
                         InteractiveMessage.Button.builder()
                                 .id(nextButtonId)
                                 .title(nextButtonTitle)
-                                .build(),
-                        InteractiveMessage.Button.builder()
-                                .id("back")
-                                .title(lang.equals("hi") ? "🔙 पिछला दिन" : "🔙 Back")
-                                .build(),
-                        InteractiveMessage.Button.builder()
-                                .id("main_menu")
-                                .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                 .build()
                 ))
                 .build();
@@ -260,14 +254,6 @@ public class MealPlanService {
                                 InteractiveMessage.Button.builder()
                                         .id("no_pdf")
                                         .title(lang.equals("hi") ? "❌ नहीं, धन्यवाद" : "❌ No, thanks")
-                                        .build(),
-                                InteractiveMessage.Button.builder()
-                                        .id("back")
-                                        .title(lang.equals("hi") ? "🔙 पिछला चरण" : "🔙 Back")
-                                        .build(),
-                                InteractiveMessage.Button.builder()
-                                        .id("main_menu")
-                                        .title(lang.equals("hi") ? "🏠 मुख्य मेनू" : "🏠 Main Menu")
                                         .build()
                         ))
                         .build();
@@ -295,3 +281,4 @@ public class MealPlanService {
         }
     }
 }
+

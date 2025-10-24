@@ -2,15 +2,76 @@ package care.jarurat.hope.Userflow.Volunteer;
 
 import care.jarurat.hope.model.ListMessage;
 import care.jarurat.hope.model.InteractiveMessage;
-import org.springframework.stereotype.Component;
+import care.jarurat.hope.model.User;
+import care.jarurat.hope.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class VolunteerMessageBuilder {
+
+    private final VolunteerService volunteerService;
+    private final UserService userService;
+
+    public Object handle(User user, String input) {
+        String intent = user.getCurrentIntent();
+        boolean isEnglish = "en".equalsIgnoreCase(user.getLanguage());
+        if ("back".equalsIgnoreCase(input) || "🔙".equals(input)) {
+            user.setCurrentIntent("volunteer_start");
+            userService.updateUser(user);
+            return askCommunicationMode(isEnglish);
+        }
+
+        if ("main_menu".equalsIgnoreCase(input) || "🏠".equals(input)) {
+            user.setCurrentIntent("main_menu");
+            userService.updateUser(user);
+            return isEnglish ? "🏠 Returning to Main Menu..." : "🏠 मुख्य मेनू पर लौट रहे हैं...";
+        }
+
+        // Flow handling
+        return switch (intent) {
+            case "volunteer_start" -> {
+                user.setCurrentIntent("volunteer_choose_mode");
+                userService.updateUser(user);
+                yield askCommunicationMode(isEnglish);
+            }
+
+            case "volunteer_choose_mode" -> {
+                if ("volunteer_chat".equals(input) || "volunteer_call".equals(input)) {
+                    String mode = input.equals("volunteer_chat") ? "Chat" : "Phone Call";
+                    user.setTempMode(mode);
+                    user.setCurrentIntent("volunteer_ask_datetime");
+                    userService.updateUser(user);
+                    yield askDateTimeWithListMessage(isEnglish);
+                } else {
+                    yield defaultFallback(isEnglish);
+                }
+            }
+
+            case "volunteer_ask_datetime" -> {
+                String mode = user.getTempMode();
+                InteractiveMessage response = volunteerService.bookAppointment(
+                        user.getName(),
+                        user.getPhone(),
+                        mode,
+                        input,
+                        user.getLanguage()
+                );
+                user.setCurrentIntent("main_menu");
+                user.setTempMode(null);
+                userService.updateUser(user);
+                yield response;
+            }
+
+            default -> defaultFallback(isEnglish);
+        };
+    }
 
     public InteractiveMessage askCommunicationMode(boolean isEnglish) {
         String body = isEnglish
@@ -22,12 +83,17 @@ public class VolunteerMessageBuilder {
                 .buttons(List.of(
                         InteractiveMessage.Button.builder()
                                 .id("volunteer_chat")
-                                .title(isEnglish ? "💬 Chat" : "चैट")
+                                .title(isEnglish ? "💬 Chat" : "💬 चैट")
                                 .type("reply")
                                 .build(),
                         InteractiveMessage.Button.builder()
                                 .id("volunteer_call")
-                                .title(isEnglish ? "📞 Phone Call" : "फोन कॉल")
+                                .title(isEnglish ? "📞 Phone Call" : "📞 फोन कॉल")
+                                .type("reply")
+                                .build(),
+                        InteractiveMessage.Button.builder()
+                                .id("main_menu")
+                                .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
                                 .type("reply")
                                 .build()
                 ))
@@ -36,92 +102,38 @@ public class VolunteerMessageBuilder {
 
     public ListMessage askDateTimeWithListMessage(boolean isEnglish) {
         String body = isEnglish
-                ? "Please select your preferred date and time:"
-                : "कृपया अपनी पसंदीदा तारीख और समय चुनें:";
+                ? "Please select your preferred time for today:"
+                : "कृपया आज के लिए अपनी पसंदीदा समय स्लॉट चुनें:";
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        
-        // Reduced time slots to stay within WhatsApp limits
-        String[] slots = {"10:00", "14:00", "16:00"}; // Only 3 slots instead of 4
-        
+        String[] slots = {"10:00", "14:00", "16:00"};
         List<ListMessage.Section> sections = new ArrayList<>();
-        int totalRows = 0;
 
-        // Only show 3 days instead of 7 to stay within 10 row limit (3 days × 3 slots = 9 rows)
-        for (int i = 0; i < 3; i++) {
-            LocalDate date = LocalDate.now().plusDays(i);
-            String dateStr = date.format(dateFormatter);
+        LocalDate today = LocalDate.now();
+        String dateStr = today.format(dateFormatter);
 
-            List<ListMessage.Row> rows = new ArrayList<>();
-            for (String slot : slots) {
-                if (totalRows >= 10) break; // Strict limit check
-                
-                String id = dateStr + " " + slot;
-                rows.add(ListMessage.Row.builder()
-                        .id(id)
-                        .title(id)
-                        .build());
-                totalRows++;
-            }
-
-            if (!rows.isEmpty()) {
-                sections.add(ListMessage.Section.builder()
-                        .title(dateStr)
-                        .rows(rows)
-                        .build());
-            }
-            
-            if (totalRows >= 10) break; // Don't exceed WhatsApp limit
+        List<ListMessage.Row> rows = new ArrayList<>();
+        for (String slot : slots) {
+            String id = dateStr + " " + slot; 
+            rows.add(ListMessage.Row.builder()
+                    .id(id)
+                    .title(slot) 
+                    .build());
         }
 
-        return ListMessage.builder()
-                .body(body)
-                .buttonText(isEnglish ? "Select Time" : "समय चुनें")
-                .sections(sections)
-                .build();
-    }
+        sections.add(ListMessage.Section.builder()
+                .title(isEnglish ? "Today (" + dateStr + ")" : "आज (" + dateStr + ")")
+                .rows(rows)
+                .build());
 
-    // Alternative method with pagination for more options
-    public ListMessage askDateTimeWithPagination(boolean isEnglish, int page) {
-        String body = isEnglish
-                ? "Please select your preferred date and time (Page " + (page + 1) + "):"
-                : "कृपया अपनी पसंदीदा तारीख और समय चुनें (पृष्ठ " + (page + 1) + "):";
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String[] slots = {"10:00", "11:00", "14:00", "16:00"};
-        
-        List<ListMessage.Section> sections = new ArrayList<>();
-        int totalRows = 0;
-
-        // Show 2 days per page with 4 slots each (total 8 rows)
-        int daysPerPage = 2;
-        int startDay = page * daysPerPage;
-        
-        for (int i = startDay; i < startDay + daysPerPage; i++) {
-            if (totalRows >= 10) break;
-            
-            LocalDate date = LocalDate.now().plusDays(i);
-            String dateStr = date.format(dateFormatter);
-
-            List<ListMessage.Row> rows = new ArrayList<>();
-            for (String slot : slots) {
-                if (totalRows >= 10) break;
-                
-                String id = dateStr + " " + slot;
-                rows.add(ListMessage.Row.builder()
-                        .id(id)
-                        .title(id)
-                        .build());
-                totalRows++;
-            }
-
-            if (!rows.isEmpty()) {
-                sections.add(ListMessage.Section.builder()
-                        .title(dateStr)
-                        .rows(rows)
-                        .build());
-            }
-        }
+        // Navigation
+        sections.add(ListMessage.Section.builder()
+                .title(isEnglish ? "Navigation" : "नेविगेशन")
+                .rows(List.of(
+                        ListMessage.Row.builder().id("back").title(isEnglish ? "🔙 Back" : "🔙 पिछला चरण").build(),
+                        ListMessage.Row.builder().id("main_menu").title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू").build()
+                ))
+                .build());
 
         return ListMessage.builder()
                 .body(body)
@@ -134,49 +146,5 @@ public class VolunteerMessageBuilder {
         return isEnglish
                 ? "Please choose a valid option."
                 : "कृपया एक मान्य विकल्प चुनें।";
-    }
-
-    // Method to check if there are more pages available
-    public boolean hasMorePages(int currentPage, int daysPerPage) {
-        int totalDaysToShow = 7; // Total days you want to offer
-        return (currentPage + 1) * daysPerPage < totalDaysToShow;
-    }
-
-    // Simple version with just today and tomorrow
-    public ListMessage askDateTimeSimple(boolean isEnglish) {
-        String body = isEnglish
-                ? "Please select your preferred date and time:"
-                : "कृपया अपनी पसंदीदा तारीख और समय चुनें:";
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String[] slots = {"10:00", "14:00", "16:00"};
-        
-        List<ListMessage.Section> sections = new ArrayList<>();
-
-        // Only show today and tomorrow (6 total rows)
-        for (int i = 0; i < 2; i++) {
-            LocalDate date = LocalDate.now().plusDays(i);
-            String dateStr = date.format(dateFormatter);
-
-            List<ListMessage.Row> rows = new ArrayList<>();
-            for (String slot : slots) {
-                String id = dateStr + " " + slot;
-                rows.add(ListMessage.Row.builder()
-                        .id(id)
-                        .title(id)
-                        .build());
-            }
-
-            sections.add(ListMessage.Section.builder()
-                    .title(dateStr)
-                    .rows(rows)
-                    .build());
-        }
-
-        return ListMessage.builder()
-                .body(body)
-                .buttonText(isEnglish ? "Select Time" : "समय चुनें")
-                .sections(sections)
-                .build();
     }
 }

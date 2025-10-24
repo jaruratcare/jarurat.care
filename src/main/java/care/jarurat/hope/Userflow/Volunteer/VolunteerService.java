@@ -4,6 +4,7 @@ import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+import care.jarurat.hope.model.InteractiveMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -18,9 +20,12 @@ import java.time.format.DateTimeFormatter;
 public class VolunteerService {
 
     private final Calendar calendarService;
-    private static final String CALENDAR_ID = "carejarurat@gmail.com"; // Replace with your calendar ID
+    private static final String CALENDAR_ID = "carejarurat@gmail.com";
 
-    public String bookAppointment(String userName, String phone, String mode, String dateTime) {
+    public InteractiveMessage bookAppointment(String userName, String phone, String mode, String dateTime, String language) {
+        boolean isEnglish = "en".equalsIgnoreCase(language);
+        String message;
+
         try {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             ZonedDateTime start = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
@@ -43,14 +48,29 @@ public class VolunteerService {
 
             event = calendarService.events().insert(CALENDAR_ID, event).execute();
             log.info("Appointment created: {}", event.getHtmlLink());
-            return "✅ Your appointment is booked on " + dateTime + "\n" +
-                   "You can view it here: " + event.getHtmlLink();
+
+            message = (isEnglish ? "✅ Your appointment is booked on " : "✅ आपकी अपॉइंटमेंट बुक हो गई है: ")
+                    + dateTime + "\n"
+                    + (isEnglish ? "You can view it here: " : "इसे यहाँ देखें: ")
+                    + event.getHtmlLink();
+
         } catch (IOException e) {
             log.error("Error booking volunteer appointment", e);
-            return "⚠️ Failed to book appointment. Please try again later.";
+            message = isEnglish
+                    ? "⚠️ Failed to book appointment. Please try again later."
+                    : "⚠️ अपॉइंटमेंट बुक करने में त्रुटि। कृपया बाद में पुनः प्रयास करें।";
         } catch (Exception e) {
             log.error("Invalid date/time format or error", e);
-            return "⚠️ Invalid date/time format. Please provide date and time as yyyy-MM-dd HH:mm";
+            message = isEnglish
+                    ? "⚠️ Invalid date/time format. Please provide date and time as yyyy-MM-dd HH:mm"
+                    : "⚠️ अमान्य तारीख/समय प्रारूप। कृपया yyyy-MM-dd HH:mm प्रारूप में दें।";
         }
+
+        return InteractiveMessage.builder()
+                .body(message)
+                .buttons(List.of(
+                        InteractiveMessage.Button.builder().id("main_menu").title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू").type("reply").build()
+                ))
+                .build();
     }
 }

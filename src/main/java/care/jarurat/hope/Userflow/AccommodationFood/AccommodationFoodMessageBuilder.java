@@ -1,5 +1,6 @@
 package care.jarurat.hope.Userflow.AccommodationFood;
 
+import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.ListMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,25 @@ import java.util.List;
 @Service
 public class AccommodationFoodMessageBuilder {
 
-    public String askHospital(boolean isHindi) {
-        return isHindi ? "🏥 कृपया उस अस्पताल का नाम भेजें जहाँ आप जा रहे हैं:" :
-                "🏥 Please send the name of the hospital you are visiting:";
-    }
+   public InteractiveMessage askHospital(boolean isHindi) {
+    String text = isHindi
+            ? "🏥 कृपया उस अस्पताल का नाम भेजें जहाँ आप जा रहे हैं:"
+            : "🏥 Please send the name of the hospital you are visiting:";
+
+    List<InteractiveMessage.Button> buttons = List.of(
+            InteractiveMessage.Button.builder()
+                    .id("main_menu")
+                    .title(isHindi ? "🔙 Back" : "🔙 Back")
+                    .build()
+    );
+
+    return InteractiveMessage.builder()
+            .header(isHindi ? "🏥 अस्पताल चुनें" : "🏥 Enter Hospital Name")
+            .body(text)
+            .footer(isHindi ? "विकल्प चुनें 👇" : "Select an option below 👇")
+            .buttons(buttons)
+            .build();
+}
 
     public String invalidHospital(boolean isHindi) {
         return isHindi ? "⚠️ कृपया सही अस्पताल का नाम भेजें।" :
@@ -39,9 +55,12 @@ public class AccommodationFoodMessageBuilder {
                 ListMessage.Row.builder().id("only_food").title(isHindi ? "🍽️ Only Food" : "🍽️ Only Food").build()
         );
 
-        List<ListMessage.Section> sections = List.of(
-                ListMessage.Section.builder().title(isHindi ? "मदद का प्रकार" : "Help Type").rows(rows).build()
-        );
+        List<ListMessage.Section> sections = new ArrayList<>();
+        sections.add(ListMessage.Section.builder()
+                .title(isHindi ? "मदद का प्रकार" : "Help Type")
+                .rows(rows)
+                .build());
+        sections.add(getNavigationSection(isHindi));
 
         return ListMessage.builder()
                 .header(isHindi ? "कृपया विकल्प चुनें" : "Please choose an option")
@@ -52,15 +71,32 @@ public class AccommodationFoodMessageBuilder {
                 .build();
     }
 
-    public String askIncomeRange(boolean isHindi) {
-        return isHindi ? "💰 कृपया अपनी औसत आय सीमा लिखें:" :
-                "💰 Please type your average income range:";
-    }
+    public InteractiveMessage askIncomeRange(boolean isHindi) {
+    String text = isHindi
+            ? "💰 कृपया अपनी औसत आय सीमा लिखें:"
+            : "💰 Please type your average income range:";
 
-    // Dynamic service options based on help type
+    List<InteractiveMessage.Button> buttons = List.of(
+            InteractiveMessage.Button.builder()
+                    .id("back")
+                    .title(isHindi ? "🔙 Back" : "🔙 Back")
+                    .build(),
+            InteractiveMessage.Button.builder()
+                    .id("main_menu")
+                    .title(isHindi ? "🏠 Main Menu" : "🏠 Main Menu")
+                    .build()
+    );
+
+    return InteractiveMessage.builder()
+            .header(isHindi ? "💰 आय सीमा" : "💰 Income Range")
+            .body(text)
+            .footer(isHindi ? "विकल्प चुनें 👇" : "Select an option below 👇")
+            .buttons(buttons)
+            .build();
+}
+
     public ListMessage askServiceOptionsForHelpType(boolean isHindi, String helpType) {
         List<ListMessage.Row> rows = new ArrayList<>();
-
         if (helpType == null) helpType = "";
         helpType = helpType.trim().toLowerCase();
 
@@ -91,24 +127,20 @@ public class AccommodationFoodMessageBuilder {
                         .description(isHindi ? "Free meal services (open hours + location)" : "Free meal services (open hours + location)")
                         .build());
                 break;
-            default:
-                log.warn("Unknown helpType: " + helpType);
-                break;
         }
 
-        // NGO info always shown
         rows.add(ListMessage.Row.builder()
                 .id("ngo")
                 .title(isHindi ? "NGO Info" : "NGO Info")
                 .description(isHindi ? "NGO contact info, map pins, price range" : "NGO contact info, map pins, price range")
                 .build());
 
-        List<ListMessage.Section> sections = List.of(
-                ListMessage.Section.builder()
-                        .title(isHindi ? "सेवा विकल्प" : "Service Options")
-                        .rows(rows)
-                        .build()
-        );
+        List<ListMessage.Section> sections = new ArrayList<>();
+        sections.add(ListMessage.Section.builder()
+                .title(isHindi ? "सेवा विकल्प" : "Service Options")
+                .rows(rows)
+                .build());
+        sections.add(getNavigationSection(isHindi));
 
         return ListMessage.builder()
                 .header(isHindi ? "नीचे विकल्प चुनें:" : "Select from the options below:")
@@ -150,5 +182,44 @@ public class AccommodationFoodMessageBuilder {
         }
 
         return sb.toString();
+    }
+
+    // --- Back & Main Menu Buttons ---
+    public InteractiveMessage facilityServiceWithNavigation(List<AccommodationFoodFacility> facilities, boolean isHindi, String choice) {
+        String text = facilityServiceListText(facilities, isHindi, choice);
+
+        List<InteractiveMessage.Button> buttons = List.of(
+                InteractiveMessage.Button.builder()
+                        .id("back")
+                        .title(isHindi ? "🔙 Back" : "🔙 Back")
+                        .build(),
+                InteractiveMessage.Button.builder()
+                        .id("main_menu")
+                        .title(isHindi ? "🏠 Main Menu" : "🏠 Main Menu")
+                        .build()
+        );
+
+        return InteractiveMessage.builder()
+                .header(isHindi ? "🩺 उपलब्ध सेवाएं" : "🩺 Available Services")
+                .body(text)
+                .footer(isHindi ? "विकल्प चुनें 👇" : "Select an option below 👇")
+                .buttons(buttons)
+                .build();
+    }
+
+    public String mainMenu(boolean isHindi) {
+        return isHindi
+                ? "🏠 मुख्य मेन्यू:\n1. आवास और भोजन\n2. अन्य विकल्प"
+                : "🏠 Main Menu:\n1. Accommodation & Food\n2. Other Options";
+    }
+
+    private ListMessage.Section getNavigationSection(boolean isHindi) {
+        return ListMessage.Section.builder()
+                .title(isHindi ? "नेविगेशन" : "Navigation")
+                .rows(List.of(
+                        ListMessage.Row.builder().id("back").title(isHindi ? "🔙 Back" : "🔙 Back").build(),
+                        ListMessage.Row.builder().id("main_menu").title(isHindi ? "🏠 Main Menu" : "🏠 Main Menu").build()
+                ))
+                .build();
     }
 }

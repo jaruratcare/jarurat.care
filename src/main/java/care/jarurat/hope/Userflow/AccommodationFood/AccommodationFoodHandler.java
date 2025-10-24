@@ -20,6 +20,16 @@ public class AccommodationFoodHandler {
     public Object handle(User user, String input) {
         boolean isHindi = "hi".equalsIgnoreCase(user.getLanguage()) || "hindi".equalsIgnoreCase(user.getLanguage());
 
+        // --- Handle Navigation buttons first ---
+        if ("back".equalsIgnoreCase(input)) {
+            return handleBack(user, isHindi);
+        } else if ("main_menu".equalsIgnoreCase(input)) {
+            user.setCurrentIntent(null); // reset flow
+            userService.updateUser(user);
+            return messageBuilder.mainMenu(isHindi);
+        }
+
+        // --- Handle normal flow ---
         return switch (user.getCurrentIntent()) {
             case "accommodation_food" -> askHospital(user, isHindi);
             case "awaiting_af_hospital" -> handleHospitalInput(user, input, isHindi);
@@ -28,6 +38,38 @@ public class AccommodationFoodHandler {
             case "awaiting_af_service_selection" -> handleServiceSelection(user, input, isHindi);
             default -> null;
         };
+    }
+
+    // --- Back button logic ---
+    private Object handleBack(User user, boolean isHindi) {
+        String intent = user.getCurrentIntent();
+
+        switch (intent) {
+            case "awaiting_af_hospital":
+                user.setCurrentIntent("accommodation_food"); // go back to start
+                userService.updateUser(user);
+                return messageBuilder.mainMenu(isHindi);
+
+            case "awaiting_af_help_type":
+                user.setCurrentIntent("awaiting_af_hospital"); // go back to hospital input
+                userService.updateUser(user);
+                return messageBuilder.askHospital(isHindi);
+
+            case "awaiting_af_income":
+                user.setCurrentIntent("awaiting_af_help_type"); // go back to help type
+                userService.updateUser(user);
+                return messageBuilder.askHelpType(isHindi);
+
+            case "awaiting_af_service_selection":
+                user.setCurrentIntent("awaiting_af_income"); // go back to income
+                userService.updateUser(user);
+                return messageBuilder.askIncomeRange(isHindi);
+
+            default:
+                user.setCurrentIntent(null); // fallback to main menu
+                userService.updateUser(user);
+                return messageBuilder.mainMenu(isHindi);
+        }
     }
 
     private Object askHospital(User user, boolean isHindi) {
@@ -59,8 +101,6 @@ public class AccommodationFoodHandler {
         }
 
         String trimmedInput = input.trim().toLowerCase();
-
-        // Robust mapping: handle emoji or text input
         String helpTypeId;
         if (trimmedInput.contains("stay") && trimmedInput.contains("food")) {
             helpTypeId = "stay_food";
@@ -85,11 +125,9 @@ public class AccommodationFoodHandler {
         }
 
         user.setIncomeRange(input.trim());
-
         user.setCurrentIntent("awaiting_af_service_selection");
         userService.updateUser(user);
 
-        // Generate dynamic buttons based on helpType
         return messageBuilder.askServiceOptionsForHelpType(isHindi, user.getHelpType());
     }
 
@@ -98,17 +136,14 @@ public class AccommodationFoodHandler {
             return messageBuilder.invalidChoice(isHindi);
         }
 
-        String option = input.trim().toLowerCase();
-
-        List<AccommodationFoodFacility> facilities = afService.getFacilitiesByOption(option);
-
+        List<AccommodationFoodFacility> facilities = afService.getFacilitiesByOption(input.trim().toLowerCase());
         if (facilities.isEmpty()) {
             return messageBuilder.comingSoonText(isHindi);
         }
 
-        user.setCurrentIntent(null); // Reset flow
+        user.setCurrentIntent("awaiting_af_service_selection"); // keep the intent to allow back
         userService.updateUser(user);
 
-        return messageBuilder.facilityServiceListText(facilities, isHindi, option);
+        return messageBuilder.facilityServiceWithNavigation(facilities, isHindi, input.trim().toLowerCase());
     }
 }

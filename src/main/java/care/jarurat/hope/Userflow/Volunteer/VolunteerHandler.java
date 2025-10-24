@@ -52,7 +52,6 @@ public Object handle(User user, String input) {
 
         case "volunteer_ask_datetime" -> {
     String mode = user.getTempMode();
-    // Pass language as well
     InteractiveMessage response = volunteerService.bookAppointment(
             user.getName(),
             user.getPhone(),

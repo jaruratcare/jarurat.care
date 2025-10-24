@@ -20,6 +20,11 @@ public class PalliativeCareHandler {
     public Object handle(User user, String input) {
         boolean isHindi = "hi".equalsIgnoreCase(user.getLanguage()) || "hindi".equalsIgnoreCase(user.getLanguage());
 
+        // Handle Back button globally
+        if ("back".equalsIgnoreCase(input)) {
+            return handleBack(user, isHindi);
+        }
+
         return switch (user.getCurrentIntent()) {
             case "palliative_care" -> askCity(user, isHindi);
             case "awaiting_palliative_city" -> saveCity(user, input, isHindi);
@@ -97,6 +102,35 @@ public class PalliativeCareHandler {
             return messageBuilder.comingSoonText(user.getCity(), isHindi);
         }
 
-        return messageBuilder.facilityServiceListText(facilities, isHindi);
+        return messageBuilder.facilityService(facilities, isHindi);
+    }
+
+    // Back button logic
+    private Object handleBack(User user, boolean isHindi) {
+        String currentIntent = user.getCurrentIntent();
+
+        switch (currentIntent) {
+            case "awaiting_palliative_city":
+                // From city input, go back to palliative start
+                user.setCurrentIntent("palliative_care");
+                userService.updateUser(user);
+                return messageBuilder.askCity(isHindi);
+
+            case "awaiting_palliative_type":
+                // From hospital type selection, go back to city input
+                user.setCurrentIntent("awaiting_palliative_city");
+                userService.updateUser(user);
+                return messageBuilder.askCity(isHindi);
+
+            case "awaiting_palliative_care_type":
+                // From care type selection, go back to hospital type
+                user.setCurrentIntent("awaiting_palliative_type");
+                userService.updateUser(user);
+                return messageBuilder.askHospitalType(isHindi);
+
+            default:
+                // For any other case, show main menu
+                return messageBuilder.mainMenu(isHindi);
+        }
     }
 }

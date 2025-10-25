@@ -1,6 +1,7 @@
 package care.jarurat.hope.Userflow.nearbyHospital;
 
 import care.jarurat.hope.model.InteractiveMessage;
+import care.jarurat.hope.model.ListMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,131 +12,126 @@ import java.util.List;
 @Service
 public class NearbyHospitalMessageBuilder {
 
-    // Simple text messages (return String)
+    // ===================== SIMPLE TEXTS =====================
     public String askLocation(boolean isHindi) {
-        return isHindi 
+        return isHindi
                 ? "📍 कृपया अपनी लाइव लोकेशन शेयर करें"
                 : "📍 Please share your live location";
     }
 
     public String invalidLocationFormat(boolean isHindi) {
-        return isHindi 
+        return isHindi
                 ? "⚠️ कृपया अपनी लाइव लोकेशन शेयर करें"
                 : "⚠️ Please share your live location";
     }
 
     public String locationNotFound(boolean isHindi) {
-        return isHindi 
+        return isHindi
                 ? "⚠️ मुझे अभी आपकी लोकेशन नहीं मिली। कृपया पहले लोकेशन भेजें।"
                 : "⚠️ I don't have your location yet. Please share location first.";
     }
 
     public String invalidChoice(boolean isHindi) {
-        return isHindi 
+        return isHindi
                 ? "❌ अमान्य विकल्प। कृपया 1, 2, या 3 में से चुनें।"
                 : "❌ Invalid choice. Reply 1, 2, or 3.";
     }
 
-    // Interactive messages with buttons
-    public InteractiveMessage chooseHospitalType(boolean isHindi) {
-        List<InteractiveMessage.Button> buttons = new ArrayList<>();
-        buttons.add(InteractiveMessage.Button.builder().id("1").title(isHindi ? "🏥 सरकारी" : "🏥 Government").type("reply").build());
-        buttons.add(InteractiveMessage.Button.builder().id("2").title(isHindi ? "🏥 निजी" : "🏥 Private").type("reply").build());
-        buttons.add(InteractiveMessage.Button.builder().id("3").title(isHindi ? "🏥 कोई भी" : "🏥 Any").type("reply").build());
+    // ===================== CHOOSE TYPE (ListMessage) =====================
+    public ListMessage chooseHospitalType(boolean isHindi) {
+        List<ListMessage.Row> rows = new ArrayList<>();
+        rows.add(ListMessage.Row.builder().id("1").title(isHindi ? "🏥 सरकारी" : "🏥 Government")
+                .description(isHindi ? "सरकारी अस्पताल" : "Government hospitals").build());
+        rows.add(ListMessage.Row.builder().id("2").title(isHindi ? "🏥 निजी" : "🏥 Private")
+                .description(isHindi ? "निजी अस्पताल" : "Private hospitals").build());
+        rows.add(ListMessage.Row.builder().id("3").title(isHindi ? "🏥 कोई भी" : "🏥 Any")
+                .description(isHindi ? "कोई भी अस्पताल" : "Any hospital type").build());
+        rows.add(ListMessage.Row.builder().id("back_to_menu").title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu")
+                .description(isHindi ? "मुख्य मेन्यू पर जाएँ" : "Return to main menu").build());
 
-        return InteractiveMessage.builder()
+        List<ListMessage.Section> sections = List.of(
+                ListMessage.Section.builder()
+                        .title(isHindi ? "अस्पताल का प्रकार चुनें" : "Choose Hospital Type")
+                        .rows(rows)
+                        .build()
+        );
+
+        return ListMessage.builder()
                 .header(isHindi ? "अस्पताल का प्रकार चुनें" : "Choose Hospital Type")
-                .body(isHindi ? "क्या आप किसी प्रकार का अस्पताल पसंद करेंगे?" : "Would you prefer a hospital type?")
-                .footer(isHindi ? "नीचे एक विकल्प चुनें 👇" : "Select one option below 👇")
-                .buttons(buttons)
+                .body(isHindi ? "कृपया नीचे से एक प्रकार चुनें 👇" : "Please select a type below 👇")
+                .footer(isHindi ? "मुख्य मेन्यू पर वापस जाने के लिए नीचे स्क्रॉल करें।" : "Scroll down to go back to main menu.")
+                .buttonText(isHindi ? "प्रकार देखें" : "View Types")
+                .sections(sections)
                 .build();
     }
 
+    // ===================== NO HOSPITAL FOUND =====================
     public InteractiveMessage noHospitalsFound(String type, boolean isHindi) {
-        List<InteractiveMessage.Button> buttons = new ArrayList<>();
-        buttons.add(InteractiveMessage.Button.builder().id("1").title(isHindi ? "🏥 सरकारी" : "🏥 Government").type("reply").build());
-        buttons.add(InteractiveMessage.Button.builder().id("2").title(isHindi ? "🏥 निजी" : "🏥 Private").type("reply").build());
-        buttons.add(InteractiveMessage.Button.builder().id("3").title(isHindi ? "🏥 कोई भी" : "🏥 Any").type("reply").build());
-
         return InteractiveMessage.builder()
                 .header(isHindi ? "कोई अस्पताल नहीं मिला" : "No hospitals found")
-                .body(isHindi ? "❌ क्षमा करें, " + type + " अस्पताल आपके पास नहीं मिले। कृपया दूसरा प्रकार चुनें।"
-                               : "❌ Sorry, I couldn't find " + type + " hospitals near your location. Please select another type.")
-                .footer(isHindi ? "नीचे एक विकल्प चुनें 👇" : "Select one option below 👇")
-                .buttons(buttons)
+                .body(isHindi ? "❌ क्षमा करें, " + type + " अस्पताल आपके पास नहीं मिले।"
+                        : "❌ Sorry, no " + type + " hospitals were found near your location.")
+                .footer(isHindi ? "मुख्य मेन्यू पर वापस जाएँ 👇" : "Go back to main menu 👇")
+                .buttons(List.of(InteractiveMessage.Button.builder()
+                        .id("back_to_menu")
+                        .title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu")
+                        .build()))
                 .build();
     }
 
-    public InteractiveMessage hospitalList(List<Hospital> hospitals, boolean isHindi) {
-        StringBuilder sb = new StringBuilder();
-        for (Hospital h : hospitals) {
-            sb.append(String.format(
-                    "➡ %s\n%s\n📞 %s\n📏 %.2f km away\n🌍 %s\n\n",
-                    h.getName(), h.getAddress(), h.getPhone(), h.getDistance(), h.getMapsLink()
-            ));
-        }
-        List<InteractiveMessage.Button> buttons = List.of(
-                InteractiveMessage.Button.builder().id("yes_pdf").title(isHindi ? "📄 PDF देखें" : "📄 View as PDF").build(),
-                InteractiveMessage.Button.builder().id("no_pdf").title(isHindi ? "❌ नहीं" : "❌ No, thanks").build()
-        );
-
-        return InteractiveMessage.builder()
-                .body(sb.toString().trim())
-                .buttons(buttons)
-                .build();
+    // ===================== PDF / Back buttons helper =====================
+    public List<InteractiveMessage.Button> pdfButtons(boolean isHindi) {
+        List<InteractiveMessage.Button> buttons = new ArrayList<>();
+        buttons.add(InteractiveMessage.Button.builder()
+                .id("yes_pdf")
+                .title(isHindi ? "📄 PDF देखें" : "📄 View PDF")
+                .build());
+        buttons.add(InteractiveMessage.Button.builder()
+                .id("no_pdf")
+                .title(isHindi ? "❌ नहीं, धन्यवाद" : "❌ No, thanks")
+                .build());
+        buttons.add(InteractiveMessage.Button.builder()
+                .id("back_to_menu")
+                .title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu")
+                .build());
+        return buttons;
     }
 
-    public InteractiveMessage askPdfDownload(boolean isHindi) {
-        List<InteractiveMessage.Button> buttons = List.of(
-                InteractiveMessage.Button.builder().id("yes_pdf").title(isHindi ? "📄 PDF डाउनलोड करें" : "📄 Download PDF").build(),
-                InteractiveMessage.Button.builder().id("no_pdf").title(isHindi ? "❌ नहीं" : "❌ No, thanks").build()
-        );
-
-        return InteractiveMessage.builder()
-                .body(isHindi ? "📄 क्या आप पास के अस्पताल PDF डाउनलोड करना चाहते हैं?" 
-                              : "📄 Do you want to download nearby hospitals as PDF?")
-                .buttons(buttons)
-                .build();
-    }
-
+    // ===================== PDF and text builders =====================
     public InteractiveMessage pdfReady(String pdfUrl, boolean isHindi) {
         return InteractiveMessage.builder()
                 .header(isHindi ? "📄 पास के अस्पताल PDF" : "📄 Nearby Hospitals PDF")
                 .body((isHindi ? "आपका PDF तैयार है। इसे यहां डाउनलोड करें:\n" : "Your PDF is ready. Download here:\n") + pdfUrl)
                 .buttons(List.of(
                         InteractiveMessage.Button.builder().id("back_to_menu")
-                                .title(isHindi ? "🔙 मेन्यू पर वापस जाएँ" : "🔙 Back to Menu").build()
+                                .title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu").build()
                 ))
                 .build();
     }
 
     public InteractiveMessage pdfDeclined(boolean isHindi) {
-    return InteractiveMessage.builder()
-            .body(isHindi ? "ठीक है, मेन्यू पर लौट रहे हैं।" : "Okay, returning to main menu.")
-            .buttons(List.of(
-                    InteractiveMessage.Button.builder()
-                            .id("back_to_menu") // same ID used in pdfReady
-                            .title(isHindi ? "🔙 मेन्यू पर वापस जाएँ" : "🔙 Back to Menu")
-                            .build()
-            ))
-            .build();
-}
-
-
-
-    public InteractiveMessage pdfError(boolean isHindi) {
         return InteractiveMessage.builder()
-                .header(isHindi ? "❌ त्रुटि" : "❌ Error")
-                .body(isHindi ? "PDF बनाने में विफल। कृपया बाद में पुनः प्रयास करें।" 
-                               : "Failed to generate PDF. Please try again later.")
+                .body(isHindi ? "ठीक है, मेन्यू पर लौट रहे हैं।" : "Okay, returning to main menu.")
                 .buttons(List.of(
                         InteractiveMessage.Button.builder().id("back_to_menu")
-                                .title(isHindi ? "🔙 मेन्यू पर वापस जाएँ" : "🔙 Back to Menu").build()
+                                .title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu").build()
                 ))
                 .build();
     }
 
-    // ✅ Method for generating PDF content
+    public InteractiveMessage pdfError(boolean isHindi) {
+        return InteractiveMessage.builder()
+                .header(isHindi ? "❌ त्रुटि" : "❌ Error")
+                .body(isHindi ? "PDF बनाने में विफल। कृपया बाद में पुनः प्रयास करें।"
+                        : "Failed to generate PDF. Please try again later.")
+                .buttons(List.of(
+                        InteractiveMessage.Button.builder().id("back_to_menu")
+                                .title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu").build()
+                ))
+                .build();
+    }
+
+    // ===================== Build hospital text =====================
     public String buildHospitalText(List<Hospital> hospitals) {
         StringBuilder sb = new StringBuilder();
         for (Hospital h : hospitals) {
@@ -145,5 +141,21 @@ public class NearbyHospitalMessageBuilder {
             ));
         }
         return sb.toString().trim();
+    }
+
+    // ===================== Split text into <=1024 chunks =====================
+    public List<String> splitMessage(String fullText, int maxLength) {
+        List<String> chunks = new ArrayList<>();
+        int start = 0;
+        while (start < fullText.length()) {
+            int end = Math.min(fullText.length(), start + maxLength);
+            if (end < fullText.length()) {
+                int lastNewLine = fullText.lastIndexOf('\n', end);
+                if (lastNewLine > start) end = lastNewLine + 1;
+            }
+            chunks.add(fullText.substring(start, end).trim());
+            start = end;
+        }
+        return chunks;
     }
 }

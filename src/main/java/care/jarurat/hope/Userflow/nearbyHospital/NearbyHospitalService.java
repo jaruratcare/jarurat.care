@@ -32,8 +32,8 @@ public class NearbyHospitalService {
         List<Hospital> hospitals = new ArrayList<>();
         try {
             String url = String.format(
-                "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%f,%f&radius=5000&type=hospital&keyword=cancer&key=%s",
-                latitude, longitude, googleApiKey
+                                "https://maps.googleapis.com/maps/api/place/textsearch/json?query=cancer+hospitals+in+%.6f,%.6f&key=%s",
+                                        latitude, longitude, googleApiKey
             );
 
             String response = restTemplate.getForObject(url, String.class);
@@ -43,12 +43,14 @@ public class NearbyHospitalService {
                 for (JsonNode result : results) {
                     String placeId = result.has("place_id") ? result.get("place_id").asText() : null;
                     String name = result.has("name") ? result.get("name").asText() : "Unknown Hospital";
-                    String address = result.has("vicinity") ? result.get("vicinity").asText() : "No address available";
+                    String address = result.has("formatted_address")
+                            ? result.get("formatted_address").asText()
+                            : (result.has("vicinity") ? result.get("vicinity").asText() : "No address available");
 
                     double lat = result.get("geometry").get("location").get("lat").asDouble();
                     double lon = result.get("geometry").get("location").get("lng").asDouble();
 
-                    // Filter by hospital type
+                    // 🔹 Filter by hospital type
                     if ("government".equalsIgnoreCase(type) && !name.toLowerCase().contains("government")) continue;
                     if ("private".equalsIgnoreCase(type) && name.toLowerCase().contains("government")) continue;
 
@@ -60,6 +62,7 @@ public class NearbyHospitalService {
                 }
             }
 
+            // ✅ Sort by ascending distance
             hospitals.sort(Comparator.comparingDouble(Hospital::getDistance));
 
         } catch (Exception e) {

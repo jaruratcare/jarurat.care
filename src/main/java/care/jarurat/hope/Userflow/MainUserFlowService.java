@@ -211,11 +211,14 @@ public class MainUserFlowService {
                 return nutritionCareRouter.handle(user, input);
 
             //  hospital flow
+           //  hospital flow
             case "nearby_hospitals":
             case "awaiting_location":
             case "awaiting_hospital_type":
             case "hospital_pdf_offer":
-                return nearbyHospitalRouter.handle(user, input);
+            case "next_hospital_chunk":        // <- add this
+                 return nearbyHospitalRouter.handle(user, input);
+
 
             //  palliative care flow
             case "palliative_care":

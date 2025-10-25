@@ -18,6 +18,7 @@ public class NearbyHospitalRouter {
             case "awaiting_location":
             case "awaiting_hospital_type":
             case "hospital_pdf_offer":
+            case "next_hospital_chunk":
                 return handler.handle(user, input);
             default:
                 return null;

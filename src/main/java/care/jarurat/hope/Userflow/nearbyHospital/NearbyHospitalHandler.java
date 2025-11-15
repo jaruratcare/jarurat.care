@@ -3,7 +3,7 @@ package care.jarurat.hope.Userflow.nearbyHospital;
 import care.jarurat.hope.model.InteractiveMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
-import care.jarurat.hope.util.PdfGeneratorUploader;
+import care.jarurat.hope.util.PdfUploader2;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -90,7 +90,7 @@ public class NearbyHospitalHandler {
                 buttons = List.of(
                     InteractiveMessage.Button.builder()
                             .id("next_hospital_chunk")
-                            .title(isHindi ? "अगला" : "Next") // WhatsApp safe
+                            .title(isHindi ? "अगला" : "Next") 
                             .build()
                 );
             } else {
@@ -105,8 +105,6 @@ public class NearbyHospitalHandler {
 
         userHospitalChunks.put(user.getPhone(), messages);
         userCurrentChunkIndex.put(user.getPhone(), 0);
-
-        // ✅ set intent so next click is routed
         user.setCurrentIntent("next_hospital_chunk");
         userService.updateUser(user);
 
@@ -116,8 +114,6 @@ public class NearbyHospitalHandler {
     private Object handlePdfOfferOrNext(User user, String input, boolean isHindi) {
         List<InteractiveMessage> messages = userHospitalChunks.get(user.getPhone());
         if (messages == null || messages.isEmpty()) return messageBuilder.noHospitalsFound("any", isHindi);
-
-        // If user clicks Next
         if ("next_hospital_chunk".equalsIgnoreCase(input)) {
             int idx = userCurrentChunkIndex.getOrDefault(user.getPhone(), 0) + 1;
             if (idx >= messages.size()) idx = messages.size() - 1;
@@ -125,13 +121,11 @@ public class NearbyHospitalHandler {
 
             return messages.get(idx);
         }
-
-        // Else handle PDF offer
         try {
             if ("yes_pdf".equalsIgnoreCase(input)) {
                 StringBuilder sb = new StringBuilder();
                 for (InteractiveMessage msg : messages) sb.append(msg.getBody()).append("\n\n");
-                String pdfUrl = PdfGeneratorUploader.generateAndUploadPdf(sb.toString(), user.getPhone());
+                String pdfUrl =  PdfUploader2.generateAndUploadPdf(sb.toString(), user.getPhone());
                 userHospitalChunks.remove(user.getPhone());
                 userCurrentChunkIndex.remove(user.getPhone());
                 user.setCurrentIntent("nearby_hospitals");

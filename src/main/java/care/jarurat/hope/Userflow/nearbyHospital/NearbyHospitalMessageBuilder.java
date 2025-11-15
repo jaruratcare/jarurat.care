@@ -11,8 +11,6 @@ import java.util.List;
 @Slf4j
 @Service
 public class NearbyHospitalMessageBuilder {
-
-    // ===================== SIMPLE TEXTS =====================
     public String askLocation(boolean isHindi) {
         return isHindi
                 ? "📍 कृपया अपनी लाइव लोकेशन शेयर करें"
@@ -36,16 +34,12 @@ public class NearbyHospitalMessageBuilder {
                 ? "❌ अमान्य विकल्प। कृपया 1, 2, या 3 में से चुनें।"
                 : "❌ Invalid choice. Reply 1, 2, or 3.";
     }
-
-    // ===================== CHOOSE TYPE (ListMessage) =====================
     public ListMessage chooseHospitalType(boolean isHindi) {
         List<ListMessage.Row> rows = new ArrayList<>();
         rows.add(ListMessage.Row.builder().id("1").title(isHindi ? "🏥 सरकारी" : "🏥 Government")
                 .description(isHindi ? "सरकारी अस्पताल" : "Government hospitals").build());
         rows.add(ListMessage.Row.builder().id("2").title(isHindi ? "🏥 निजी" : "🏥 Private")
                 .description(isHindi ? "निजी अस्पताल" : "Private hospitals").build());
-        rows.add(ListMessage.Row.builder().id("3").title(isHindi ? "🏥 कोई भी" : "🏥 Any")
-                .description(isHindi ? "कोई भी अस्पताल" : "Any hospital type").build());
         rows.add(ListMessage.Row.builder().id("back_to_menu").title(isHindi ? "🏠 मुख्य मेन्यू" : "🏠 Main Menu")
                 .description(isHindi ? "मुख्य मेन्यू पर जाएँ" : "Return to main menu").build());
 
@@ -64,8 +58,6 @@ public class NearbyHospitalMessageBuilder {
                 .sections(sections)
                 .build();
     }
-
-    // ===================== NO HOSPITAL FOUND =====================
     public InteractiveMessage noHospitalsFound(String type, boolean isHindi) {
         return InteractiveMessage.builder()
                 .header(isHindi ? "कोई अस्पताल नहीं मिला" : "No hospitals found")
@@ -78,8 +70,6 @@ public class NearbyHospitalMessageBuilder {
                         .build()))
                 .build();
     }
-
-    // ===================== PDF / Back buttons helper =====================
     public List<InteractiveMessage.Button> pdfButtons(boolean isHindi) {
         List<InteractiveMessage.Button> buttons = new ArrayList<>();
         buttons.add(InteractiveMessage.Button.builder()
@@ -96,8 +86,6 @@ public class NearbyHospitalMessageBuilder {
                 .build());
         return buttons;
     }
-
-    // ===================== PDF and text builders =====================
     public InteractiveMessage pdfReady(String pdfUrl, boolean isHindi) {
         return InteractiveMessage.builder()
                 .header(isHindi ? "📄 पास के अस्पताल PDF" : "📄 Nearby Hospitals PDF")
@@ -130,8 +118,6 @@ public class NearbyHospitalMessageBuilder {
                 ))
                 .build();
     }
-
-    // ===================== Build hospital text =====================
     public String buildHospitalText(List<Hospital> hospitals) {
         StringBuilder sb = new StringBuilder();
         for (Hospital h : hospitals) {
@@ -142,8 +128,6 @@ public class NearbyHospitalMessageBuilder {
         }
         return sb.toString().trim();
     }
-
-    // ===================== Split text into <=1024 chunks =====================
     public List<String> splitMessage(String fullText, int maxLength) {
         List<String> chunks = new ArrayList<>();
         int start = 0;

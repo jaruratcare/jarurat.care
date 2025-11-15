@@ -9,7 +9,8 @@ import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
 import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler;
 import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
 import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler;
-import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler; // ✅ Add Volunteer
+import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler;
+import care.jarurat.hope.Userflow.emotionalcare.EmotionalCareRouter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,13 +33,15 @@ public class MainUserFlowService {
     private final CrowdfundingService crowdfundingService;
     private final InsuranceService insuranceService;
     private final NutritionCareRouter nutritionCareRouter;
-    private final NearbyHospitalRouter nearbyHospitalRouter; 
+    private final NearbyHospitalRouter nearbyHospitalRouter;
     private final PalliativeCareHandler palliativeCareHandler;
-    private final AccommodationFoodHandler accommodationFoodHandler; 
+    private final AccommodationFoodHandler accommodationFoodHandler;
     private final DiagnosticHandler diagnosticHandler;
-    private final VolunteerHandler volunteerHandler; // ✅ Add Volunteer
+    private final VolunteerHandler volunteerHandler;
+    private final EmotionalCareRouter emotionalCareRouter;
 
     public Object getResponse(User user, String input) {
+
         if (input == null || input.trim().isEmpty()) {
             return "Please send a message. Type 'Hi' to start.";
         }
@@ -46,13 +49,28 @@ public class MainUserFlowService {
         input = input.trim();
         String intent = user.getCurrentIntent();
 
-        //  handle global commands (like 'hi', 'help', 'menu')
+        // Global commands
         Object globalResponse = globalCommandService.handleGlobalCommand(user, input);
         if (globalResponse != null) {
             return globalResponse;
         }
 
-        // allow main_menu command anytime
+        // 🔥 CHANGE LANGUAGE HANDLER (User pressed 9)
+        if ("9".equals(input)) {
+            user.setCurrentIntent("choose_language");
+            userService.updateUser(user);
+
+            return InteractiveMessage.builder()
+                    .body("Please choose your preferred language:")
+                    .footer("Choose your language / अपनी भाषा चुनें")
+                    .buttons(Arrays.asList(
+                            InteractiveMessage.Button.builder().id("english").title("🇬🇧 English").build(),
+                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()
+                    ))
+                    .build();
+        }
+
+        // MAIN MENU redirect
         if ("back_to_menu".equalsIgnoreCase(input) || "main_menu".equalsIgnoreCase(input)) {
             user.setCurrentIntent("main_menu");
             userService.updateUser(user);
@@ -63,11 +81,10 @@ public class MainUserFlowService {
             return financialGuidanceService.sendMainFinancialGuidanceMenu(user);
         }
 
-        //  onboarding start
+        // Onboarding start
         if ("onboarding_start".equalsIgnoreCase(input)) {
             user.setCurrentIntent("onboarding_handle_name");
             userService.updateUser(user);
-
             boolean isEnglish = "en".equals(user.getLanguage());
             return isEnglish
                     ? "To personalize support, please tell me your name."
@@ -76,7 +93,7 @@ public class MainUserFlowService {
 
         log.debug("Processing message '{}' for user {} with intent: {}", input, user.getUserId(), intent);
 
-        //  If no intent yet, ask language
+        // First-time language selection
         if (intent == null || intent.isBlank()) {
             return InteractiveMessage.builder()
                     .body("Please choose your preferred language:")
@@ -88,7 +105,7 @@ public class MainUserFlowService {
                     .build();
         }
 
-        //  handle financial guidance menus
+        // FINANCIAL MAIN MENU
         if ("financial_guidance_menu".equals(intent)) {
             switch (input) {
                 case "fg_govt_schemes_start":
@@ -113,21 +130,25 @@ public class MainUserFlowService {
             }
         }
 
-        //  route to correct FG service
+        // FINANCIAL SUBFLOWS
         if (intent.startsWith("fg_")) {
             if (intent.startsWith("fg_govt_schemes")) {
                 return governmentSchemesService.handleGovernmentSchemes(user, input);
+
             } else if (intent.startsWith("fg_ngos_and_trusts")) {
                 return ngosAndTrustsService.handleNgosAndTrusts(user, input);
+
             } else if (intent.startsWith("fg_crowdfunding")) {
                 return crowdfundingService.handleCrowdfunding(user, input);
+
             } else if (intent.startsWith("fg_insurance")) {
                 return insuranceService.handleInsurance(user, input);
             }
         }
 
-        //  main flow handling
+        // MAIN MENU & NEW MODULE ROUTING
         switch (intent.toLowerCase()) {
+
             case "choose_language":
                 return languageService.handleLanguageSelection(user, input);
 
@@ -143,64 +164,52 @@ public class MainUserFlowService {
                 }
                 return onboardingResp;
 
+            // MAIN MENU HANDLING
             case "main_menu":
                 Object menuResponse = mainMenuService.handleMainMenu(user, input);
+
                 if (menuResponse == null) {
 
-                    //  Nutrition care
-                    if ("nutrition_care_start".equals(user.getCurrentIntent())) {
-                        user.setCurrentIntent("nutrition_step1");
-                        userService.updateUser(user);
+                    if (user.getCurrentIntent().startsWith("nutrition")) {
                         return nutritionCareRouter.handle(user, input);
+                    }
 
-                    //  Financial guidance
-                    } else if ("financial_guidance_start".equals(user.getCurrentIntent())) {
+                    if ("financial_guidance_start".equals(user.getCurrentIntent())) {
                         return financialGuidanceService.sendMainFinancialGuidanceMenu(user);
+                    }
 
-                    //  Nearby hospitals
-                    } else if ("nearby_hospitals".equals(user.getCurrentIntent())
-                            || "awaiting_location".equals(user.getCurrentIntent())
-                            || "awaiting_hospital_type".equals(user.getCurrentIntent())) {
+                    if (user.getCurrentIntent().startsWith("nearby_hospitals")
+                            || user.getCurrentIntent().startsWith("awaiting_location")
+                            || user.getCurrentIntent().startsWith("awaiting_hospital_type")) {
                         return nearbyHospitalRouter.handle(user, input);
+                    }
 
-                    //  Palliative care
-                    } else if ("palliative_care".equals(user.getCurrentIntent()) ||
-                            "awaiting_palliative_city".equals(user.getCurrentIntent()) ||
-                            "awaiting_palliative_type".equals(user.getCurrentIntent()) ||
-                            "awaiting_palliative_care_type".equals(user.getCurrentIntent())) {
-
+                    if (user.getCurrentIntent().startsWith("palliative_care")
+                            || user.getCurrentIntent().startsWith("awaiting_palliative")) {
                         return palliativeCareHandler.handle(user, input);
+                    }
 
-                    //  Accommodation & Food
-                    } else if ("accommodation_food".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_hospital".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_help_type".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_city".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_type".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_income".equals(user.getCurrentIntent()) ||
-                               "awaiting_af_service_selection".equals(user.getCurrentIntent()) ) {
-
+                    if (user.getCurrentIntent().startsWith("accommodation_food")
+                            || user.getCurrentIntent().startsWith("awaiting_af_")) {
                         return accommodationFoodHandler.handle(user, input);
-                    
-                    //  Diagnostics
-                    } else if ("diagnostic_lab_start".equals(user.getCurrentIntent()) ||
-                               "diagnostic_awaiting_location_confirmation".equals(user.getCurrentIntent()) ||
-                               "diagnostic_awaiting_location".equals(user.getCurrentIntent())) {
+                    }
 
+                    if (user.getCurrentIntent().startsWith("diagnostic")) {
                         return diagnosticHandler.handle(user, input);
+                    }
 
-                    //  Volunteer
-                    } else if ("volunteer_start".equals(user.getCurrentIntent()) ||
-                               "volunteer_choose_mode".equals(user.getCurrentIntent()) ||
-                               "volunteer_ask_datetime".equals(user.getCurrentIntent())) {
-
+                    if (user.getCurrentIntent().startsWith("volunteer")) {
                         return volunteerHandler.handle(user, input);
                     }
 
+                    if (user.getCurrentIntent().startsWith("emotional")) {
+                        return emotionalCareRouter.handle(user, input);
+                    }
                 }
+
                 return menuResponse;
 
-            //  nutrition flow
+            // Nutrition flows
             case "nutrition_step1":
             case "nutrition_step0":
             case "nutrition_step2":
@@ -210,24 +219,22 @@ public class MainUserFlowService {
             case "nutrition_pdf_offer":
                 return nutritionCareRouter.handle(user, input);
 
-            //  hospital flow
-           //  hospital flow
+            // Hospital flow
             case "nearby_hospitals":
             case "awaiting_location":
             case "awaiting_hospital_type":
             case "hospital_pdf_offer":
-            case "next_hospital_chunk":        // <- add this
-                 return nearbyHospitalRouter.handle(user, input);
+            case "next_hospital_chunk":
+                return nearbyHospitalRouter.handle(user, input);
 
-
-            //  palliative care flow
+            // Palliative flows
             case "palliative_care":
             case "awaiting_palliative_city":
             case "awaiting_palliative_type":
             case "awaiting_palliative_care_type":
                 return palliativeCareHandler.handle(user, input);
 
-            //  accommodation food flow
+            // Accommodation & food
             case "accommodation_food":
             case "awaiting_af_hospital":
             case "awaiting_af_help_type":
@@ -236,17 +243,37 @@ public class MainUserFlowService {
             case "awaiting_af_service_selection":
                 return accommodationFoodHandler.handle(user, input);
 
-            //  diagnostics flow
+            // Diagnostics
             case "diagnostic_lab_start":
             case "diagnostic_awaiting_location_confirmation":
             case "diagnostic_awaiting_location":
+            case "diagnostic_awaiting_test_type":
+            case "diagnostic_awaiting_collection_type":
                 return diagnosticHandler.handle(user, input);
 
-            //  volunteer flow
+            // Volunteer
             case "volunteer_start":
             case "volunteer_choose_mode":
             case "volunteer_ask_datetime":
                 return volunteerHandler.handle(user, input);
+
+            // Emotional
+            case "emotional_care":
+            case "feeling_checkin":
+            case "feeling_anxious":
+            case "feeling_sad":
+            case "feeling_exhausted":
+            case "just_checking_resources":
+            case "support_type_menu":
+            case "mindfulness_audio":
+            case "emotional_helplines":
+            case "talk_to_volunteer":
+            case "volunteer_call_time":
+            case "volunteer_callback_time":
+            case "volunteer_textchat_time":
+            case "caregiving_tips":
+            case "caregiving_tips_pdf_offer":
+                return emotionalCareRouter.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

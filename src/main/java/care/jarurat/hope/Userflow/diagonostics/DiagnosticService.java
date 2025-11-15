@@ -38,54 +38,72 @@ public class DiagnosticService {
 
             PlacesApiResponse response = restTemplate.getForObject(builder.toUriString(), PlacesApiResponse.class);
 
-            if (response != null && "OK".equals(response.getStatus()) && response.getResults() != null && !response.getResults().isEmpty()) {
-                // Short body text for WhatsApp
-                String body = isEnglish
-                        ? "Here are some labs I found near " + locationQuery + ":"
-                        : "यहाँ " + locationQuery + " के पास कुछ लैब हैं जो मुझे मिलीं:";
+            user.setCurrentIntent("main_menu");
+            userService.updateUser(user);
 
-                // Prepare up to 3 buttons for WhatsApp
-                List<InteractiveMessage.Button> buttons = response.getResults().stream()
-                        .limit(3) // WhatsApp allows max 3 buttons
+            if (response != null && "OK".equals(response.getStatus())
+                    && response.getResults() != null && !response.getResults().isEmpty()) {
+                String labsText = response.getResults()
+                        .stream()
+                        .limit(3)
                         .map(place -> {
-                            String name = place.getName() != null ? place.getName() : "Lab";
+                            String name = place.getName() != null ? place.getName() : "Unnamed Lab";
                             String address = (place.getFormattedAddress() != null && !place.getFormattedAddress().isEmpty())
                                     ? place.getFormattedAddress()
                                     : (place.getVicinity() != null ? place.getVicinity() : "Address not available");
 
                             String encodedAddress = URLEncoder.encode(name + ", " + address, StandardCharsets.UTF_8);
-                            String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
+                            String mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
 
-                            return InteractiveMessage.Button.builder()
-                                    .type("url")
-                                    .title(name.length() > 20 ? name.substring(0, 17) + "..." : name) 
-                                    .url(googleMapsUrl)
-                                    .build();
+                            return "🏥 " + name + "\n"
+                                    + "📍 " + address + "\n"
+                                    + "🔗 " + mapsUrl;
                         })
-                        .collect(Collectors.toList());
+                        .collect(Collectors.joining("\n\n"));
 
-                user.setCurrentIntent("main_menu");
-                userService.updateUser(user);
+                String header = isEnglish
+                        ? "Here are some labs I found near " + locationQuery + ":\n\n"
+                        : locationQuery + " के पास मिली लैब्स:\n\n";
+
+                String body = header + labsText;
 
                 return InteractiveMessage.builder()
                         .body(body)
-                        .buttons(buttons)
+                        .buttons(List.of(
+                                InteractiveMessage.Button.builder()
+                                        .id("main_menu")
+                                        .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
+                                        .build()
+                        ))
                         .build();
-            } else {
-                user.setCurrentIntent("main_menu");
-                userService.updateUser(user);
-                return isEnglish
-                        ? "Sorry, I couldn't find any diagnostic labs near that location."
-                        : "क्षमा करें, मुझे उस स्थान के पास कोई डायग्नोस्टिक लैब नहीं मिली।";
             }
+            return InteractiveMessage.builder()
+                    .body(isEnglish 
+                            ? "Sorry, I couldn't find any diagnostic labs near that location."
+                            : "क्षमा करें, वहाँ पास कोई लैब नहीं मिली।")
+                    .buttons(List.of(
+                            InteractiveMessage.Button.builder()
+                                    .id("main_menu")
+                                    .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
+                                    .build()
+                    ))
+                    .build();
 
         } catch (Exception e) {
-            log.error("Error calling Google Places API", e);
-            user.setCurrentIntent("main_menu");
-            userService.updateUser(user);
-            return isEnglish
-                    ? "Sorry, something went wrong while searching for labs."
-                    : "क्षमा करें, लैब खोजते समय कुछ गड़बड़ हो गई।";
+
+            log.error("Diagnostic API error", e);
+
+            return InteractiveMessage.builder()
+                    .body(isEnglish 
+                            ? "Something went wrong while searching. Please try again later."
+                            : "कुछ त्रुटि हुई। कृपया बाद में प्रयास करें।")
+                    .buttons(List.of(
+                            InteractiveMessage.Button.builder()
+                                    .id("main_menu")
+                                    .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
+                                    .build()
+                    ))
+                    .build();
         }
     }
 }

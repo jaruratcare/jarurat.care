@@ -90,7 +90,7 @@ public class UserRepository {
             if (user.getCancerStage() != null) updates.put("cancerStage", user.getCancerStage());
             if (user.getIncomeRange() != null) updates.put("incomeRange", user.getIncomeRange());
             if (user.getTempPolicySelection() != null) updates.put("tempPolicySelection", user.getTempPolicySelection());
-
+            if (user.getMood() != null) updates.put("mood", user.getMood());
             // Nutrition fields (now single string for symptoms)
             if (user.getFoodPreference() != null) updates.put("foodPreference", user.getFoodPreference());
             if (user.getDietType() != null) updates.put("dietType", user.getDietType());

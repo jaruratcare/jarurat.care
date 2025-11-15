@@ -45,7 +45,11 @@ public class User {
 
     // HELP TYPE (stay_food, only_stay, only_food)
     private String helpType;
-
     // TEMPORARY FIELD for volunteer mode (Chat / Phone Call)
     private String tempMode;
+    //Emotional support
+    private String mood;
+    //diagonostic
+    private String collectionType;
+     private String testType;
 }

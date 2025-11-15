@@ -21,14 +21,11 @@ public class DiagnosticMessageBuilder {
                 ? "I see you're in " + location + ". Should I find diagnostic labs there?"
                 : "मैं देख रहा हूं कि आप " + location + " में हैं। क्या मुझे वहाँ डायग्नोस्टिक लैब ढूँढनी चाहिए?";
 
-        String button1Title = isEnglish ? "Yes" : "हां";
-        String button2Title = isEnglish ? "Different city" : "दूसरा शहर";
-
         return InteractiveMessage.builder()
                 .body(body)
                 .buttons(Arrays.asList(
-                        InteractiveMessage.Button.builder().id("confirm_city").title(button1Title).build(),
-                        InteractiveMessage.Button.builder().id("different_city").title(button2Title).build()
+                        InteractiveMessage.Button.builder().id("confirm_city").title(isEnglish ? "Yes" : "हां").build(),
+                        InteractiveMessage.Button.builder().id("different_city").title(isEnglish ? "Different city" : "दूसरा शहर").build()
                 ))
                 .build();
     }
@@ -39,8 +36,28 @@ public class DiagnosticMessageBuilder {
                 : "कोई बात नहीं। कृपया मुझे नया शहर या पता बताएं जहाँ आप खोजना चाहते हैं।";
     }
 
+    public Object askTestType(boolean isEnglish) {
+        return isEnglish
+                ? "Great! What type of test are you looking for (e.g., 'blood test', 'MRI', 'CT scan')?"
+                : "बहुत खूब! आप किस प्रकार के टेस्ट की तलाश में हैं (उदाहरण के लिए, 'ब्लड टेस्ट', 'एमआरआई', 'सीटी स्कैन')?";
+    }
+
+    public InteractiveMessage askCollectionType(boolean isEnglish) {
+        String body = isEnglish
+                ? "Got it. Do you need a lab with in-centre testing or one with home collection?"
+                : "समझ गया। क्या आपको इन-सेंटर टेस्टिंग वाली लैब चाहिए या होम कलेक्शन वाली?";
+
+        return InteractiveMessage.builder()
+                .body(body)
+                .buttons(Arrays.asList(
+                        InteractiveMessage.Button.builder().id("in_centre").title(isEnglish ? "In-Centre" : "इन-सेंटर").build(),
+                        InteractiveMessage.Button.builder().id("home_collection").title(isEnglish ? "Home Collection" : "होम कलेक्शन").build()
+                ))
+                .build();
+    }
+
     public Object invalidChoice(boolean isEnglish) {
-        return isEnglish ? "❌ Invalid choice." : "❌ अमान्य विकल्प।";
+        return isEnglish ? "❌ Invalid choice. Please select one of the options." : "❌ अमान्य विकल्प। कृपया विकल्पों में से एक चुनें।";
     }
 
     public Object invalidCity(boolean isEnglish) {
@@ -53,4 +70,3 @@ public class DiagnosticMessageBuilder {
                 : "क्षमा करें, मुझे समझ नहीं आया। कृपया मुझे अपना शहर या पता बताएं।";
     }
 }
-

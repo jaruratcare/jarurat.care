@@ -28,7 +28,7 @@ public class MainMenuService {
                 return null;
 
             case "2": // Nutrition Care
-            user.setCurrentIntent("nutrition_care_start");
+            user.setCurrentIntent("nutrition_step1");
             userService.updateUser(user);
             return null;
            

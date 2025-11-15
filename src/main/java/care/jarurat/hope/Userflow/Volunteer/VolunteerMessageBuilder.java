@@ -106,7 +106,7 @@ public class VolunteerMessageBuilder {
                 : "कृपया आज के लिए अपनी पसंदीदा समय स्लॉट चुनें:";
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String[] slots = {"10:00", "14:00", "16:00"};
+        String[] slots = {"10:00 AM", "14:00 PM", "16:00 PM"};
         List<ListMessage.Section> sections = new ArrayList<>();
 
         LocalDate today = LocalDate.now();

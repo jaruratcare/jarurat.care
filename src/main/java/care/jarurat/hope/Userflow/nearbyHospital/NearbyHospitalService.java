@@ -55,7 +55,7 @@ public class NearbyHospitalService {
                     if ("government".equalsIgnoreCase(type) && !name.toLowerCase().contains("government")) continue;
                     if ("private".equalsIgnoreCase(type) && name.toLowerCase().contains("government")) continue;
                     double distance = haversine(latitude, longitude, lat, lon);
-                    if (distance > 200) continue;
+                    if (distance > 300) continue;
                     String phone = placeId != null ? fetchPhoneNumber(placeId) : "Not available";
                     String mapsLink = String.format("https://www.google.com/maps/search/?api=1&query=%f,%f", lat, lon);
 

@@ -269,7 +269,7 @@ public class WhatsAppService {
 
             HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, headers);
 
-            log.info("Attempting to send list message to URL: {}. Payload: {}", url, payload); // Gemini-added log
+            log.info("Attempting to send list message to URL: {}. Payload: {}", url, payload); 
 
             ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
 

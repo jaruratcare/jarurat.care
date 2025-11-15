@@ -170,7 +170,7 @@ public class MainUserFlowService {
 
                 if (menuResponse == null) {
 
-                    if (user.getCurrentIntent().startsWith("nutrition")) {
+                    if ("nutrition_step1".equals(user.getCurrentIntent())) {
                         return nutritionCareRouter.handle(user, input);
                     }
 

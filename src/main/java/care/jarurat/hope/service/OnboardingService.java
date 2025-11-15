@@ -57,9 +57,9 @@ public class OnboardingService {
      */
     private String askLocation(boolean isEnglish, String name) {
         if (isEnglish) {
-            return "Thank you, " + name + ".\n\nTo provide the best local support, please tell me your city and state (e.g., Delhi, Delhi).";
+            return "Thank you, " + name + ".\n\nTo provide the best local support, please tell me your city and state (e.g., Mumbai, Maharashtra ).";
         } else {
-            return "धन्यवाद, " + name + "।\n\nसबसे अच्छी स्थानीय सहायता प्रदान करने के लिए, कृपया मुझे अपना शहर और राज्य बताएं (उदाहरण: दिल्ली, दिल्ली)।";
+            return "धन्यवाद, " + name + "।\n\nसबसे अच्छी स्थानीय सहायता प्रदान करने के लिए, कृपया मुझे अपना शहर और राज्य बताएं (उदाहरण: मुंबई, महाराष्ट्र)।";
         }
     }
 

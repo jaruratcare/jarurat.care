@@ -8,10 +8,12 @@ import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
 import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler;
 import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
+import care.jarurat.hope.Userflow.doctors.DoctorRouter;
 import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler;
 import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler;
 import care.jarurat.hope.Userflow.emotionalcare.EmotionalCareRouter;
 import lombok.RequiredArgsConstructor;
+import care.jarurat.hope.Userflow.doctors.DoctorRouter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,7 @@ public class MainUserFlowService {
     private final DiagnosticHandler diagnosticHandler;
     private final VolunteerHandler volunteerHandler;
     private final EmotionalCareRouter emotionalCareRouter;
+    private final DoctorRouter doctorRouter;
 
     public Object getResponse(User user, String input) {
 
@@ -62,11 +65,9 @@ public class MainUserFlowService {
 
             return InteractiveMessage.builder()
                     .body("Please choose your preferred language:")
-                    .footer("Choose your language / अपनी भाषा चुनें")
-                    .buttons(Arrays.asList(
+                    .footer("Choose your language / अपनी भाषा चुनें").buttons(Arrays.asList(
                             InteractiveMessage.Button.builder().id("english").title("🇬🇧 English").build(),
-                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()
-                    ))
+                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()))
                     .build();
         }
 
@@ -97,11 +98,9 @@ public class MainUserFlowService {
         if (intent == null || intent.isBlank()) {
             return InteractiveMessage.builder()
                     .body("Please choose your preferred language:")
-                    .footer("Choose your language / अपनी भाषा चुनें")
-                    .buttons(Arrays.asList(
+                    .footer("Choose your language / अपनी भाषा चुनें").buttons(Arrays.asList(
                             InteractiveMessage.Button.builder().id("english").title("🇬🇧 English").build(),
-                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()
-                    ))
+                            InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()))
                     .build();
         }
 
@@ -205,11 +204,13 @@ public class MainUserFlowService {
                     if (user.getCurrentIntent().startsWith("emotional")) {
                         return emotionalCareRouter.handle(user, input);
                     }
+
+                       // In getResponse()
+                    if (intent.startsWith("doctor")) {
+                        return doctorRouter.handle(user, input);
+                    }
                 }
 
-                return menuResponse;
-
-            // Nutrition flows
             case "nutrition_step1":
             case "nutrition_step0":
             case "nutrition_step2":
@@ -274,6 +275,13 @@ public class MainUserFlowService {
             case "caregiving_tips":
             case "caregiving_tips_pdf_offer":
                 return emotionalCareRouter.handle(user, input);
+
+            // --- Doctor Flow Cases ---
+            case "doctor_find_start":
+            case "doctor_awaiting_specialty":
+            case "doctor_awaiting_location":
+            case "doctor_pdf_offer":
+                return doctorRouter.handle(user, input);
         }
 
         log.warn("Unknown intent: {} for user: {}. Defaulting to main menu.", intent, user.getUserId());

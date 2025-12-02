@@ -34,7 +34,6 @@ public class VolunteerMessageBuilder {
             return isEnglish ? "🏠 Returning to Main Menu..." : "🏠 मुख्य मेनू पर लौट रहे हैं...";
         }
 
-        // Flow handling
         return switch (intent) {
             case "volunteer_start" -> {
                 user.setCurrentIntent("volunteer_choose_mode");
@@ -106,18 +105,19 @@ public class VolunteerMessageBuilder {
                 : "कृपया आज के लिए अपनी पसंदीदा समय स्लॉट चुनें:";
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String[] slots = {"10:00 AM", "14:00 PM", "16:00 PM"};
+        String[] displaySlots = {"10:00 AM", "02:00 PM", "04:00 PM"};
+        String[] idSlots = {"10:00", "14:00", "16:00"};
         List<ListMessage.Section> sections = new ArrayList<>();
 
         LocalDate today = LocalDate.now();
         String dateStr = today.format(dateFormatter);
 
         List<ListMessage.Row> rows = new ArrayList<>();
-        for (String slot : slots) {
-            String id = dateStr + " " + slot; 
+        for (int i = 0; i < displaySlots.length; i++) {
+            String id = dateStr + " " + idSlots[i];
             rows.add(ListMessage.Row.builder()
                     .id(id)
-                    .title(slot) 
+                    .title(displaySlots[i])
                     .build());
         }
 
@@ -126,7 +126,6 @@ public class VolunteerMessageBuilder {
                 .rows(rows)
                 .build());
 
-        // Navigation
         sections.add(ListMessage.Section.builder()
                 .title(isEnglish ? "Navigation" : "नेविगेशन")
                 .rows(List.of(

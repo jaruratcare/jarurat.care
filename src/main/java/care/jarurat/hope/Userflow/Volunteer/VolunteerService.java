@@ -22,12 +22,26 @@ public class VolunteerService {
     private final Calendar calendarService;
     private static final String CALENDAR_ID = "carejarurat@gmail.com";
 
-    public InteractiveMessage bookAppointment(String userName, String phone, String mode, String dateTime, String language) {
+    private static final DateTimeFormatter INPUT_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    private static final DateTimeFormatter DISPLAY_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+
+    public InteractiveMessage bookAppointment(
+            String userName,
+            String phone,
+            String mode,
+            String dateTime,
+            String language
+    ) {
         boolean isEnglish = "en".equalsIgnoreCase(language);
         String message;
 
         try {
-            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, INPUT_FORMAT);
+            String displayTime = localDateTime.format(DISPLAY_FORMAT);
+
             ZonedDateTime start = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
             ZonedDateTime end = start.plusMinutes(30);
 
@@ -47,30 +61,39 @@ public class VolunteerService {
             event.setEnd(endTime);
 
             event = calendarService.events().insert(CALENDAR_ID, event).execute();
-            log.info("Appointment created: {}", event.getHtmlLink());
-
-            message = (isEnglish ? "✅ Your appointment is booked on " : "✅ आपकी अपॉइंटमेंट बुक हो गई है: ")
-                    + dateTime + "\n"
-                    + (isEnglish ? "You can view it here: " : "इसे यहाँ देखें: ")
-                    + event.getHtmlLink();
+            log.info("Appointment created successfully. Event ID: {}", event.getId());
+            message = (isEnglish
+                    ? "✅ Your appointment has been successfully scheduled for:\n"
+                    : "✅ आपकी अपॉइंटमेंट सफलतापूर्वक शेड्यूल हो गई है:\n")
+                    + displayTime + "\n\n"
+                    + (isEnglish
+                        ? "💬 A volunteer will contact you at the scheduled time."
+                        : "💬 निर्धारित समय पर एक स्वयंसेवक आपसे संपर्क करेगा।");
 
         } catch (IOException e) {
-            log.error("Error booking volunteer appointment", e);
+            log.error("Calendar API error", e);
             message = isEnglish
-                    ? "⚠️ Failed to book appointment. Please try again later."
-                    : "⚠️ अपॉइंटमेंट बुक करने में त्रुटि। कृपया बाद में पुनः प्रयास करें।";
+                    ? "⚠️ Unable to book the appointment right now. Please try again later."
+                    : "⚠️ अभी अपॉइंटमेंट बुक नहीं हो पाई। कृपया बाद में प्रयास करें।";
+
         } catch (Exception e) {
-            log.error("Invalid date/time format or error", e);
+            log.error("Invalid date/time format", e);
             message = isEnglish
-                    ? "⚠️ Invalid date/time format. Please provide date and time as yyyy-MM-dd HH:mm"
-                    : "⚠️ अमान्य तारीख/समय प्रारूप। कृपया yyyy-MM-dd HH:mm प्रारूप में दें।";
+                    ? "⚠️ Invalid date/time format. Please use yyyy-MM-dd HH:mm"
+                    : "⚠️ गलत समय प्रारूप। कृपया इस तरह लिखें: yyyy-MM-dd HH:mm";
         }
 
         return InteractiveMessage.builder()
                 .body(message)
-                .buttons(List.of(
-                        InteractiveMessage.Button.builder().id("main_menu").title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू").type("reply").build()
-                ))
+                .buttons(
+                        List.of(
+                                InteractiveMessage.Button.builder()
+                                        .id("main_menu")
+                                        .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
+                                        .type("reply")
+                                        .build()
+                        )
+                )
                 .build();
     }
 }

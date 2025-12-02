@@ -42,7 +42,7 @@ public class GlobalCommandService {
                     .body(body)
                     .footer(footer)
                     .buttons(Arrays.asList(
-                            InteractiveMessage.Button.builder().id("english").title("🇮🇳 English").build(),
+                            InteractiveMessage.Button.builder().id("english").title("🇬🇧 English").build(),
                             InteractiveMessage.Button.builder().id("hindi").title("🇮🇳 Hindi").build()
                     ))
                     .build();

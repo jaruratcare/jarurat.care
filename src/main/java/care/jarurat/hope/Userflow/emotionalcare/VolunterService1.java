@@ -24,6 +24,8 @@ public class VolunterService1 {
 
     private static final DateTimeFormatter INPUT_FORMAT =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter DISPLAY_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
     public InteractiveMessage bookAppointment(
             String userName,
@@ -36,7 +38,6 @@ public class VolunterService1 {
         String message;
 
         try {
-            // Fix: Convert ISO → expected format
             if (dateTime.contains("T")) {
                 dateTime = dateTime.replace("T", " ");
             }
@@ -44,6 +45,7 @@ public class VolunterService1 {
             LocalDateTime localDateTime = LocalDateTime.parse(dateTime, INPUT_FORMAT);
             ZonedDateTime start = localDateTime.atZone(ZoneId.of("Asia/Kolkata"));
             ZonedDateTime end = start.plusMinutes(30);
+            String displayTime = localDateTime.format(DISPLAY_FORMAT);
 
             String description =
                     "User: " + userName +
@@ -67,27 +69,32 @@ public class VolunterService1 {
             event.setEnd(endTime);
 
             event = calendarService.events().insert(CALENDAR_ID, event).execute();
-            log.info("Appointment created successfully: {}", event.getHtmlLink());
 
-            message = (isEnglish
-                    ? "✅ Your appointment is booked for:\n"
-                    : "✅ आपकी अपॉइंटमेंट बुक हो गई है:\n")
-                    + dateTime
-                    + "\n\n"
-                    + (isEnglish ? "View here: " : "यहाँ देखें: ")
-                    + event.getHtmlLink();
+            log.info("Appointment created successfully. Event ID: {}", event.getId());
+
+            if (isEnglish) {
+                message =
+                        "✅ Your appointment has been successfully booked.\n"
+                        + "📅 **Scheduled Time:** " + displayTime + "\n\n"
+                        + "💬 A volunteer will contact you at the scheduled time.";
+            } else {
+                message =
+                        "✅ आपकी अपॉइंटमेंट सफलतापूर्वक बुक हो गई है।\n"
+                        + "📅 **निर्धारित समय:** " + displayTime + "\n\n"
+                        + "💬 निर्धारित समय पर एक स्वयंसेवक आपसे संपर्क करेगा।";
+            }
 
         } catch (IOException e) {
             log.error("Calendar API error", e);
             message = isEnglish
-                    ? "⚠️ Unable to connect to booking system. Please try again later."
-                    : "⚠️ बुकिंग सिस्टम से कनेक्ट नहीं हो पाया। बाद में पुनः प्रयास करें।";
+                    ? "⚠️ Unable to connect to the booking system. Please try again later."
+                    : "⚠️ बुकिंग सिस्टम से कनेक्ट नहीं हो पाया। कृपया बाद में पुनः प्रयास करें।";
 
         } catch (Exception e) {
             log.error("Date parsing error", e);
             message = isEnglish
-                    ? "⚠️ Invalid date/time format. Use yyyy-MM-dd HH:mm"
-                    : "⚠️ गलत समय प्रारूप। इस तरह लिखें: yyyy-MM-dd HH:mm";
+                    ? "⚠️ Invalid date/time format. Please use: yyyy-MM-dd HH:mm"
+                    : "⚠️ गलत समय प्रारूप। कृपया इस तरह लिखें: yyyy-MM-dd HH:mm";
         }
 
         return InteractiveMessage.builder()

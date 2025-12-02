@@ -53,12 +53,12 @@ public class EmotionalCareMessageBuilder {
                         ListMessage.Section.builder()
                                 .title(isHindi ? "एक विकल्प चुनें" : "Choose an option")
                                 .rows(Arrays.asList(
-                                        ListMessage.Row.builder().id("text_volunteer")
-                                                .title(isHindi ? "टेक्स्ट चैट" : "Text Chat").build(),
+                                     /**    ListMessage.Row.builder().id("text_volunteer")
+                                                .title(isHindi ? "टेक्स्ट चैट" : "Text Chat").build(),**/
                                         ListMessage.Row.builder().id("call_volunteer")
                                                 .title(isHindi ? "कॉल बुक करें" : "Book a Call").build(),
-                                        ListMessage.Row.builder().id("callback")
-                                                .title(isHindi ? "कॉल बैक शेड्यूल" : "Schedule Callback").build(),
+                                       /** * ListMessage.Row.builder().id("callback")
+                                                .title(isHindi ? "कॉल बैक शेड्यूल" : "Schedule Callback").build(),**/
                                         ListMessage.Row.builder().id("back")
                                                 .title(isHindi ? "वापस" : "Back").build(),
                                         ListMessage.Row.builder().id("main_menu")

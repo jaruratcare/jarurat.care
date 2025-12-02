@@ -99,7 +99,9 @@ public class MainMenuService {
                                         ListMessage.Row.builder().id("6").title("Diagnostic Labs").build(),
                                         ListMessage.Row.builder().id("7").title("Palliative Care").build(),
                                         ListMessage.Row.builder().id("8").title("Talk to a Volunteer").build(),
-                                        ListMessage.Row.builder().id("9").title("Change Language").build()
+                                        ListMessage.Row.builder().id("9").title("Change Language").build(),
+                                        ListMessage.Row.builder().id("10").title("Doctors").build()
+
                                 ))
                                 .build()
                 ))

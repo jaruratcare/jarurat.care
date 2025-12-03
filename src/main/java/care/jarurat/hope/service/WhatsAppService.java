@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +26,9 @@ import java.util.stream.IntStream;
 @Service
 @RequiredArgsConstructor
 public class WhatsAppService {
-
-    private final MainUserFlowService mainUserFlowService;
+    
+    @Lazy
+    private MainUserFlowService mainUserFlowService;
     private final UserService userService;
     private final RestTemplate restTemplate = new RestTemplate();
     private final ObjectMapper objectMapper = new ObjectMapper();

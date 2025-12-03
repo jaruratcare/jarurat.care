@@ -8,14 +8,15 @@ import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
 import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler;
 import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
+import org.springframework.context.annotation.Lazy;
 import care.jarurat.hope.Userflow.doctors.DoctorRouter;
 import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler;
 import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler;
 import care.jarurat.hope.Userflow.emotionalcare.EmotionalCareRouter;
 import lombok.RequiredArgsConstructor;
-import care.jarurat.hope.Userflow.doctors.DoctorRouter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Arrays;
 
@@ -41,9 +42,11 @@ public class MainUserFlowService {
     private final DiagnosticHandler diagnosticHandler;
     private final VolunteerHandler volunteerHandler;
     private final EmotionalCareRouter emotionalCareRouter;
+    @Lazy
     private final DoctorRouter doctorRouter;
 
     public Object getResponse(User user, String input) {
+
 
         if (input == null || input.trim().isEmpty()) {
             return "Please send a message. Type 'Hi' to start.";
@@ -51,6 +54,13 @@ public class MainUserFlowService {
 
         input = input.trim();
         String intent = user.getCurrentIntent();
+        // 🚀 FIX: Doctors flow must be handled BEFORE switch-case
+        if ("10".equals(input) && "main_menu".equals(intent)) {
+            user.setCurrentIntent("doctor_find_start");
+            userService.updateUser(user);
+            return doctorRouter.handle(user, input);
+        }
+
 
         // Global commands
         Object globalResponse = globalCommandService.handleGlobalCommand(user, input);
@@ -168,6 +178,13 @@ public class MainUserFlowService {
                 Object menuResponse = mainMenuService.handleMainMenu(user, input);
 
                 if (menuResponse == null) {
+                            
+                    if ("10".equals(input)) {
+                        user.setCurrentIntent("doctor_find_start");
+                        userService.updateUser(user);
+                        return doctorRouter.handle(user, input);
+                    }
+
 
                     if ("nutrition_step1".equals(user.getCurrentIntent())) {
                         return nutritionCareRouter.handle(user, input);
@@ -204,12 +221,8 @@ public class MainUserFlowService {
                     if (user.getCurrentIntent().startsWith("emotional")) {
                         return emotionalCareRouter.handle(user, input);
                     }
-
-                       // In getResponse()
-                    if (intent.startsWith("doctor")) {
-                        return doctorRouter.handle(user, input);
-                    }
                 }
+
 
             case "nutrition_step1":
             case "nutrition_step0":
@@ -280,6 +293,7 @@ public class MainUserFlowService {
             case "doctor_find_start":
             case "doctor_awaiting_specialty":
             case "doctor_awaiting_location":
+            case "doctor_list":
             case "doctor_pdf_offer":
                 return doctorRouter.handle(user, input);
         }

@@ -58,7 +58,9 @@ public class DoctorHandler {
             user.setCurrentIntent("doctor_list");
             userService.updateUser(user);   // ✅ IMPORTANT
 
-            List<Doctor> doctors = doctorService.getDoctors(city, specialization);
+            String normalized = normalizeSpecialization(input.trim());
+            List<Doctor> doctors = doctorService.getDoctors(city, normalized);
+
 
             if (doctors == null || doctors.isEmpty()) {
                 whatsAppService.sendTextMessage(user.getPhone(),
@@ -81,4 +83,25 @@ public class DoctorHandler {
 
     return null;
 }
+private String normalizeSpecialization(String input) {
+    input = input.toLowerCase();
+
+    if (input.contains("medical"))
+        return "Medical Oncologist";   // covers "Medical Oncology" too
+
+    if (input.contains("surgical"))
+        return "Surgical Oncologist";  // covers "Surgical Oncology"
+
+    if (input.contains("radiation"))
+        return "Radiation Oncologist"; // covers "Radiation Oncology"
+
+    if (input.contains("gastro"))
+        return "Gastroenterologist";
+
+    if (input.contains("intervention"))
+        return "Interventional Radiology";  // covers both "Radiology" + "Radiologist"
+    
+    return input.trim();
+}
+
 }

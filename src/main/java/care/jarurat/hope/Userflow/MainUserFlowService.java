@@ -221,6 +221,7 @@ public class MainUserFlowService {
                     if (user.getCurrentIntent().startsWith("emotional")) {
                         return emotionalCareRouter.handle(user, input);
                     }
+                      return menuResponse;
                 }
 
 

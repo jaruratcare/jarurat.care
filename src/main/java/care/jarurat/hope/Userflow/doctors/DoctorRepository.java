@@ -15,7 +15,7 @@ public class DoctorRepository {
   }
 
   public ApiFuture<QuerySnapshot> findByCityAndSpecialization(String city, String specialization) {
-    // Exact field names matched to your Firestore screenshot: city, specialization
+    
     return firestore.collection("doctors")
         .whereEqualTo("city", city)
         .whereEqualTo("specialization", specialization)

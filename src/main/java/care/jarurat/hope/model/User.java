@@ -22,9 +22,9 @@ public class User {
     private String lastSeen;
     private String phone;
 
-    private String nutritionSymptoms;    
+    private String nutritionSymptoms;
 
-    //  NUTRITION FIELDS
+    // NUTRITION FIELDS
     private String foodPreference; // vegetarian, non_vegetarian
     private String eatingCondition; // soft, liquid, normal
     private String dietType; // soft, liquid, normal
@@ -47,9 +47,15 @@ public class User {
     private String helpType;
     // TEMPORARY FIELD for volunteer mode (Chat / Phone Call)
     private String tempMode;
-    //Emotional support
+    // Emotional support
     private String mood;
-    //diagonostic
+    // diagonostic
     private String collectionType;
-     private String testType;
+    private String testType;
+
+    // DOCTOR MODULE TEMP FIELDS
+    private String tempDoctorCity;
+    private String tempDoctorSpecialty;
+    private String tempDoctorState; // optional (for flow tracking)
+
 }

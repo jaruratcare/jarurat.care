@@ -17,56 +17,75 @@ public class MainMenuService {
     private final UserService userService;
 
     public Object handleMainMenu(User user, String input) {
+
+        // If user directly requests menu again
         if (input.equalsIgnoreCase("main_menu")) {
             return getMainMenuMessage("en".equals(user.getLanguage()));
         }
 
         switch (input.trim()) {
+
             case "1": // Financial Guidance
                 user.setCurrentIntent("financial_guidance_start");
                 userService.updateUser(user);
                 return null;
 
             case "2": // Nutrition Care
-            user.setCurrentIntent("nutrition_step1");
-            userService.updateUser(user);
-            return null;
-           
-            case "4": // Nearby Hospitals
-            user.setCurrentIntent("nearby_hospitals");
-            userService.updateUser(user);
-            return null;
-            case "7": // Palliative Care
-            user.setCurrentIntent("palliative_care");
-            userService.updateUser(user);
-            return null;
-            case "5":
-            user.setCurrentIntent("accommodation_food");
-            userService.updateUser(user);
-            return null;
-            //diagonastics
-            case "6":
-            user.setCurrentIntent("diagnostic_lab_start");
-            userService.updateUser(user);
-            return null;
-            case "8":
-            user.setCurrentIntent("volunteer_start");
-            return null;
-            case "3": // Emotional Support
-            user.setCurrentIntent("emotional_care");
-            userService.updateUser(user);
-            return null;
+                user.setCurrentIntent("nutrition_step1");
+                userService.updateUser(user);
+                return null;
 
-            // ... other cases
+            case "3": // Emotional Support
+                user.setCurrentIntent("emotional_care");
+                userService.updateUser(user);
+                return null;
+
+            case "4": // Nearby Hospitals
+                user.setCurrentIntent("nearby_hospitals");
+                userService.updateUser(user);
+                return null;
+
+            case "5": // Free Stay & Food
+                user.setCurrentIntent("accommodation_food");
+                userService.updateUser(user);
+                return null;
+
+            case "6": // Diagnostics
+                user.setCurrentIntent("diagnostic_lab_start");
+                userService.updateUser(user);
+                return null;
+
+            case "7": // Palliative Care
+                user.setCurrentIntent("palliative_care");
+                userService.updateUser(user);
+                return null;
+
+            case "8": // Volunteer
+                user.setCurrentIntent("volunteer_start");
+                userService.updateUser(user);
+                return null;
+
+            case "9": // Change Language
+                user.setCurrentIntent("choose_language");
+                userService.updateUser(user);
+                return null;
+
+            // ⭐⭐⭐ Doctor Option Fix — Added Here
+            case "10":
+                user.setCurrentIntent("doctor_find_start");
+                userService.updateUser(user);
+                return null;
+
+            // Invalid option
             default:
                 boolean isEnglish = "en".equals(user.getLanguage());
-                if (isEnglish) {
-                    return "❌ Invalid choice. Please select an option from the menu.";
-                } else {
-                    return "❌ गलत विकल्प। कृपया मेनू से एक विकल्प चुनें।";
-                }
+                return isEnglish
+                        ? "❌ Invalid choice. Please select an option from the menu."
+                        : "❌ गलत विकल्प। कृपया मेनू से एक विकल्प चुनें।";
         }
     }
+
+    // -------------------- Menu Builder --------------------
 
     public ListMessage getMainMenuMessage(boolean isEnglish) {
         String body;
@@ -100,11 +119,8 @@ public class MainMenuService {
                                         ListMessage.Row.builder().id("7").title("Palliative Care").build(),
                                         ListMessage.Row.builder().id("8").title("Talk to a Volunteer").build(),
                                         ListMessage.Row.builder().id("9").title("Change Language").build(),
-                                        ListMessage.Row.builder().id("10").title("Doctors").build()
-
-                                ))
-                                .build()
-                ))
+                                        ListMessage.Row.builder().id("10").title("Doctors").build()))
+                                .build()))
                 .build();
     }
 }

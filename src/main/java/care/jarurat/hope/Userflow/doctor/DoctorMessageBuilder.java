@@ -1,4 +1,4 @@
-package care.jarurat.hope.doctor;
+package care.jarurat.hope.Userflow.doctor;
 
 import care.jarurat.hope.dto.DoctorDto;
 import care.jarurat.hope.model.ListMessage;
@@ -21,15 +21,30 @@ public class DoctorMessageBuilder {
 
     for (DoctorDto d : doctors) {
 
-      String title = "👨‍⚕️ " + d.name;
-      if (d.specialty != null)
-        title += " • " + d.specialty;
+      String title = d.name;
+
+      // WhatsApp limit: 24 chars max
+      if (title.length() > 24) {
+        title = title.substring(0, 21) + "...";
+      }
+
 
       String desc = "";
-      if (d.hospitalName != null)
-        desc += "🏥 " + d.hospitalName;
-      if (d.city != null)
-        desc += " | 📍 " + d.city;
+
+if (d.specialty != null)
+  desc += d.specialty;
+
+if (d.hospitalName != null)
+  desc += " | " + d.hospitalName;
+
+if (d.city != null)
+  desc += " | " + d.city;
+
+// WhatsApp limit: 72 chars max
+if (desc.length() > 72) {
+  desc = desc.substring(0, 69) + "...";
+}
+
 
       rows.add(
           ListMessage.Row.builder()

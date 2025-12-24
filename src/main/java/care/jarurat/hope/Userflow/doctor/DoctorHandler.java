@@ -1,4 +1,4 @@
-package care.jarurat.hope.doctor;
+package care.jarurat.hope.Userflow.doctor;
 
 import care.jarurat.hope.dto.DoctorDto;
 import care.jarurat.hope.service.DoctorService;
@@ -27,10 +27,11 @@ public class DoctorHandler {
         + "6️⃣ Other (type manually)";
   }
 
-  public String handleSearch(String city, String specialty) {
+  public Object handleSearch(String city, String specialty) {
     List<DoctorDto> list = service.search(city, specialty);
-    return (String) DoctorMessageBuilder.doctorList(list);
-  }
+    return DoctorMessageBuilder.doctorList(list);
+}
+
 
   public String handleDetails(String id) {
     DoctorDto d = service.details(id);

@@ -1,4 +1,4 @@
-package care.jarurat.hope.doctor;
+package care.jarurat.hope.Userflow.doctor;
 
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
@@ -26,6 +26,17 @@ public class DoctorRouter {
       userService.updateUser(user);
       return handler.askCity();
     }
+    
+    // 🔥 GLOBAL WhatsApp doctor list click handler
+    if (rawMsg != null && rawMsg.startsWith("DOCTOR_")) {
+
+        String id = rawMsg.replace("DOCTOR_", "").trim();
+
+        user.setCurrentIntent("doctor_details");
+        userService.updateUser(user);
+
+        return handler.handleDetails(id);
+    }
 
     switch (intent) {
 
@@ -35,31 +46,51 @@ public class DoctorRouter {
         return handler.askCity();
 
       case "doctor_awaiting_city":
+        String city = rawMsg.trim();
         user.setTempDoctorCity(rawMsg.trim());
         user.setCurrentIntent("doctor_awaiting_specialty");
         userService.updateUser(user);
         return handler.askSpecialty();
 
       case "doctor_awaiting_specialty":
-        String specialty = parseSpecialty(msg);
-        user.setTempDoctorSpecialty(specialty);
-        user.setCurrentIntent("doctor_list");
-        userService.updateUser(user);
-        return handler.handleSearch(user.getTempDoctorCity(), specialty);
+    System.out.println("🧠 Stored tempDoctorCity = " + user.getTempDoctorCity());
+    System.out.println("🧠 Raw specialty input = " + rawMsg);
 
-      case "doctor_list":
-        if (msg.startsWith("doctor ") || msg.startsWith("doctor_")) {
-          String id = msg.replaceFirst("^doctor[_ ]+", "").trim();
-          user.setCurrentIntent("doctor_details");
-          userService.updateUser(user);
-          return handler.handleDetails(id);
-        }
-        if (msg.equals("back") || msg.equals("menu")) {
-          user.setCurrentIntent("main_menu");
-          userService.updateUser(user);
-          return "Returning to main menu.";
-        }
-        return "To see details, reply: DOCTOR <ID>";
+    city = user.getTempDoctorCity();
+
+    if (city == null || city.isBlank()) {
+        System.out.println("⚠️ tempDoctorCity missing, restoring from user city");
+        city = user.getCity();
+    }
+
+    String specialty = parseSpecialty(msg);
+    user.setTempDoctorSpecialty(specialty);
+
+    // ✅ END FLOW HERE
+    user.setCurrentIntent("main_menu"); // or null if you prefer
+    userService.updateUser(user);
+
+    // ✅ Use resolved city
+    return handler.handleSearch(city, specialty);
+
+
+      case "doctor_list": {
+         
+
+    // IMPORTANT: use rawMsg, not msg (msg is lowercased)
+    if (rawMsg != null && rawMsg.startsWith("DOCTOR_")) {
+
+        String id = rawMsg.replace("DOCTOR_", "").trim();
+         System.out.println("🧠 Doctor selected ID = " + id);
+        user.setCurrentIntent("doctor_details");
+        userService.updateUser(user);
+
+        return handler.handleDetails(id);
+    }
+
+    return "❌ Invalid choice. Please select a doctor from the list.";
+}
+
 
       case "doctor_details":
         if (msg.startsWith("doctor ") || msg.startsWith("doctor_")) {

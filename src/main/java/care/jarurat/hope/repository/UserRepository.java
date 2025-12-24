@@ -102,7 +102,11 @@ public class UserRepository {
             if (user.getHelpType() != null) updates.put("helpType", user.getHelpType());
             if (user.getTempMode() != null) updates.put("tempMode", user.getTempMode());
             if (!updates.isEmpty()) {
-                db.collection(COLLECTION_NAME).document(user.getUserId()).update(updates).get();
+                db.collection(COLLECTION_NAME)
+                .document(user.getUserId())
+                .set(user, SetOptions.merge())
+                .get();
+
                 log.info("User updated: {}", user.getUserId());
             } else {
                 log.info("No fields to update for user: {}", user.getUserId());

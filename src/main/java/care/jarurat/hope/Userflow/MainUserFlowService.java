@@ -8,8 +8,10 @@ import care.jarurat.hope.Userflow.nutritionalCare.NutritionCareRouter;
 import care.jarurat.hope.Userflow.nearbyHospital.NearbyHospitalRouter;
 import care.jarurat.hope.Userflow.PalliativeCareHandler.PalliativeCareHandler;
 import care.jarurat.hope.Userflow.diagonostics.DiagnosticHandler;
+import care.jarurat.hope.Userflow.doctor.DoctorRouter;
+
 import org.springframework.context.annotation.Lazy;
-import care.jarurat.hope.doctor.DoctorRouter;
+
 import care.jarurat.hope.Userflow.AccommodationFood.AccommodationFoodHandler;
 import care.jarurat.hope.Userflow.Volunteer.VolunteerHandler;
 import care.jarurat.hope.Userflow.emotionalcare.EmotionalCareRouter;
@@ -55,6 +57,19 @@ public class MainUserFlowService {
 
         input = input.trim();
         String intent = user.getCurrentIntent();
+          
+        // 🔥 GLOBAL DOCTOR LIST CLICK HANDLER (WhatsApp List Reply)
+            if (input.startsWith("DOCTOR_")) {
+
+                log.info("🧠 GLOBAL DOCTOR CLICK intercepted: {}", input);
+
+                String doctorId = input.replace("DOCTOR_", "").trim();
+
+                user.setCurrentIntent("doctor_details");
+                userService.updateUser(user);
+
+                return doctorRouter.handle(user, input);
+            }
 
         // 🔹 GLOBAL COMMANDS
         Object globalResponse = globalCommandService.handleGlobalCommand(user, input);

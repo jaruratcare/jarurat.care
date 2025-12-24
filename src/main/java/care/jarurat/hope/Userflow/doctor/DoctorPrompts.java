@@ -1,4 +1,4 @@
-package care.jarurat.hope.doctor;
+package care.jarurat.hope.Userflow.doctor;
 
 public class DoctorPrompts {
 

@@ -159,15 +159,39 @@ public class DoctorService {
 
 
     public DoctorDto details(String id) {
-        try {
-            return firestore.collection("doctors")
-                    .document(id)
-                    .get()
-                    .get()
-                    .toObject(DoctorDto.class);
+    try {
+        var doc = firestore.collection("doctors")
+                .document(id)
+                .get()
+                .get();
 
-        } catch (Exception e) {
-            return null;
+        if (!doc.exists()) return null;
+
+        Doctor d = new Doctor();
+        d.setId(doc.getId());
+        d.setName(doc.getString("doctorName"));
+        d.setSpecialty(doc.getString("specialization"));
+        d.setHospitalName(doc.getString("hospital"));
+        d.setCity(doc.getString("city"));
+        d.setAddress(doc.getString("address"));
+        d.setOpdTimings(doc.getString("opdTimings"));
+        d.setPhone(doc.getString("contact"));
+        d.setWebsite(doc.getString("website"));
+        d.setDescription(doc.getString("description"));
+
+        Object exp = doc.get("experienceYears");
+        if (exp != null) {
+            d.setExperience(
+                Integer.parseInt(exp.toString().replaceAll("[^0-9]", ""))
+            );
         }
+
+        return DoctorMapper.toDto(d);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
     }
+}
+
 }

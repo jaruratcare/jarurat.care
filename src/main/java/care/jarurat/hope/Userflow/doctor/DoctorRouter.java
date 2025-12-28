@@ -93,17 +93,36 @@ public class DoctorRouter {
 
 
       case "doctor_details":
-        if (msg.startsWith("doctor ") || msg.startsWith("doctor_")) {
-          String id = msg.replaceFirst("^doctor[_ ]+", "").trim();
-          return handler.handleDetails(id);
-        }
-        return "Reply 'back' to return to the doctor list or type DOCTOR <ID>.";
 
-      default:
-        user.setCurrentIntent("doctor_awaiting_city");
+    // 🔙 BACK HANDLER (THIS IS THE FIX)
+    if ("back".equalsIgnoreCase(msg)) {
+
+        // Restore intent
+        user.setCurrentIntent("doctor_list");
         userService.updateUser(user);
-        return handler.askCity();
+
+        // Restore previous search context
+        city = user.getTempDoctorCity();
+        specialty = user.getTempDoctorSpecialty();
+
+        return handler.handleSearch(city, specialty);
     }
+
+    // Optional: allow re-selecting doctor manually
+    if (rawMsg != null && rawMsg.startsWith("DOCTOR_")) {
+
+        String id = rawMsg.replace("DOCTOR_", "").trim();
+        user.setCurrentIntent("doctor_details");
+        userService.updateUser(user);
+
+        return handler.handleDetails(id);
+    }
+
+    return "Reply *back* to return to the doctor list.";
+
+    }
+    return handler.askCity();
+
   }
 
   private String parseSpecialty(String msg) {

@@ -66,14 +66,19 @@ public class NgosAndTrustsService {
 
         String header = String.format(isEnglish ? "Here are some NGOs & Trusts in %s:\n\n" : "%s में कुछ गैर सरकारी संगठन और ट्रस्ट यहां दिए गए हैं:\n\n", city);
         StringBuilder message = new StringBuilder(header);
-        for (NgoAndTrust ngo : ngos) {
-            message.append("*Name:* ").append(ngo.getName()).append("\n");
-            if (ngo.getServices() != null) message.append("*Services:* ").append(ngo.getServices()).append("\n");
-            if (ngo.getAddress() != null) message.append("*Address:* ").append(ngo.getAddress()).append("\n");
-            if (ngo.getPhone() != null) message.append("*Phone:* ").append(ngo.getPhone()).append("\n");
-            if (ngo.getWebsite() != null) message.append("*Website:* ").append(ngo.getWebsite()).append("\n");
-            message.append("\n---\n\n");
-        }
+           for (NgoAndTrust ngo : ngos) {
+    message.append("*Name:* ").append(ngo.getNgoName()).append("\n");
+    if (ngo.getServicesOffered() != null) 
+        message.append("*Services:* ").append(ngo.getServicesOffered()).append("\n");
+    if (ngo.getAddress() != null) 
+        message.append("*Address:* ").append(ngo.getAddress()).append("\n");
+    if (ngo.getContactPhone() != null) 
+        message.append("*Phone:* ").append(ngo.getContactPhone()).append("\n");
+    if (ngo.getWebsite() != null) 
+        message.append("*Website:* ").append(ngo.getWebsite()).append("\n");
+    message.append("\n---\n\n");
+}
+
 
         String finalMessage = message.toString();
         if (finalMessage.length() > 1024) { // WhatsApp body character limit

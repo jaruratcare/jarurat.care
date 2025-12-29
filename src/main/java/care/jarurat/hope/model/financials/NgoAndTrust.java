@@ -4,10 +4,16 @@ import lombok.Data;
 
 @Data
 public class NgoAndTrust {
-    private String name;
+     private String ngoId;
+    private String ngoName;
     private String city;
-    private String services;
     private String address;
-    private String phone;
+
+    private String contactPhone;
+    private String contactEmail;
+
+    private String servicesOffered;
+    private String state;
+    private String type;
     private String website;
 }

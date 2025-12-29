@@ -9,7 +9,7 @@ import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.util.*;
 
-@Component
+//@Component
 public class DoctorJsonLoader {
 
     private final List<Doctor> doctors = new ArrayList<>();

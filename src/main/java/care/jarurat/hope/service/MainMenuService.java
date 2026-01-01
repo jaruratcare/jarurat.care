@@ -26,9 +26,10 @@ public class MainMenuService {
         switch (input.trim()) {
 
             case "1": // Financial Guidance
-                user.setCurrentIntent("financial_guidance_start");
-                userService.updateUser(user);
-                return null;
+                   user.setCurrentIntent("financial_guidance_menu");
+                   userService.updateUser(user);
+                   return null;
+
 
             case "2": // Nutrition Care
                 user.setCurrentIntent("nutrition_step1");

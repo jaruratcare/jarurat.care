@@ -97,6 +97,22 @@ public class EmotionalCareMessageBuilder {
                 ))
                 .build();
     }
+    public InteractiveMessage buildPdfReadyMessage(boolean isHindi, String pdfUrl) {
+    String message = isHindi ? "📄 *आपका PDF तैयार है!*\n\n" + pdfUrl : 
+                    "📄 *Your file is ready!*\n\n" + pdfUrl;
+    return InteractiveMessage.builder()
+            .body(message)
+            .buttons(Arrays.asList(
+                InteractiveMessage.Button.builder()
+                    .id("back")
+                    .title(isHindi ? "⬅️ वापस" : "⬅️ Back").build(),
+                InteractiveMessage.Button.builder()
+                    .id("main_menu")
+                    .title(isHindi ? "🏠 मुख्य मेनू" : "🏠 Main Menu").build()
+            ))
+            .build();
+}
+
     public InteractiveMessage buildHelplines(boolean isHindi, String text) {
         return InteractiveMessage.builder()
                 .body(text)

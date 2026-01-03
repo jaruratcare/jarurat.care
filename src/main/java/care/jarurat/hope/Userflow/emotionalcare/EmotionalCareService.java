@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
+import java.util.Arrays;
 
 @Slf4j
 @Service
@@ -33,27 +34,49 @@ public class EmotionalCareService {
         return messageBuilder.buildHelplines(isHindi, text);
     }
 
-    public Object handleMindfulness(User user, boolean isHindi) {
-        try {
-            String mood = user.getMood() != null ? user.getMood() : (isHindi ? "सामान्य" : "neutral");
-            String systemPrompt = """
-                    You are a mental wellness assistant.
-                    Provide 3–5 YouTube links for calming meditation & grounding.
-                    Each link should include a title and a direct URL.
-                    Format the response for WhatsApp messaging.
-                    Tailor the meditation style and tone according to the user's mood.
-                    """;
-            String userPrompt = isHindi
-                    ? "यूजर का मूड: " + mood + ". उसके अनुसार हिंदी ध्यान ऑडियो लिंक दें। उदाहरण: अगर मूड तनावपूर्ण है तो श्वास और शांति के लिए ध्यान।"
-                    : "User mood: " + mood + ". Provide English meditation audio links appropriate for this mood. For example, if the mood is anxious, suggest calming and grounding meditations.";
-            String result = openAiService.generateResponse(systemPrompt, userPrompt, 0.7, 400);
-            return messageBuilder.buildMindfulnessAudio(isHindi, result);
-        } catch (Exception e) {
-            log.error("Mindfulness error: {}", e.getMessage());
-            return messageBuilder.buildMindfulnessAudio(isHindi,
-                    isHindi ? "⚠️ क्षमा करें, ऑडियो लोड नहीं हो सका।" : "⚠️ Sorry, couldn't load audio.");
-        }
-    }
+public Object handleMindfulness(User user, boolean isHindi) {
+    log.info("🧘 MINDFULNESS CALLED - Hindi: {}, User: {}", isHindi, user.getPhone());
+    
+    // 10 Verified Hindi Meditation Videos
+    String[] hindiVideos = {
+        " 10 मिनट ध्यान\nhttps://youtu.be/8iaKLg114DQ",
+        " शांति ध्यान\nhttps://youtu.be/YWDRFZFCrGE", 
+        " विश्राम\nhttps://youtu.be/MHx0rwHE7gg",
+        " बौद्ध ध्यान\nhttps://youtu.be/p8p380NmVak",
+        " फोकस ध्यान\nhttps://youtu.be/uDuPL6wfWvQ",
+        " तनाव मुक्ति\nhttps://youtu.be/dD63eGlJd2A",
+        " BK शिवानी\nhttps://youtu.be/XnT_cOq_Ba8",
+        " चिंता मुक्ति\nhttps://youtu.be/KNcA2PpmZ0I",
+        " ऊर्जा ध्यान\nhttps://youtu.be/6WQJOxSViGM",
+        " हीलिंग\nhttps://youtu.be/rb5z7EKFOTc"
+    };
+    
+    String[] englishVideos = {
+        " 10min Hindi Calm\nhttps://youtu.be/8iaKLg114DQ",
+        " Peace Meditation\nhttps://youtu.be/YWDRFZFCrGE",
+        " Relaxation Hindi\nhttps://youtu.be/MHx0rwHE7gg", 
+        " Vipassana Hindi\nhttps://youtu.be/p8p380NmVak",
+        " Focus Meditation\nhttps://youtu.be/uDuPL6wfWvQ",
+        " Stress Relief\nhttps://youtu.be/dD63eGlJd2A",
+        " BK Shivani\nhttps://youtu.be/XnT_cOq_Ba8",
+        " Anxiety Relief\nhttps://youtu.be/KNcA2PpmZ0I",
+        " Energy Boost\nhttps://youtu.be/6WQJOxSViGM",
+        " Healing Music\nhttps://youtu.be/rb5z7EKFOTc"
+    };
+    
+    // Randomly select 5 from 10
+    String[] allVideos = isHindi ? hindiVideos : englishVideos;
+    java.util.Collections.shuffle(java.util.Arrays.asList(allVideos));
+    String[] selected = java.util.Arrays.copyOfRange(allVideos, 0, 5);
+    
+    String result = (isHindi ? "🎥 *5 रैंडम ध्यान वीडियो*\n\n" : "🎥 *5 Random Meditation Videos*\n\n") 
+        + String.join("\n\n", selected);
+    
+    log.info("🧘 SENDING ({} chars): {}", result.length(), result);
+    return messageBuilder.buildMindfulnessAudio(isHindi, result);
+}
+
+
 
     public Object handleVolunteer(User user, String input, boolean isHindi) {
         String intent = user.getCurrentIntent() == null ? "" : user.getCurrentIntent();
@@ -140,10 +163,13 @@ public class EmotionalCareService {
             if (content == null || content.isBlank()) content = caregivingContentStore.get(key);
             if (content == null) return isHindi ? "⚠️ कोई सामग्री उपलब्ध नहीं है।" : "⚠️ No content available.";
             if ("yes_pdf".equalsIgnoreCase(input)) {
-                String pdf = PdfGeneratorUploader1.generateAndUploadPdf(content, user.getPhone());
-                caregivingContentStore.remove(key);
-                return isHindi ? "📄 आपका PDF तैयार है: " + pdf : "📄 Your PDF is ready: " + pdf;
-            }
+    String pdf = PdfGeneratorUploader1.generateAndUploadPdf(content, user.getPhone());
+    caregivingContentStore.remove(key);
+    user.setCurrentIntent("emotional_care"); // Reset to main flow
+    userService.updateUser(user);
+    return messageBuilder.buildPdfReadyMessage(isHindi, pdf); // Use new method
+}
+
             if ("no_pdf".equalsIgnoreCase(input)) return isHindi ? "ठीक है, बिना PDF जारी रख रहे हैं।" : "Alright, continuing.";
             return messageBuilder.buildCaregivingTips(isHindi, content);
         } catch (Exception e) {

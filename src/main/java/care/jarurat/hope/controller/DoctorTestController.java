@@ -13,6 +13,7 @@ public class DoctorTestController {
     private Firestore firestore;
 
     @GetMapping("/doctors")
+    
 public Object getDoctors() throws Exception {
     QuerySnapshot snap = firestore.collection("doctors").get().get();
 

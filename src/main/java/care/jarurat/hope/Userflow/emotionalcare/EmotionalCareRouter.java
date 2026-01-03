@@ -80,11 +80,10 @@ public class EmotionalCareRouter {
              "feeling_exhausted" -> {
 
          
-            user.setMood(input);
+            String selectedMood = input;  // Capture for services
+            user.setMood(null);       // 👈 CLEAR mood immediately
             user.setCurrentIntent("support_type_menu");
             userService.updateUser(user);
-
-            
             return messageBuilder.buildSupportTypeMenu(isHindi);
         }
 
@@ -115,24 +114,28 @@ public class EmotionalCareRouter {
         switch (input.trim()) {
 
             case "talk_to_volunteer" -> {
+                user.setMood(null);
                 user.setCurrentIntent("talk_to_volunteer");
                 userService.updateUser(user);
                 return messageBuilder.buildVolunteerPrompt(isHindi);
             }
 
             case "mindfulness_audio" -> {
+                user.setMood(null);
                 user.setCurrentIntent("mindfulness_audio");
                 userService.updateUser(user);
                 return emotionalService.handleMindfulness(user, isHindi);
             }
 
             case "caregiving_tips" -> {
+                user.setMood(null);
                 user.setCurrentIntent("caregiving_tips");
                 userService.updateUser(user);
                 return emotionalService.handleCaregivingTips(user, input, isHindi);
             }
 
             case "emotional_helplines" -> {
+                
                 user.setCurrentIntent("emotional_helplines");
                 userService.updateUser(user);
                 return emotionalService.handleHelplines(user, isHindi);

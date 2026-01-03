@@ -1,7 +1,9 @@
 package care.jarurat.hope.Userflow.diagonostics;
 
+import care.jarurat.hope.Userflow.diagonostics.model.Place;
 import care.jarurat.hope.Userflow.diagonostics.model.PlacesApiResponse;
 import care.jarurat.hope.model.InteractiveMessage;
+import care.jarurat.hope.model.ListMessage;
 import care.jarurat.hope.model.User;
 import care.jarurat.hope.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -27,83 +29,103 @@ public class DiagnosticService {
     @Value("${google.places.api.key}")
     private String apiKey;
 
-    private static final String PLACES_API_URL = "https://maps.googleapis.com/maps/api/place/textsearch/json";
+    private static final String PLACES_API_URL =
+            "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-    public Object findNearbyLabs(User user, String locationQuery, boolean isEnglish) {
-        try {
-            String query = "diagnostic labs in " + locationQuery;
-            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(PLACES_API_URL)
-                    .queryParam("query", query)
-                    .queryParam("key", apiKey);
+public ListMessage findNearbyLabsList(User user, String city) {
 
-            PlacesApiResponse response = restTemplate.getForObject(builder.toUriString(), PlacesApiResponse.class);
+    String query = user.getTestType() + " diagnostic lab in " + city;
 
-            user.setCurrentIntent("main_menu");
-            userService.updateUser(user);
+    UriComponentsBuilder builder = UriComponentsBuilder
+            .fromHttpUrl(PLACES_API_URL)
+            .queryParam("query", query)
+            .queryParam("key", apiKey);
 
-            if (response != null && "OK".equals(response.getStatus())
-                    && response.getResults() != null && !response.getResults().isEmpty()) {
-                String labsText = response.getResults()
-                        .stream()
-                        .limit(3)
-                        .map(place -> {
-                            String name = place.getName() != null ? place.getName() : "Unnamed Lab";
-                            String address = (place.getFormattedAddress() != null && !place.getFormattedAddress().isEmpty())
-                                    ? place.getFormattedAddress()
-                                    : (place.getVicinity() != null ? place.getVicinity() : "Address not available");
+   if (user.getLabsNextPageToken() != null) {
+    try {
+        Thread.sleep(2000); // REQUIRED by Google Places API
+    } catch (InterruptedException ignored) {}
 
-                            String encodedAddress = URLEncoder.encode(name + ", " + address, StandardCharsets.UTF_8);
-                            String mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodedAddress;
+    builder.queryParam("pagetoken", user.getLabsNextPageToken());
+}
 
-                            return "🏥 " + name + "\n"
-                                    + "📍 " + address + "\n"
-                                    + "🔗 " + mapsUrl;
-                        })
-                        .collect(Collectors.joining("\n\n"));
 
-                String header = isEnglish
-                        ? "Here are some labs I found near " + locationQuery + ":\n\n"
-                        : locationQuery + " के पास मिली लैब्स:\n\n";
+    PlacesApiResponse response =
+            restTemplate.getForObject(builder.toUriString(), PlacesApiResponse.class);
 
-                String body = header + labsText;
-
-                return InteractiveMessage.builder()
-                        .body(body)
-                        .buttons(List.of(
-                                InteractiveMessage.Button.builder()
-                                        .id("main_menu")
-                                        .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
-                                        .build()
-                        ))
-                        .build();
-            }
-            return InteractiveMessage.builder()
-                    .body(isEnglish 
-                            ? "Sorry, I couldn't find any diagnostic labs near that location."
-                            : "क्षमा करें, वहाँ पास कोई लैब नहीं मिली।")
-                    .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
-                                    .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
-                                    .build()
-                    ))
-                    .build();
-
-        } catch (Exception e) {
-
-            log.error("Diagnostic API error", e);
-
-            return InteractiveMessage.builder()
-                    .body(isEnglish 
-                            ? "Something went wrong while searching. Please try again later."
-                            : "कुछ त्रुटि हुई। कृपया बाद में प्रयास करें।")
-                    .buttons(List.of(
-                            InteractiveMessage.Button.builder()
-                                    .id("main_menu")
-                                    .title(isEnglish ? "🏠 Main Menu" : "🏠 मुख्य मेनू")
-                                    .build()
-                    ))
-                    .build();
-        }
+    if (response == null || response.getResults() == null || response.getResults().isEmpty()) {
+        return ListMessage.builder()
+                .header("No Labs Found")
+                .body("Sorry, I couldn’t find any diagnostic labs nearby.")
+                .buttonText("Back")
+                .build();
     }
+
+    // Save pagination + labs
+    user.setLabsNextPageToken(response.getNextPageToken());
+    user.setLastLabs(response.getResults());
+    userService.updateUser(user);
+
+    // Build list rows (LIMIT 5)
+   List<ListMessage.Row> rows = response.getResults().stream()
+        .limit(5)
+        .map(p -> {
+
+            String title = p.getName();
+            if (title.length() > 24) {
+                title = title.substring(0, 21) + "...";
+            }
+
+            String description = p.getVicinity() != null ? p.getVicinity() : "Nearby";
+            if (description.length() > 72) {
+                description = description.substring(0, 69) + "...";
+            }
+
+            return ListMessage.Row.builder()
+                    .id("LAB_" + p.getName().hashCode())
+                    .title(title)
+                    .description(description)
+                    .build();
+        })
+        .toList();
+
+    return ListMessage.builder()
+            .header("Diagnostic Labs Near You")
+            .body("Tap a lab to view details")
+            .buttonText("View Labs")
+            .sections(List.of(
+                    ListMessage.Section.builder()
+                            .title("Available Labs")
+                            .rows(rows)
+                            .build()
+            ))
+            .build();
+}
+public String buildLabDetailsText(Place place) {
+
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("🏥 *").append(place.getName()).append("*\n\n");
+
+    if (place.getVicinity() != null) {
+        sb.append("📍 Address:\n")
+          .append(place.getVicinity())
+          .append("\n\n");
+    }
+
+    sb.append("🗺 Open in Google Maps:\n");
+    sb.append("https://www.google.com/maps/search/?api=1&query=");
+    sb.append(encode(place.getName() + " " + place.getVicinity()));
+
+    sb.append("\n\n");
+    sb.append("Type BACK to return to the lab list.");
+
+    return sb.toString();
+}
+
+private String encode(String value) {
+    return java.net.URLEncoder.encode(value, java.nio.charset.StandardCharsets.UTF_8);
+}
+
+
 }

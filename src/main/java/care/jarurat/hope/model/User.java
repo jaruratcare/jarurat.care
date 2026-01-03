@@ -2,6 +2,9 @@ package care.jarurat.hope.model;
 
 import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
+import java.util.List;
+
+import care.jarurat.hope.Userflow.diagonostics.model.Place;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -52,6 +55,8 @@ public class User {
     // diagonostic
     private String collectionType;
     private String testType;
+    private List<Place> lastLabs;
+private String labsNextPageToken;
 
     // DOCTOR MODULE TEMP FIELDS
     private String tempDoctorCity;

@@ -69,13 +69,17 @@ public class WhatsAppService {
             Object response = mainUserFlowService.getResponse(user, messageBody);
 
             // Send response to WhatsApp
-            if (response instanceof InteractiveMessage) {
+          if (response instanceof ListMessage) {
+                sendListMessage(userId, (ListMessage) response);
+            } 
+            else if (response instanceof InteractiveMessage) {
                 sendInteractiveMessage(userId, (InteractiveMessage) response);
-            } else if (response instanceof String) {
+            } 
+            else if (response instanceof String) {
                 sendTextMessage(userId, (String) response);
-            } else if (response instanceof ListMessage) { // NEW
-                sendListMessage(userId, (ListMessage) response); // NEW
             }
+
+
 
             return "Message processed successfully";
 
@@ -122,9 +126,15 @@ public class WhatsAppService {
         }
     }
 
-    public void sendInteractiveMessage(String to, InteractiveMessage interactiveMessage) {
+ public void sendInteractiveMessage(String to, InteractiveMessage interactiveMessage) {
     try {
         String url = whatsappApiUrl;
+
+        // 🚨 If no buttons → this is NOT an interactive message
+        if (interactiveMessage.getButtons() == null || interactiveMessage.getButtons().isEmpty()) {
+            sendTextMessage(to, interactiveMessage.getBody());
+            return;
+        }
 
         Map<String, Object> payload = new HashMap<>();
         payload.put("messaging_product", "whatsapp");
@@ -132,53 +142,44 @@ public class WhatsAppService {
         payload.put("type", "interactive");
 
         Map<String, Object> interactive = new HashMap<>();
-        
-        // ✅ CHECK IF BUTTONS ARE EMPTY - USE "text" TYPE INSTEAD OF "button"
-        if (interactiveMessage.getButtons() == null || interactiveMessage.getButtons().isEmpty()) {
-            interactive.put("type", "text"); // Use text type when no buttons
-        } else {
-            interactive.put("type", "button"); // Use button type when buttons exist
-        }
+        interactive.put("type", "button"); // ✅ ALWAYS button
 
         // Body
-        Map<String, String> body = new HashMap<>();
-        body.put("text", interactiveMessage.getBody());
-        interactive.put("body", body);
+        interactive.put("body", Map.of(
+                "text", interactiveMessage.getBody()
+        ));
 
         // Header (optional)
-        if (interactiveMessage.getHeader() != null && !interactiveMessage.getHeader().isEmpty()) {
-            Map<String, String> header = new HashMap<>();
-            header.put("type", "text");
-            header.put("text", interactiveMessage.getHeader());
-            interactive.put("header", header);
+        if (interactiveMessage.getHeader() != null && !interactiveMessage.getHeader().isBlank()) {
+            interactive.put("header", Map.of(
+                    "type", "text",
+                    "text", interactiveMessage.getHeader()
+            ));
         }
 
         // Footer (optional)
-        if (interactiveMessage.getFooter() != null && !interactiveMessage.getFooter().isEmpty()) {
-            Map<String, String> footer = new HashMap<>();
-            footer.put("text", interactiveMessage.getFooter());
-            interactive.put("footer", footer);
+        if (interactiveMessage.getFooter() != null && !interactiveMessage.getFooter().isBlank()) {
+            interactive.put("footer", Map.of(
+                    "text", interactiveMessage.getFooter()
+            ));
         }
 
-        // ✅ ONLY ADD BUTTONS IF THEY EXIST
-        if (interactiveMessage.getButtons() != null && !interactiveMessage.getButtons().isEmpty()) {
-            Map<String, Object> action = new HashMap<>();
-            List<Map<String, Object>> buttons = interactiveMessage.getButtons().stream()
-                    .map(button -> {
-                        Map<String, Object> btn = new HashMap<>();
-                        btn.put("type", "reply");
+        // ✅ ACTION IS MANDATORY
+        Map<String, Object> action = new HashMap<>();
 
-                        Map<String, String> reply = new HashMap<>();
-                        reply.put("id", button.getId());
-                        reply.put("title", button.getTitle());
-                        btn.put("reply", reply);
+        List<Map<String, Object>> buttons = interactiveMessage.getButtons()
+                .stream()
+                .map(b -> Map.of(
+                        "type", "reply",
+                        "reply", Map.of(
+                                "id", b.getId(),
+                                "title", b.getTitle()
+                        )
+                ))
+                .toList();
 
-                        return btn;
-                    }).toList();
-
-            action.put("buttons", buttons);
-            interactive.put("action", action);
-        }
+        action.put("buttons", buttons);
+        interactive.put("action", action);
 
         payload.put("interactive", interactive);
 
@@ -186,23 +187,21 @@ public class WhatsAppService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(accessToken);
 
-        HttpEntity<Map<String, Object>> request = new HttpEntity<>(payload, headers);
+        restTemplate.postForEntity(
+                url,
+                new HttpEntity<>(payload, headers),
+                String.class
+        );
 
-        log.info("Attempting to send message to URL: {}. Payload: {}", url, payload);
-
-        ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
-
-        if (response.getStatusCode() == HttpStatus.OK) {
-            log.info("✅ Interactive message sent successfully to {}", to);
-        } else {
-            log.error("❌ Failed to send interactive message. Status: {}, Response: {}",
-                    response.getStatusCode(), response.getBody());
-        }
+        log.info("✅ Interactive message sent successfully to {}", to);
 
     } catch (Exception e) {
-        log.error("❌ Error sending interactive message to {}: {}", to, e.getMessage(), e);
+        log.error("❌ Error sending interactive message", e);
     }
 }
+
+
+
 
     // NEW METHOD for List Messages
     public void sendListMessage(String to, ListMessage listMessage) {

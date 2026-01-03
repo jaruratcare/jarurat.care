@@ -9,4 +9,5 @@ import java.util.List;
 public class PlacesApiResponse {
     private List<Place> results;
     private String status;
+    private String nextPageToken;
 }

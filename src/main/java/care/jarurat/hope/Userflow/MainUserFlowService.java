@@ -229,6 +229,7 @@ public class MainUserFlowService {
             case "diagnostic_awaiting_location":
             case "diagnostic_awaiting_test_type":
             case "diagnostic_awaiting_collection_type":
+            case "diagnostic_awaiting_lab_choice":
                 return diagnosticHandler.handle(user, input);
 
             case "volunteer_start":

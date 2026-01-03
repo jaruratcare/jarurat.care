@@ -2,6 +2,7 @@ care\jarurat\hope\Userflow\nutritionalCare\ImmunityService.class
 care\jarurat\hope\mapper\DoctorMapper.class
 care\jarurat\hope\model\InteractiveMessage$Button.class
 care\jarurat\hope\Userflow\MainUserFlowService.class
+care\jarurat\hope\model\InteractiveMessage$Section$SectionBuilder.class
 care\jarurat\hope\model\InteractiveMessage$InteractiveMessageBuilder.class
 care\jarurat\hope\Userflow\diagonostics\DiagnosticService.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep0Service.class
@@ -17,6 +18,7 @@ care\jarurat\hope\service\UserService.class
 care\jarurat\hope\Userflow\PalliativeCareHandler\PalliativeCareFacility.class
 care\jarurat\hope\Userflow\diagonostics\DiagnosticMessageBuilder.class
 care\jarurat\hope\Userflow\AccommodationFood\AccommodationFoodMessageBuilder.class
+care\jarurat\hope\model\InteractiveMessage$Row.class
 care\jarurat\hope\util\DoctorJsonLoader$1.class
 care\jarurat\hope\repository\financials\GovtSchemeRepository.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep1Service.class
@@ -51,6 +53,7 @@ care\jarurat\hope\Userflow\nutritionalCare\RemediesService.class
 care\jarurat\hope\model\ListMessage$Section$SectionBuilder.class
 care\jarurat\hope\Userflow\nutritionalCare\SupplementsService.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep2Service.class
+care\jarurat\hope\model\InteractiveMessage$Section.class
 care\jarurat\hope\Userflow\emotionalcare\EmotionalCareMessageBuilder.class
 care\jarurat\hope\service\OpenAiServiceWrapper.class
 care\jarurat\hope\dto\UserResponseDto.class
@@ -72,8 +75,10 @@ care\jarurat\hope\dto\DoctorDto.class
 care\jarurat\hope\util\FuzzyUtils.class
 care\jarurat\hope\util\PdfGeneratorUploader.class
 care\jarurat\hope\Userflow\nutritionalCare\NutritionCareRouter.class
+care\jarurat\hope\model\InteractiveMessage$Row$RowBuilder.class
 care\jarurat\hope\Userflow\diagonostics\DiagnosticHandler.class
 care\jarurat\hope\Userflow\financialguidance\GovernmentSchemesService.class
+care\jarurat\hope\model\InteractiveMessage$Action.class
 care\jarurat\hope\Userflow\diagonostics\model\Place.class
 care\jarurat\hope\Userflow\PalliativeCareHandler\PalliativeCareMessageBuilder.class
 care\jarurat\hope\Userflow\financialguidance\CrowdfundingService.class
@@ -83,6 +88,7 @@ care\jarurat\hope\service\LanguageService.class
 care\jarurat\hope\model\ListMessage$Row.class
 care\jarurat\hope\model\User.class
 care\jarurat\hope\service\OnboardingService.class
+care\jarurat\hope\model\InteractiveMessage$Action$ActionBuilder.class
 care\jarurat\hope\config\OpenAiConfig.class
 care\jarurat\hope\Userflow\nutritionalCare\steps\NutritionStep4Service.class
 care\jarurat\hope\Userflow\Volunteer\VolunteerMessageBuilder.class

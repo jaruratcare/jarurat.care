@@ -34,9 +34,9 @@
       class="hover:border-[#0155BD] focus:outline-none focus:border-[#0155BD] relative w-full h-12 text-sm font-[600] bg-[white] md:bg-[#E8EBF1] text-[#0155BD] outline-none rounded-lg pl-4 pr-10"
     >
       <option value="">-- Select an option --</option>
-      <option value="ABC">ABC</option>
-      <option value="XYZ">XYZ</option>
-      <option value="RFC">RFC</option>
+      <option value="Advisor">Advisor</option>
+      <option value="Doctor">Doctor</option>
+      <option value="Patient">Patient</option>
     </select>
     <DropDownArrow/>
   </div>

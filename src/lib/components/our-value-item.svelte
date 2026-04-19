@@ -1,17 +1,24 @@
 <script>
-
-export let icon ;
-export let title;
-export let about;
+	export let icon;
+	export let title;
+	export let about;
 </script>
 
+<div class="bg-[#F8FCFF] rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col gap-4">
 
+	<!-- Icon -->
+	<div class="flex items-center shrink-0">
+		<svelte:component this={icon} />
+	</div>
 
-<div class=" min-w-[390px] bg-[#F8FCFF]">
-    <div class="icon"><svelte:component this={icon} /></div>
-    <div class="heading text-primaryBlue font-extrabold md:text-2xl text-lg mt-5 mb-2 ">{title}</div>
-    <div class="about text-sm">{about}</div>
+	<!-- Title -->
+	<h3 class="text-primaryBlue font-extrabold text-lg md:text-xl leading-tight">
+		{title}
+	</h3>
+
+	<!-- Description -->
+	<p class="text-sm text-gray-700 leading-relaxed">
+		{about}
+	</p>
+
 </div>
-
-
-

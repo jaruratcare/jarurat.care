@@ -1,71 +1,70 @@
 <script>
-	import NextIcon from '$lib/svg/next-icon.svelte';
+  import NextIcon from '$lib/svg/next-icon.svelte';
 </script>
 
 <div
-	class="h-[570px] w-full bg-[#D1F0FB] bg-[url('src/lib/assets/get-involved/sectDiv.png')] bg-cover md:flex justify-center items-center hidden"
+  class="relative h-[450px] w-full bg-[#F4F8FF] flex justify-center items-center overflow-hidden"
 >
-	<h3 class="text-center font-bold text-5xl z-20 text-white">
-		Alone we can do so <span class="text-[#FFBA41]">little;</span><br />
-		together we can do so <span class="text-[#0155BD]">much.</span>
-	</h3>
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#2563EB_1px,transparent_1px)] [background-size:20px_20px]"></div>
+
+  <div class="relative z-10 text-center px-6">
+    <h3 class="font-bold text-4xl md:text-5xl text-[#0D2561] leading-tight">
+      Alone we do <span class="text-[#2563EB] italic">little.</span><br />
+      Together we achieve <span class="text-[#1E40AF]">more.</span>
+    </h3>
+    <div class="w-24 h-1.5 bg-[#2563EB] mx-auto mt-8 rounded-full"></div>
+  </div>
 </div>
 
-<div class="flex flex-col-reverse lg:flex-row">
-	<div
-		class="bg-[#D3F2FC] w-full md:w-full mx-auto rounded-2xl md:rounded-none drop-shadow-xl mb-10 md:mb-0 lg:w-1/2 md:px-24 px-2 py-10"
-	>
-		<div class=" md:px-6 md:border-l-4 border-[#0155BD]">
-			<div class="mb-10">
-				<div class="text-[#0D2460] font-bold text-2xl mb-3">Subscribe to our Newsletter</div>
-				<div class="text-sm">
-					Get the latest updates, inspiring stories, and important news delivered right to your
-					inbox.
-				</div>
-			</div>
-			<div class="gap-10 flex flex-col md:flex-row">
-				<input
-					type="text"
-					class="rounded-lg md:w-96 px-3 py-4"
-					placeholder="Enter you email address"
-				/>
-				<button class="text-[#0155BD] border border-[#0155BD] font-bold px-4 py-2 rounded-3xl">
-					Submit</button
-				>
-			</div>
-		</div>
-	</div>
-	<div class=" lg:w-1/2 md:px-24 px-3 py-10">
-		<div class=" px-6 border-l-4 border-[#FFBA41]">
-			<div class="mb-10">
-				<div class="text-[#0D2460] font-bold text-2xl mb-3">
-					<span class="text-[#FFBA41]">Collaborate </span>
-					<span class="text-[#78C520]"> With Us</span>
-				</div>
-				<div class="text-sm">
-					Our mission thrives through the support of compassionate corporates, individuals, and
-					organizations. You can be a part of this journey too—join us in making a difference.
-				</div>
-			</div>
+<div class="flex flex-col lg:flex-row bg-white">
+  
+  <div
+    class="bg-[#F4F8FF] w-full lg:w-1/2 md:px-24 px-8 py-20 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-blue-100"
+  >
+    <div class="max-w-md w-full border-l-4 border-[#2563EB] pl-8">
+      <div class="mb-8">
+        <h4 class="text-[#0D2561] font-bold text-2xl mb-2">
+          Subscribe to our Newsletter
+        </h4>
+        <p class="text-slate-500 text-sm font-medium">
+          Get expert oncology updates delivered to your inbox.
+        </p>
+      </div>
 
-			<div class="grid grid-cols-2 font-semibold">
-				<div class="flex gap-5 items-center">
-					<div class="w-4 h-4 flex gap-[1px]"><NextIcon /><NextIcon /></div>
-					<div class="text-sm">Join jarurat care team</div>
-				</div>
-				<div class="flex gap-5 items-center">
-					<div class="w-4 h-4 flex gap-[1px]"><NextIcon /><NextIcon /></div>
-					<div class="text-sm">Become a caregiver</div>
-				</div>
-				<div class="flex gap-5 items-center">
-					<div class="w-4 h-4 flex gap-[1px]"><NextIcon /><NextIcon /></div>
-					<div class="text-sm">Become a mentor</div>
-				</div>
-				<div class="flex gap-5 items-center">
-					<div class="w-4 h-4 flex gap-[1px]"><NextIcon /><NextIcon /></div>
-					<div class="text-sm">Donate money</div>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <input
+          type="email"
+          class="flex-1 rounded-xl border border-blue-200 px-5 py-4 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 shadow-sm"
+          placeholder="Enter your email address"
+        />
+        <button class="bg-[#1E40AF] text-white font-bold px-8 py-4 rounded-xl shadow-md hover:bg-[#0D2561] transition-all duration-300">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:w-1/2 md:px-24 px-8 py-20 flex items-center justify-center bg-white">
+    <div class="max-w-md w-full border-l-4 border-[#2563EB] pl-8">
+      <div class="mb-10">
+        <h4 class="text-[#0D2561] font-bold text-2xl mb-2">
+          Collaborate <span class="text-[#2563EB]">With Us</span>
+        </h4>
+        <p class="text-slate-500 text-sm font-medium">
+          Partner with us to make a real impact in cancer care.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
+        {#each ['Join Our Team', 'Become a Caregiver', 'Become a Mentor', 'Donate Today'] as item}
+          <div class="group flex gap-4 items-center cursor-pointer">
+            <div class="flex gap-0.5 text-[#2563EB] group-hover:translate-x-1 transition-transform duration-300">
+              <NextIcon size={14} /><NextIcon size={14} />
+            </div>
+            <span class="text-sm font-bold text-[#0D2460] group-hover:text-[#2563EB] transition-colors">{item}</span>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </div>
 </div>

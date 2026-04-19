@@ -1,21 +1,19 @@
 <script>
-export let content;
+	export let content;
 </script>
 
-<div class="relative w-full flex justify-center items-center">
-    <!-- Background Card -->
-    <div class="back bg-[#0D2561] -rotate-1 rounded-2xl w-[100%] h-[18rem]"></div>
+<div class="relative w-full max-w-sm mx-auto flex justify-center">
 
-    <!-- Foreground Card -->
-    <div class="front bg-[#FFFFFF] absolute bottom-2 left-0 rounded-2xl w-[80%] h-[18rem] flex justify-center items-center text-center p-4">
-        <!-- Content Box that Shrinks or Wraps -->
-        <div class="w-full h-full flex flex-col justify-center items-center">
-            <div class="w-full max-h-full text-sm sm:text-base text-center break-words leading-tight overflow-hidden">
-                {content}
-            </div>
-        </div>
-    </div>
+	<!-- Background Card -->
+	<div class="bg-[#0D2561] -rotate-1 rounded-2xl w-full h-[17rem] md:h-[18rem]"></div>
+
+	<!-- Foreground Card -->
+	<div class="absolute bottom-1 left-1/2 -translate-x-1/2 bg-white rounded-2xl w-[92%] md:w-[85%] h-[17rem] md:h-[18rem] flex items-center justify-center p-5 text-center">
+
+		<div class="text-sm md:text-base leading-relaxed break-words">
+			{content}
+		</div>
+
+	</div>
+
 </div>
-
-
-

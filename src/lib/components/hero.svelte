@@ -1,59 +1,57 @@
 <script>
-	import AnimatedGradientMesh from '$lib/svg/animated-gradient-mesh.svelte';
-	import Button from './ui/button.svelte';
+  import { HeartHandshake, Users, HandHeart } from "lucide-svelte";
+  import patient from '$lib/assets/patient.jpeg';
 </script>
 
-<div class="relative h-svh w-full overflow-hidden flex items-center justify-center p-4">
-	<!-- <AnimatedGradientMesh class="z-0 absolute inset-0" /> -->
+<section class="relative w-full pt-28 pb-20 bg-[#F4F8FF] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
 
-	<div class="absolute inset-0 z-0 flex items-end translate-y-1/2">
-		<div
-			class="ribbon aspect-square rounded-full border-[1rem] border-[#48B5E4]/12 z-10 w-[80%] mx-auto mt-[4rem]"
-		></div>
-	</div>
+    <div class="grid md:grid-cols-2 items-center gap-10 md:gap-8">
 
-	<div class="container flex flex-col items-center text-center gap-2 md:gap-4 relative z-10">
-		<h1 class="text-4xl md:text-8xl font-extrabold text-[#0464C4]">JARURAT CARE</h1>
-		<h2 class="text-2xl md:text-4xl font-semibold" style="color:#132F78">
-			Jaisi Jarurat Vaisi Care
-		</h2>
-		<p class="text-blue-900 text-md md:text-xl max-w-md m-3">
-			Providing support, guidance, hope and personalized care for
-			<span class="underline font-bold"> cancer patients </span>
-			and their families. Here to ensure you never face your journey alone.
-		</p>
+      <!-- LEFT -->
+      <div class="space-y-4">
+        <h1 class="text-3xl md:text-[2.8rem] font-bold text-[#0D2561] leading-tight">
+          Jarurat Care Foundation
+        </h1>
+        <h2 class="text-lg md:text-xl text-[#2563EB] italic font-medium">
+          Jaisi Jarurat Vaisi Care
+        </h2>
+        <p class="text-[#475569] text-base md:text-lg max-w-lg leading-relaxed">
+          Providing support to cancer patients and their families. 
+          Ensuring no one faces the journey alone.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <a href="mailto:Priyanka.joshi@jarurat.care?subject=Seek%20Support%20For%20Cancer">
+            <button class="bg-[#1E40AF] text-white px-6 py-3 rounded-full text-sm font-medium shadow-md hover:bg-white hover:text-[#1E40AF] hover:border hover:border-[#1E40AF] transition-colors duration-300">
+              Seek Cancer Support
+            </button>
+          </a>
+          <a href="/donate">
+            <button class="border border-[#1E40AF] text-[#1E40AF] px-6 py-3 rounded-full text-sm font-medium hover:bg-[#1E40AF] hover:text-white transition-colors duration-300">
+              Donate
+            </button>
+          </a>
+        </div>
+      </div>
 
-		<div class="my-4"></div>
+      <!-- RIGHT IMAGE -->
+      <div class="relative flex justify-center md:justify-end">
+        <div class="relative w-full md:w-[850px] min-h-[260px] md:min-h-[400px]">
+          <img src={patient} alt="Jarurat Care Foundation" class="w-full h-full object-cover" />
 
-		<a href="mailto:Priyanka.joshi@jarurat.care?subject=Seek%20Support%20For%20Cancer">
-			<Button>Seek Cancer Support</Button>
-		</a>
-	</div>
-</div>
+          <div
+            class="absolute inset-0 pointer-events-none"
+            style="
+              background:
+                linear-gradient(to right, #F4F8FF 0%, rgba(244,248,255,0) 10%),
+                linear-gradient(to left, #F4F8FF 0%, rgba(244,248,255,0) 10%),
+                linear-gradient(to bottom, #F4F8FF 0%, rgba(244,248,255,0) 30%),
+                linear-gradient(to top, #F4F8FF 0%, rgba(244,248,255,0) 8%);
+            ">
+          </div>
+        </div>
+      </div>
 
-<style>
-	@keyframes flyIn {
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.container {
-		opacity: 0;
-		transform: translateY(150%);
-		animation: flyIn 1s cubic-bezier(0.5, 0.36, 0.22, 1) forwards;
-	}
-
-	@keyframes shrink {
-		to {
-			width: 40%;
-			top: auto;
-			bottom: 0;
-		}
-	}
-
-	.ribbon {
-		animation: shrink 1s cubic-bezier(0.5, 0.36, 0.22, 1) forwards;
-	}
-</style>
+    </div>
+  </div>
+</section>

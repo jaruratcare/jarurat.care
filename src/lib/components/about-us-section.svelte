@@ -1,11 +1,17 @@
 <script>
+ import abt_image from "$lib/assets/scantojoin.png"
 </script>
 
 <div class=" flex  gap-14 w-full md:px-16 items-center max-h-[483px] my-12">
 	
 	<div class="left mx-auto md:w-1/2 relative hidden md:block">
 		<div class="back md:w-[20rem] lg:w-[500px] h-64 md:h-96 bg-primaryBlue -rotate-2 rounded-2xl"></div>
-		<div class="front md:w-[20rem] lg:w-[500px] h-64 md:h-96 bg-[#D9D9D9] absolute bottom-2 left-1 rounded-2xl"></div>
+		<div class="front md:w-[20rem] lg:w-[500px] h-64 md:h-96 bg-[#D9D9D9] absolute bottom-2 left-1 rounded-2xl"
+			style={`background-image: url('${abt_image}');
+					background-size: cover;
+					background-position: center;
+					background-repeat: no-repeat;`}
+			></div>
 	  </div>
 	<div class="right w-full  md:w-1/2 text-center md:text-start px-9 md:px-0">
 		<h4 class="text-primaryBlue font-extrabold text-[1rem] mb-3">About Us</h4>

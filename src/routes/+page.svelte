@@ -13,6 +13,7 @@
     import SupportDonateMember from '$lib/components/support-donate-member.svelte';
     import VoiceOfHope from '$lib/components/voice-of-hope.svelte';
     import WhoWeAre from '$lib/components/who-we-are.svelte';
+    import Popup from '$lib/components/Popup.svelte';
 
     // Google Analytics initialization
     if (typeof window !== 'undefined') {
@@ -24,25 +25,32 @@
         gtag('config', 'G-SR1C89YNC3');
     }
 </script>
-
+<Popup 
+	title="Get Help via WhatsApp"
+message="Chat with our dedicated WhatsApp bot for guidance on cancer support, treatment options, and related queries. Quick, easy, and confidential assistance at your fingertips."
+gotoLink="https://wa.me/919389529263?text=Hi"
+/>
 <Nav />
 <Hero />
-<WhoWeAre />
+
+<!-- <WhoWeAre /> -->
 <SupportDonateMember />
+
 <Impact />
-<MonthlyUpdates />
-<HowWeSupportYou />
-<MapOfHospitals />
-<CancerResearch />
-<VoiceOfHope />
-<OurTeam />
-<Blogs />
-<Faq />
-<Newsletter />
+<!-- <MonthlyUpdates /> -->
+<!-- <HowWeSupportYou /> -->
+<!-- <MapOfHospitals />  -->
+<!-- <CancerResearch /> -->
+<!-- <VoiceOfHope /> -->
+<!-- <OurTeam /> -->
+<!-- <Blogs />
+<Faq /> -->
+<!-- <Newsletter /> -->
 
 <!-- Add the script asynchronously in the document -->
 <svelte:head>
-    <title>Gallbladder Cancer & Biliary Tract Support | Jarurat Care</title>
-    <meta name="description" content="Jarurat Care provides export support for gallbladder cancer, biliary tract cancer, and cholangiocarcinoma. Get medical assistance, awareness, and caregiving support today." />
+    <title>Gastro Intestinal Cancer & Biliary Tract Support | Jarurat Care</title>
+    <meta name="description" content="Jarurat Care provides export support for Gastro Intestinal Cancer, biliary tract cancer, and cholangiocarcinoma. Get medical assistance, awareness, and caregiving support today." />
+    <meta name="google-site-verification" content="xDv73z-GY61YZvbewsGFO9UqbnMbPTKLy7UGfcMe_D0" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SR1C89YNC3"></script>
 </svelte:head>
